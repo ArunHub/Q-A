@@ -1,0 +1,46 @@
+Why Angular?
+1. One framework for Mobile/Desktop/Native apps
+2. Performance - scrollify
+3. SPA
+4. Router - manages history objects when pressing back button
+5. framework is modular - made every piece of libraries as module. if router not needed, dont import. Unlike java, it dont need JVM mandatory to run.
+6. rich data binding - one way two way
+7. data transformation - pipes
+8. multiple language support[es5,es6,typescript,dart]
+9. built-in DI support - no need of creating new objects in constructor
+10. compilation - JIT/ AoT
+11. Rich animation support
+12. http [CRUD]
+13. Design applications using modular approach
+14. Eager loading / lazy loading
+15. change detection cycle [unidirectional - top to bottom]
+16. RxJS [reactive extension javascript library]
+17. angular - material
+18. easy testing [jasmine/karma]
+19. Angular elements
+20. angular follows component architecture unlike ng1 follows mvp, mvvm, mvc
+
+
+====================================
+codepen 
+https://codepen.io/pravinkumarcode/pen/VqqQaa
+
+necessary libraries for angular to create
+npm install --save @angular/core @angular/common @angular/compiler @angular/platform-browser @angular/platform-browser-dynamic rxjs zone.js core-js
+
+
+// CORRECTED
+import { Inject } from '@angular/core';
+
+export const WINDOW = new InjectionToken('Window');
+export function _window() { return window; }
+
+@Component({
+  ...
+  providers: [
+    { provide: WINDOW, useFactory: _window }
+  ]
+})
+export class MyComponent {
+  constructor (@Inject(WINDOW) private win: Window) { ... }
+}
