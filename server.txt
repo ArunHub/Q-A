@@ -1,0 +1,51 @@
+var express = require('express');
+var request = require('request');
+var bodyParser = require('body-parser');
+
+var app = express();
+var PB_APP_URL = 'http://localhost'
+
+app.use(express.static('.'));
+
+app.use(function (req, res, next) {
+	var oldSend = res.send;
+	console.log('ppppppppppppppp', req.url);
+	if (req.url == '/vendor.bundle.js') {
+		console.log('xxxxxxxxxxxx');
+		res.send = function (chunk) {
+			console.log(chunk instanceof Buffer);
+			chunk = chunk.replace('socket(socketUrl, onSocketMsg);', ';');
+			oldSend.apply(res, arguments);
+		}
+	}else {
+		// res.send.apply(res, arguments);
+	}
+	next();
+})
+
+
+var server = app.listen(7070, function(){
+	var host = server.address().address;
+	var port = server.address().port;
+	console.log('pb server started at http://%s:%s', host, port);
+});
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+	extended: true
+}))
+
+app.get('/pb_api/*', function(req, res){
+	res.end('request for refresh done')
+});
+
+app.get('*', function(req, res){
+	console.log(req.url);
+
+
+
+		var url = PB_APP_URL + req.url;
+		var reply = request(url); 
+		req.pipe(reply);
+		reply.pipe(res);
+});

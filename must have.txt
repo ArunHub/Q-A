@@ -1,0 +1,29 @@
+You (Must Haves)
+
+    You must be proficient in Problem Solving and Data structures since you got to find the best way of handling huge set of data.
+    You must have strong understanding of semantic HTML / HTML5, CSS / CSS3.
+    You must know the in and out of Javascript to design optimized and modular components which need to be used across our platform.
+    You must have good understanding of MVC architecture. Work experience in Angular, Backbone, React etc., is desirable.
+    You must have experience in setting up the full UI workflow layer right from Development, Testing, Building and Deployment.
+    Experience in frameworks like Bootstrap, Foundation and CSS pre-processors like SASS and LESS is desirable.
+    Knowledge on Node server, Socket connections and mechanisms to handle real-time async data would be a plus.
+
+You should always be on top of trending UI technologies and willing to contribute back to the open source network. 
+
+
+HTML5 & CSS3 expertise
+JavaScript & jQuery expertise
+Proficiency with responsive UI frameworks such as Bootstrap or Foundation
+Proficiency with CSS preprocessors such as Sass or Less
+Proficiency with extracting requirements from design tools such as Photoshop or Zeplin
+A strong understanding of optimizing content for the web
+Solid AJAX and DOM manipulation skills
+Proficiency with web analytics solutions such as Adobe Analytics or Google Analytics
+Proficiency with cross-browser and cross-platform compatibility
+Experience with web application frameworks such as Angular or React
+Experience with code optimization and performance analysis
+Excellent understanding of web development best practices
+Proactive with the desire to learn and master new technologies
+A passion for writing clean, efficient code
+
+Experience in integrating and developing with RESTful APIs for server-side functionality

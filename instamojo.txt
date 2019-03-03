@@ -1,0 +1,27 @@
+
+
+Role and Responsibilities:
+-Working with designers, product managers to collaboratively own the front-end layer at Instamojo.
+-Building responsive and elegant mobile+desktop web UIs.
+-Architect, develop and maintain front-end libraries.
+
+Skills required:
+-You breathe Javascript day-in, day-out and yet feel that there’s more that you can learn.
+-You are aware of Javascript design patterns and can architect a fairly complex UI without feeling the need of a framework.
+-You don’t shy away from writing HTML and CSS because you love designing a beautiful webpage with Semantic markup.
+-You know what CSS pre/post processors can do for you and can make a fair judgement at choosing them (or not) e.g SASS/LESS/PostCSS etc.
+-You love automating things and can write custom scripts (Grunt/Gulp etc) to automate everything front-end.
+-You know the cost of HTTP requests and are always looking for ways to improve the performance of the product across devices.
+-You have experience building a product using a mainstream library or framework (ReactJS ecosystem preferred)
+-You keep pace with the ever changing specs of cutting edge front-end technologies (e.g. Service Workers)
+
+Required Experience:
+-Minimum product dev experience of 2+ years in web/mobile startups with expertise in designing and implementing high performance web applications.
+-You're an incessant problem solver and tougher the problem gets, more fun you have.
+-You've proven experience in the past to showcase the previous point -- either in your past work experience or during study courses by getting involved in open-source projects (like GSoC etc).
+-You love to own end to end responsibility, starting from defining the problem statement (either yourself or alongside your peers), development (PoC if needed), testing, releasing in staging & then production env and finally monitoring.
+
+Bonus Points for:
+-Experience building Single Page Applications.
+-Experience building for mobile platforms (Android/iOS).
+-Experience writing unit tests, visual regression tests.

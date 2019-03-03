@@ -1,0 +1,10 @@
+1.	how observables differ from promise with example
+2.	synchronous observable
+3.	What happens when then object completes in promise
+4.	Why use typescript
+5.	jit vs aot
+6.	@Input how this decorator works ?
+7.	Jasmine vs karma what are those
+8.	How to Debug in production code ?
+Converting from js to ts
+Just create a .d.ts file and include it in the tsconfig.json's files array, so that it is always considered by the TypeScript compiler. In it declare those bits that TypeScript does not know about as type any. Once you've eliminated all errors you can gradually introduce typing to those parts according to your needs.

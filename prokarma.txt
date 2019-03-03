@@ -1,0 +1,29 @@
+1.	Event loop in js
+2.	Function  expression in js
+3.	Assign anonymous function to variable?
+4.	Websockets html
+5.	Web storage sizes
+6.	BOM
+7.	Z-index css
+8.	Es6 spread vs rest, function vs arrow fn
+9.	Bootstrapping module
+10.	Sending data from one component to another component ? #ngrx
+11.	First class functions #pure function
+12.	Polymorphism in js
+13.	Achieve prototype inheritance
+14.	Different types of creating object
+15.	Apply and call
+16.	Semantic tags
+17.	Range input use
+18.	Modular pattern and module releasing pattern
+19.	Npm run start
+20.	Unit testing . How to mock backend calls
+21.	Use strict and non strict
+22.	This in use strict
+23.	Closures
+24.	Define ngmodule decorator with difference btw providers, entry components, declarations
+25.	Pseudo elements
+26.	Aside inside nav tag.
+27.	Document.object
+28.	How will you find which browser running
+29.	What history object does in javascript

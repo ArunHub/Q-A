@@ -1,0 +1,10 @@
+function DD(){this.name='arun';this.age=5}
+rr = new DD();
+rr1 = Object.create(new DD());
+console.log('rr',rr);
+console.log('rr1',rr1);
+DD.prototype.ddd = 123;
+console.log(rr,'rr');
+console.log(rr1,'rr1');
+
+Here rr and rr1 have prototype ddd how ?

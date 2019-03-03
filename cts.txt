@@ -1,0 +1,74 @@
+1st round
+1.	What is react
+2.	Why react is fast , why not jquery if u change particalar dom ? => We don’t export as module or component to load async or different order
+https://codepen.io/gaearon/pen/RVKbvW?editors=1010 react with jquery and refer integrating other libs into react in reactjs.com 
+When we refer a classname in common button n fed across dom , we will use queryselector and loop and attach methods but in react we can use react.createRef to reference to particular component only
+3.	Why super(props)
+4.	Inside form component there many input field components there, and submit btn so evnet handler available for submit btn only.
+a.	How will you get each component value and submit it
+b.	How will you validate each field value and do validation before submitting
+5.	How will you Map and filter an array and return input radio element to render
+6.	Array of three objects with each object has {1,2,3}, {5,2,3},{3,1,4}. Find the object has 1 and 3 and filter => hasownproperty
+7.	Call and apply 
+8.	Rest operator
+9.	React lifecycle after state update
+10.	How to update state
+11.	Unit test case for form submit 
+2nd round
+1.	Latest application worked on?
+2.	Redux work flow
+3.	Created any component and publish in npm
+4.	Reverse a string without reverse
+5.	React lifecycles
+6.	How react produces good performance
+7.	[{a:dsaf, age:5}, {a:efa,age:3}, {a:errg, age:10}] sort this array depending on age property
+8.	There are three pages and each page has form component with common next button which indicates to move to next page so which implies to denote the completion in filling progress bar at the bottom. How will you be your thought process to implement.
+9.	How will you implement footer sticky 
+10.	Pass value from controller to controller in ng1
+11.	Ng-hide vs ng-if
+12.	Rootscope
+13.	Webpack use and devops knowledge?
+14.	How much code coverage produced?
+3rd round
+1.	Brief about professional experience over 5years
+2.	How good is hcl
+3.	Agile methodology work flow
+4.	Daily task of developer in agile
+5.	Interact with business owners, clients owners
+6.	How will you mitigate risk under short deadline
+7.	Aspiration about onsite
+8.	Going forward lead or manager or architect?
+9.	Why do want leave organisation
+10.	Why 2years 1year 2 year switching
+11.	Any other reason leaving hcl other than financial
+12.	If production issue and story task are there how will u manage in a particular day
+13.	Suppose in 2 weeks sprint if have applied for leave and if the task was to complete in new technology. What will be your reaction?
+14.	Location preference outside chennai and inside preference
+4th round
+1.	Current salary and Expected salary
+2.	Location preference
+3.	Bgv documents correct 
+4.	Salary and notice period negotiable ?
+5th round
+1.	Webpack usage
+2.	Why bootstrap
+3.	Bindings in ng1 directive
+4.	How achieve two way binding in directive
+5.	What is directive
+6.	EA, E, A define in directive
+7.	Why react different from angular
+8.	You have shared component which has two buttons plus and minus to increase/decrease number functionality. How will implement this in photo changing slider in another component.
+9.	React lifecycles
+10.	Virtual dom
+
+1st round answers
+1.	S
+2.	S
+3.	When you want to access this.props in constructor
+Passing:
+class MyComponent extends React.Component {        constructor(props) {        super(props)        console.log(this.props)        // -> { icon: 'home', … }    }}
+Not passing:
+class MyComponent extends React.Component {        constructor(props) {        super()        console.log(this.props)        // -> undefined        // Props parameter is still available        console.log(props)        // -> { icon: 'home', … }    }    render() {        // No difference outside constructor        console.log(this.props)        // -> { icon: 'home', … }    }}
+Note that passing or not passing props to super has no effect on later uses of this.propsoutside constructor. That is render, shouldComponentUpdate, or event handlers always have access to it.
+
+
