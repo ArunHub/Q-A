@@ -173,3 +173,25 @@ Tried:
 	Error : subscribe not found since while initialising menu component, it is not subscribed.
 	
 	So in this scenario, we can able to use ngrx to rescue to supply data anywhere
+	
+=================================
+html css js
+loading each page from server for data
+many files -> performance
+spa using webpack bundler
+seperate ui and js for single page and updating when needed
+form module and components
+store data in service to make light weight component
+use directive on particular element or dom in component or normal dom
+pipe to filter some data before rendering
+pass data using data binding, service , input output, stream observable subscribe
+router
+authenticate using canactivate, canactivatechild for child components access
+resolve guard to prefetch data before rendering component when you have to wait for data from network call after component initialized
+again many files imported in appmodule
+so find and seperate feature module and lazy load it
+use interceptor to put common headers for request and response
+emit data from lazy feature module to parent root component module
+	cant use emit data using output since we navigate using router and not using selector 	
+	observable didnt work since root component got initialized and it asks for subscribe method which will get undefined. because we depend on auth call to authenticate and send data to root 
+-> subject asObservable solves the problem since it can push new values as well as subscribe to it. Not like observable, as we only subscribes to it as REad Only
