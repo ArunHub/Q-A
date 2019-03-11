@@ -195,3 +195,5 @@ emit data from lazy feature module to parent root component module
 	cant use emit data using output since we navigate using router and not using selector 	
 	observable didnt work since root component got initialized and it asks for subscribe method which will get undefined. because we depend on auth call to authenticate and send data to root 
 -> subject asObservable solves the problem since it can push new values as well as subscribe to it. Not like observable, as we only subscribes to it as REad Only
+and how only subject can do it ? not observable
+But without observable how angular can achieve it? no 
