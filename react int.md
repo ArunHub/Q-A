@@ -425,3 +425,112 @@ https://swapi.co/
 https://openweathermap.org/api
 https://mockable.io
 
+
+Interview Questions
+--
+
+**capg**
+
+11. How do you check error trace back happened in child from parent component itself?
+
+
+Cts
+--
+
+17.	What is react
+18.	Why react is fast , why not jquery if u change particalar dom ? => We don’t export as module or component to load async or different order https://codepen.io/gaearon/pen/RVKbvW?editors=1010 react with jquery and refer integrating other libs into react in reactjs.com 
+When we refer a classname in common button n fed across dom , we will use queryselector and loop and attach methods but in react we can use react.createRef to reference to particular component only
+20.	Why super(props)
+21.	Inside form component there many input field components there, and submit btn so evnet handler available for submit btn only.
+a.	How will you get each component value and submit it
+b.	How will you validate each field value and do validation before submitting
+22.	How will you Map and filter an array and return input radio element to render
+23.	Array of three objects with each object has {1,2,3}, {5,2,3},{3,1,4}. Find the object has 1 and 3 and filter => hasownproperty
+24.	Call and apply 
+25.	Rest operator
+26.	React lifecycle after state update
+27.	How to update state
+28.	Unit test case for form submit 
+2nd round
+29.	Latest application worked on?
+31.	Created any component and publish in npm
+32.	Reverse a string without reverse
+33.	React lifecycles
+34.	How react produces good performance
+35.	[{a:dsaf, age:5}, {a:efa,age:3}, {a:errg, age:10}] sort this array depending on age property
+36.	There are three pages and each page has form component with common next button which indicates to move to next page so which implies to denote the completion in filling progress bar at the bottom. How will you be your thought process to implement.
+37.	How will you implement footer sticky 
+40.	Rootscope
+41.	Webpack use and devops knowledge?
+42.	How much code coverage produced?
+3rd round
+43.	Brief about professional experience over 5years
+44.	How good is hcl
+45.	Agile methodology work flow
+46.	Daily task of developer in agile
+47.	Interact with business owners, clients owners
+48.	How will you mitigate risk under short deadline
+49.	Aspiration about onsite
+50.	Going forward lead or manager or architect?
+51.	Why do want leave organisation
+52.	Why 2years 1year 2 year switching
+54.	If production issue and story task are there how will u manage in a particular day
+55.	Suppose in 2 weeks sprint if have applied for leave and if the task was to complete in new technology. What will be your reaction?
+
+5th round
+57.	Webpack usage
+58.	Why bootstrap
+59.	Bindings in ng1 directive
+60.	How achieve two way binding in directive
+61.	What is directive
+62.	EA, E, A define in directive
+63.	Why react different from angular
+64.	You have shared component which has two buttons plus and minus to increase/decrease number functionality. How will implement this in photo changing slider in another component.
+67.	When you want to access this.props in constructor
+Passing:
+
+    class MyComponent extends React.Component {        constructor(props) {        super(props)        console.log(this.props)        // -> { icon: 'home', … }    }}
+
+Not passing:
+
+    class MyComponent extends React.Component {        constructor(props) {        super()        console.log(this.props)        // -> undefined        // Props parameter is still available        console.log(props)        // -> { icon: 'home', … }    }    render() {        // No difference outside constructor        console.log(this.props)        // -> { icon: 'home', … }    }}
+
+Note that passing or not passing props to super has no effect on later uses of this.propsoutside constructor. That is render, shouldComponentUpdate, or event handlers always have access to it.
+
+
+
+Deloit
+--
+
+21.	Why cant use componentwillmount instead of componentDidMount
+22.	Virtual dom
+23.	Is redux doing immutability in reducer? Then what is the need of immutable.js
+24.	Why need jsx to write html in js in react
+34.	What difference btw handling events in js and react js
+35.	Why need key while iterate
+36.	Difference btw forms usage In js and react
+37.	Usage of ref and use case of that
+38.	Declare Initial state in store?
+39.	Why redux
+40.	How the syntax will be in actions
+41.	Switch in router
+42.	Virtual dom
+43.	Why need react? What u do with react
+44.	What is componentwillmount and lifehooks of react
+45.	Props and state .. why props cant be changed
+46.	How to send value from child to parent
+47.	Why need bind in calling events? Is bind necessary? If not what is other way
+48.	When we don’t want to call render? What should be done
+49.	Es6 features
+50.	What special abt arrow functions ? Only shorthand?
+51.	How to convert es5 to es6 ? What to look for it in es5 to change
+52.	How react router different from other router?
+Managerial round
+25.	How do you see yourself in 5 years?
+26.	How do you want to grow up in your career?
+27.	Intro abt yourself, experience, responsibilities
+28.	What challenge you got from client
+29.	Why do you select deloitte
+30.	How was your day today
+31.	Agile difficulites
+32.	How do you prevent bugs defects before getting into QA hands
