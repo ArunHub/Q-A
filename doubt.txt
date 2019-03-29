@@ -15,6 +15,11 @@ how encapsulation css happen in angular
 how to replace loading... in appmodule.ts
 https://developer.mozilla.org/en-US/docs/Mozilla/Introduction_to_Layout_in_Mozilla
 
+react form validation -> refs -> input new attributes and regex patterns
+security in react spa -> authentication using router
+react testing from mahesh sabnis
+anto preact react forms testing
+
 web securities
 crsf
 cross site scripting
