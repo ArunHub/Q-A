@@ -119,3 +119,30 @@ Can use function to manipulate background text colors and calculate between css 
     // ) !default;
 
 https://medium.com/@rajaraodv/webpack-the-confusing-parts-58712f8fcad9
+
+##### Extending a class inside a nested classes====
+.button-primary {
+&:extend(.button-base)
+background: blue;
+}
+
+.button-danger {
+&:extend(.button-base)
+background: red;
+}
+
+##### sass extends placeholder in media queries===
+http://www.sassmeister.com/gist/9638030
+http://www.sitepoint.com/cross-media-query-extend-sass/
+
+##### sass vs less======
+http://getcrunch.co/2015/10/08/less-the-worlds-most-misunderstood-css-pre-processor/
+
+sass is imperative and less is procedoral
+
+##### sass mixin transition===
+http://zerosixthree.se/8-sass-mixins-you-must-have-in-your-toolbox/
+
+If you are proficient with Inspect element its little bit struggle to switch over for ex. you will inspect for an element to change its css and after doing it . you will find css line number different from sass file line number
+
+there comes the source maps
