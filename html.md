@@ -67,7 +67,8 @@ provide multiple video format in source tag to respective browser to understand
     <a href="myVideo.mp4">link to the video</a> instead.</p>
     </video>
 
-**Preload attr =>**
+**Preload attr**
+--
 
 •	none: Indicates that the video should not be preloaded.
 •	metadata: Indicates that only video metadata (e.g. length) is fetched.
@@ -77,7 +78,8 @@ Which leads to best user experience to load video before.
 
 **Poster** => first image as preview to show video
 
-**iframe Sandbox** =>
+**iframe Sandbox**
+--
 The sandbox attribute enables an extra set of restrictions for the content in the iframe.
 When the sandbox attribute is present, and it will:
 •	treat the content as being from a unique origin
@@ -100,7 +102,7 @@ New tab – ls and ss newly created
 Close n open last tab – ls remains but ss expired.
 
 - **- Datalist link to input tag –**
-
+---
     <datalist id="languages">
       <option value="HTML">
       <option value="CSS">
@@ -119,24 +121,37 @@ https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API
 - Canvas drawimage put image data strokerect rect
 
 **Autofocus for label n input**
-
+---
 This Boolean attribute specifies that the input should have focus when the page loads, unless the user overrides it (e.g. by typing in a different control). Only one element in a document can have the autofocus attribute. It cannot be applied if the type attribute is hidden, because hidden inputs cannot be focused. Note that the input may be focused before the DOMContentLoaded event fires.
 autofocus property for select tag is a Boolean that reflects the autofocus HTML attribute, which indicates whether the associated <select> element  will get input focus when the page loads, unless the user overrides it.
  
 
 - **Svg gradient stop-opacity 0 for both path has**
-=> 
+- --- 
 The stop-color attribute indicates what color to use at that gradient stop. The keyword currentColor and ICC colors can be specified in the same manner as within a <paint> specification for the fill and stroke attributes.
 The stop-opacity attribute defines the opacity of a given gradient stop.
 
 - **Field set legend missing =>** 
+- ---
 The HTML <legend> element represents a caption for the content of its parent <fieldset>.
 
 - **Field n form validation**
+- ---
 Minimum 2 number, shopping is not as billing address, password same check
 Novalidate – form doesn’t validate the form . So if required is given input field then the error message wont show . defaultly error shows if required given in input tag without novalidate.
-On button input submit also have formnovalidate attr which gives the form shouldn't be validated before submission
+On button input submit also have formnovalidate attr which gives the form shouldn't be validated before submission.
 
+-----
+
+#### websocket and webworkers
+---
+
+**socket project** - I developed a client side HTML streaming ( HTS ) prototype using Service Workers in browser.
+I also developed few other working models namely single page pre fetch in the browser, changing the response, response headers, caching a web page, schedule the requests, adding custom header to request - All using Service Workers present in web browser.
+
+A passion for quality, for doing the right thing for the customers, the product, and for the company.
+
+----
 
 Interview Questions
 --
