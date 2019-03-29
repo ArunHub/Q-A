@@ -444,3 +444,290 @@ Just create a .d.ts file and include it in the tsconfig.json's files array, so t
 
 38.	Pass value from controller to controller in ng1
 39.	Ng-hide vs ng-if
+
+
+
+
+##### token-based-authentication
+
+https://codinglatte.com/posts/angular/angular-5-token-based-authentication/
+
+  
+
+##### Lazy loading====
+
+three main steps to setting up a lazy loaded feature module:
+
+  
+
+• Create the feature module.
+
+• Create the feature module’s routing module.
+
+• Configure the routes.
+
+  
+
+lazy loading syntax uses loadChildren followed by a string that is the relative path to the module, a hash mark or #, and the module’s class name.
+
+  
+
+• Arrange imports correctly in appmodule with feature module
+
+• Use routerlink="/customers" forward slash in front or start with slash
+
+• Don’t import feature module in app module . Just configure the routes
+
+• With Just path property , page loads blank without component
+
+• If you declare forChild(routes) before forRoot(routes). forRoot will be useless and it will throw error esp in lazy loading. forRoot only use once in root app.
+
+• For children : give path in routerlink from parent path
+
+routerLink="/customers/list"
+
+• Invalid configuration of route 'customers': children and loadChildren cannot be used together. When lazy loading 'customers' feature module , don’t load children as lazy load module itself.
+
+{ path: 'customers', loadChildren: './customers/customers.module#CustomersModule' ,
+
+children: [{
+
+path: 'orders1', loadChildren: './components/orders/orders.module#OrdersModule'
+
+}]
+
+},
+
+  
+
+  
+
+##### Cli command for feature module
+
+ng generate module customers --routing
+
+  
+
+After lazy loading is implemented, I cannot pass value from login lazy module component to root app component or menu component to update username of signed user after autheticated him using jwt from server and changing value from subscribtion area to menu service.
+
+Tried:
+
+Menuservice
+
+Observable
+
+Error : subscribe not found since while initialising menu component, it is not subscribed.
+
+So in this scenario, we can able to use ngrx to rescue to supply data anywhere
+
+  
+  
+
+##### Reactive forms======
+
+  
+
+Step 1: Registering the reactive forms modulelink
+
+To use reactive forms, import ReactiveFormsModule from the @angular/forms package and add it to your NgModule's imports array.
+
+Step 2: Generating and importing a new form control
+
+Generate a component for the control.
+
+  
+
+ng generate component NameEditor
+
+To register a single form control, import the FormControl class into your component and create a new instance of the form control to save as a class property.
+
+  
+
+export class NameEditorComponent { name = new FormControl(''); }
+
+  
+
+step 3: Registering the control in the template
+
+For single form control element, [formcontrol] is the syntax. But not in case of grouping form group elements
+
+Grouping form controls
+
+Step 1: Creating a FormGroup instance
+
+Step 2: Associating the FormGroup model and view
+
+  
+
+Syntax:
+
+<form [formGroup]="profileForm">  <label> First Name: <input  type="text"  formControlName="firstName">  </label>
+
+  
+
+
+> [formControl]
+
+		[formGroup]
+
+			formControlName
+
+				[formGroup]
+
+						formControlName
+
+formBuilder injector service to reduce repetive formcontrol in multiple forms
+
+Instead of new formGroup, use injected property this.fb.group
+
+two ways to update the model value:
+
+• Use the setValue() method to set a new value for an individual control. The setValue() method strictly adheres to the structure of the form group and replaces the entire value for the control.
+
+• Use the patchValue() method to replace any properties defined in the object that have changed in the form model.
+
+From <https://angular.io/guide/reactive-forms>
+
+  
+
+you use the group() method with the same object to define the properties in the model. The value for each control name is an array containing the initial value as the first item in the array.
+
+  
+
+From <https://angular.io/guide/reactive-forms>
+
+You can define the control with just the initial value, but if your controls need sync or async validation, add sync and async validators as the second and third items in the array.
+
+  
+
+From <https://angular.io/guide/reactive-forms>
+
+  
+  
+
+#### Hash and path strategy in angular========
+
+Default pathlocation strategy which is based on normal history based api in browser.
+
+In hash based type, a # will be included in end of domain and the path added after # will be not sent to server.
+
+Like we use in anchor tag <a  href="hello">arun</a>
+
+www.domain.com/#hello
+
+When we see network GET request for above link, server neglects after # and parse only www.domain.com
+
+So hash can be programmatically changed and use for bookmarks
+
+While using hash type in routing, from frontend we send only domain alone or server takes domain alone as GET request not other paths after #.
+
+According to the the server there is only ever one URL localhost:4040, the other hash fragment stuff is ignored by the server.
+
+This is why we call what we are building a Single Page Application, there is only ever one page requested from the server. In the above example it’s localhost:4040 — the other pages are just changes to the hash fragment which the client application deals with, from the perspective of the server the whole site is just a single page.
+
+  
+
+From <https://codecraft.tv/courses/angular/routing/routing-strategies/#_summary>
+
+  
+  
+
+#### In path location type
+
+  
+
+If we were at localhost:4040/artist
+
+  
+
+Then we change url using history api and pushstate in ng and go to localhost:4040/artist/123/789
+
+Without sending this url to server, we routes component to another one.
+
+  
+
+But when we reload the page, this url localhost:4040/artist/123/789 goes to server and GET request for that.
+
+  
+
+<base  href='/my/app'/> is compulsory to tell the root path in index.html
+
+  
+
+For Angular Universal to work URLs need to be passed to the server side which is why it can only work with a PathLocationStrategy and not a HashLocationStrategy.
+
+  
+
+From <https://codecraft.tv/courses/angular/routing/routing-strategies/#_summary>
+
+  
+
+##### Extra Notes=================
+
+1. @NgModule({
+
+2. imports: [ CommonModule ],
+
+3. declarations: [ CustomerComponent, NewItemDirective, OrdersPipe ],
+
+4. exports: [ CustomerComponent, NewItemDirective, OrdersPipe,
+
+5. CommonModule, FormsModule ]
+
+6. })
+
+  
+
+From <https://angular.io/guide/sharing-ngmodules>
+
+  
+
+While using shared module, export the imports also like commonmodule, formsmodule if app module needed.
+
+Normally pipes, directives, components are shared by shared module not service because it creates new instance again and is not typical usage.
+
+
+
+#### collection examples
+https://codepen.io/collection/aFsqL/
+
+https://netbasal.com/angular-2-understanding-viewcontainerref-acc183f3b682
+
+https://blog.thoughtram.io/angular/2017/02/02/making-your-angular-app-fast.html
+
+####AngularJs
+---
+#### share data btw controllers
+http://stackoverflow.com/questions/12576798/angularjs-how-to-watch-service-variables?rq=1
+
+http://stsc3000.github.io/blog/2013/10/26/a-tale-of-frankenstein-and-binding-to-service-values-in-angular-dot-js/
+
+http://www.amitavroy.com/justread/content/articles/angularjs-using-factory-method-post-data-and-saving-db/
+
+https://objectpartners.com/2013/08/21/using-services-and-messages-to-share-data-between-controllers-in-angularjs/
+
+http://stackoverflow.com/questions/20181323/passing-data-between-controllers-in-angular-js
+
+https://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/
+
+#### angular issues
+1.click in list with label and checkbox
+http://stackoverflow.com/questions/20689531/angular-js-ng-click-events-on-labels-are-firing-twice
+
+2.bad argument controller ,
+might be missing semicolon or injecting in define areas, function, controller in same order
+
+3.injecting new directive into new controller ..
+needs to be defined in controller define,then in function and closures ... if we didnt apply/define service in directive it will put an error in controller injecting
+
+4.Error: ng:areq
+Bad Argument
+Argument 'toolsCtrl' is not a
+
+for default setting price 1200 default
+{{ (property.marketing.currentPrice ? property.marketing.currentPrice : 1200) | currency : '£ '}}
+
+if u r using angular amd or require js in ui router then u would have to see for comma , semicolon issues.
+
+
+-===============
