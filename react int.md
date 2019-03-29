@@ -534,3 +534,21 @@ Managerial round
 30.	How was your day today
 31.	Agile difficulites
 32.	How do you prevent bugs defects before getting into QA hands
+
+
+
+##### For Testing
+https://github.com/mlaursen/react-md/blob/master/src/js/Buttons/__tests__/Button.js
+npm test -- --watch
+
+####HOC
+ https://stackblitz.com/edit/react-imagehoc
+
+lifecycle
+http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+why use react ?
+##### isomorphic rendering?
+
+##### React Architecture and Best Practices====
+https://github.com/markerikson/react-redux-links/blob/master/react-architecture.md
