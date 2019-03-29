@@ -693,3 +693,658 @@ Array
 14.	Best way to use constructor function and object literal
 15.	If we do step5 in constructor function, what it will return
 16.	Arrow functions this
+
+
+
+
+
+##### #how-to-access-the-correct-this-inside-a-callback
+
+https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback/20279485#20279485
+
+  
+  
+
+#### for while do while loops and switch statements - control flow================
+
+As we mentioned, for
+
+loops are great for doing the same task over and over when you know
+
+ahead of time how many times you'll have to repeat the loop. On the
+
+other hand, while loops are ideal when you have to loop, but you don't know ahead of time how many times you'll need to loop.
+
+  
+
+As you saw, however, you can combine a while loop with a counter variable to do the same kind of work a for loop does. In these cases, it's often a matter of preference.
+
+  
+
+Sometimes you want to make sure your loop runs at least one time no matter what. When this is the case, you want a modified while loop called a do/while loop.
+
+  
+  
+  
+
+As you might imagine, if you have a lot of choices you want to cover in a program, it might be annoying to type else if () ten times. That's why JavaScript has the switch statement!
+
+  
+  
+
+switch allows you to preset a number of options (called cases),
+
+then check an expression to see if it matches any of them. If there's a
+
+match, the program will perform the action for the matching case; if
+
+there's no match, it can execute a default option.
+
+  
+  
+  
+  
+  
+  
+
+#### custom constructors======================
+
+    function Person(name,age) {
+    
+    this.name = name;
+    
+    this.age = age;
+    
+    }
+    
+      
+    
+    // Let's make bob and susan again, using our constructor
+    
+    var bob = new Person("Bob Smith", 30);
+    
+    var susan = new Person("Susan Jordan", 25);
+    
+    // help us make george, whose name is "George Washington" and age is 275
+    
+    var george = new Person("George Washington",275);
+
+  
+
+Let's look at another example and practice coding constructors. Here we have made a Cat constructor for you, with age and color properties.
+
+  
+
+Why is this Cat constructor so cool?
+
+It means if we have many cats and wanted to create an object for each
+
+cat, we could just use this constructor with the properties already
+
+defined.
+
+  
+
+This is much better than using the Object
+
+constructor which just gives us an empty object and needs us to define
+
+every property and value for each cat object we would create.
+
+  
+
+#### prototype===============
+
+    snoopy.bark = function() {
+    
+    console.log("Wow");
+    
+    };
+
+  
+
+Here we have very similar code as last time, but there is an important difference. Instead of using buddy.bark to add the bark method to just the buddy object, we use Dog.prototype.bark.
+
+  
+
+Click run this time, and both buddy and snoopy can bark just fine! Snoopy can bark too even though we haven't added a bark method to that object. How is this so? Because we have now changed the prototype for the class Dog. This immediately teaches all Dogs the new method.
+
+  
+
+In general, if you want to add a method to a class such that all
+
+members of the class can use it, we use the following syntax to extend the prototype:
+
+  
+
+    className.prototype.newMethod =
+    
+      
+    
+    function() {
+    
+    statements;
+    
+    };
+    
+      
+    
+    function Dog (breed) {
+    
+    this.breed = breed;
+    
+    };
+    
+      
+    
+    // here we make buddy and teach him how to bark
+    
+    var buddy = new Dog("golden Retriever");
+    
+    Dog.prototype.bark = function() {
+    
+    console.log("Woof");
+    
+    };
+    
+    buddy.bark();
+    
+      
+    
+    // here we make snoopy
+    
+    var snoopy = new Dog("Beagle");
+    
+    /// this time it works!
+    
+    snoopy.bark();
+    
+    apply function==============
+    
+    var person = {
+    
+    firstName :"Penelope",
+    
+    lastName :"Barrymore",
+    
+    showFullName:function () {
+    
+    ​// The "context"​
+    
+    console.log (this.firstName + " " + this.lastName);
+    
+    }
+    
+    }
+
+​
+
+​// The "context", when invoking showFullName, is the person object, when we invoke the showFullName () method on the person object.​
+
+​// And the use of "this" inside the showFullName() method has the value of the person object,​
+
+person.showFullName (); // Penelope Barrymore​
+
+​
+
+​// If we invoke showFullName with a different object:​
+
+​var anotherPerson = {
+
+firstName :"Rohit",
+
+lastName :"Khan"​
+
+};
+
+​
+
+​// We can use the apply method to set the "this" value explicitly—more on the apply () method later.​
+
+​// "this" gets the value of whichever object invokes the "this" Function, hence:​
+
+person.showFullName.apply (anotherPerson); // Rohit Khan​
+
+​
+
+​// So the context is now anotherPerson because anotherPerson invoked the person.showFullName () method by virtue of using the apply () method​
+
+  
+  
+
+#### encapsulating private n public methods pattern=================
+
+    var myRevealingModule = (function () {
+    
+    var privateVar = "Ben Cherry",
+    
+    publicVar = "Hey there!";
+    
+      
+    
+    function privateFunction() {
+    
+    console.log( "Name:" + privateVar );
+    
+    }
+    
+      
+    
+    function publicSetName( strName ) {
+    
+    privateVar = strName;
+    
+    }
+    
+      
+    
+    function publicGetName() {
+    
+    privateFunction();
+    
+    }
+    
+      
+    
+    // Reveal public pointers to
+    
+    // private functions and properties
+    
+    return {
+    
+    setName: publicSetName,
+    
+    greeting: publicVar,
+    
+    getName: publicGetName
+    
+    };
+    
+    })();
+    
+      
+    
+    myRevealingModule.setName( "Paul Kinlan" );
+
+  
+
+#### this keyword-======================
+
+followed by methods vs functions post
+
+  
+
+The "this" Keyword
+
+  
+
+Our setAge method works great for bob because it updates bob.age, but what if we want to use it for other people?
+
+  
+  
+
+It turns out we can make a method work for many objects using a new keyword, this. The keyword this acts as a placeholder, and will refer to whichever object called that method when the method is actually used.
+
+  
+  
+
+Let's look at the method setAge (line 2) to see how this works. By using the keyword this, setAge will change the age property of any object that calls it. Previously, we had a specific object bob instead of the keyword this. But that limited the use of the method to just bob.
+
+  
+  
+
+Then when we say bob.setAge = setAge; (line 9), it means whenever we type bob.setAge( ), this.age in the setAge method will refer to bob.age.
+
+  
+
+    // here we define our method using "this", before we even introduce bob
+    
+    var setAge = function (newAge) {
+    
+    this.age = newAge;
+    
+    };
+    
+    // now we make bob
+    
+    var bob = new Object();
+    
+    bob.age = 30;
+    
+    // and down here we just use the method we already made
+    
+    bob.setAge = setAge;
+    
+      
+    
+    // change bob's age to 50 here
+    
+    bob.setAge(50);
+
+  
+  
+  
+  
+
+In javascript every function receives two variables other than function parameters namely "this" and "arguments".
+
+#### invoking functions===============
+
+4 types :
+
+simply calling fn name
+
+    function fun(){
+    
+    };
+    
+    fun();
+    
+      
+    
+    var obj = {};
+    
+    obj.mymethod = function(){
+    
+    // myMethod is a Method.
+    
+    console.log(this);
+    
+    // this is bound to obj
+    
+    };
+
+  
+  
+  
+
+When we invoke the function as the method of an object, that object becomes the function context and is available within the function via the this parameter. This is one of the primary means by which JavaScript allows object-oriented code to be written
+
+  
+
+#### using contrustor
+
+function Fun(){
+
+// Notice a function being used as a constructor always starts with Capital letter.
+
+    this.myProperty = ' This is my property';
+    
+    }
+    
+    var myObject = new Fun();
+
+When invoked with a new operator, a new object will be created and "this" inside the Fun() is bound to the newly created object.
+
+  
+
+(4) With the Apply method :
+
+A function can be called in JavaScript with an apply method invocation with functionName accompanied with a dot(.)
+
+  
+
+    functionName.apply(arguments);
+    
+      
+    
+    function foo(a,b){
+    
+    console.log(a,b,this);
+    
+    }
+    
+    var args = ['abra','ka', 'dabra'];
+    
+    foo.apply(obj,args);
+
+  
+  
+  
+
+In this case the first argument passed to apply is an object to which we want "this" keyword to get bound to.
+
+  
+
+If the function is being used as an event handler, "this" will refer to the node that fired the event
+
+#### collection vs array==============
+
+collection of DOM elements (more formally called a NodeList) can’t be manipulated like an array
+
+  
+
+But you can’t use Array methods like push(), splice() or reverse() to manipulate it.
+
+Except that you can, if you take the next step and convert it into an array. This is in fact trivial:
+
+  
+
+    function collectionToArray(collection)
+    
+    {
+    
+    var ary = [];
+    
+    for(var i=0, len = collection.length; i < len; i++)
+    
+    {
+    
+    ary.push(collection[i]);
+    
+    }
+    
+    return ary;
+    
+    }
+
+  
+  
+
+##### closures=================
+
+What is the Point of closures in JavaScript?
+
+To create modules so that we can provide public and private variables and functions
+
+Organize the code in a clean and modular way.
+
+  
+
+https://www.quora.com/What-is-the-point-of-closures-in-JavaScript/answer/Manish-Dipankar-1
+
+  
+  
+
+##### setTimeout ===================
+
+Note that all functions in setTimeout are executed in the global scope
+
+  
+
+    var highValue = 200;
+    
+    ​var constantVal = 2;
+    
+    ​var myObj = {
+    
+    highValue: 20,
+    
+    constantVal: 5,
+    
+    calculateIt: function () {
+    
+    setTimeout (function () {
+    
+    console.log(this.constantVal * this.highValue);
+    
+    }, 2000);
+    
+    }
+    
+    }
+
+​
+
+​// The "this" object in the setTimeout function used the global highValue and constantVal variables, because the reference to "this" in the setTimeout function refers to the global window object, not to the myObj object as we might expect.​
+
+​
+
+myObj.calculateIt(); // 400​
+
+  
+
+https://github.com/adam-s/js-interview-review
+
+  
+
+validation====
+
+https://bitsofco.de/form-validation-techniques/
+
+  
+
+##### auto hide sticky header ====
+
+  
+
+http://osvaldas.info/auto-hide-sticky-header?utm_content=bufferfc972&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+
+  
+
+<body  onunload="alert('Thank you. Please come back to this site and visit us soon, ok?')">
+
+  
+
+https://jonsuh.com/hamburgers/
+
+  
+
+http://blog.wearecolony.com/a-year-without-jquery/
+
+  
+
+http://kushagragour.in/lab/superplaceholderjs/
+
+  
+
+##### dev tools
+
+https://medium.com/outsystems-experts/beyond-console-debugging-tricks-f7d0d7f5df4#.ujzyp55mj
+
+  
+
+##### menu scroll top
+
+http://stackoverflow.com/questions/1144805/scroll-to-the-top-of-the-page-using-javascript-jquery
+
+  
+
+http://jsfiddle.net/osoh6o5a/
+
+  
+
+    var menuclick = $('ul.nav li a');
+    
+    menuclick.click(function(){
+    
+    var divPosition = $('#pricing').offset();
+    
+    $('html, body').animate({scrollTop: divPosition.top}, "slow");
+    
+    });
+
+  
+  
+
+##### drag and drop custom select
+
+https://css-tricks.com/drag-and-drop-file-uploading/
+
+  
+
+http://tympanus.net/Development/SelectInspiration/index5.html
+
+  
+  
+
+##### testi | our team | inpspect elemtent | timline
+
+​http://themexlab.com/eventon/meeton/schedule.html
+
+http://themexlab.com/eventon/meeton/speakers.html
+
+http://themexlab.com/eventon/meeton/index.html
+
+  
+  
+
+##### css js tips
+
+  
+
+​http://code.tutsplus.com/tutorials/20-helpful-jquery-methods-you-should-be-using--net-10521
+
+​
+
+http://benalman.com/code/projects/jquery-outside-events/examples/clickoutside/
+
+  
+
+https://github.com/AllThingsSmitty
+
+http://ipestov.com/22-essential-css-recipes/
+
+https://github.com/AllThingsSmitty/css-protips
+
+  
+
+http://code.tutsplus.com/tutorials/the-30-css-selectors-you-must-memorize--net-16048
+
+  
+
+http://stackoverflow.com/questions/10213703/how-do-i-view-events-fired-on-an-element-in-chrome-web-developer
+
+  
+
+https://github.com/DovAmir/awesome-design-patterns
+
+https://github.com/twhite96/js-dev-reads
+
+  
+
+need to quickly visually see tge rectangles that make up all elements of the page?
+
+* {outline: 1px solid red;}
+
+  
+
+##### Jquery Menu==========
+
+  
+
+http://toddmotto.com/html5-and-jquery-super-simple-drop-down-nav/
+
+https://css-tricks.com/simple-jquery-dropdowns/
+
+http://jsfiddle.net/i_like_robots/6JbtX/
+
+  
+  
+
+##### many carousel====
+
+http://coolcarousels.frebsite.nl/c/21/
+
+  
+
+##### jquery slider wow==========
+
+http://plugins.jquery.com/WOWSlider/
+
+has many effects and slider designs
+
+
+
+
+
