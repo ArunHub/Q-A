@@ -41,9 +41,11 @@ Route to match home component
 =========
 2.	Jest => 
 Enzyme is a common tool in the React ecosystem that makes it easier to write tests for how components will behave. By default, our application includes a library called jsdom to allow us to simulate the DOM and test its runtime behavior without a browser. Enzyme is similar, but builds on jsdom and makes it easier to make certain queries about our components.
-https://github.com/Microsoft/TypeScript-React-Starter#writing-tests-with-jest
+https://github.com/Microsoft/TypeScript-React-Starter#writing-tests-with-jest.
+
 Shallow , jest.fn to spy on methods, await aysnc to test async call, expect to matchers
 Shallow rendering is nice, because it allows you to render a single component completely, but without delving into any of its child components to render those. Instead, the resulting object will tell you things like the type and props of the children. This gives us good isolation, allowing testing of a single component at a time.
+
 Stateless components are the ones easy to test.
 https://camjackson.net/post/9-things-every-reactjs-beginner-should-know#write-stateless-components Beforeall => constructor componentwillmount,
 Beforeeach => every single run before it function
@@ -312,18 +314,33 @@ Ref -  take instance of dom element value to give which submit action or other a
 
 **React Vs angular**
 --
+
+https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/
+
 •	When doing component tree in pinboard, angular refreshes all components when some state changed so recursion occurs nicely while fetching the children again to draw svg in UI. Wherein case React failed to update recursion since it updates in the particular object property to refresh
+
 •	React state changes only if setState triggered I.e doesn’t mutate. Wherein angular updates when we change something.
+
 •	Fast since uniflow direction n non mutation
+
 •	React transpiles code into javascript and handover to js vm machine to process wherein after js compiled it is handled by angular to parse and its manipulation according to its principle and send to js vm machine. So it’s a very clean process in react. 
-Why React is different? And design I guess
+
+**Why React is different? And design I guess**
+--
+
 one-way data flow philosophy for which we chose React in the first place!
 https://camjackson.net/post/9-things-every-reactjs-beginner-should-know 
-If you’re new to React, you probably only worked with component classes and instances before. For example, you may declare a Button component by creating a class. When the app is running, you may have several instances of this component on screen, each with its own properties and local state. This is the traditional object-oriented UI programming. Why introduce elements?
+
+If you’re new to React, you probably only worked with component classes and instances before. For example, you may declare a Button component by creating a class. When the app is running, you may have several instances of this component on screen, each with its own properties and local state. This is the traditional object-oriented UI programming. 
+
+Why introduce elements?
+
 In this traditional UI model, it is up to you to take care of creating and destroying child component instances. If a Form component wants to render a Button component, it needs to create its instance, and manually keep it up to date with any new information.
 This is pseudocode, but it is more or less what you end up with when you write composite UI code that behaves consistently in an object-oriented way using a library like Backbone.
+
 Each component instance has to keep references to its DOM node and to the instances of the children components, and create, update, and destroy them when the time is right. The lines of code grow as the square of the number of possible states of the component, and the parents have direct access to their children component instances, making it hard to decouple them in the future.
 So how is React different?
+
 An element is a plain object describing a component instance or DOM node and its desired properties. It contains only information about the component type (for example, a Button), its properties (for example, its color), and any child elements inside it.
 An element is not an actual instance. Rather, it is a way to tell React what you want to see on the screen. You can’t call any methods on the element. It’s just an immutable description object with two fields: type: (string | ReactClass) and props: Object1.
 When an element’s type is a string, it represents a DOM node with that tag name, and props correspond to its attributes. This is what React will render. For example:
@@ -347,16 +364,21 @@ However, the type of an element can also be a function or a class corresponding 
 
     {  type: Button,  props: {    color: 'blue',    children: 'OK!'  }} 
 
-This is the core idea of React.
+**This is the core idea of React.**
+--
+
 An element describing a component is also an element, just like an element describing the DOM node. They can be nested and mixed with each other.
+
 This feature lets you define a DangerButton component as a Button with a specific color property value without worrying about whether Button renders to a DOM <button>, a <div>, or something else entirely:
 const DangerButton = ({ children }) => ({  type: Button,  props: {    color: 'red',    children: children  }});
 More things are there to cover, plZ refer below link for detailed understanding 
 https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html 
+
 For a React component, props are the input, and an element tree is the output.
 The returned element tree can contain both elements describing DOM nodes, and elements describing other components. This lets you compose independent parts of UI without relying on their internal DOM structure.
 We let React create, update, and destroy instances. We describe them with elements we return from the components, and React takes care of managing the instances.
 However, whether functions or classes, fundamentally they are all components to React. They take the props as their input, and return the elements as their output.
+
 React Design
 React takes care of creating an instance for every class component, so you can write components in an object-oriented way with methods and local state, but other than that, instances are not very important in the React’s programming model and are managed by React itself.
 
