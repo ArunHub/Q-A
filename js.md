@@ -569,6 +569,26 @@ var statements are hoisted (without their value initialization) to the top of th
         console.log(y);
     })();
 
+**Doubts**
+
+function DD(){this.name='arun';this.age=5}
+rr = new DD();
+rr1 = Object.create(new DD());
+console.log('rr',rr);
+console.log('rr1',rr1);
+DD.prototype.ddd = 123;
+console.log(rr,'rr');
+console.log(rr1,'rr1');
+
+Here rr and rr1 have prototype ddd how ?
+Answer: Object create do attach the object as prototype to newly created one. 
+
+dont create closures as it creates in memory leak because of non deletion of old reference
+
+when large response data comes while browser has so many browser tabs, then we can implement increasing heap size for our application 
+
+and also can get large response data using observable than promise since it returns whole data and may get delay. Using  observable, can implement pagination and load streams of 100 chunk data in background and make browser smoother
+
  
 Interview Questions
 --
