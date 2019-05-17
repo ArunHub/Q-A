@@ -1,19 +1,3 @@
-
-- ﻿Angular1 – scope, watchers, digest cycle, factory, services, custom directives, isolated scope
-- Ng2 – providers, declarations, bootstap component, input, output, difference, 
-- https://medium.com/wizardnet972/48-answers-on-stack-overflow-to-the-most-popular-angular-questions-52f9eb430ab0
-- Ngrx
-
-**Rxjs**
---
-http://reactivex.io/rxjs/manual/overview.html#introduction
-http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html
-https://github.com/ReactiveX/rxjs/blob/master/doc/introduction.md
-http://reactivex.io/documentation/operators.html
-http://rxmarbles.com/
-https://codecraft.tv/courses/angular/reactive-programming-with-rxjs/streams-and-reactive-programming/
-https://blog.angularindepth.com/learn-to-combine-rxjs-sequences-with-super-intuitive-interactive-diagrams-20fce8e6511 
-
 **angular http interceptors**
 
 implmetation = > 
@@ -277,16 +261,21 @@ In angular 2 > …. changing value of object does not change value in object in 
 Object value passed from parent to child
 https://stackblitz.com/edit/angular-racctn?file=src%2Fapp%2Fhello.component.html 
 
-**Rxjs operators -** 
+#### Angular 1 – digest, watch, apply
+Model when attached to scope , model available to scope so when changed in template or js , scope variable changes as two way binding. When model attached to scope, angular automatically attaches to watch function --> then watch listener function calls digest when model changes
+When Do You Call $apply() Manually?
 
-•	FILTERING OPERATORS, Conditional Operators, CREATION OBSERVABLES
-•	MATHEMATICAL OPERATORS, TRANSFORMATION OPERATORS, UTILITY OPERATOR
-Fork join  - is equal to join multiple observable to emit after all the response are successful and completed like promise.all()
-Create: create observable with callback funtion to create .next() , .error(), .complete()
-Of: emits values simultaniealy 
-Map, filter
+If AngularJS usually wraps our code in $apply() and starts a $digest cycle, then when do you need to do call $apply() manually? Actually, AngularJS makes one thing pretty clear. It will account for only those model changes which are done inside AngularJS’ context (i.e. the code that changes models is wrapped inside $apply()). Angular’s built-in directives already do this so that any model changes you make are reflected in the view. However, if you change any model outside of the Angular context, then you need to inform Angular of the changes by calling $apply()manually. It’s like telling Angular that you are changing some models and it should fire the watchers so that your changes propagate properly.
 
-https://coursetro.com/posts/code/150/RxJS-Operators-Tutorial---Learn-How-to-Transform-Observables
+For example, if you use JavaScript’s setTimeout() function to update a scopemodel, Angular has no way of knowing what you might change. In this case it’s your responsibility to call $apply() manually, which triggers a $digest cycle. Similarly, if you have a directive that sets up a DOM event listener and changes some models inside the handler function, you need to call $apply() to ensure the changes take effect.
+ 
+https://codepen.io/Sandeep92/pen/fukyn - without apply
+
+https://codepen.io/Sandeep92/pen/bEmBn - with apply updates the UI where setTimeout is out of angular scope
+ 
+Note: By the way, you should use $timeout service whenever possible which is setTimeout() with automatic $apply() so that you don’t have to call $apply()manually.
+ 
+https://www.sitepoint.com/understanding-angulars-apply-digest/
 
 **Change detection strategy**
 Input() and output() => Why do we do this? This creates a pure uni-directional dataflow. The data comes from AppComponent, flows into <counter>, the counter makes a change, and emits that change back to the parent on our command - via the EventEmitter we setup. Once we’ve got that data back up, we merge those changes back into our parent (stateful) component.
@@ -324,10 +313,6 @@ Try one of these:
 •	ChangeDetectorRef.detectChanges() - similar to $scope.$digest() -- i.e., check only this component and its children
 You can inject ApplicationRef, NgZone, or ChangeDetectorRef into your component.
 
-**Zones ?**
-
-
-
 ##### promise vs observable
 
     const source = Rx.Observable.of({name: 'Brian'}, [1,2,3], function hello(){ 
@@ -340,6 +325,56 @@ In observable return multple values but promise return one value with lot of obj
 Better not to compare promise with observable since observable is a producer of data or stream of data and can be consumed only when subscribed I.e like a calling a function.
 Normal function returns single data;
 Observable returns mutliple data, for Ex: can be async calls data, event handler data, timer funtions
+
+**Rxjs**
+--
+http://reactivex.io/rxjs/manual/overview.html#introduction
+http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html
+https://github.com/ReactiveX/rxjs/blob/master/doc/introduction.md
+http://reactivex.io/documentation/operators.html
+http://rxmarbles.com/
+https://codecraft.tv/courses/angular/reactive-programming-with-rxjs/streams-and-reactive-programming/
+https://blog.angularindepth.com/learn-to-combine-rxjs-sequences-with-super-intuitive-interactive-diagrams-20fce8e6511 
+
+
+
+**Rxjs operators -** 
+
+•	FILTERING OPERATORS, Conditional Operators, CREATION OBSERVABLES
+•	MATHEMATICAL OPERATORS, TRANSFORMATION OPERATORS, UTILITY OPERATOR
+Fork join  - is equal to join multiple observable to emit after all the response are successful and completed like promise.all()
+Create: create observable with callback funtion to create .next() , .error(), .complete()
+Of: emits values simultaniealy 
+Map, filter
+
+https://coursetro.com/posts/code/150/RxJS-Operators-Tutorial---Learn-How-to-Transform-Observables
+
+
+
+**Rxjs**
+--
+http://reactivex.io/rxjs/manual/overview.html#introduction
+http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html
+https://github.com/ReactiveX/rxjs/blob/master/doc/introduction.md
+http://reactivex.io/documentation/operators.html
+http://rxmarbles.com/
+https://codecraft.tv/courses/angular/reactive-programming-with-rxjs/streams-and-reactive-programming/
+https://blog.angularindepth.com/learn-to-combine-rxjs-sequences-with-super-intuitive-interactive-diagrams-20fce8e6511 
+
+
+
+**Rxjs operators -** 
+
+•	FILTERING OPERATORS, Conditional Operators, CREATION OBSERVABLES
+•	MATHEMATICAL OPERATORS, TRANSFORMATION OPERATORS, UTILITY OPERATOR
+Fork join  - is equal to join multiple observable to emit after all the response are successful and completed like promise.all()
+Create: create observable with callback funtion to create .next() , .error(), .complete()
+Of: emits values simultaniealy 
+Map, filter
+
+https://coursetro.com/posts/code/150/RxJS-Operators-Tutorial---Learn-How-to-Transform-Observables
+
+
 
 **Subject:**
 We are creating two observables that are independent of each other. But what if you need the second observer to get the same events has the first?
@@ -360,22 +395,6 @@ Subject can act as a bridge/proxy between the source Observable and many observe
 
 Subject is observing the interval Observable, so every time the interval send values to the Subject, the Subject send this values to all his observers.
 https://netbasal.com/understanding-subjects-in-rxjs-55102a190f3
-
-#### Angular 1 – digest, watch, apply
-Model when attached to scope , model available to scope so when changed in template or js , scope variable changes as two way binding. When model attached to scope, angular automatically attaches to watch function --> then watch listener function calls digest when model changes
-When Do You Call $apply() Manually?
-
-If AngularJS usually wraps our code in $apply() and starts a $digest cycle, then when do you need to do call $apply() manually? Actually, AngularJS makes one thing pretty clear. It will account for only those model changes which are done inside AngularJS’ context (i.e. the code that changes models is wrapped inside $apply()). Angular’s built-in directives already do this so that any model changes you make are reflected in the view. However, if you change any model outside of the Angular context, then you need to inform Angular of the changes by calling $apply()manually. It’s like telling Angular that you are changing some models and it should fire the watchers so that your changes propagate properly.
-
-For example, if you use JavaScript’s setTimeout() function to update a scopemodel, Angular has no way of knowing what you might change. In this case it’s your responsibility to call $apply() manually, which triggers a $digest cycle. Similarly, if you have a directive that sets up a DOM event listener and changes some models inside the handler function, you need to call $apply() to ensure the changes take effect.
- 
-https://codepen.io/Sandeep92/pen/fukyn - without apply
-
-https://codepen.io/Sandeep92/pen/bEmBn - with apply updates the UI where setTimeout is out of angular scope
- 
-Note: By the way, you should use $timeout service whenever possible which is setTimeout() with automatic $apply() so that you don’t have to call $apply()manually.
- 
-https://www.sitepoint.com/understanding-angulars-apply-digest/
 
 ##### aot compiler build and before aot compiler what used
 We need compilation for achieving higher level of efficiency of our Angular applications. By efficiency I mostly mean performance improvements but also energy and sometimes bandwidth consumption.
@@ -398,9 +417,26 @@ try to import this way:
 https://stackblitz.com/ - online ide for angular, react,js,ionic,native
 https://codesandbox.io/
 
+##### Doubts
+how encapsulation css happen in angular?
+
+<app-root>loading...</app-root>
+
+how to replace loading... in appmodule.ts 
+
+**Answer**: cannot replace loading . Already angular app is replacing the 'loading text' with components so make components to replace only.
+
+**Zones ?**
+
 
 Interview Questions
 --
+
+
+- ﻿Angular1 – scope, watchers, digest cycle, factory, services, custom directives, isolated scope
+- Ng2 – providers, declarations, bootstap component, input, output, difference, 
+- Ngrx
+- https://medium.com/wizardnet972/48-answers-on-stack-overflow-to-the-most-popular-angular-questions-52f9eb430ab0
 
 **Prokarma**
 
