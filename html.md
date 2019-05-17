@@ -46,6 +46,11 @@ https://medium.freecodecamp.org/what-is-an-api-in-english-please-b880a3214a82
 Bootstrap with 8 columns
 If 3 cols are there, how will u move 1st and 2nd cols …=> using pull and push
 
+##### How Layout and rendering works?
+
+https://developer.mozilla.org/en-US/docs/Mozilla/Introduction_to_Layout_in_Mozilla
+
+
 #### Wipro interview
 
 **Geolocation** => The Geolocation API allows the user to provide their location to web applications if they so desire. For privacy reasons, the user is asked for permission to report location information.
