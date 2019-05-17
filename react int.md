@@ -447,6 +447,58 @@ https://swapi.co/
 https://openweathermap.org/api
 https://mockable.io
 
+**Doubts**
+
+https://facebook.github.io/create-react-app/
+
+react form validation -> refs -> input new attributes and regex patterns
+security in react spa -> authentication using router
+react testing from mahesh sabnis
+anto preact react forms testing
+
+web securities
+crsf
+cross site scripting
+assessebility
+how to make site accessible 
+tools for assessibility
+interceptors in react
+redux
+testing
+react-spotify
+how to get bearer token in artist list component?
+how to design app without redux / or how to pass props to child without service, backend storage, web storages
+Redux - merge props and other parameters of connect function
+Testing – what are starting task you will check in component while writing testcase
+how to spy on functions using jest
+commonly used header requests
+how to optimize or increase performance of website
+what tools you will use to increase performance
+bootstrap and its uses
+responsive design
+
+saga/thunk
+diff react n jquery dom -> modularity -> react inject component as dependecny -> in jquery we should use every code on load
+redirect and 
+do form get authenticated when url comes as localhost:3000/form
+merge props
+commonly used header requests
+noteable:
+switchMap operator in angular routing
+Observable paramMap
+Snapshot
+Heroes list: optionally selecting a hero while clicking back button
+animations in angular routing
+The router reuses components by default, so the Crisis Detail component will be re-used as you select different crises.
+
+hash
+routing
+jit
+for routes
+
+https://jsfiddle.net/u1bh23kv/6/
+
+
 
 Interview Questions
 --
