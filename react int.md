@@ -83,9 +83,37 @@ Best practice in react -  shouldUpdateComponent, composition rather than inherit
 
 **Advanced Guides**
 --
-Performance - 
+**Performance** - 
 People still talk about them because in practice, they are very hard to implement in regular JavaScript code. What makes React stand out is that all those optimizations happen by default. This makes it hard to shoot yourself in the foot and make your app slow.
 The performance cost model of React is also very simple to understand: every setState re-renders the whole sub-tree. If you want to squeeze out performance, call setState as low as possible and use shouldComponentUpdate to prevent re-rendering an large sub-tree.
+
+#### Thinking in  react
+ 1. It’s best to decouple these processes because building a static version requires a lot of typing and no thinking, and adding interactivity requires a lot of thinking and not a lot of typing. We’ll see why.
+ 2. To build a static version of your app that renders your data model, you’ll want to build components that reuse other components and pass data using props. props are a way of passing data from parent to child. If you’re familiar with the concept of state, don’t use state at all to build this static version. State is reserved only for interactivity, that is, data that changes over time. Since this is a static version of the app, you don’t need it.
+ 3. You can build top-down or bottom-up. That is, you can either start with building the components higher up in the hierarchy (i.e. starting with FilterableProductTable) or with the ones lower in it (ProductRow). In simpler examples, it’s usually easier to go top-down, and on larger projects, it’s easier to go bottom-up and write tests as you build.
+ 4. At the end of this step, you’ll have a library of reusable components that render your data model. The components will only have render() methods since this is a static version of your app. The component at the top of the hierarchy (FilterableProductTable) will take your data model as a prop. If you make a change to your underlying data model and call ReactDOM.render() again, the UI will be updated. It’s easy to see how your UI is updated and where to make changes since there’s nothing complicated going on. React’s one-way data flow (also called one-way binding) keeps everything modular and fast.
+
+Think of all of the pieces of data in our example application. We have:
+
+    The original list of products
+    The search text the user has entered
+    The value of the checkbox
+    The filtered list of products
+
+Let’s go through each one and figure out which one is state. Simply ask three questions about each piece of data:
+
+    Is it passed in from a parent via props? If so, it probably isn’t state.
+    Does it remain unchanged over time? If so, it probably isn’t state.
+    Can you compute it based on any other state or props in your component? If so, it isn’t state.
+
+The original list of products is passed in as props, so that’s not state. The search text and the checkbox seem to be state since they change over time and can’t be computed from anything. And finally, the filtered list of products isn’t state because it can be computed by combining the original list of products with the search text and value of the checkbox.
+
+So finally, our state is:
+
+    The search text the user has entered
+    The value of the checkbox
+
+
 
 **Debugging**
 -
