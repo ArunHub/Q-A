@@ -451,52 +451,70 @@ https://mockable.io
 
 https://facebook.github.io/create-react-app/
 
-react form validation -> refs -> input new attributes and regex patterns
-security in react spa -> authentication using router
-react testing from mahesh sabnis
-anto preact react forms testing
+ 1. react form validation -> refs -> input new attributes and regex patterns
+ 2. security in react spa -> authentication using router
+ 3. react testing from mahesh sabnis
+ 4. anto preact react forms testing
+ 5. web securities
+ 6. crsf
+ 7. cross site scripting
+ 8. assessebility
+ 9. how to make site accessible 
+ 10. tools for assessibility
+ 11. interceptors in react
+ 12. redux
+ 13. testing
+ 14. react-spotify
+ 15. how to get bearer token in artist list component?
+ 16. how to design app without redux / or how to pass props to child 
+ 17. without service, backend storage, web storages
+ 18. Redux - merge props and other parameters of connect function
+ 19. Testing – what are starting task you will check in component while writing testcase
+ 20. how to spy on functions using jest
+ 21. commonly used header requests
+ 22. how to optimize or increase performance of website
+ 23. what tools you will use to increase performance
+ 24. bootstrap and its uses
+ 25. responsive design
+ 26. saga/thunk
+ 27. diff react n jquery dom -> modularity -> react inject component as dependecny -> in jquery we should use every code on load
+ 28. redirect and do form get authenticated when url comes as localhost:3000/form
+ 29. merge props
+ 30. commonly used header requests
 
-web securities
-crsf
-cross site scripting
-assessebility
-how to make site accessible 
-tools for assessibility
-interceptors in react
-redux
-testing
-react-spotify
-how to get bearer token in artist list component?
-how to design app without redux / or how to pass props to child without service, backend storage, web storages
-Redux - merge props and other parameters of connect function
-Testing – what are starting task you will check in component while writing testcase
-how to spy on functions using jest
-commonly used header requests
-how to optimize or increase performance of website
-what tools you will use to increase performance
-bootstrap and its uses
-responsive design
 
-saga/thunk
-diff react n jquery dom -> modularity -> react inject component as dependecny -> in jquery we should use every code on load
-redirect and 
-do form get authenticated when url comes as localhost:3000/form
-merge props
-commonly used header requests
-noteable:
-switchMap operator in angular routing
-Observable paramMap
-Snapshot
-Heroes list: optionally selecting a hero while clicking back button
-animations in angular routing
-The router reuses components by default, so the Crisis Detail component will be re-used as you select different crises.
-
-hash
-routing
-jit
-for routes
 
 https://jsfiddle.net/u1bh23kv/6/
+
+ 1. Component receive props
+ 2.  Setstate inside render Use error boundaries
+ 3.     Component unmount Data streaming from different cdn Authentication
+ 4.  Disadvantage of react
+ 5.  What features have you implemented using react
+ 6.     What are the inputs taken from your side 
+ 7. How to implement observable  in fetch in reactjs 
+ 8. How react passes props to 100 components from  one component without affecting in between components
+ 9. What are it’s  extracting from react component parent when extending 
+ 10. How life cycle  definitions n compare with JavaScript n also see dispatch definition
+ 11.     React n angular life hooks in JavaScript how traditionally
+    implemented
+    12. Why single instance being shared all components from
+    root module
+
+https://medium.com/@jcbaey/authentication-in-spa-reactjs-and-vuejs-the-right-way-e4a9ac5cd9a3
+
+Featured React projects
+
+500tech.com/projects
+
+dynamic attribute in a component or element
+
+    this.state={name: "sridhar", flag: false}
+    render(){
+      return (
+        <div {...this.state.flag ? {id: 'sdafsad'}: {}}>{this.state.name}</div>
+      )
+    }
 
 
 
