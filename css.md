@@ -1,4 +1,25 @@
 
+**Tips:**
+need to quickly visually see the rectangles that make up all elements of the page?
+
+* {outline: 1px solid red;}
+
+
+
+
+##### drag and drop custom select
+
+https://css-tricks.com/drag-and-drop-file-uploading/
+
+  
+
+http://tympanus.net/Development/SelectInspiration/index5.html
+
+
+http://code.tutsplus.com/tutorials/the-30-css-selectors-you-must-memorize--net-16048
+
+https://github.com/AllThingsSmitty/css-protips
+
 1.eyes rolling exercies on css
 2.float left float none
 3.https://www.manifold.co/blog/css-puzzles-a-mentorship-program-for-better-styling-d018e77de57c
@@ -118,7 +139,7 @@ https://css-tricks.com/snippets/css/png-hack-for-ie-6/
 https://css-tricks.com/the-different-techniques-for-applying-the-png-hack/
 
 
-##### ##### styling radio checkbox switch toggle button css3 and with boootstrap styles=====
+##### styling radio checkbox switch toggle button css3 and with boootstrap styles=====
 
 http://www.cssscript.com/demo/pretty-checkbox-radio-inputs-with-bootstrap-and-awesome-bootstrap-checkbox-css/
  
@@ -427,18 +448,6 @@ https://css-tricks.com/dropdown-menus-with-more-forgiving-mouse-movement-paths/
     
     }
 
-  
-
-##### for muliline
-
-https://css-tricks.com/line-clampin/
-
-http://mikeking.io/succinct/(currently using)
-
-using jquery
-
-http://jsfiddle.net/k5VET/
-
 ##### Delete Button Concept with Hover Animation==============
 
 http://codemyui.com/post/120023194335/delete-button-concept-with-hover-animation?utm_content=buffer3009c&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
@@ -468,4 +477,92 @@ http://codemyui.com/post/124475195095/css-button-border-hover-effects?utm_conten
 http://fettblog.eu/style-select-elements/
 
 =============================================
+
+
+
+#### sass mixins n concepts
+Variables
+Usage: 
+
+    color:$border-color
+    $text-color: #222 !default;
+
+Placeholder
+
+    .frst_para {   color: green;}
+    .sec_para {   @extend .frst_para;   font-size:20px;}
+
+used the @extend directive, which allows one selector to inherit styles of another selector
+**Mixins**
+
+    @mixin br() {
+    border-radius: 0;
+    }
+
+@include in the css like body {@include br()} // used to add common styles or create as shared snippet and used as functions with parameters and used as nesting also and as autoprefixer
+**Function**
+
+    @function calculateRem($size) {
+    $remSize: $size / 16px;
+    @return $remSize * 1rem;
+    }
+
+Can use function to manipulate background text colors and calculate between css units px,em,rem
+**Conditional loops**
+
+    @mixin on-event($self: false){
+    @if $self{
+    &:hover{ @content; // this will be given at declaration part of scss }
+    @else { &:focus{ @content; } }
+    }
+    }
+
+**Map set**
+
+    /// Breakpoints map
+    
+    /// @prop {String} keys - Keys are identifiers mapped to a given length
+    
+    /// @prop {Map} values - Values are actual breakpoints expressed in pixels
+    
+    /// @see {mixin} respond-to
+    
+    // $breakpoints: (
+    
+    // 'small': (min-width: 320px),
+    
+    // 'medium': (min-width: 768px),
+    
+    // 'large': (min-width: 1024px),
+    
+    // ) !default;
+
+https://medium.com/@rajaraodv/webpack-the-confusing-parts-58712f8fcad9
+
+##### Extending a class inside a nested classes====
+.button-primary {
+&:extend(.button-base)
+background: blue;
+}
+
+.button-danger {
+&:extend(.button-base)
+background: red;
+}
+
+##### sass extends placeholder in media queries===
+http://www.sassmeister.com/gist/9638030
+http://www.sitepoint.com/cross-media-query-extend-sass/
+
+##### sass vs less======
+http://getcrunch.co/2015/10/08/less-the-worlds-most-misunderstood-css-pre-processor/
+
+sass is imperative and less is procedoral
+
+##### sass mixin transition===
+http://zerosixthree.se/8-sass-mixins-you-must-have-in-your-toolbox/
+
+If you are proficient with Inspect element its little bit struggle to switch over for ex. you will inspect for an element to change its css and after doing it . you will find css line number different from sass file line number
+
+there comes the source maps
 
