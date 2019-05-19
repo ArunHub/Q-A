@@ -1,3 +1,4 @@
+
 #### HTML5
 •	Semantics: allowing you to describe more precisely what your content is.
 •	Connectivity: allowing you to communicate with the server in new and innovative ways.
@@ -128,7 +129,8 @@ https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API
 **Autofocus for label n input**
 ---
 This Boolean attribute specifies that the input should have focus when the page loads, unless the user overrides it (e.g. by typing in a different control). Only one element in a document can have the autofocus attribute. It cannot be applied if the type attribute is hidden, because hidden inputs cannot be focused. Note that the input may be focused before the DOMContentLoaded event fires.
-autofocus property for select tag is a Boolean that reflects the autofocus HTML attribute, which indicates whether the associated <select> element  will get input focus when the page loads, unless the user overrides it.
+
+**autofocus** property for select tag is a Boolean that reflects the autofocus HTML attribute, which indicates whether the associated <select> element  will get input focus when the page loads, unless the user overrides it.
  
 
 - **Svg gradient stop-opacity 0 for both path has**
@@ -140,8 +142,10 @@ The stop-opacity attribute defines the opacity of a given gradient stop.
 - ---
 The HTML <legend> element represents a caption for the content of its parent <fieldset>.
 
-- **Field n form validation**
-- ---
+=========
+
+#### Field n form validation
+
 Minimum 2 number, shopping is not as billing address, password same check
 Novalidate – form doesn’t validate the form . So if required is given input field then the error message wont show . defaultly error shows if required given in input tag without novalidate.
 On button input submit also have formnovalidate attr which gives the form shouldn't be validated before submission.
@@ -149,17 +153,17 @@ On button input submit also have formnovalidate attr which gives the form should
 -----
 
 #### websocket and webworkers
----
 
 **socket project** - I developed a client side HTML streaming ( HTS ) prototype using Service Workers in browser.
+
 I also developed few other working models namely single page pre fetch in the browser, changing the response, response headers, caching a web page, schedule the requests, adding custom header to request - All using Service Workers present in web browser.
 
 A passion for quality, for doing the right thing for the customers, the product, and for the company.
 
-----
+==============
 
-Interview Questions
---
+
+#### Interview Questions
 
 9. Maxwidth and width ?
 10. Css specificity
