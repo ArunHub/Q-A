@@ -590,6 +590,103 @@ when large response data comes while browser has so many browser tabs, then we c
 and also can get large response data using observable than promise since it returns whole data and may get delay. Using  observable, can implement pagination and load streams of 100 chunk data in background and make browser smoother
 
  
+ 1. name the primitive data types Is function is a datatype
+ 2. what will return if typeof function ? how to create class in ES5/ vanilla javascript ?
+ 3. How prototype is useful ?
+ 4. Various methods to call a function difference between function call and apply At what scenario call and apply are useful ?
+ 5. suppose if sending an undeclared object directly in apply first parameter, what it returns ?
+ 6. how to handle large amount of data as response and show in UI without making browser unresponsive?
+ 7. tech stack of previous project worked ?
+ 
+ 
+ 
+  1. read more js three lines ..... stop continue like succinity
+ 2. slider
+ 3. Bookmark checker
+ 4. scroll to multilevel slide navigation n tree level
+ 5. lightbox
+ 6. api in codeacademy
+ 7. tiles scroll(pagination)
+ 8. window mail app
+ 9. carousel
+ 10. twitter message type
+ 11. when mouse comes near submit button then form should show error since nothing.. promixity detector validator
+ 12. - common component functionality - increment/decrement component by 1 which generically applies to slider or anyother
+ 13. - Push back seat
+ 14. Odc multi doors facility
+ 15. Traffic logic
+ 16. Our Escalator up arrow in box shadow
+ 17. - https://imgur.com/a/v1oDYK8 - bowling alley
+ 18. Asynchronous promise is also in WhatsApp
+ 19. Promise is like giving cheque with trust ..
+ 20. success or failure depends on check bounce
+ 21. Page Lifecycle API  |  Web  |  Google Developers
+GitHub - sohamkamani/javascript-design-patterns-for-humans: An ultra-simplified explanation of design patterns implemented in javascript
+Performance Debugging with DevTools
+
+​https://www.styleurl.app/
+
+GitHub - fejes713/30-seconds-of-interviews: A curated collection of common interview questions to help you prepare for your next interview.
+
+Front-End-Performance-Checklist/README.md at master · 
+
+thedaviddias/Front-End-Performance-Checklist · GitHub
+
+https://www.11ty.io/
+
+Set a Timed Debugger To Web Inspect Hard-To-Grab Elements | CSS-Tricks
+https://andy-bell.design/hire-me/
+
+
+- Dummy/fake apis
+- Myjson.com
+- Jsonplaceholder.typicode.com
+- Swapi.co
+- Mockable.io
+- mockit.netlify
+
+
+const readline = require('readline');
+
+var taskList = [{taskname: 'algorithm', count: 0, id: 1}, {taskname: 'exercise', count: 0, id: 2}, {taskname: 'future', count: 0, id: 3}, {taskname: 'shop', count: 0, id: 4}, {taskname: 'test_or_ownProject', count: 0, id: 5}, {taskname: 'bb', count: 0, id: 6}, {taskname: 'doubt', count: 0, id: 7}, {taskname: 'stackoverflow', count: 0, id: 8}, {taskname: 'household', count: 0, id: 9}, {taskname: 'game', count: 0, id: 10}, {taskname: 'mail', count: 0, id: 11}, {taskname: 'entertainment', count: 0, id: 12}, {taskname: 'news_channel', count: 0, id: 13}]
+taskList.forEach(t=>{
+	console.log(t.id+". "+t.taskname + " - " + t.count);	
+})
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+function findId(id){
+	var temp = taskList.find(function(t){
+		console.log(id,"ttttttt",t);
+		return t.id === id;
+	})
+	console.log("text",temp);
+	return temp;
+}
+
+rl.on('line', (input) => {
+	// if () {}
+	console.log("Enter the id to take action:");
+  console.log(`Received: ${findId(input)}`);
+});
+
+rl.on('pause', (input) => {
+	// if () {}
+	console.log("Enter t:");
+  console.log(`Received: ${input}`);
+});
+
+// rl.question('Which task you completed? ', (answer) => {
+//   // TODO: Log the answer in a database
+//   console.log(`Thank you for your valuable feedback: ${answer}`);
+
+//   rl.close();
+// });
+
+
 Interview Questions
 --
 
