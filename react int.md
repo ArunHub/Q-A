@@ -1,8 +1,5 @@
-https://tylermcginnis.com/react-interview-questions/
 
-https://tylermcginnis.com/react-aha-moments/ 
-
-ttps://camjackson.net/post/9-things-every-reactjs-beginner-should-know
+https://camjackson.net/post/9-things-every-reactjs-beginner-should-know
 
 Composition over inheritane - https://www.youtube.com/watch?v=wfMtDGfHWpA 
 
@@ -24,6 +21,72 @@ Facebook has a massive non-React codebase. Its website uses a mix of a server-si
 This is why React provides escape hatches to work with mutable models, and tries to work well together with other UI libraries. You can wrap an existing imperative UI into a declarative component, and vice versa. This is crucial for gradual adoption.
 React does not want to be fully “reactive”. Using pull instead of Push paragidm.
 
+
+**Why React is different? And design I guess**
+--
+
+one-way data flow philosophy for which we chose React in the first place!
+https://camjackson.net/post/9-things-every-reactjs-beginner-should-know 
+
+If you’re new to React, you probably only worked with component classes and instances before. For example, you may declare a Button component by creating a class. When the app is running, you may have several instances of this component on screen, each with its own properties and local state. This is the traditional object-oriented UI programming. 
+
+Why introduce elements?
+
+In this traditional UI model, it is up to you to take care of creating and destroying child component instances. If a Form component wants to render a Button component, it needs to create its instance, and manually keep it up to date with any new information.
+This is pseudocode, but it is more or less what you end up with when you write composite UI code that behaves consistently in an object-oriented way using a library like Backbone.
+
+Each component instance has to keep references to its DOM node and to the instances of the children components, and create, update, and destroy them when the time is right. The lines of code grow as the square of the number of possible states of the component, and the parents have direct access to their children component instances, making it hard to decouple them in the future.
+So how is React different?
+
+An element is a plain object describing a component instance or DOM node and its desired properties. It contains only information about the component type (for example, a Button), its properties (for example, its color), and any child elements inside it.
+An element is not an actual instance. Rather, it is a way to tell React what you want to see on the screen. You can’t call any methods on the element. It’s just an immutable description object with two fields: type: (string | ReactClass) and props: Object1.
+When an element’s type is a string, it represents a DOM node with that tag name, and props correspond to its attributes. This is what React will render. For example:
+
+    {  type: 'button',  props:
+    {    className: 'button button-blue',   
+     children: {      type: 'b',     
+      props: {        children: 'OK!'     
+       }   
+        } 
+         }} 
+
+This element is just a way to represent the following HTML as a plain object:
+
+    <button class='button button-blue'>  <b>    OK!  </b></button>
+
+What’s important is that both child and parent elements are just descriptions and not the actual instances. They don’t refer to anything on the screen when you create them. You can create them and throw them away, and it won’t matter much.
+React elements are easy to traverse, don’t need to be parsed, and of course they are much lighter than the actual DOM elements—they’re just objects!
+Component Elements
+However, the type of an element can also be a function or a class corresponding to a React component:
+
+    {  type: Button,  props: {    color: 'blue',    children: 'OK!'  }} 
+
+**This is the core idea of React.**
+--
+
+An element describing a component is also an element, just like an element describing the DOM node. They can be nested and mixed with each other.
+
+This feature lets you define a DangerButton component as a Button with a specific color property value without worrying about whether Button renders to a DOM <button>, a <div>, or something else entirely:
+const DangerButton = ({ children }) => ({  type: Button,  props: {    color: 'red',    children: children  }});
+More things are there to cover, plZ refer below link for detailed understanding 
+https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html 
+
+For a React component, props are the input, and an element tree is the output.
+The returned element tree can contain both elements describing DOM nodes, and elements describing other components. This lets you compose independent parts of UI without relying on their internal DOM structure.
+We let React create, update, and destroy instances. We describe them with elements we return from the components, and React takes care of managing the instances.
+However, whether functions or classes, fundamentally they are all components to React. They take the props as their input, and return the elements as their output.
+
+React Design
+React takes care of creating an instance for every class component, so you can write components in an object-oriented way with methods and local state, but other than that, instances are not very important in the React’s programming model and are managed by React itself.
+
+Best practice in react -  shouldUpdateComponent, composition rather than inheritance, HOC , thinking in react
+
+**Advanced Guides**
+--
+Performance - 
+People still talk about them because in practice, they are very hard to implement in regular JavaScript code. What makes React stand out is that all those optimizations happen by default. This makes it hard to shoot yourself in the foot and make your app slow.
+The performance cost model of React is also very simple to understand: every setState re-renders the whole sub-tree. If you want to squeeze out performance, call setState as low as possible and use shouldComponentUpdate to prevent re-rendering an large sub-tree.
+
 **Debugging**
 -
 When something goes wrong, it is important that you have breadcrumbs to trace the mistake to its source in the codebase. In React, props and state are those breadcrumbs.
@@ -39,19 +102,25 @@ https://reactjs.org/docs/design-principles.html
 1.	Route render if path is matched what to call render or component
 Route to match home component
 =========
-2.	Jest => 
-Enzyme is a common tool in the React ecosystem that makes it easier to write tests for how components will behave. By default, our application includes a library called jsdom to allow us to simulate the DOM and test its runtime behavior without a browser. Enzyme is similar, but builds on jsdom and makes it easier to make certain queries about our components.
+2.	**Jest** => 
+**Enzyme** is a common tool in the React ecosystem that makes it easier to write tests for how components will behave. By default, our application includes a library called **jsdom** to allow us to simulate the DOM and test its runtime behavior without a browser. Enzyme is similar, but builds on jsdom and makes it easier to make certain queries about our components.
+
 https://github.com/Microsoft/TypeScript-React-Starter#writing-tests-with-jest.
 
-Shallow , jest.fn to spy on methods, await aysnc to test async call, expect to matchers
+**Shallow** , **jest.fn** to spy on methods, await aysnc to test async call, expect to matchers
 Shallow rendering is nice, because it allows you to render a single component completely, but without delving into any of its child components to render those. Instead, the resulting object will tell you things like the type and props of the children. This gives us good isolation, allowing testing of a single component at a time.
 
-Stateless components are the ones easy to test.
-https://camjackson.net/post/9-things-every-reactjs-beginner-should-know#write-stateless-components Beforeall => constructor componentwillmount,
+**Stateless components are the ones easy to test.**
+https://camjackson.net/post/9-things-every-reactjs-beginner-should-know#write-stateless-components 
+
+Beforeall => constructor componentwillmount,
+
 Beforeeach => every single run before it function
+
 mockimpllemention
 Jest with parallel ism diff 
-3.	Pure function 
+
+3.	**Pure function** 
 amount.total =-val return amount.total
 1.	The function always returns the same result if the same arguments are passed in. It does not depend on any state, or data, change during a program’s execution. It must only depend on its input arguments.
 2.	The function does not produce any observable side effects such as network requests, input and output devices, or data mutation.
@@ -78,7 +147,7 @@ IMPURE because the function depends on an external tax variable you’d be right
 
 4.  Check pure function for object = > see anjana video
 
-5. Input null or undefined initially then populate value later ==> https://stackblitz.com/edit/react-oq9isl?file=index.js
+5. **Input null or undefined initially then populate value later** ==> https://stackblitz.com/edit/react-oq9isl?file=index.js
 Warning: `value` prop on `input` should not be null
 Warning: A component is changing an uncontrolled input of type text to be controlled. Input elements should not switch from uncontrolled to controlled (or vice versa)
 
@@ -91,7 +160,7 @@ React uses Babel to compiles JSX(javascript extension) code to react elements wh
 Render =>
 9. Render a React element into the DOM in the supplied container and return a reference to the component (or returns null for stateless components). ... If the optional callback is provided, it will be executed after the component is rendered or updated
 
-10. Virtual dom - answer given below somewhere
+10. **Virtual dom** - answer given below somewhere
 Es6 to es5 write es5 with react create class n create element
 11. Const to renderdom ==> https://codepen.io/anon/pen/JaPyEO?&editors=0010
 12. IndexRoute, BrowserHistory …
@@ -109,8 +178,9 @@ If sri50 retweets, message reaches all ppl including itisprashant but if prashan
 **Functional componets**
 -
 Functional components have a few 'limitations', which I consider to be their greatest strengths.
+
  1. functional component cannot have a ref assigned to it. While a ref can be a convenient way for a component to 'look up' it's children and communicate with them, my feeling is that this is The Wrong Way to write React. refs encourage a very imperative, almost jquery-like way of writing components, taking us away from the functional, one-way data flow philosophy for which we chose React in the first place!
-The other big difference is that functional components cannot have state attached to them, which is also a huge advantage
+ 2. The other big difference is that functional components cannot have state attached to them, which is also a huge advantage
 
 https://camjackson.net/post/9-things-every-reactjs-beginner-should-know#write-stateless-components 
 
@@ -128,18 +198,12 @@ Immutable Immutable js redux saga, observable in redux
 **Router**
 -
  Dynamic routing where u can route a component anywhere in app not like static app used to angular ember which got initiated in root module. Before Reactv4 also implemented same.
+ 
 Nested routes(using match.url in nested route to select from relative url and goes on), responsive routes(using Media query component and switch condition to responsive layout)
+
 FYI, React Router is a sort of a wrapper for HTML5 History API. We can create History.js and implement customHistory.js
 https://medium.freecodecamp.org/you-might-not-need-react-router-38673620f3d 
 
-**Try ?**
-
- 1. nested Switch 
- 2. Why jsx needs parent div binding for every component
- 3. Sridhar => How you are using react route in idse, how will u change url without router
- 4. Router with memory router implemented from idse library
- 5. How will you immutate deep object property in setstate or redux
-	 => use immutable.js or deep clone json.parse(json.stringify(obj))
 
 **React scoped stylesheet**
 -
@@ -170,26 +234,28 @@ You use refs to accomplish this.
 **React Lifehooks**
 --
 http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
-GetDerivedStatefromProps is replacement of componentWillMount which returns objects similar to setState in componentwillmount.
+
+**GetDerivedStatefromProps** is replacement of componentWillMount which returns objects similar to setState in componentwillmount.
 
 Its called after constructor … Its like ngChanges in Angular
 
-Fiber, the new React reconciliation algorithm, has the ability to start and stop rendering as needed for performance benefits.
+**Fiber**, the new React reconciliation algorithm, has the ability to start and stop rendering as needed for performance benefits.
 
-React may start calling componentWillMount at various times whenever it feels like it needs to. So componentDidMount called for AJAX requests. componentWillMount used for synchronous action and when api response didn’t come, we have to initalise in contructor or propTypes
+React may start calling **componentWillMount** at various times whenever it feels like it needs to. So **componentDidMount** called for AJAX requests. componentWillMount used for synchronous action and when api response didn’t come, we have to initalise in contructor or propTypes
 
-There is a common misconception that fetching in componentWillMount lets you avoid the first empty rendering state. In practice this was never true because React has always executed render immediately after componentWillMount. If the data is not available by the time componentWillMount fires, the first render will still show a loading state regardless of where you initiate the fetch. This is why moving the fetch to componentDidMount has no perceptible effect in the vast majority of cases.
+There is a common misconception that fetching in componentWillMount lets you avoid the first empty rendering state. In practice this was never true because React has always executed render immediately after componentWillMount. If the data is not available by the time componentWillMount fires, the first render will still show a loading state regardless of where you initiate the fetch. This is why moving the fetch to **componentDidMount** has no perceptible effect in the vast majority of cases.
 https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#examples
 
-componentWillMount was not useful for one-pass server rendering anyway because it is synchronous so you can’t wait for the data. So if you already have it synchronously, you might as well read it in the constructor.
+**componentWillMount** was not useful for one-pass server rendering anyway because it is synchronous so you can’t wait for the data. So if you already have it synchronously, you might as well read it in the constructor.
 If you did two rendering passes (which is bad for performance but somewhat works around the issue) then you can keep using UNSAFE_componentWillMount in the short term. It‘s not safe for async rendering, but your code was already relying on a slow pattern (rendering twice) so it’s better to be explicit about it.
 
 https://daveceddia.com/watch-out-for-undefined-state/
 
 https://stackblitz.com/edit/react-cscdou?file=index.js
 
-“The end goal of reconciliation is to, in the most efficient way possible, update the UI based on new state” we know certain section of UI isn’t going to change, so no reason to update component and its child so shouldComponentUpdate returns false for performance issues.
-setState – 
+“The end goal of reconciliation is to, in the most efficient way possible, update the UI based on new state” we know certain section of UI isn’t going to change, so no reason to update component and its child so **shouldComponentUpdate** returns false for performance issues.
+
+#### setState – 
 This is basically kicking off a process that React calls reconciliation. The reconciliation process is the way React updates the DOM, by making changes to the component based on the change in state. When the request to setState() is triggered, React creates a new tree containing the reactive elements in the component (along with the updated state). This tree is used to figure out how the Search component’s UI should change in response to the state change by comparing it with the elements of the previous tree. React knows which changes to implement and will only update the parts of the DOM where necessary. This is why React is fast. 
 
 SetState works like it updates the property of object tree by merging obj using Object.assign
@@ -286,7 +352,9 @@ A component based architecture naturally makes sharing state more difficult. If 
 
 On its own, React is a useful library for creating composable views. However, React doesn't prescribe any specific way of synchronizing data throughout your application. As far as a React component is concerned, data flows down through its children through the props you specify on each element. Some of those props might be functions that update the state one way or another, but how that happens is an open question.
 Because React on its own does not focus on application state management, the React community uses libraries like Redux and MobX.
+
 https://github.com/Microsoft/TypeScript-React-Starter#adding-state-management
+
 can use custom store manager to store data in state and also in localstorage to fetch when refresh. React newly introduced context APi in 16.4  which will replace redux I think
 
 **Axios service**
@@ -304,9 +372,13 @@ So in React, virtual dom create virtual tree objects and match the difference wi
 **Event delegation,** 
 --
 https://github.com/Matt-Esch/virtual-dom
+
 https://gist.github.com/Raynos/8414846
+
 https://calendar.perfplanet.com/2013/diff/
+
 https://medium.com/@gethylgeorge/how-virtual-dom-and-diffing-works-in-react-6fc805f9f84e
+
 https://medium.com/@rajaraodv/the-inner-workings-of-virtual-dom-666ee7ad47cf
 
 Data to Child from parent ways -  use callback method from parent and call it with data to send to parent and change data OR dispatch event to store to update. Uniflow directional or context api
@@ -324,71 +396,6 @@ https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/
 •	Fast since uniflow direction n non mutation
 
 •	React transpiles code into javascript and handover to js vm machine to process wherein after js compiled it is handled by angular to parse and its manipulation according to its principle and send to js vm machine. So it’s a very clean process in react. 
-
-**Why React is different? And design I guess**
---
-
-one-way data flow philosophy for which we chose React in the first place!
-https://camjackson.net/post/9-things-every-reactjs-beginner-should-know 
-
-If you’re new to React, you probably only worked with component classes and instances before. For example, you may declare a Button component by creating a class. When the app is running, you may have several instances of this component on screen, each with its own properties and local state. This is the traditional object-oriented UI programming. 
-
-Why introduce elements?
-
-In this traditional UI model, it is up to you to take care of creating and destroying child component instances. If a Form component wants to render a Button component, it needs to create its instance, and manually keep it up to date with any new information.
-This is pseudocode, but it is more or less what you end up with when you write composite UI code that behaves consistently in an object-oriented way using a library like Backbone.
-
-Each component instance has to keep references to its DOM node and to the instances of the children components, and create, update, and destroy them when the time is right. The lines of code grow as the square of the number of possible states of the component, and the parents have direct access to their children component instances, making it hard to decouple them in the future.
-So how is React different?
-
-An element is a plain object describing a component instance or DOM node and its desired properties. It contains only information about the component type (for example, a Button), its properties (for example, its color), and any child elements inside it.
-An element is not an actual instance. Rather, it is a way to tell React what you want to see on the screen. You can’t call any methods on the element. It’s just an immutable description object with two fields: type: (string | ReactClass) and props: Object1.
-When an element’s type is a string, it represents a DOM node with that tag name, and props correspond to its attributes. This is what React will render. For example:
-
-    {  type: 'button',  props:
-    {    className: 'button button-blue',   
-     children: {      type: 'b',     
-      props: {        children: 'OK!'     
-       }   
-        } 
-         }} 
-
-This element is just a way to represent the following HTML as a plain object:
-
-    <button class='button button-blue'>  <b>    OK!  </b></button>
-
-What’s important is that both child and parent elements are just descriptions and not the actual instances. They don’t refer to anything on the screen when you create them. You can create them and throw them away, and it won’t matter much.
-React elements are easy to traverse, don’t need to be parsed, and of course they are much lighter than the actual DOM elements—they’re just objects!
-Component Elements
-However, the type of an element can also be a function or a class corresponding to a React component:
-
-    {  type: Button,  props: {    color: 'blue',    children: 'OK!'  }} 
-
-**This is the core idea of React.**
---
-
-An element describing a component is also an element, just like an element describing the DOM node. They can be nested and mixed with each other.
-
-This feature lets you define a DangerButton component as a Button with a specific color property value without worrying about whether Button renders to a DOM <button>, a <div>, or something else entirely:
-const DangerButton = ({ children }) => ({  type: Button,  props: {    color: 'red',    children: children  }});
-More things are there to cover, plZ refer below link for detailed understanding 
-https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html 
-
-For a React component, props are the input, and an element tree is the output.
-The returned element tree can contain both elements describing DOM nodes, and elements describing other components. This lets you compose independent parts of UI without relying on their internal DOM structure.
-We let React create, update, and destroy instances. We describe them with elements we return from the components, and React takes care of managing the instances.
-However, whether functions or classes, fundamentally they are all components to React. They take the props as their input, and return the elements as their output.
-
-React Design
-React takes care of creating an instance for every class component, so you can write components in an object-oriented way with methods and local state, but other than that, instances are not very important in the React’s programming model and are managed by React itself.
-
-Best practice in react -  shouldUpdateComponent, composition rather than inheritance, HOC , thinking in react
-
-**Advanced Guides**
---
-Performance - 
-People still talk about them because in practice, they are very hard to implement in regular JavaScript code. What makes React stand out is that all those optimizations happen by default. This makes it hard to shoot yourself in the foot and make your app slow.
-The performance cost model of React is also very simple to understand: every setState re-renders the whole sub-tree. If you want to squeeze out performance, call setState as low as possible and use shouldComponentUpdate to prevent re-rendering an large sub-tree.
 
 **React without Es6**
 --
@@ -446,6 +453,24 @@ https://www.mockapi.io/docs
 https://swapi.co/
 https://openweathermap.org/api
 https://mockable.io
+
+
+
+##### For Testing
+https://github.com/mlaursen/react-md/blob/master/src/js/Buttons/__tests__/Button.js
+npm test -- --watch
+
+####HOC
+ https://stackblitz.com/edit/react-imagehoc
+
+lifecycle
+http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+why use react ?
+##### isomorphic rendering?
+
+##### React Architecture and Best Practices====
+https://github.com/markerikson/react-redux-links/blob/master/react-architecture.md
 
 **Doubts**
 
@@ -515,6 +540,22 @@ dynamic attribute in a component or element
         <div {...this.state.flag ? {id: 'sdafsad'}: {}}>{this.state.name}</div>
       )
     }
+
+
+https://tylermcginnis.com/react-interview-questions/
+
+https://tylermcginnis.com/react-aha-moments/ 
+
+
+**Try ?**
+
+ 1. nested Switch 
+ 2. Why jsx needs parent div binding for every component
+ 3. Sridhar => How you are using react route in idse, how will u change url without router
+ 4. Router with memory router implemented from idse library
+ 5. How will you immutate deep object property in setstate or redux
+	 => use immutable.js or deep clone json.parse(json.stringify(obj))
+
 
 
 
@@ -626,21 +667,3 @@ Managerial round
 30.	How was your day today
 31.	Agile difficulites
 32.	How do you prevent bugs defects before getting into QA hands
-
-
-
-##### For Testing
-https://github.com/mlaursen/react-md/blob/master/src/js/Buttons/__tests__/Button.js
-npm test -- --watch
-
-####HOC
- https://stackblitz.com/edit/react-imagehoc
-
-lifecycle
-http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
-
-why use react ?
-##### isomorphic rendering?
-
-##### React Architecture and Best Practices====
-https://github.com/markerikson/react-redux-links/blob/master/react-architecture.md
