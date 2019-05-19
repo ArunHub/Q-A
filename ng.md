@@ -1,4 +1,4 @@
-**angular http interceptors**
+**Angular http interceptors**
 
 implmetation = > 
 
@@ -27,10 +27,14 @@ https://medium.com/aviabird/http-interceptor-angular2-way-e57dc2842462
 **REact vs angular -**
 
 React does nt have ngmodule decorator since It does not have modules , it don’t have structured packaged components to import to other modules since it is a javascript modules(just export and import).
+
 React does nt have index.js to export all files so that we can put {component1,2,3} from /comp/index;
+
 Even though if we make it to work , when error comes cant identify which index.js
+
 https://angular.io/guide/ngmodule-vs-jsmodule
-Router
+
+**Router**
 The order of route configuration matters. The router accepts the first route that matches a navigation request path.
 When all routes were in one AppRoutingModule, you put the default and wildcard routes last, after the /heroes route, so that the router had a chance to match a URL to the /heroes route before hitting the wildcard route and navigating to "Page not found".
 
@@ -236,296 +240,6 @@ Submit as
 - hostbinding 
 - ViewContainerRef
 - diff btw angular versions
-
-**Angular 6 –** 
-
-ng update, add external party libs, service injection in providers reduced since we can write provide in root in injectable enables to provision to rootmodule so no need to import in appmodule
-Basically some programmatic changes, syntax , like ng-content template [style] httpClient, ngfactory build, performance wise, cli update, tree shaking , SSR
-
-**Angular 1-> 2 :**
-
-Primitives don’t change values changed from child to parent when parent send values to child initially. But objects will change since both point to same reference
-
-https://github.com/angular/angular.js/wiki/Understanding-Scopes 
-
-http://next.plnkr.co/edit/zZfUQN?
-p=preview&utm_source=legacy&utm_medium=worker&utm_campaign=next&preview
-
-Suppose parentScope has properties aString, aNumber, anArray, anObject, and aFunction. If childScope prototypically inherits from parentScope, we have:
- 
-If we try to access a property defined on the parentScope from the child scope, JavaScript will first look in the child scope, not find the property, then look in the inherited scope, and find the property. (If it didn't find the property in the parentScope, it would continue up the prototype chain... all the way up to the root scope).
-
-https://stackblitz.com/edit/angular-h1jy2t
-
-In angular 2 > …. changing value of object does not change value in object in parent component but in angular 1 it changes.
-Object value passed from parent to child
-https://stackblitz.com/edit/angular-racctn?file=src%2Fapp%2Fhello.component.html 
-
-#### Angular 1 – digest, watch, apply
-Model when attached to scope , model available to scope so when changed in template or js , scope variable changes as two way binding. When model attached to scope, angular automatically attaches to watch function --> then watch listener function calls digest when model changes
-When Do You Call $apply() Manually?
-
-If AngularJS usually wraps our code in $apply() and starts a $digest cycle, then when do you need to do call $apply() manually? Actually, AngularJS makes one thing pretty clear. It will account for only those model changes which are done inside AngularJS’ context (i.e. the code that changes models is wrapped inside $apply()). Angular’s built-in directives already do this so that any model changes you make are reflected in the view. However, if you change any model outside of the Angular context, then you need to inform Angular of the changes by calling $apply()manually. It’s like telling Angular that you are changing some models and it should fire the watchers so that your changes propagate properly.
-
-For example, if you use JavaScript’s setTimeout() function to update a scopemodel, Angular has no way of knowing what you might change. In this case it’s your responsibility to call $apply() manually, which triggers a $digest cycle. Similarly, if you have a directive that sets up a DOM event listener and changes some models inside the handler function, you need to call $apply() to ensure the changes take effect.
- 
-https://codepen.io/Sandeep92/pen/fukyn - without apply
-
-https://codepen.io/Sandeep92/pen/bEmBn - with apply updates the UI where setTimeout is out of angular scope
- 
-Note: By the way, you should use $timeout service whenever possible which is setTimeout() with automatic $apply() so that you don’t have to call $apply()manually.
- 
-https://www.sitepoint.com/understanding-angulars-apply-digest/
-
-**Change detection strategy**
-Input() and output() => Why do we do this? This creates a pure uni-directional dataflow. The data comes from AppComponent, flows into <counter>, the counter makes a change, and emits that change back to the parent on our command - via the EventEmitter we setup. Once we’ve got that data back up, we merge those changes back into our parent (stateful) component.
-
-**Has two – default n onPush**
-
-Default behaves when one state/ model changes , all components will be rendered.
-it will become performance bottleneck in complex Single Page Applications when lot of events are flowing through the system.
-OnPush behaves changes only to particular component not triggers all component. It works when new reference is given to child comps instead of mutating
-Angular will skip the change detection for a component as long as the references to the inputs do not change (immutable).
-equivalent to utilizing the “shouldComponentUpdate()” life-cycle hook in React to cut down unnecessary render cycles
-change detection in Angular framework is unidirectional and top-down (unlike the digest cycles in AngularJS)
-Basically application state change can be caused by three things:
-•	Events - click, submit, …
-•	XHR - Fetching data from a remote server
-•	Timers - setTimeout(), setInterval()
-
-https://hackernoon.com/angular-2-4-visualizing-change-detection-default-vs-onpush-3d7ed1f69f8e
-proxy for spa projects :
-  "proxy": {
-    "/msapi/address/v1/serviceavailability/address": {
-      "target": "http://localhost:8088/",
-      "secure": false
-    },
-
-**How to manually trigger change detection strategy**
-
-Triggering change detection manually in Angular
-
-I’m writing an Angular component that has a property Mode(): string. I would like to be able to set this property programmatically not in response to any event. The problem is that in the absence of a browser event, a template binding {{Mode}} doesn't update. Is there a way to trigger this change detection manually?
-
-Try one of these:
-•	ApplicationRef.tick() - similar to AngularJS's $rootScope.$digest() -- i.e., check the full component tree
-•	NgZone.run(callback) - similar to $rootScope.$apply(callback) -- i.e., evaluate the callback function inside the Angular zone. I think, but I'm not sure, that this ends up checking the full component tree after executing the callback function.
-•	ChangeDetectorRef.detectChanges() - similar to $scope.$digest() -- i.e., check only this component and its children
-You can inject ApplicationRef, NgZone, or ChangeDetectorRef into your component.
-
-##### promise vs observable
-
-    const source = Rx.Observable.of({name: 'Brian'}, [1,2,3], function hello(){ 
-    return 'Hello'
-    });
-    //output: {name: 'Brian}, [1,2,3], function hello() { return 'Hello' }
-    const subscribe = source.subscribe(val => console.log(val));
-
-In observable return multple values but promise return one value with lot of objects or value inside.
-Better not to compare promise with observable since observable is a producer of data or stream of data and can be consumed only when subscribed I.e like a calling a function.
-Normal function returns single data;
-Observable returns mutliple data, for Ex: can be async calls data, event handler data, timer funtions
-
-**Rxjs**
---
-http://reactivex.io/rxjs/manual/overview.html#introduction
-http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html
-https://github.com/ReactiveX/rxjs/blob/master/doc/introduction.md
-http://reactivex.io/documentation/operators.html
-http://rxmarbles.com/
-https://codecraft.tv/courses/angular/reactive-programming-with-rxjs/streams-and-reactive-programming/
-https://blog.angularindepth.com/learn-to-combine-rxjs-sequences-with-super-intuitive-interactive-diagrams-20fce8e6511 
-
-
-
-**Rxjs operators -** 
-
-•	FILTERING OPERATORS, Conditional Operators, CREATION OBSERVABLES
-•	MATHEMATICAL OPERATORS, TRANSFORMATION OPERATORS, UTILITY OPERATOR
-Fork join  - is equal to join multiple observable to emit after all the response are successful and completed like promise.all()
-Create: create observable with callback funtion to create .next() , .error(), .complete()
-Of: emits values simultaniealy 
-Map, filter
-
-https://coursetro.com/posts/code/150/RxJS-Operators-Tutorial---Learn-How-to-Transform-Observables
-
-
-
-**Subject:**
-We are creating two observables that are independent of each other. But what if you need the second observer to get the same events has the first?
-
-    const interval$ = Rx.Observable.interval(1000);
-    	
-    	interval$.subscribe(console.log);
-    	
-    	setTimeout(() => {
-    	  interval$.subscribe(console.log);
-    	}, 2000);
-
-Subject can act as a bridge/proxy between the source Observable and many observers, making it possible for multiple observers to share the same Observable execution.
-
-    const interval$ = Rx.Observable.interval(1000);
-    	const subject = new Rx.Subject();
-    	interval$.subscribe(subject);
-
-Subject is observing the interval Observable, so every time the interval send values to the Subject, the Subject send this values to all his observers.
-https://netbasal.com/understanding-subjects-in-rxjs-55102a190f3
-
-##### aot compiler build and before aot compiler what used
-We need compilation for achieving higher level of efficiency of our Angular applications. By efficiency I mostly mean performance improvements but also energy and sometimes bandwidth consumption.
-
-AngularJS 1.x had quite a dynamic approach for both rendering and change detection. For instance, the AngularJS 1.x compiler is quite generic. It is supposed to work for any template by performing a set of dynamic computations. Although this works great in the general case, the JavaScript Virtual Machines (VM) struggles with optimizing the calculations on lower level because of their dynamic nature. Since the VM doesn’t know the shapes of the objects which provide context for the dirty-checking logic (i.e. the so called scope), it’s inline caches get a lot of misses which slows the execution down.
-
-Angular, version 2 and above, took different approach. Instead of using the same logic for performing rendering and change detection for each individual component, the framework generates VM-friendly code at runtime or build time. This allows the JavaScript virtual machine to perform property access caching and execute the change detection/rendering logic much faster.
-
-What needs to be compiled?” as well. We want to compile the templates of the components to JavaScript classes. These classes have methods that contain logic for detecting changes in the bindings and rendering the user interface.
-
-#### HMR
-Hot Module Reload is the ability of the application to update itself when the source code is changed — without full page reload ! 
-https://medium.com/@kubal5003/angular-4-hot-module-reload-explained-e832ea616304
-
-##### Tips:
-try to import this way:
-
-    import {Observable} from 'rxjs/Rx';
-
-https://stackblitz.com/ - online ide for angular, react,js,ionic,native
-https://codesandbox.io/
-
-##### Doubts
-how encapsulation css happen in angular?
-
-<app-root>loading...</app-root>
-
-how to replace loading... in appmodule.ts 
-
-**Answer**: cannot replace loading . Already angular app is replacing the 'loading text' with components so make components to replace only.
-
-**Zones ?**
-
-
- 1. how to increase performance load in angular
- 2.  how to optimize the  application at build level 
- 3. how to optimize the application at code level
- 4. compare the objects using id and find its difference create a reusable component for grid widget and achieve fast rendering with large amount of data?
- 5. working knowledge in ag-grid ?
- 6. what implementation can be done at top of webpack build to increase
-   performance of application.
- 7. what difference does Reactjs make in performance wise in comparable to angular framework? 
- 8. internal working of map, filter method ?  apart from Map, filter in-built methods 
- 9. how to increase the iteration and rendering speed of complex nested
-   objects? For say 5lakhs data
-   -> how will you implement lazy loading in router?
- 10. html css js 
- 11. loading each page from server for data many files ->
-     performance spa using webpack bundler -> seperate ui and js for single page and updating when needed form module and components store data -> in service to make light weight component -> use directive on particular element or dom in component or -> normal dom pipe to filter some data before rendering template n -> reactive forms pass data
-     using data binding, service , -> input output, -> stream observable
-     subscribe router -> authenticate using canactivate, canactivatechild
-     for child components access resolve guard to prefetch data before
-     rendering component when you have to wait for data from network
-     call after component initialized again many files imported in
-     appmodule so find and -> seperate feature module and lazy load it use -> interceptor to put common headers for request and response emit data from lazy feature module to parent root component module cant -> use emit data using output since we navigate using router and not using selector observable didnt work since root component got
-     initialized and it asks for subscribe method which will get
-     undefined. because we depend on auth call to authenticate and send
-     data to root 
-     -> subject asObservable solves the problem since it can push new values as well as subscribe to it. Not like observable, as we only
-     subscribes to it as REad Only and how only subject can do it ? not
-     observable But without observable how angular can achieve it? no
-
-cold observable -> is lazy and published value after subscribing
-hot observable -> synchronous and publish value even not subsrcribed
-
-https://blog.thoughtram.io/angular/2016/06/16/cold-vs-hot-observables.html
-
-to return value , use do() , map() inside pipe so that observable returns value before subscribing
-
-
-
-**noteable**:
-
- 1. switchMap operator in angular routing Observable paramMap Snapshot
- 2.     Heroes list: optionally selecting a hero while clicking back button
-    animations in angular routing The router reuses components by
-    default, so the Crisis Detail component will be re-used as you
-    select different crises.
-
-hash
-routing
-jit
-for routes
-
-Interview Questions
---
-
-
-- ﻿Angular1 – scope, watchers, digest cycle, factory, services, custom directives, isolated scope
-- Ng2 – providers, declarations, bootstap component, input, output, difference, 
-- Ngrx
-- https://medium.com/wizardnet972/48-answers-on-stack-overflow-to-the-most-popular-angular-questions-52f9eb430ab0
-
-**Syne**
- 1. angular filter posts in tarun repository
- 2. Angular Route guard
- 3. Observable Vs promise
- 4. flatmap mergemap debounce  distilliled
- 5. Interceptor
- 6. Flex model align items align content Em rem px
- 7. Where does dom object live
- 8. Iterator
- 9. A sync await Data structure -
- 10.  hash map linked list search algorithms 
- 11. Reactive vs template driven
- 12.     Local storage and others Touch down touch move 
- 13. How to set configuration for hitting api for http n https 
- 14. Find out jit build in local n aot in prod build 
- 15. Viewcontainer ref Change detection strategy
- 16. Ngrx
- 17. Why pipetransform needed in pipe n how decorator
-    connects the template and pipe internally ​
-
-
-**Prokarma**
-
-9.	Bootstrapping module
-10.	Sending data from one component to another component ? #ngrx
-11.	Define ngmodule decorator with difference btw providers, entry components, declarations
-
-**Synec**
-
-1.	how observables differ from promise with example
-2.	synchronous observable
-3.	What happens when then object completes in promise
-4.	Why use typescript
-5.	jit vs aot
-6.	@Input how this decorator works ?
-7.	Jasmine vs karma what are those
-8.	How to Debug in production code ?
-Converting from js to ts
-Just create a .d.ts file and include it in the tsconfig.json's files array, so that it is always considered by the TypeScript compiler. In it declare those bits that TypeScript does not know about as type any. Once you've eliminated all errors you can gradually introduce typing to those parts according to your needs.
-
-**Olam**
-
- 5. Angular 1 mechanisms and compilations two way bindings
- 6. Angular 2 components and directives(how to inject functionality in a DOM element)
- 7. Callbacks ? Why we need promise since callback also here Promise vs observable ? Since both delivers the 	same? hint: observable send data as chunks
- 8. Hitting server api url limits to 15. How will achieve to reset the count before it hits. Scenario like type to search in text box to filter the array so for every letter , hitting server url so we have to limit it. Hint: use es6 feature iterator or generator I think
- 9. Why change company Challenge u faced while changing from angular to
-    react
-
-**Wissen**
-
-1.	Es6 decorators and other features
-2.	How single instance shared by all subcomponents from root module
-3.	How to clone object using Deep cloning?
-4.	Bind and apply
-5.	Prototype inheritance
-6.	Component interactions
-7.	Ngonchanges and ngoninit and lifehooks
-
-**Cts**
-
-38.	Pass value from controller to controller in ng1
-39.	Ng-hide vs ng-if
 
 
 
@@ -813,3 +527,294 @@ if u r using angular amd or require js in ui router then u would have to see for
 
 
 -===============
+
+**Angular 6 –** 
+
+ng update, add external party libs, service injection in providers reduced since we can write provide in root in injectable enables to provision to rootmodule so no need to import in appmodule
+Basically some programmatic changes, syntax , like ng-content template [style] httpClient, ngfactory build, performance wise, cli update, tree shaking , SSR
+
+**Angular 1-> 2 :**
+
+Primitives don’t change values changed from child to parent when parent send values to child initially. But objects will change since both point to same reference
+
+https://github.com/angular/angular.js/wiki/Understanding-Scopes 
+
+http://next.plnkr.co/edit/zZfUQN?
+p=preview&utm_source=legacy&utm_medium=worker&utm_campaign=next&preview
+
+Suppose parentScope has properties aString, aNumber, anArray, anObject, and aFunction. If childScope prototypically inherits from parentScope, we have:
+ 
+If we try to access a property defined on the parentScope from the child scope, JavaScript will first look in the child scope, not find the property, then look in the inherited scope, and find the property. (If it didn't find the property in the parentScope, it would continue up the prototype chain... all the way up to the root scope).
+
+https://stackblitz.com/edit/angular-h1jy2t
+
+In angular 2 > …. changing value of object does not change value in object in parent component but in angular 1 it changes.
+Object value passed from parent to child
+https://stackblitz.com/edit/angular-racctn?file=src%2Fapp%2Fhello.component.html 
+
+#### Angular 1 – digest, watch, apply
+Model when attached to scope , model available to scope so when changed in template or js , scope variable changes as two way binding. When model attached to scope, angular automatically attaches to watch function --> then watch listener function calls digest when model changes
+When Do You Call $apply() Manually?
+
+If AngularJS usually wraps our code in $apply() and starts a $digest cycle, then when do you need to do call $apply() manually? Actually, AngularJS makes one thing pretty clear. It will account for only those model changes which are done inside AngularJS’ context (i.e. the code that changes models is wrapped inside $apply()). Angular’s built-in directives already do this so that any model changes you make are reflected in the view. However, if you change any model outside of the Angular context, then you need to inform Angular of the changes by calling $apply()manually. It’s like telling Angular that you are changing some models and it should fire the watchers so that your changes propagate properly.
+
+For example, if you use JavaScript’s setTimeout() function to update a scopemodel, Angular has no way of knowing what you might change. In this case it’s your responsibility to call $apply() manually, which triggers a $digest cycle. Similarly, if you have a directive that sets up a DOM event listener and changes some models inside the handler function, you need to call $apply() to ensure the changes take effect.
+ 
+https://codepen.io/Sandeep92/pen/fukyn - without apply
+
+https://codepen.io/Sandeep92/pen/bEmBn - with apply updates the UI where setTimeout is out of angular scope
+ 
+Note: By the way, you should use $timeout service whenever possible which is setTimeout() with automatic $apply() so that you don’t have to call $apply()manually.
+ 
+https://www.sitepoint.com/understanding-angulars-apply-digest/
+
+**Change detection strategy**
+Input() and output() => Why do we do this? This creates a pure uni-directional dataflow. The data comes from AppComponent, flows into <counter>, the counter makes a change, and emits that change back to the parent on our command - via the EventEmitter we setup. Once we’ve got that data back up, we merge those changes back into our parent (stateful) component.
+
+**Has two – default n onPush**
+
+Default behaves when one state/ model changes , all components will be rendered.
+it will become performance bottleneck in complex Single Page Applications when lot of events are flowing through the system.
+OnPush behaves changes only to particular component not triggers all component. It works when new reference is given to child comps instead of mutating
+Angular will skip the change detection for a component as long as the references to the inputs do not change (immutable).
+equivalent to utilizing the “shouldComponentUpdate()” life-cycle hook in React to cut down unnecessary render cycles
+change detection in Angular framework is unidirectional and top-down (unlike the digest cycles in AngularJS)
+Basically application state change can be caused by three things:
+•	Events - click, submit, …
+•	XHR - Fetching data from a remote server
+•	Timers - setTimeout(), setInterval()
+
+https://hackernoon.com/angular-2-4-visualizing-change-detection-default-vs-onpush-3d7ed1f69f8e
+proxy for spa projects :
+  "proxy": {
+    "/msapi/address/v1/serviceavailability/address": {
+      "target": "http://localhost:8088/",
+      "secure": false
+    },
+
+**How to manually trigger change detection strategy**
+
+Triggering change detection manually in Angular
+
+I’m writing an Angular component that has a property Mode(): string. I would like to be able to set this property programmatically not in response to any event. The problem is that in the absence of a browser event, a template binding {{Mode}} doesn't update. Is there a way to trigger this change detection manually?
+
+Try one of these:
+•	ApplicationRef.tick() - similar to AngularJS's $rootScope.$digest() -- i.e., check the full component tree
+•	NgZone.run(callback) - similar to $rootScope.$apply(callback) -- i.e., evaluate the callback function inside the Angular zone. I think, but I'm not sure, that this ends up checking the full component tree after executing the callback function.
+•	ChangeDetectorRef.detectChanges() - similar to $scope.$digest() -- i.e., check only this component and its children
+You can inject ApplicationRef, NgZone, or ChangeDetectorRef into your component.
+
+##### promise vs observable
+
+    const source = Rx.Observable.of({name: 'Brian'}, [1,2,3], function hello(){ 
+    return 'Hello'
+    });
+    //output: {name: 'Brian}, [1,2,3], function hello() { return 'Hello' }
+    const subscribe = source.subscribe(val => console.log(val));
+
+In observable return multple values but promise return one value with lot of objects or value inside.
+Better not to compare promise with observable since observable is a producer of data or stream of data and can be consumed only when subscribed I.e like a calling a function.
+Normal function returns single data;
+Observable returns mutliple data, for Ex: can be async calls data, event handler data, timer funtions
+
+**Rxjs**
+--
+http://reactivex.io/rxjs/manual/overview.html#introduction
+http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html
+https://github.com/ReactiveX/rxjs/blob/master/doc/introduction.md
+http://reactivex.io/documentation/operators.html
+http://rxmarbles.com/
+https://codecraft.tv/courses/angular/reactive-programming-with-rxjs/streams-and-reactive-programming/
+https://blog.angularindepth.com/learn-to-combine-rxjs-sequences-with-super-intuitive-interactive-diagrams-20fce8e6511 
+
+
+
+**Rxjs operators -** 
+
+•	FILTERING OPERATORS, Conditional Operators, CREATION OBSERVABLES
+•	MATHEMATICAL OPERATORS, TRANSFORMATION OPERATORS, UTILITY OPERATOR
+Fork join  - is equal to join multiple observable to emit after all the response are successful and completed like promise.all()
+Create: create observable with callback funtion to create .next() , .error(), .complete()
+Of: emits values simultaniealy 
+Map, filter
+
+https://coursetro.com/posts/code/150/RxJS-Operators-Tutorial---Learn-How-to-Transform-Observables
+
+
+
+**Subject:**
+We are creating two observables that are independent of each other. But what if you need the second observer to get the same events has the first?
+
+    const interval$ = Rx.Observable.interval(1000);
+    	
+    	interval$.subscribe(console.log);
+    	
+    	setTimeout(() => {
+    	  interval$.subscribe(console.log);
+    	}, 2000);
+
+Subject can act as a bridge/proxy between the source Observable and many observers, making it possible for multiple observers to share the same Observable execution.
+
+    const interval$ = Rx.Observable.interval(1000);
+    	const subject = new Rx.Subject();
+    	interval$.subscribe(subject);
+
+Subject is observing the interval Observable, so every time the interval send values to the Subject, the Subject send this values to all his observers.
+https://netbasal.com/understanding-subjects-in-rxjs-55102a190f3
+
+##### aot compiler build and before aot compiler what used
+We need compilation for achieving higher level of efficiency of our Angular applications. By efficiency I mostly mean performance improvements but also energy and sometimes bandwidth consumption.
+
+AngularJS 1.x had quite a dynamic approach for both rendering and change detection. For instance, the AngularJS 1.x compiler is quite generic. It is supposed to work for any template by performing a set of dynamic computations. Although this works great in the general case, the JavaScript Virtual Machines (VM) struggles with optimizing the calculations on lower level because of their dynamic nature. Since the VM doesn’t know the shapes of the objects which provide context for the dirty-checking logic (i.e. the so called scope), it’s inline caches get a lot of misses which slows the execution down.
+
+Angular, version 2 and above, took different approach. Instead of using the same logic for performing rendering and change detection for each individual component, the framework generates VM-friendly code at runtime or build time. This allows the JavaScript virtual machine to perform property access caching and execute the change detection/rendering logic much faster.
+
+What needs to be compiled?” as well. We want to compile the templates of the components to JavaScript classes. These classes have methods that contain logic for detecting changes in the bindings and rendering the user interface.
+
+#### HMR
+Hot Module Reload is the ability of the application to update itself when the source code is changed — without full page reload ! 
+https://medium.com/@kubal5003/angular-4-hot-module-reload-explained-e832ea616304
+
+##### Tips:
+try to import this way:
+
+    import {Observable} from 'rxjs/Rx';
+
+https://stackblitz.com/ - online ide for angular, react,js,ionic,native
+https://codesandbox.io/
+
+##### Doubts
+how encapsulation css happen in angular?
+
+<app-root>loading...</app-root>
+
+how to replace loading... in appmodule.ts 
+
+**Answer**: cannot replace loading . Already angular app is replacing the 'loading text' with components so make components to replace only.
+
+**Zones ?**
+
+
+ 1. how to increase performance load in angular
+ 2.  how to optimize the  application at build level 
+ 3. how to optimize the application at code level
+ 4. compare the objects using id and find its difference create a reusable component for grid widget and achieve fast rendering with large amount of data?
+ 5. working knowledge in ag-grid ?
+ 6. what implementation can be done at top of webpack build to increase
+   performance of application.
+ 7. what difference does Reactjs make in performance wise in comparable to angular framework? 
+ 8. internal working of map, filter method ?  apart from Map, filter in-built methods 
+ 9. how to increase the iteration and rendering speed of complex nested
+   objects? For say 5lakhs data
+   -> how will you implement lazy loading in router?
+ 10. html css js 
+ 11. loading each page from server for data many files ->
+     performance spa using webpack bundler -> seperate ui and js for single page and updating when needed form module and components store data -> in service to make light weight component -> use directive on particular element or dom in component or -> normal dom pipe to filter some data before rendering template n -> reactive forms pass data
+     using data binding, service , -> input output, -> stream observable
+     subscribe router -> authenticate using canactivate, canactivatechild
+     for child components access resolve guard to prefetch data before
+     rendering component when you have to wait for data from network
+     call after component initialized again many files imported in
+     appmodule so find and -> seperate feature module and lazy load it use -> interceptor to put common headers for request and response emit data from lazy feature module to parent root component module cant -> use emit data using output since we navigate using router and not using selector observable didnt work since root component got
+     initialized and it asks for subscribe method which will get
+     undefined. because we depend on auth call to authenticate and send
+     data to root 
+     -> subject asObservable solves the problem since it can push new values as well as subscribe to it. Not like observable, as we only
+     subscribes to it as REad Only and how only subject can do it ? not
+     observable But without observable how angular can achieve it? no
+
+cold observable -> is lazy and published value after subscribing
+hot observable -> synchronous and publish value even not subsrcribed
+
+https://blog.thoughtram.io/angular/2016/06/16/cold-vs-hot-observables.html
+
+to return value , use do() , map() inside pipe so that observable returns value before subscribing
+
+**Converting from js to ts**
+Just create a .d.ts file and include it in the tsconfig.json's files array, so that it is always considered by the TypeScript compiler. In it declare those bits that TypeScript does not know about as type any. Once you've eliminated all errors you can gradually introduce typing to those parts according to your needs.
+
+
+**noteable**:
+
+ 1. switchMap operator in angular routing Observable paramMap Snapshot
+ 2.     Heroes list: optionally selecting a hero while clicking back button
+    animations in angular routing The router reuses components by
+    default, so the Crisis Detail component will be re-used as you
+    select different crises.
+
+hash
+routing
+jit
+for routes
+
+Interview Questions
+--
+
+
+- ﻿Angular1 – scope, watchers, digest cycle, factory, services, custom directives, isolated scope
+- Ng2 – providers, declarations, bootstap component, input, output, difference, 
+- Ngrx
+- https://medium.com/wizardnet972/48-answers-on-stack-overflow-to-the-most-popular-angular-questions-52f9eb430ab0
+
+**Syne**
+ 1. angular filter posts in tarun repository
+ 2. Angular Route guard
+ 3. Observable Vs promise
+ 4. flatmap mergemap debounce  distilliled
+ 5. Interceptor
+ 6. Flex model align items align content Em rem px
+ 7. Where does dom object live
+ 8. Iterator
+ 9. A sync await Data structure -
+ 10.  hash map linked list search algorithms 
+ 11. Reactive vs template driven
+ 12.     Local storage and others Touch down touch move 
+ 13. How to set configuration for hitting api for http n https 
+ 14. Find out jit build in local n aot in prod build 
+ 15. Viewcontainer ref Change detection strategy
+ 16. Ngrx
+ 17. Why pipetransform needed in pipe n how decorator
+    connects the template and pipe internally ​
+
+
+**Prokarma**
+
+9.	Bootstrapping module
+10.	Sending data from one component to another component ? #ngrx
+11.	Define ngmodule decorator with difference btw providers, entry components, declarations
+
+**Synec**
+
+1.	how observables differ from promise with example
+2.	synchronous observable
+3.	What happens when then object completes in promise
+4.	Why use typescript
+5.	jit vs aot
+6.	@Input how this decorator works ?
+7.	Jasmine vs karma what are those
+8.	How to Debug in production code ?
+
+**Olam**
+
+ 5. Angular 1 mechanisms and compilations two way bindings
+ 6. Angular 2 components and directives(how to inject functionality in a DOM element)
+ 7. Callbacks ? Why we need promise since callback also here Promise vs observable ? Since both delivers the 	same? hint: observable send data as chunks
+ 8. Hitting server api url limits to 15. How will achieve to reset the count before it hits. Scenario like type to search in text box to filter the array so for every letter , hitting server url so we have to limit it. Hint: use es6 feature iterator or generator I think
+ 9. Why change company
+ 10. Challenge u faced while changing from angular to
+    react
+
+**Wissen**
+
+1.	Es6 decorators and other features
+2.	How single instance shared by all subcomponents from root module
+3.	How to clone object using Deep cloning?
+4.	Bind and apply
+5.	Prototype inheritance
+6.	Component interactions
+7.	Ngonchanges and ngoninit and lifehooks
+
+**Cts**
+
+38.	Pass value from controller to controller in ng1
+39.	Ng-hide vs ng-if
