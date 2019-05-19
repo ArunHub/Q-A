@@ -316,6 +316,8 @@ Error : subscribe not found since while initialising menu component, it is not s
 
 So in this scenario, we can able to use ngrx to rescue to supply data anywhere
 
+
+
   
   
 
