@@ -1,3 +1,4 @@
+
 **Promise** object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value. Like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.
 
 closJs – es6 arrow, destructive, rest , spread, closures, let , const =>
@@ -109,9 +110,6 @@ https://javascript.info/event-delegation
 
 - If u want deep clone an object, use JSON.parse(JSON.stringify(Obj))
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Deep_Clone
-
-#### Advanced js questions – toptal
-https://www.javatpoint.com/javascript-interview-questions 
 
 **Mutable**-
 http://doesitmutate.xyz
@@ -569,82 +567,6 @@ var statements are hoisted (without their value initialization) to the top of th
         console.log(y);
     })();
 
-**Doubts**
-
-function DD(){this.name='arun';this.age=5}
-rr = new DD();
-rr1 = Object.create(new DD());
-console.log('rr',rr);
-console.log('rr1',rr1);
-DD.prototype.ddd = 123;
-console.log(rr,'rr');
-console.log(rr1,'rr1');
-
-Here rr and rr1 have prototype ddd how ?
-Answer: Object create do attach the object as prototype to newly created one. 
-
-dont create closures as it creates in memory leak because of non deletion of old reference
-
-when large response data comes while browser has so many browser tabs, then we can implement increasing heap size for our application 
-
-and also can get large response data using observable than promise since it returns whole data and may get delay. Using  observable, can implement pagination and load streams of 100 chunk data in background and make browser smoother
-
- 
- 1. name the primitive data types Is function is a datatype
- 2. what will return if typeof function ? how to create class in ES5/ vanilla javascript ?
- 3. How prototype is useful ?
- 4. Various methods to call a function difference between function call and apply At what scenario call and apply are useful ?
- 5. suppose if sending an undeclared object directly in apply first parameter, what it returns ?
- 6. how to handle large amount of data as response and show in UI without making browser unresponsive?
- 7. tech stack of previous project worked ?
- 
- 
- 
-  1. read more js three lines ..... stop continue like succinity
- 2. slider
- 3. Bookmark checker
- 4. scroll to multilevel slide navigation n tree level
- 5. lightbox
- 6. api in codeacademy
- 7. tiles scroll(pagination)
- 8. window mail app
- 9. carousel
- 10. twitter message type
- 11. when mouse comes near submit button then form should show error since nothing.. promixity detector validator
- 12. - common component functionality - increment/decrement component by 1 which generically applies to slider or anyother
- 13. - Push back seat
- 14. Odc multi doors facility
- 15. Traffic logic
- 16. Our Escalator up arrow in box shadow
- 17. - https://imgur.com/a/v1oDYK8 - bowling alley
- 18. Asynchronous promise is also in WhatsApp
- 19. Promise is like giving cheque with trust ..
- 20. success or failure depends on check bounce
- 21. Page Lifecycle API  |  Web  |  Google Developers
-GitHub - sohamkamani/javascript-design-patterns-for-humans: An ultra-simplified explanation of design patterns implemented in javascript
-Performance Debugging with DevTools
-
-​https://www.styleurl.app/
-
-GitHub - fejes713/30-seconds-of-interviews: A curated collection of common interview questions to help you prepare for your next interview.
-
-Front-End-Performance-Checklist/README.md at master · 
-
-thedaviddias/Front-End-Performance-Checklist · GitHub
-
-https://www.11ty.io/
-
-Set a Timed Debugger To Web Inspect Hard-To-Grab Elements | CSS-Tricks
-https://andy-bell.design/hire-me/
-
-
-- Dummy/fake apis
-- Myjson.com
-- Jsonplaceholder.typicode.com
-- Swapi.co
-- Mockable.io
-- mockit.netlify
-
 
 const readline = require('readline');
 
@@ -686,140 +608,7 @@ rl.on('pause', (input) => {
 //   rl.close();
 // });
 
-
-Interview Questions
---
-
-**Prokarma**
-
-1.	Event loop in js
-2.	Function  expression in js
-3.	Assign anonymous function to variable?
-9.	Es6 spread vs rest, function vs arrow fn
-10.	First class functions #pure function
-11.	Polymorphism in js
-12.	Achieve prototype inheritance
-13.	Different types of creating object
-14.	Apply and call
-15.	Modular pattern and module releasing pattern
-16.	Npm run start
-17.	Unit testing . How to mock backend calls
-18.	Use strict and non strict
-19.	This in use strict
-20.	Closures
-21.	Pseudo elements
-22.	Document.object
-23.	How will you find which browser running
-24.	What history object does in javascript
-
-
-**Olam**
-
- 1. Ways to create object
- 2.     Object literal has prototype or __proto__ 
- 3. Localstorage from one domain can be accessed in another domain in another tab? Subdomains?
- 4. Assigning function constructor to a variable/ try iife to capital variable
- 5. Fastest way to traverse array? Why filter faster than map hint: filter caches array
-
-**Deloit**
-
-1.	Web security
-2.	Access cookies in subdomain
-3.	Closures
-4.	This keyword inside promise
-5.	Nested objects cloning
-7.	How browser html start rendering from server its life cycles
-8.	How script tag executed when jQuery n custom query are loaded
-9.	Sequentially or parallely
-10.	ASync await
-11.	Promises
-12.	Const let var
-13.	Const with primitive n object manipulation scenario
-14.	Local file fetching or CDN
-15.	If local, if some changes happen how will the server detects its a new file
-16.	If obj={}, construction function create object, does prototype exists in both. Why not use first itself
-17.	How we store previous state before changing new state in reducers
-18.	How will you use rest operator in instead of object.assign in reducer
-19.	Why react better than angular
-20.	This inside promises
-
-Answers for first round:
-21.	We used session storage to expire the page after some specific time. Use cookie with httponly to make editable in server side. Deletes cookie by 
-
-    document.cookie = 'foo=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
-
-22.	Domain cookies are included in subdomains.
-23.	Refer mdn and closures more than 3 level scopes ?
-
-**capg**
-1. Arrow fun vs normal function
-
-    let sunday = {
-        a:1,
-        b:2,
-        c: ()=>{
-            console.log(this.a)
-        }
-    }
-    // sunday.a = 5;
-    console.log(sunday);
-
-	Arrow functions cannot be used to write object methods because, as you have found, since arrow functions close over the this of the lexically enclosing context, the this within the arrow is the one that was current where you defined the object. Which is to say:
-
-2. Const vs let - Study properly
-3. Destructive
-4. Async , await
-5. Promises
-6. Search bar to filter list of object items{ question, answers }
-7. Redux flow
-8. Function anonymous and sampleOne ??
-
-    var sample = funtion sampleOne(){
-    Console.log(‘dfdfddf’);
-    }
-9. 0 + true =?
-    A + true =? 
-
-10. Map vs filter => 
-
-    [{id:1,check:true},{id:2,check:false},{id: 3, check:true}].map( t=> if(t.check) return t.id); // return id1,null,id3
-
-	Comes the rescue. Filter => it does filtering only as results // id1, id2 // checks for truthy.
-
-
-**Wissen**
-
-Let -> let is a block scoping variable where we can able to reassign values.
-Const -> unlike const we cannot reassign values again but can change property values inside obj without changing reference.
-Array 
-
-
-
-1.	Two es6 functions and es5 functions with console.log(this) console.log(arguments). What it prints
-2.	If we bind one function with other and passing value and when we call the assigned variable with another variable what will happen
-3.	When we return value from catch object and whether will next then object captures it
-4.	Bind in arrow functions
-5.	Function with object literal and its methods like increment and decrement and variable outside the object and returning that object. So when we call that object method to increment ++ and decrement ++ what it will print when obj.incr and obj.incr and obj.decr
-7.	When we apply particular button extra class .. then whats the purpose of reusable of classes
-8.	Angular performance and react
-9.	Callbacks and promises
-10.	Function hosting
-11.	Higher order functions
-12.	Lodash throttle
-13.	Closures
-14.	Best way to use constructor function and object literal
-15.	If we do step5 in constructor function, what it will return
-16.	Arrow functions this
-
-
-
-
-
-##### #how-to-access-the-correct-this-inside-a-callback
-
-https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback/20279485#20279485
-
-  
+============  
   
 
 #### for while do while loops and switch statements - control flow================
@@ -1179,7 +968,7 @@ When we invoke the function as the method of an object, that object becomes the 
 
   
 
-#### using contrustor
+#### using constructor
 
 function Fun(){
 
@@ -1374,13 +1163,6 @@ http://jsfiddle.net/osoh6o5a/
   
   
 
-##### drag and drop custom select
-
-https://css-tricks.com/drag-and-drop-file-uploading/
-
-  
-
-http://tympanus.net/Development/SelectInspiration/index5.html
 
   
   
@@ -1396,45 +1178,23 @@ http://themexlab.com/eventon/meeton/index.html
   
   
 
-##### css js tips
-
-  
+##### Tips  
 
 ​http://code.tutsplus.com/tutorials/20-helpful-jquery-methods-you-should-be-using--net-10521
 
-​
 
 http://benalman.com/code/projects/jquery-outside-events/examples/clickoutside/
-
-  
+ 
 
 https://github.com/AllThingsSmitty
 
-http://ipestov.com/22-essential-css-recipes/
-
-https://github.com/AllThingsSmitty/css-protips
-
-  
-
-http://code.tutsplus.com/tutorials/the-30-css-selectors-you-must-memorize--net-16048
-
-  
-
 http://stackoverflow.com/questions/10213703/how-do-i-view-events-fired-on-an-element-in-chrome-web-developer
 
-  
-
+ 
 https://github.com/DovAmir/awesome-design-patterns
 
 https://github.com/twhite96/js-dev-reads
-
-  
-
-need to quickly visually see tge rectangles that make up all elements of the page?
-
-* {outline: 1px solid red;}
-
-  
+ 
 
 ##### Jquery Menu==========
 
@@ -1462,6 +1222,211 @@ http://plugins.jquery.com/WOWSlider/
 has many effects and slider designs
 
 
+##### #how-to-access-the-correct-this-inside-a-callback
+
+https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback/20279485#20279485
+
+**Doubts**
+
+function DD(){this.name='arun';this.age=5}
+rr = new DD();
+rr1 = Object.create(new DD());
+console.log('rr',rr);
+console.log('rr1',rr1);
+DD.prototype.ddd = 123;
+console.log(rr,'rr');
+console.log(rr1,'rr1');
+
+Here rr and rr1 have prototype ddd how ?
+Answer: Object create do attach the object as prototype to newly created one. 
+
+dont create closures as it creates in memory leak because of non deletion of old reference
+
+when large response data comes while browser has so many browser tabs, then we can implement increasing heap size for our application 
+
+and also can get large response data using observable than promise since it returns whole data and may get delay. Using  observable, can implement pagination and load streams of 100 chunk data in background and make browser smoother
+
+ 
+ 1. name the primitive data types Is function is a datatype
+ 2. what will return if typeof function ? how to create class in ES5/ vanilla javascript ?
+ 3. How prototype is useful ?
+ 4. Various methods to call a function difference between function call and apply At what scenario call and apply are useful ?
+ 5. suppose if sending an undeclared object directly in apply first parameter, what it returns ?
+ 6. how to handle large amount of data as response and show in UI without making browser unresponsive?
+ 7. tech stack of previous project worked ?
+ 
+ 
+ 
+  1. read more js three lines ..... stop continue like succinity
+ 2. slider
+ 3. Bookmark checker
+ 4. scroll to multilevel slide navigation n tree level
+ 5. lightbox
+ 6. api in codeacademy
+ 7. tiles scroll(pagination)
+ 8. window mail app
+ 9. carousel
+ 10. twitter message type
+ 11. when mouse comes near submit button then form should show error since nothing.. promixity detector validator
+ 12. - common component functionality - increment/decrement component by 1 which generically applies to slider or anyother
+ 13. - Push back seat
+ 14. Odc multi doors facility
+ 15. Traffic logic
+ 16. Our Escalator up arrow in box shadow
+ 17. - https://imgur.com/a/v1oDYK8 - bowling alley
+ 18. Asynchronous promise is also in WhatsApp
+ 19. Promise is like giving cheque with trust ..
+ 20. success or failure depends on check bounce
+ 21. Page Lifecycle API  |  Web  |  Google Developers
+GitHub - sohamkamani/javascript-design-patterns-for-humans: An ultra-simplified explanation of design patterns implemented in javascript
+Performance Debugging with DevTools
+
+​https://www.styleurl.app/
+
+GitHub - fejes713/30-seconds-of-interviews: A curated collection of common interview questions to help you prepare for your next interview.
+
+Front-End-Performance-Checklist/README.md at master · 
+
+thedaviddias/Front-End-Performance-Checklist · GitHub
+
+https://www.11ty.io/
+
+Set a Timed Debugger To Web Inspect Hard-To-Grab Elements | CSS-Tricks
+https://andy-bell.design/hire-me/
+
+
+- Dummy/fake apis
+- Myjson.com
+- Jsonplaceholder.typicode.com
+- Swapi.co
+- Mockable.io
+- mockit.netlify
+
+
+Interview Questions
+--
+
+**Prokarma**
+
+1.	Event loop in js
+2.	Function  expression in js
+3.	Assign anonymous function to variable?
+9.	Es6 spread vs rest, function vs arrow fn
+10.	First class functions #pure function
+11.	Polymorphism in js
+12.	Achieve prototype inheritance
+13.	Different types of creating object
+14.	Apply and call
+15.	Modular pattern and module releasing pattern
+16.	Npm run start
+17.	Unit testing . How to mock backend calls
+18.	Use strict and non strict
+19.	This in use strict
+20.	Closures
+21.	Pseudo elements
+22.	Document.object
+23.	How will you find which browser running
+24.	What history object does in javascript
+
+
+**Olam**
+
+ 1. Ways to create object
+ 2.     Object literal has prototype or __proto__ 
+ 3. Localstorage from one domain can be accessed in another domain in another tab? Subdomains?
+ 4. Assigning function constructor to a variable/ try iife to capital variable
+ 5. Fastest way to traverse array? Why filter faster than map hint: filter caches array
+
+**Deloit**
+
+1.	Web security
+2.	Access cookies in subdomain
+3.	Closures
+4.	This keyword inside promise
+5.	Nested objects cloning
+7.	How browser html start rendering from server its life cycles
+8.	How script tag executed when jQuery n custom query are loaded
+9.	Sequentially or parallely
+10.	ASync await
+11.	Promises
+12.	Const let var
+13.	Const with primitive n object manipulation scenario
+14.	Local file fetching or CDN
+15.	If local, if some changes happen how will the server detects its a new file
+16.	If obj={}, construction function create object, does prototype exists in both. Why not use first itself
+17.	How we store previous state before changing new state in reducers
+18.	How will you use rest operator in instead of object.assign in reducer
+19.	Why react better than angular
+20.	This inside promises
+
+Answers for first round:
+21.	We used session storage to expire the page after some specific time. Use cookie with httponly to make editable in server side. Deletes cookie by 
+
+    document.cookie = 'foo=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
+
+22.	Domain cookies are included in subdomains.
+23.	Refer mdn and closures more than 3 level scopes ?
+
+**capg**
+1. Arrow fun vs normal function
+
+    let sunday = {
+        a:1,
+        b:2,
+        c: ()=>{
+            console.log(this.a)
+        }
+    }
+    // sunday.a = 5;
+    console.log(sunday);
+
+	Arrow functions cannot be used to write object methods because, as you have found, since arrow functions close over the this of the lexically enclosing context, the this within the arrow is the one that was current where you defined the object. Which is to say:
+
+2. Const vs let - Study properly
+3. Destructive
+4. Async , await
+5. Promises
+6. Search bar to filter list of object items{ question, answers }
+7. Redux flow
+8. Function anonymous and sampleOne ??
+
+    var sample = funtion sampleOne(){
+    Console.log(‘dfdfddf’);
+    }
+9. 0 + true =?
+    A + true =? 
+
+10. Map vs filter => 
+
+    [{id:1,check:true},{id:2,check:false},{id: 3, check:true}].map( t=> if(t.check) return t.id); // return id1,null,id3
+
+	Comes the rescue. Filter => it does filtering only as results // id1, id2 // checks for truthy.
+
+
+**Wissen**
+
+Let -> let is a block scoping variable where we can able to reassign values.
+Const -> unlike const we cannot reassign values again but can change property values inside obj without changing reference.
+Array 
 
 
 
+1.	Two es6 functions and es5 functions with console.log(this) console.log(arguments). What it prints
+2.	If we bind one function with other and passing value and when we call the assigned variable with another variable what will happen
+3.	When we return value from catch object and whether will next then object captures it
+4.	Bind in arrow functions
+5.	Function with object literal and its methods like increment and decrement and variable outside the object and returning that object. So when we call that object method to increment ++ and decrement ++ what it will print when obj.incr and obj.incr and obj.decr
+7.	When we apply particular button extra class .. then whats the purpose of reusable of classes
+8.	Angular performance and react
+9.	Callbacks and promises
+10.	Function hosting
+11.	Higher order functions
+12.	Lodash throttle
+13.	Closures
+14.	Best way to use constructor function and object literal
+15.	If we do step5 in constructor function, what it will return
+16.	Arrow functions this
+
+
+#### Advanced js questions – toptal
+https://www.javatpoint.com/javascript-interview-questions 
