@@ -1206,8 +1206,18 @@ https://css-tricks.com/simple-jquery-dropdowns/
 
 http://jsfiddle.net/i_like_robots/6JbtX/
 
-  
-  
+
+
+##### for muliline
+
+https://css-tricks.com/line-clampin/
+
+http://mikeking.io/succinct/(currently using)
+
+using jquery
+
+http://jsfiddle.net/k5VET/
+
 
 ##### many carousel====
 
