@@ -1,4 +1,13 @@
 
+1.eyes rolling exercies on css
+2.float left float none
+3.https://www.manifold.co/blog/css-puzzles-a-mentorship-program-for-better-styling-d018e77de57c
+https://textblock.io/
+https://notlaura.com/algorithms-of-css-sources/
+remove.bg
+​
+
+
 ##### css triangle logic======
 
 if u want top sharp,, border-top none, left portion flat means border left none, right slanting means border right color transparent , then give border-bottom-width gives height.
