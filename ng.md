@@ -351,31 +351,6 @@ https://coursetro.com/posts/code/150/RxJS-Operators-Tutorial---Learn-How-to-Tran
 
 
 
-**Rxjs**
---
-http://reactivex.io/rxjs/manual/overview.html#introduction
-http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html
-https://github.com/ReactiveX/rxjs/blob/master/doc/introduction.md
-http://reactivex.io/documentation/operators.html
-http://rxmarbles.com/
-https://codecraft.tv/courses/angular/reactive-programming-with-rxjs/streams-and-reactive-programming/
-https://blog.angularindepth.com/learn-to-combine-rxjs-sequences-with-super-intuitive-interactive-diagrams-20fce8e6511 
-
-
-
-**Rxjs operators -** 
-
-•	FILTERING OPERATORS, Conditional Operators, CREATION OBSERVABLES
-•	MATHEMATICAL OPERATORS, TRANSFORMATION OPERATORS, UTILITY OPERATOR
-Fork join  - is equal to join multiple observable to emit after all the response are successful and completed like promise.all()
-Create: create observable with callback funtion to create .next() , .error(), .complete()
-Of: emits values simultaniealy 
-Map, filter
-
-https://coursetro.com/posts/code/150/RxJS-Operators-Tutorial---Learn-How-to-Transform-Observables
-
-
-
 **Subject:**
 We are creating two observables that are independent of each other. But what if you need the second observer to get the same events has the first?
 
@@ -429,6 +404,56 @@ how to replace loading... in appmodule.ts
 **Zones ?**
 
 
+ 1. how to increase performance load in angular
+ 2.  how to optimize the  application at build level 
+ 3. how to optimize the application at code level
+ 4. compare the objects using id and find its difference create a reusable component for grid widget and achieve fast rendering with large amount of data?
+ 5. working knowledge in ag-grid ?
+ 6. what implementation can be done at top of webpack build to increase
+   performance of application.
+ 7. what difference does Reactjs make in performance wise in comparable to angular framework? 
+ 8. internal working of map, filter method ?  apart from Map, filter in-built methods 
+ 9. how to increase the iteration and rendering speed of complex nested
+   objects? For say 5lakhs data
+   -> how will you implement lazy loading in router?
+ 10. html css js 
+ 11. loading each page from server for data many files ->
+     performance spa using webpack bundler -> seperate ui and js for single page and updating when needed form module and components store data -> in service to make light weight component -> use directive on particular element or dom in component or -> normal dom pipe to filter some data before rendering template n -> reactive forms pass data
+     using data binding, service , -> input output, -> stream observable
+     subscribe router -> authenticate using canactivate, canactivatechild
+     for child components access resolve guard to prefetch data before
+     rendering component when you have to wait for data from network
+     call after component initialized again many files imported in
+     appmodule so find and -> seperate feature module and lazy load it use -> interceptor to put common headers for request and response emit data from lazy feature module to parent root component module cant -> use emit data using output since we navigate using router and not using selector observable didnt work since root component got
+     initialized and it asks for subscribe method which will get
+     undefined. because we depend on auth call to authenticate and send
+     data to root 
+     -> subject asObservable solves the problem since it can push new values as well as subscribe to it. Not like observable, as we only
+     subscribes to it as REad Only and how only subject can do it ? not
+     observable But without observable how angular can achieve it? no
+
+cold observable -> is lazy and published value after subscribing
+hot observable -> synchronous and publish value even not subsrcribed
+
+https://blog.thoughtram.io/angular/2016/06/16/cold-vs-hot-observables.html
+
+to return value , use do() , map() inside pipe so that observable returns value before subscribing
+
+
+
+**noteable**:
+
+ 1. switchMap operator in angular routing Observable paramMap Snapshot
+ 2.     Heroes list: optionally selecting a hero while clicking back button
+    animations in angular routing The router reuses components by
+    default, so the Crisis Detail component will be re-used as you
+    select different crises.
+
+hash
+routing
+jit
+for routes
+
 Interview Questions
 --
 
@@ -437,6 +462,27 @@ Interview Questions
 - Ng2 – providers, declarations, bootstap component, input, output, difference, 
 - Ngrx
 - https://medium.com/wizardnet972/48-answers-on-stack-overflow-to-the-most-popular-angular-questions-52f9eb430ab0
+
+**Syne**
+ 1. angular filter posts in tarun repository
+ 2. Angular Route guard
+ 3. Observable Vs promise
+ 4. flatmap mergemap debounce  distilliled
+ 5. Interceptor
+ 6. Flex model align items align content Em rem px
+ 7. Where does dom object live
+ 8. Iterator
+ 9. A sync await Data structure -
+ 10.  hash map linked list search algorithms 
+ 11. Reactive vs template driven
+ 12.     Local storage and others Touch down touch move 
+ 13. How to set configuration for hitting api for http n https 
+ 14. Find out jit build in local n aot in prod build 
+ 15. Viewcontainer ref Change detection strategy
+ 16. Ngrx
+ 17. Why pipetransform needed in pipe n how decorator
+    connects the template and pipe internally ​
+
 
 **Prokarma**
 
