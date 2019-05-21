@@ -33,7 +33,7 @@ X chart
 X Range series stock chart
 Line chart
 Gaunt chart
-Bullet chart
+Bullet chart 
 Cumulative chart
 Pie chart with half radius
 Gauge chart
