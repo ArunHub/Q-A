@@ -56,6 +56,10 @@ Technical n software engineering
 •	Graphs: Consider if a problem can be applied with graph algorithms like distance, search, connectivity, cycle-detection, etc. There are three basic ways to represent a graph in memory (objects and pointers, matrix, and adjacency list) — familiarize yourself with each representation and its pros and cons. You should know the basic graph traversal algorithms, breadth-first search and depth-first search. Know their computational complexity, their tradeoffs and how to implement them in real code.
 •	Recursion: Many coding problems involve thinking recursively and potentially coding a recursive solution. Use recursion to find more elegant solutions to problems that can be solved iteratively.
  
+ become a google dev expert 
+ 
+ https://developers.google.com/programs/experts/
+ 
 Binary search
 Clarifications, think out load, talk before u write , test the solution
 https://www.youtube.com/watch?v=XKu_SEDAykw
