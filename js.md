@@ -1266,6 +1266,9 @@ and also can get large response data using observable than promise since it retu
  7. tech stack of previous project worked ?
  
  
+google app engine
+
+validation n form elements all
  
   1. read more js three lines ..... stop continue like succinity
  2. slider
