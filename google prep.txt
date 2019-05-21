@@ -137,6 +137,7 @@ Senior Front End Engineer: 5+ years’ experience or equivalent proficiency with
 
 ·         Passion for performance debugging and benchmarking
 
+
 ·         Design the architecture and develop mobile/desktop web app and websites.
 
 Arun is a front-end web developer in Chennai, Tamil Nadu. He is passionate about Html,css,JavaScript, Sass, and cutting-edge front-end technologies. He is constantly finding new ways to apply both real time happenings around his environment into web development.
