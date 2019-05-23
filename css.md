@@ -1,5 +1,8 @@
-
 **Tips:**
+
+To truncate text inside table cell , use max width on table cell so that child element can adjust depending on parent 
+
+
 need to quickly visually see the rectangles that make up all elements of the page?
 
 * {outline: 1px solid red;}
