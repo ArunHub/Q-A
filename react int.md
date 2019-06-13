@@ -584,7 +584,10 @@ https://tylermcginnis.com/react-aha-moments/
  5. How will you immutate deep object property in setstate or redux
 	 => use immutable.js or deep clone json.parse(json.stringify(obj))
 
+**Tips** 
 
+- When u are in situation to render a component and insert it into dom, use like app.js used to do.
+- use render method from react-dom and render the dom and insert in dom like render('<app/>', document.getElementById('dom') )
 
 
 Interview Questions
