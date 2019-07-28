@@ -41,6 +41,7 @@ https://notlaura.com/algorithms-of-css-sources/
 remove.bg
 ​
 
+
 #### many bootstrap readymade 
 
 https://www.omegaweb.com/50-super-useful-twitter-bootstrap-plugins/#.VcELp7VInjw
@@ -204,7 +205,7 @@ http://stackoverflow.com/questions/2441565/how-do-i-make-a-div-element-editable-
 ##### perspective
 
 http://codepen.io/enxaneta/pen/ZQbNMx
- 
+ https://codepen.io/desandro/pen/bMqZmr
 
 ##### add to cart flow
 
