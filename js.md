@@ -1315,6 +1315,57 @@ https://andy-bell.design/hire-me/
 - Mockable.io
 - mockit.netlify
 
+##### dynamic create variable javascript
+
+> assign it to global window like window['variable']
+> var varname ='CB1';window[varname] ='my value';
+dynamic create variable javascript for IF s
+
+
+static variable vs instance
+var temp;
+if (periodicArr[i].symbol && (temp = str.match(regex)) !== null) {}
+
+"class Test{
+public static int a = 5;
+public int b = 10;
+}
+// here t1 and t2 will have a separate copy of b
+// while they will have same copy of a.
+Test t1 = new test(); 
+Test t2 = new test();
+
+You can access a static variable with it's class Name like this
+
+Test.a = 1//some value But you can not access instance variable like this
+System.out.println(t1.a);
+System.out.println(t2.a);
+
+In both cases output will be 1 as a is share by all instances of the test class. 
+while the instance variable will each have separate copy of b (instance variable) So
+
+ t1.b = 15 // will not be reflected in t2.
+ System.out.println(t1.b); // this will print 15
+ System.out.println(t2.b); / this will still print 10; 
+
+Hope that explains your query."
+
+How to remove circular reference json in JavaScript 
+
+Use dynamic object property in es 6 ... Refer asynchronous actions in redux or react forms page ... search as computed property name
+
+
+create js plugin
+
+set default options and have provision to accept extra options
+
+https://scotch.io/tutorials/building-your-own-javascript-modal-plugin#toc-the-javascript
+
+initiate object instance with your options
+seperate constructor, public, private methods
+u will have public methods to perform desired actions on instance variable
+
+
 
 Interview Questions
 --
@@ -1476,4 +1527,3 @@ https://www.javatpoint.com/javascript-interview-questions
 28. How do you declare generic class in JavaScript? 
 29. How do you declare generic class with constraints in JavaScript? 
 30. Can we achieve all Object Oriented Programming features in JavaScript? 
-
