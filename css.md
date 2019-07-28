@@ -7,7 +7,15 @@ need to quickly visually see the rectangles that make up all elements of the pag
 
 * {outline: 1px solid red;}
 
+**keep footer at bottom always irrespective of data height above**
 
+"where on initial load page, body container may be small but 
+after some event handlers it may grow so adapt to that height
+ and keep the footer at bottom"
+ 
+ #####answer
+ 
+ fixing 90 or 100vh gives viewport height that  fixes dynamically the height to body container works in modern browser only 
 
 
 ##### drag and drop custom select
