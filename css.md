@@ -270,7 +270,16 @@ http://stackoverflow.com/questions/7839164/is-there-a-css-cross-browser-value-fo
 http://red-team-design.com/horizontal-centering-using-css-fit-content-value/
 
 https://developer.mozilla.org/en/docs/Web/CSS/width
- 
+ Your problem may be solved if you give your div a fixed width, as follows:
+div#thing
+{
+position: absolute;
+top: 0px;
+z-index: 2;
+width:400px;
+margin-left:-200px;
+left:50%;
+}
 
 ##### datalist shows dropdown arrow in > chrome 34 so disable
 
