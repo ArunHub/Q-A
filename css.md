@@ -17,6 +17,8 @@ after some event handlers it may grow so adapt to that height
  
  fixing 90 or 100vh gives viewport height that  fixes dynamically the height to body container works in modern browser only 
 
+#### when linear gradient doesn’t fill the full width of screen use
+background-attachment: fixed;
 
 ##### drag and drop custom select
 
