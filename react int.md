@@ -588,7 +588,8 @@ https://tylermcginnis.com/react-aha-moments/
 
 - When u are in situation to render a component and insert it into dom, use like app.js used to do.
 - use render method from react-dom and render the dom and insert in dom like render('<app/>', document.getElementById('dom') )
-
+- when connect function props not working,then check thecurrent component is exported as default or named one in parent component 
+if it is named export then it  cannot connot to store to get state values
 
 Interview Questions
 --
