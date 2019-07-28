@@ -698,3 +698,7 @@ Managerial round
 30.	How was your day today
 31.	Agile difficulites
 32.	How do you prevent bugs defects before getting into QA hands
+
+
+for tutorials from udemy
+Refer google sheets
