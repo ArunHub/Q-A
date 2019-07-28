@@ -13,7 +13,7 @@ need to quickly visually see the rectangles that make up all elements of the pag
 after some event handlers it may grow so adapt to that height
  and keep the footer at bottom"
  
- #####answer
+ ##### answer
  
  fixing 90 or 100vh gives viewport height that  fixes dynamically the height to body container works in modern browser only 
 
@@ -39,6 +39,9 @@ https://notlaura.com/algorithms-of-css-sources/
 remove.bg
 ​
 
+#### many bootstrap readymade 
+
+https://www.omegaweb.com/50-super-useful-twitter-bootstrap-plugins/#.VcELp7VInjw
 
 ##### css triangle logic======
 
