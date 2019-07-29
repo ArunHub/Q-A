@@ -584,6 +584,8 @@ https://tylermcginnis.com/react-aha-moments/
  5. How will you immutate deep object property in setstate or redux
 	 => use immutable.js or deep clone json.parse(json.stringify(obj))
 
+6. https://artsy.github.io/blog/2018/08/24/How-to-debug-jest-tests/
+
 **Tips** 
 
 - When u are in situation to render a component and insert it into dom, use like app.js used to do.
