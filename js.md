@@ -568,46 +568,6 @@ var statements are hoisted (without their value initialization) to the top of th
     })();
 
 
-const readline = require('readline');
-
-var taskList = [{taskname: 'algorithm', count: 0, id: 1}, {taskname: 'exercise', count: 0, id: 2}, {taskname: 'future', count: 0, id: 3}, {taskname: 'shop', count: 0, id: 4}, {taskname: 'test_or_ownProject', count: 0, id: 5}, {taskname: 'bb', count: 0, id: 6}, {taskname: 'doubt', count: 0, id: 7}, {taskname: 'stackoverflow', count: 0, id: 8}, {taskname: 'household', count: 0, id: 9}, {taskname: 'game', count: 0, id: 10}, {taskname: 'mail', count: 0, id: 11}, {taskname: 'entertainment', count: 0, id: 12}, {taskname: 'news_channel', count: 0, id: 13}]
-taskList.forEach(t=>{
-	console.log(t.id+". "+t.taskname + " - " + t.count);	
-})
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-function findId(id){
-	var temp = taskList.find(function(t){
-		console.log(id,"ttttttt",t);
-		return t.id === id;
-	})
-	console.log("text",temp);
-	return temp;
-}
-
-rl.on('line', (input) => {
-	// if () {}
-	console.log("Enter the id to take action:");
-  console.log(`Received: ${findId(input)}`);
-});
-
-rl.on('pause', (input) => {
-	// if () {}
-	console.log("Enter t:");
-  console.log(`Received: ${input}`);
-});
-
-// rl.question('Which task you completed? ', (answer) => {
-//   // TODO: Log the answer in a database
-//   console.log(`Thank you for your valuable feedback: ${answer}`);
-
-//   rl.close();
-// });
-
 ============  
   
 
