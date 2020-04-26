@@ -342,6 +342,21 @@ it checks whether o has a property someProp. If not, it checks Object.getPrototy
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#Using_prototypes_in_JavaScript 
 
 #### design patterns – 
+
+Constructor Pattern
+Module Pattern
+Revealing Module Pattern
+Singleton Pattern
+Observer Pattern
+Mediator Pattern
+Prototype Pattern
+Command Pattern
+Facade Pattern
+Factory Pattern
+Mixin Pattern
+Decorator Pattern
+Flyweight Pattern
+
 remember using module pattern in ng1 – (
 
     var HTMLChanger = (function() {
