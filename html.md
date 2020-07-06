@@ -1,13 +1,13 @@
 
 #### HTML5
-•	Semantics: allowing you to describe more precisely what your content is.
-•	Connectivity: allowing you to communicate with the server in new and innovative ways.
-•	Offline and storage: allowing webpages to store data on the client-side locally and operate offline more efficiently.
-•	Multimedia: making video and audio first-class citizens in the Open Web.
-•	2D/3D graphics and effects: allowing a much more diverse range of presentation options.
-•	Performance and integration: providing greater speed optimization and better usage of computer hardware.
-•	Device access: allowing for the usage of various input and output devices.
-•	Styling: letting authors write more sophisticated themes.
+	- Semantics: allowing you to describe more precisely what your content is.
+	- Connectivity: allowing you to communicate with the server in new and innovative ways.
+	- Offline and storage: allowing webpages to store data on the client-side locally and operate offline more efficiently.
+	- Multimedia: making video and audio first-class citizens in the Open Web.
+	- 2D/3D graphics and effects: allowing a much more diverse range of presentation options.
+	- Performance and integration: providing greater speed optimization and better usage of computer hardware.
+	- Device access: allowing for the usage of various input and output devices.
+	- Styling: letting authors write more sophisticated themes.
 
 #### Html5 api
 1. Media API
@@ -17,14 +17,15 @@
 5. User Interaction
 6. History
 7. MIME type and protocol handler registration
-https://www.creativebloq.com/html5/developer-s-guide-html5-apis-1122923
-
-	https://www.sitepoint.com/10-html5-apis-worth-looking/
+	- https://www.creativebloq.com/html5/developer-s-guide-html5-apis-1122923
+	- https://www.sitepoint.com/10-html5-apis-worth-looking/
 
 8. Why doctype needed ? => <!DOCTYPE html> // Tells the browser that we are using HTML5. So if not given, it may render incompactible mode and may not new html5 elements
 9. If (min-width:320px) and (max-width:768px) and If (min-width:768px) and (max-width:1024px) …
-10. At 768px , how device will get which css ? => css code which was written at last which render finally as per css rules.
-11. Diff bet placing script in head and body? => If we place script in body, then before body dom loaded , dependent script will look out for html elements which didn’t get rendered.
+	- At 768px , how device will get which css ? => css code which was written at last which render finally as per css rules.
+10. Difference between placing script in head and body? => If we place script in body, then before body dom loaded , dependent script will look out for html elements which didn’t get rendered.
+
+```sh
 
     <head>
     <script>
@@ -34,17 +35,20 @@ https://www.creativebloq.com/html5/developer-s-guide-html5-apis-1122923
     <body>
     <div id=”foo”></div>
     </body>
+```
 
 So while running the script , it will look out for ‘foo’ element which is still yet to load in document.
-https://www.qposter.com/2014/11/oDesk-Test-Answer-HTML5-Skill-Test-Latest.html
 
-https://www.coursehero.com/file/21494501/HTML/
+	- https://www.qposter.com/2014/11/oDesk-Test-Answer-HTML5-Skill-Test-Latest.html
 
-http://abcomputertips.com/upwork-html-5-test-answer-2015/
+	- https://www.coursehero.com/file/21494501/HTML/
 
-https://medium.freecodecamp.org/what-is-an-api-in-english-please-b880a3214a82
+	- http://abcomputertips.com/upwork-html-5-test-answer-2015/
 
-Bootstrap with 8 columns
+	- https://medium.freecodecamp.org/what-is-an-api-in-english-please-b880a3214a82
+
+**Bootstrap with 8 columns**
+
 If 3 cols are there, how will u move 1st and 2nd cols …=> using pull and push
 
 ##### How Layout and rendering works?
