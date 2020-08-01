@@ -130,53 +130,73 @@ https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API
 
 - Canvas drawimage put image data strokerect rect
 
-**Autofocus for label n input**
----
-This Boolean attribute specifies that the input should have focus when the page loads, unless the user overrides it (e.g. by typing in a different control). Only one element in a document can have the autofocus attribute. It cannot be applied if the type attribute is hidden, because hidden inputs cannot be focused. Note that the input may be focused before the DOMContentLoaded event fires.
+#### Autofocus for label and Input
+	- This Boolean attribute specifies that the input should have focus when the page loads, unless the user overrides it (e.g. by typing in a different control). Only one element in a document can have the autofocus attribute. It cannot be applied if the type attribute is hidden, because hidden inputs cannot be focused. Note that the input may be focused before the DOMContentLoaded event fires.
 
-**autofocus** property for select tag is a Boolean that reflects the autofocus HTML attribute, which indicates whether the associated <select> element  will get input focus when the page loads, unless the user overrides it.
+	- Autofocus property for select tag is a Boolean that reflects the autofocus HTML attribute, which indicates whether the associated <select> element  will get input focus when the page loads, unless the user overrides it.
  
 
-- **Svg gradient stop-opacity 0 for both path has**
-- --- 
-The stop-color attribute indicates what color to use at that gradient stop. The keyword currentColor and ICC colors can be specified in the same manner as within a <paint> specification for the fill and stroke attributes.
-The stop-opacity attribute defines the opacity of a given gradient stop.
+##### Svg gradient stop-opacity 0 for both path has**
 
-- **Field set legend missing =>** 
-- ---
-The HTML <legend> element represents a caption for the content of its parent <fieldset>.
+	- The stop-color attribute indicates what color to use at that gradient stop. The keyword currentColor and ICC colors can be specified in the same manner as within a <paint> specification for the fill and stroke attributes.
+	- The stop-opacity attribute defines the opacity of a given gradient stop.
 
-=========
+##### what is meant by field set legend is missing ?
+
+	- The HTML <legend> element represents a caption for the content of its parent <fieldset>.
 
 #### Field n form validation
 
-Minimum 2 number, shopping is not as billing address, password same check
-Novalidate – form doesn’t validate the form . So if required is given input field then the error message wont show . defaultly error shows if required given in input tag without novalidate.
-On button input submit also have formnovalidate attr which gives the form shouldn't be validated before submission.
+	- Minimum 2 number, shopping is not as billing address, password same check
+	- Novalidate – form doesn’t validate the form . So if required is given input field then the error message wont show . defaultly error shows if required given in input tag without novalidate.
+	- On button input submit also have formnovalidate attr which gives the form shouldn't be validated before submission.
 
------
 
-#### websocket and webworkers
 
-**socket project** - I developed a client side HTML streaming ( HTS ) prototype using Service Workers in browser.
+### websocket and webworkers
+When you heard, you will come to realise electric socket like this https://en.wiktionary.org/wiki/socket#/media/File:French-power-socket.jpg
 
-I also developed few other working models namely single page pre fetch in the browser, changing the response, response headers, caching a web page, schedule the requests, adding custom header to request - All using Service Workers present in web browser.
+Electrical socket acts as a barrier between Electric current,switches from one end and electronic items are connected from other end for communications.
 
-A passion for quality, for doing the right thing for the customers, the product, and for the company.
+**For example: **
+- socket is like calling your friend. When you know your friend number, you dial(request) the number and after it connects, you both talk each other.
 
-==============
+Likewise generally sockets in computer science means communication between different processes on the same or different machines. A socket runs on a port number in server so that through network TCP layer, clients can make requests to communicate and can identify the application that data is destined to be sent to.
+Once server accepts, then connection is established between the client and server.
+
+**coming to WebSocket,**
+It is introduced in HTML5 and works on same procedure. Here in web, instead of Http requests , websocket requests are made by changing protocol of the url.
+This enables web application to communicate with server for seemlessly low latency communication.
+
+**Using Socket.io Wrapper is simple**
+- Follow: https://socket.io/get-started/chat/
+- Github code: https://github.com/socketio/chat-example
+
+Using normal node app server and html, follow below code in the site which has download button in their chat example UI:
+- https://javascript.info/websocket
+- Best explanation by https://javascript.info/websocket
+
+**Web Sockets provides cross origin** 
+
+
+#### socket project
+	- I developed a client side HTML streaming ( HTS ) prototype using Service Workers in browser.
+
+	- I also developed few other working models namely single page pre fetch in the browser, changing the response, response headers, caching a web page, schedule the requests, adding custom header to request - All using Service Workers present in web browser.
+
+	- A passion for quality, for doing the right thing for the customers, the product, and for the company.
+
 
 
 #### Interview Questions
-
-9. Maxwidth and width ?
-10. Css specificity
-11. Meta tags in html Audio video geolocation 
-12. Aside inside nav tag
-13. Websockets html
-14.	Web storage sizes
-15.	BOM
-16.	Z-index css
-17.	Semantic tags
-18. Range input use
-19. Bem and specificity, css selectors(think no one is using grid or flex)
+	- Maxwidth and width ?
+	- Css specificity
+	- Meta tags in html Audio video geolocation 
+	- Aside inside nav tag
+	- Websockets html
+	- Web storage sizes
+	- BOM
+	- Z-index css
+	- Semantic tags
+	- Range input use
+	- Bem and specificity, css selectors(think no one is using grid or flex)
