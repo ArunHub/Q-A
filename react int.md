@@ -343,7 +343,8 @@ Instead can use updater by accessing previous state
 https://css-tricks.com/understanding-react-setstate/ 
 
 **SyntheticEvent**
--
+- https://levelup.gitconnected.com/how-exactly-does-react-handles-events-71e8b5e359f2
+
 , which is React’s cross-browser
 
 redux - actions, reducers, store, connect(mapstatetoprops, mapdispatchtoprops), configstore,
