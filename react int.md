@@ -1,4 +1,24 @@
 
+Miscalleneoues
+SSH http:// mongodb://
+
+​ project:
+Idse material design UI elements
+Pin board sample data layer, UI sidebar
+Dfw carousel and offers page
+X chart
+X Range series stock chart
+Line chart
+Gaunt chart
+Bullet chart 
+Cumulative chart
+Pie chart with half radius
+Gauge chart
+Bar chart
+Scatter type
+Difficult to maintain chart with State
+
+
 https://camjackson.net/post/9-things-every-reactjs-beginner-should-know
 
 Composition over inheritane - https://www.youtube.com/watch?v=wfMtDGfHWpA 
