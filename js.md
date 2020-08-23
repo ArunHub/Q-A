@@ -1,3 +1,19 @@
+#### TIPS
+
+just learned a neat trick from the Three.js source code: if you want to remove an item from an array whose order doesn't matter, don't do this...
+```
+array.splice(index, 1); // slooooowwwww
+
+...do this:
+
+array[i] = array[array.length - 1];
+array.pop(); // orders of magnitude faster!
+```
+
+https://twitter.com/rich_harris/status/1125850391155965952?lang=en
+
+---
+
 
 **Promise** object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value. Like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.
 
