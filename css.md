@@ -5,7 +5,11 @@ To truncate text inside table cell , use max width on table cell so that child e
 
 need to quickly visually see the rectangles that make up all elements of the page?
 
+```
 * {outline: 1px solid red;}
+```
+
+https://dev.to/gajus/my-favorite-css-hack-32g3
 
 **keep footer at bottom always irrespective of data height above**
 
