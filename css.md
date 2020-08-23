@@ -11,6 +11,25 @@ need to quickly visually see the rectangles that make up all elements of the pag
 
 https://dev.to/gajus/my-favorite-css-hack-32g3
 
+---
+Emoji poll: Which of these best describes your experience fixing CSS bugs?
+
+🤔
+ I have trouble fixing some of these
+😕
+ I can usually fix these issues, but it's frustrating/time-consuming
+🤓
+ I can always fix these issues but want a deeper understanding of the root cause
+ 
+https://twitter.com/FirefoxDevTools/status/1078408636840390656
+
+---
+What are your biggest web design & CSS challenges that could potentially be solved by smarter tools?
+
+https://twitter.com/firefoxdevtools/status/1045030378208092160
+
+---
+
 **keep footer at bottom always irrespective of data height above**
 
 "where on initial load page, body container may be small but 
