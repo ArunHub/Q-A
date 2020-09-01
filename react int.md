@@ -1,3 +1,7 @@
+- why redux thunk middleware needed
+- why super props needed and why it is not needed when constructor available and how we use render setstate
+- how componenet dismount works for every component
+- codepen.io/topic/react/templates
 
 Miscalleneoues
 SSH http:// mongodb://
@@ -26,6 +30,13 @@ Composition over inheritane - https://www.youtube.com/watch?v=wfMtDGfHWpA
 Why did React was created? Isnt a MVC framework? Does it use templates ?
 
 https://reactjs.org/blog/2013/06/05/why-react.html
+
+### How React work /do?
+----
+
+- https://pomb.us/build-your-own-react/
+- https://blog.jfo.click/how-react-do/
+
 
 ### Design principles
 ----
@@ -417,6 +428,21 @@ https://alligator.io/react/axios-react/
 concept of diffing the DOM of the new state with the previous state and only render the difference, which is what ReactJS is doing with Virtual DOM. 
 Manual DOM manipulation is expensive and slow when state changes , have to recreate full DOM which makes page slower in large applications.
 So in React, virtual dom create virtual tree objects and match the difference with previous V tree DOM and send updates to actual DOM to update the particular part.
+
+I'm the primary author of a virtual-dom module, so I might be able to answer your questions. There are in fact 2 problems that need to be solved here
+
+    When do I re-render? Answer: When I observe that the data is dirty.
+    How do I re-render efficiently? Answer: Using a virtual DOM to generate a real DOM patch
+
+In React, each of your components have a state. This state is like an observable you might find in knockout or other MVVM style libraries. Essentially, React knows when to re-render the scene because it is able to observe when this data changes. Dirty checking is slower than observables because you must poll the data at a regular interval and check all of the values in the data structure recursively. By comparison, setting a value on the state will signal to a listener that some state has changed, so React can simply listen for change events on the state and queue up re-rendering.
+
+The virtual DOM is used for efficient re-rendering of the DOM. This isn't really related to dirty checking your data. You could re-render using a virtual DOM with or without dirty checking. You're right in that there is some overhead in computing the diff between two virtual trees, but the virtual DOM diff is about understanding what needs updating in the DOM and not whether or not your data has changed. In fact, the diff algorithm is a dirty checker itself but it is used to see if the DOM is dirty instead.
+
+We aim to re-render the virtual tree only when the state changes. So using an observable to check if the state has changed is an efficient way to prevent unnecessary re-renders, which would cause lots of unnecessary tree diffs. If nothing has changed, we do nothing.
+
+A virtual DOM is nice because it lets us write our code as if we were re-rendering the entire scene. Behind the scenes we want to compute a patch operation that updates the DOM to look how we expect. So while the virtual DOM diff/patch algorithm is probably not the optimal solution, it gives us a very nice way to express our applications. We just declare exactly what we want and React/virtual-dom will work out how to make your scene look like this. We don't have to do manual DOM manipulation or get confused about previous DOM state. We don't have to re-render the entire scene either, which could be much less efficient than patching it.
+
+https://stackoverflow.com/questions/21109361/why-is-reacts-concept-of-virtual-dom-said-to-be-more-performant-than-dirty-mode/23995928#23995928
 
 **Event delegation,** 
 --
