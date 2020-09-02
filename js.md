@@ -14,6 +14,11 @@ https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 
 ---
 
+How browser reacts to html, css and rendering process ?
+https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
+
+---
+
 
 **Promise** object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value. Like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.
 
