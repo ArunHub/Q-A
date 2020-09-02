@@ -14,9 +14,36 @@ https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 
 ---
 
-How browser reacts to html, css and rendering process ?
+### How browser reacts to html, css and rendering process ?
 https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
 
+
+### How to improve performance of site? 
+- https://github.com/manucorporat/perf-apis-2/blob/master/performance-techniques.pdf
+- https://www.performancebudget.io/
+- https://web.dev/rail/
+- https://moderndevtools.com/
+
+### visualize data structures  and algorithms
+- https://tesseract.projectnaptha.com/
+
+### OCR reading library
+- https://tesseract.projectnaptha.com/
+
+### without jquery
+- https://www.sitepoint.com/make-a-simple-javascript-slideshow-without-jquery/
+- https://scotch.io/tutorials/building-your-own-javascript-modal-plugin#toc-the-javascript
+
+- https://tutorialzine.com/2016/05/15-interesting-javascript-and-css-libraries-for-may-2016
+- https://www.hongkiat.com/blog/js-library-interactive-charts/
+
+### Rxjs
+- https://rxmarbles.com/#from
+
+
+
+All Js libraries in micro size format. very efficient
+- http://microjs.com/#
 ---
 
 
@@ -1227,6 +1254,26 @@ http://plugins.jquery.com/WOWSlider/
 
 has many effects and slider designs
 
+### Jquery bookmarks
+Hide your header on scroll - Headroom.js - https://wicky.nillia.ms/headroom.js/
+15 brilliant jQuery plugins | jQuery | Creative Bloq - http://www.creativebloq.com/jquery/top-jquery-plugins-6133175
+15 Form Validation jQuery Plugins and Libraries - https://speckyboy.com/form-validation-jquery-plugins-libraries/
+45 top examples of JavaScript | JavaScript | Creative Bloq - http://www.creativebloq.com/web-design/examples-of-javascript-1233964
+Libscore scan finid library scripts - https://libscore.com/
+30 Lightweight JavaScript Plugins and Libraries from 2016
+You Might Not Need JavaScript
+Simple jQuery Examples with Code and Demos – Tania Rascia
+
+
+### Googlemap bookmarks
+https://stackoverflow.com/questions/2792698/google-maps-api-v3-how-to-jump-to-a-specific-marker-from-outside-the-map
+
+https://www.codingforums.com/javascript-programming/207457-google-maps-jump-markers-help.html
+
+https://developers.google.com/maps/documentation/javascript/examples/control-custom
+
+### mind mapping tools
+https://www.creativebloq.com/web-design/mind-mapping-tools-9134523
 
 ##### #how-to-access-the-correct-this-inside-a-callback
 
