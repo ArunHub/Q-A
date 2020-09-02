@@ -32,14 +32,16 @@ Why did React was created? Isnt a MVC framework? Does it use templates ?
 https://reactjs.org/blog/2013/06/05/why-react.html
 
 ### How React work /do?
-----
 
 - https://pomb.us/build-your-own-react/
 - https://blog.jfo.click/how-react-do/
 
+### Improving Dom rendering or performance means ?
+
+- https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
 
 ### Design principles
-----
+
 important to us that you can add functionality to a component without causing rippling changes throughout the codebase.
 
 For example, it should be possible to introduce some local state into a component without changing any of the components using it.
