@@ -606,64 +606,6 @@ Try one of these:
 •	ChangeDetectorRef.detectChanges() - similar to $scope.$digest() -- i.e., check only this component and its children
 You can inject ApplicationRef, NgZone, or ChangeDetectorRef into your component.
 
-##### promise vs observable
-
-    const source = Rx.Observable.of({name: 'Brian'}, [1,2,3], function hello(){ 
-    return 'Hello'
-    });
-    //output: {name: 'Brian}, [1,2,3], function hello() { return 'Hello' }
-    const subscribe = source.subscribe(val => console.log(val));
-
-In observable return multple values but promise return one value with lot of objects or value inside.
-Better not to compare promise with observable since observable is a producer of data or stream of data and can be consumed only when subscribed I.e like a calling a function.
-Normal function returns single data;
-Observable returns mutliple data, for Ex: can be async calls data, event handler data, timer funtions
-
-**Rxjs**
---
-http://reactivex.io/rxjs/manual/overview.html#introduction
-http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html
-https://github.com/ReactiveX/rxjs/blob/master/doc/introduction.md
-http://reactivex.io/documentation/operators.html
-http://rxmarbles.com/
-https://codecraft.tv/courses/angular/reactive-programming-with-rxjs/streams-and-reactive-programming/
-https://blog.angularindepth.com/learn-to-combine-rxjs-sequences-with-super-intuitive-interactive-diagrams-20fce8e6511 
-
-
-
-**Rxjs operators -** 
-
-•	FILTERING OPERATORS, Conditional Operators, CREATION OBSERVABLES
-•	MATHEMATICAL OPERATORS, TRANSFORMATION OPERATORS, UTILITY OPERATOR
-Fork join  - is equal to join multiple observable to emit after all the response are successful and completed like promise.all()
-Create: create observable with callback funtion to create .next() , .error(), .complete()
-Of: emits values simultaniealy 
-Map, filter
-
-https://coursetro.com/posts/code/150/RxJS-Operators-Tutorial---Learn-How-to-Transform-Observables
-
-
-
-**Subject:**
-We are creating two observables that are independent of each other. But what if you need the second observer to get the same events has the first?
-
-    const interval$ = Rx.Observable.interval(1000);
-    	
-    	interval$.subscribe(console.log);
-    	
-    	setTimeout(() => {
-    	  interval$.subscribe(console.log);
-    	}, 2000);
-
-Subject can act as a bridge/proxy between the source Observable and many observers, making it possible for multiple observers to share the same Observable execution.
-
-    const interval$ = Rx.Observable.interval(1000);
-    	const subject = new Rx.Subject();
-    	interval$.subscribe(subject);
-
-Subject is observing the interval Observable, so every time the interval send values to the Subject, the Subject send this values to all his observers.
-https://netbasal.com/understanding-subjects-in-rxjs-55102a190f3
-
 ##### aot compiler build and before aot compiler what used
 We need compilation for achieving higher level of efficiency of our Angular applications. By efficiency I mostly mean performance improvements but also energy and sometimes bandwidth consumption.
 
