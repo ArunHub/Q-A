@@ -52,6 +52,8 @@ All Js libraries in micro size format. very efficient
 closJs – es6 arrow, destructive, rest , spread, closures, let , const =>
 
 **Arrow functions** are anonymous and change the way this binds in functions. More concise, and simplify function scoping and the this keyword. we avoid having to type the function keyword, return keyword (it’s implicit in arrow functions), and curly brackets.
+
+```
 // ES5
 
     API.prototype.get = function(resource) {
@@ -68,6 +70,8 @@ closJs – es6 arrow, destructive, rest , spread, closures, let , const =>
     return new Promise((resolve, reject) => {    
     http.get(this.uri + resource, function(data) {      resolve(data);    });  });};
 
+```
+
 this keyword works differently in arrow functions. The methods call(), apply(), and bind() will not change the value of this in arrow 
 
 Arrow functions can’t be used as constructors as other functions can. Don’t use them to create similar objects as you would with other functions. If you attempt to use new with an arrow function, it will throw an error. Arrow functions, like built-in functions (aka methods), don’t have a prototype property or other internal methods. Because constructors are generally used to create class-like objects in JavaScript, you should use the new ES6 classes instead.
@@ -81,7 +85,7 @@ What are new input attr types in html5 => range, color, date,search,tel
 
 
 Let - The let statement declares a block scope local variable, optionally initializing it to a value.
-
+```
     let x = 1;
     if (x === 1) {
       let x = 2;
@@ -96,10 +100,10 @@ Let - The let statement declares a block scope local variable, optionally initia
             }  
       		console.log(x); // 2
     }
-
+```
 Simply remember this.... window won’t take
        
-
+```
          let variables
                 var x = 'global';
                 let y = 'global';
@@ -113,8 +117,9 @@ Simply remember this.... window won’t take
     undefined 
     { console.time("loop"); for (var i = 0; i < 1000000; i += 1){ // Do nothing } console.timeEnd("loop"); } 
     loop: 581ms
-
+```
 Let runs in block scoped so runs faster than var .. Var normally attaches to window so slowly ran.
+
 
 #### Symbol
 - Symbol is a primitive type for unique identifiers.
@@ -174,38 +179,61 @@ http://doesitmutate.xyz
     
     assert add1(3) = 4
     assert add5(3) = 8
-
-> function createCounter() {
-2:   let counter = 0
-3:   const myFunction = function() {
-4:     counter = counter + 1
-5:     return counter
-6:   }
-7:   return myFunction
-8: }
-9: const increment = createCounter()
-10: const c1 = increment()
-11: const c2 = increment()
-12: const c3 = increment()
-13: console.log('example increment', c1, c2, c3)
-
+```
+ function createCounter() {
+   let counter = 0
+   const myFunction = function() {
+     counter = counter + 1
+     return counter
+   }
+   return myFunction
+ }
+ const increment = createCounter()
+ const c1 = increment()
+ const c2 = increment()
+ const c3 = increment()
+ console.log('example increment', c1, c2, c3)
+```
 Here is how it works. Whenever you declare a new function and assign it to a variable, you store the function definition, as well as a closure. The closure contains all the variables that are in scope at the time of creation of the function. It is analogous to a backpack. A function definition comes with a little backpack. And in its pack it stores all the variables that were in scope at the time that the function definition was created.
 
 The key to remember is that when a function gets declared, it contains a function definition and a closure. The closure is a collection of all the variables in scope at the time of creation of the function.
 https://medium.com/dailyjs/i-never-understood-javascript-closures-9663703368e8 
 
-**prototype?**
+**lexical scopes => closures**
 
-**Iife??**
+**Immediately Invoked Function Expression / Self-Executing Anonymous Function**
+that runs as soon as it is defined.
+It is a design pattern which is also known as a Self-Executing Anonymous Function and contains two major parts:
 
+- The first is the anonymous function with lexical scope enclosed within the Grouping Operator (). This prevents accessing variables within the IIFE idiom as well as polluting the global scope.
+- The second part creates the immediately invoked function expression () through which the JavaScript engine will directly interpret the function.
+
+The function becomes a function expression which is immediately executed. The variable within the expression can not be accessed from outside it.
+```
+(function () {
+    var aName = "Barry";
+})();
+// Variable aName is not accessible from the outside scope
+aName // throws "Uncaught ReferenceError: aName is not defined"
+```
+Assigning the IIFE to a variable stores the function's return value, not the function definition itself.
+```
+var result = (function () {
+    var name = "Barry"; 
+    return name; 
+})(); 
+// Immediately creates the output: 
+result; // "Barry"
+```
+
+```
     (function(){var dd = 5;})()
     undefined
     (function(){this.dd = 5;})()
     undefined
     dd
-    5
-
-**lexical scopes => closures**
+    5 // this results because THIS belongs to window so getting result from console will like this only.
+```
 
 **Factory Function instead of class**
 
@@ -426,6 +454,20 @@ remember using module pattern in ng1 – (
     
     HTMLChanger.callChangeHTML();       // Outputs: 'contents'
     console.log(HTMLChanger.contents);  // undefined
+    
+### Prototype
+Sharing of variable and methods between instances of objects. When we attach/create variable or method to prototype object , then it will get accessed from all the instances of objects. 
+
+Prototypes are the mechanism by which JavaScript objects inherit features from one another. how prototype chains work and look at how the prototype property can be used to add methods to existing constructors.
+
+JavaScript is often described as a prototype-based language — to provide inheritance, objects can have a prototype object, which acts as a template object that it inherits methods and properties from.
+
+An object's prototype object may also have a prototype object, which it inherits methods and properties from, and so on. This is often referred to as a prototype chain, and explains why different objects have properties and methods defined on other objects available to them.
+
+In JavaScript, a link is made between the object instance and its prototype (its __proto__ property, which is derived from the prototype property on the constructor), and the properties and methods are found by walking up the chain of prototypes.
+
+Source : mdn prototype js
+
 
 #### prototype design – 
 To clone an object, a constructor must exist to instantiate the first object. Next, by using the keyword prototype variables and methods bind to the object's structure.
