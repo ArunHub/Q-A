@@ -26,28 +26,7 @@ https://developers.google.com/web/fundamentals/performance/critical-rendering-pa
 
 ### visualize data structures  and algorithms
 - https://visualgo.net/en
-
-### OCR reading library
-- https://tesseract.projectnaptha.com/
-
-### without jquery
-- https://www.sitepoint.com/make-a-simple-javascript-slideshow-without-jquery/
-- https://scotch.io/tutorials/building-your-own-javascript-modal-plugin#toc-the-javascript
-
-- https://tutorialzine.com/2016/05/15-interesting-javascript-and-css-libraries-for-may-2016
-- https://www.hongkiat.com/blog/js-library-interactive-charts/
-
-### Rxjs
-- https://rxmarbles.com/#from
-
-
-
-All Js libraries in micro size format. very efficient
-- http://microjs.com/#
 ---
-
-
-**Promise** object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value. Like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.
 
 ### ES6 & ES7
 arrow function, destructuring, rest parameters, spread operator, let , const, default parameters, Object.assign, array.from , array.of, Template literals, modules, iterators, generators, classes, async await 
@@ -632,6 +611,64 @@ To clone an object, a constructor must exist to instantiate the first object. Ne
     
     }();
 
+
+### Rxjs
+
+- http://reactivex.io/rxjs/manual/overview.html#introduction
+- http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html
+- https://github.com/ReactiveX/rxjs/blob/master/doc/introduction.md
+- http://reactivex.io/documentation/operators.html
+- http://rxmarbles.com/
+- https://codecraft.tv/courses/angular/reactive-programming-with-rxjs/streams-and-reactive-programming/
+- https://blog.angularindepth.com/learn-to-combine-rxjs-sequences-with-super-intuitive-interactive-diagrams-20fce8e6511 
+
+**Rxjs operators -** 
+
+•	FILTERING OPERATORS, Conditional Operators, CREATION OBSERVABLES
+•	MATHEMATICAL OPERATORS, TRANSFORMATION OPERATORS, UTILITY OPERATOR
+Fork join  - is equal to join multiple observable to emit after all the response are successful and completed like promise.all()
+Create: create observable with callback funtion to create .next() , .error(), .complete()
+Of: emits values simultaniealy 
+Map, filter
+
+https://coursetro.com/posts/code/150/RxJS-Operators-Tutorial---Learn-How-to-Transform-Observables
+
+**Subject:**
+We are creating two observables that are independent of each other. But what if you need the second observer to get the same events has the first?
+
+    const interval$ = Rx.Observable.interval(1000);
+    	
+    	interval$.subscribe(console.log);
+    	
+    	setTimeout(() => {
+    	  interval$.subscribe(console.log);
+    	}, 2000);
+
+Subject can act as a bridge/proxy between the source Observable and many observers, making it possible for multiple observers to share the same Observable execution.
+
+    const interval$ = Rx.Observable.interval(1000);
+    	const subject = new Rx.Subject();
+    	interval$.subscribe(subject);
+
+Subject is observing the interval Observable, so every time the interval send values to the Subject, the Subject send this values to all his observers.
+https://netbasal.com/understanding-subjects-in-rxjs-55102a190f3
+
+
+All Js libraries in micro size format. very efficient
+- http://microjs.com/#
+
+### OCR reading library
+- https://tesseract.projectnaptha.com/
+
+### without jquery
+- https://www.sitepoint.com/make-a-simple-javascript-slideshow-without-jquery/
+- https://scotch.io/tutorials/building-your-own-javascript-modal-plugin#toc-the-javascript
+
+- https://tutorialzine.com/2016/05/15-interesting-javascript-and-css-libraries-for-may-2016
+- https://www.hongkiat.com/blog/js-library-interactive-charts/
+
+---
+
 #### localstorage session cookies
 
 **LocalStorage:**
@@ -651,6 +688,21 @@ Cookies:
 2.	Changes are only available per window (or tab in browsers like Chrome and Firefox). Changes made are saved and available for the current page, as well as future visits to the site on the same window. Once the window is closed, the storage is deleted
 3.	The data is available only inside the window/tab in which it was set.
 4.	The data is not persistent i.e. it will be lost once the window/tab is closed. Like localStorage, it works on same-origin policy. So, data stored will only be available on the same origin.
+
+**Promise** object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value. Like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.
+
+##### promise vs observable
+
+    const source = Rx.Observable.of({name: 'Brian'}, [1,2,3], function hello(){ 
+    return 'Hello'
+    });
+    //output: {name: 'Brian}, [1,2,3], function hello() { return 'Hello' }
+    const subscribe = source.subscribe(val => console.log(val));
+
+In observable return multple values but promise return one value with lot of objects or value inside.
+Better not to compare promise with observable since observable is a producer of data or stream of data and can be consumed only when subscribed I.e like a calling a function.
+Normal function returns single data;
+Observable returns mutliple data, for Ex: can be async calls data, event handler data, timer funtions
 
 #### ajax
  
