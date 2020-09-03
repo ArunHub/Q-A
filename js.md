@@ -25,7 +25,7 @@ https://developers.google.com/web/fundamentals/performance/critical-rendering-pa
 - https://moderndevtools.com/
 
 ### visualize data structures  and algorithms
-- https://tesseract.projectnaptha.com/
+- https://visualgo.net/en
 
 ### OCR reading library
 - https://tesseract.projectnaptha.com/
