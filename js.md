@@ -49,7 +49,8 @@ All Js libraries in micro size format. very efficient
 
 **Promise** object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value. Like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.
 
-closJs – es6 arrow, destructive, rest , spread, closures, let , const =>
+### ES6 & ES7
+arrow function, destructuring, rest parameters, spread operator, let , const, default parameters, Object.assign, array.from , array.of, Template literals, modules, iterators, generators, classes, async await 
 
 **Arrow functions** are anonymous and change the way this binds in functions. More concise, and simplify function scoping and the this keyword. we avoid having to type the function keyword, return keyword (it’s implicit in arrow functions), and curly brackets.
 
@@ -84,7 +85,7 @@ Reverse a string, map function, hoisting
 What are new input attr types in html5 => range, color, date,search,tel
 
 
-Let - The let statement declares a block scope local variable, optionally initializing it to a value.
+**Let** - The let statement declares a block scope local variable, optionally initializing it to a value.
 ```
     let x = 1;
     if (x === 1) {
@@ -101,7 +102,7 @@ Let - The let statement declares a block scope local variable, optionally initia
       		console.log(x); // 2
     }
 ```
-Simply remember this.... window won’t take
+Simply remember this.... window won’t take **let** variable
        
 ```
          let variables
@@ -119,6 +120,142 @@ Simply remember this.... window won’t take
     loop: 581ms
 ```
 Let runs in block scoped so runs faster than var .. Var normally attaches to window so slowly ran.
+
+
+**Const** is a little different from **let** as it wont allow to re-initailise/change the initial value as the keyword suggests constannt and it has to be declared initially necessarily.  
+
+The **destructuring** assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+```
+let a, b, rest;
+[a, b] = [10, 20];
+
+console.log(a);
+// expected output: 10
+
+[a, b, ...rest] = [10, 20, 30, 40, 50];
+
+console.log(rest);
+// expected output: Array [30,40,50]
+
+let obj = {aa:1,bb:{cc:2}};
+const {aa, bb:{cc}} = obj;
+console.log(aa,"---",cc ) //1 "---" 2
+```
+**Spread** is an operator which has syntax **(...)** . Spread operator checks after variable which is iterable such as an array expression or string to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expected, or an object expression to be expanded in places where zero or more key-value pairs (for object literals) are expected.
+```
+function sum(x, y, z) {
+  return x + y + z;
+}
+const numbers = [1, 2, 3];
+
+console.log(sum(...numbers));
+// expected output: 6
+
+console.log(sum.apply(null, numbers));
+// expected output: 6
+
+
+
+const obj1 = {0:1,1:5,2:6}
+const obj2 = {...obj1}
+
+console.log(obj2) //Object { 0: 1, 1: 5, 2: 6 }
+```
+
+```
+Syntax
+For function calls:
+myFunction(...iterableObj);
+
+For array literals or strings:
+[...iterableObj, '4', 'five', 6];
+
+For object literals (new in ECMAScript 2018)ES7/:
+let objClone = { ...obj };
+```
+USEs: 
+**Spread in function calls**
+
+1.Replace apply(), 
+**2.Apply for new operator**
+When calling a constructor with new it's not possible to directly use an array and apply() (apply() does a [[Call]] and not a [[Construct]]). However, an array can be easily used with new thanks to spread syntax
+
+instead of push(), splice(), concat(), unshift()
+
+copy an array=> const arr2 = [...arr]; // like arr.slice()
+
+**Spread in object literals**
+```
+const obj1 = { foo: 'bar', x: 42 };
+const obj2 = { foo: 'baz', y: 13 };
+
+const clonedObj = { ...obj1 };
+// Object { foo: "bar", x: 42 }
+
+const mergedObj = { ...obj1, ...obj2 };
+// Object { foo: "baz", x: 42, y: 13 }
+```
+Note that Object.assign() triggers setters, whereas spread syntax doesn't.
+
+
+
+**Rest syntax/parameters** looks exactly like spread syntax. In a way, rest syntax is the opposite of spread syntax. Spread syntax "expands" an array into its elements, while rest syntax collects multiple elements and "condenses" them into a single element.
+The rest parameter syntax allows us to represent an indefinite number of arguments as an array.
+Only the last parameter can be a "rest parameter".
+
+- the arguments object is not a real array, while rest parameters are Array instances, meaning methods like sort, map, forEach or pop can be applied on it directly;
+- arguments object contains all arguments passed to the function.
+- Argument length
+```
+function sum(...theArgs) {
+  return theArgs.reduce((previous, current) => {
+    return previous + current;
+  });
+}
+
+console.log(sum(1, 2, 3));
+// expected output: 6
+
+console.log(sum(1, 2, 3, 4));
+// expected output: 10
+```
+
+```
+// Before rest parameters, "arguments" could be converted to a normal array using:
+
+function f(a, b) {
+  let normalArray = Array.prototype.slice.call(arguments)
+  let first = normalArray.shift()  // OK, gives the first argument
+  let first = arguments.shift()    // ERROR (arguments is not a normal array)
+}
+
+// Now, you can easily gain access to a normal array using a rest parameter
+
+function f(...args) {
+  let normalArray = args
+  let first = normalArray.shift() // OK, gives the first argument
+}
+
+```
+
+#### Setters && getters
+The set syntax binds an object property to a function to be called when there is an attempt to set that property.Setters are most often used in conjunction with getters to create a type of pseudo-property. It is not possible to simultaneously have a setter on a property that holds an actual value.
+```
+const language = {
+  set current(name) {
+    this.log.push(name);
+  },
+  log: []
+};
+
+language.current = 'EN';
+language.current = 'FA';
+
+console.log(language.log);
+// expected output: Array ["EN", "FA"]
+```
+Similarlly check for getters
+Getters can do operation on actual properties and return value for pseudo property.
 
 
 #### Symbol
