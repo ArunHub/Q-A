@@ -1,4 +1,5 @@
 - why redux thunk middleware needed
+	- In computer programming, a thunk is a subroutine used to inject an additional calculation into another subroutine. Thunks are primarily used to delay a calculation until its result is needed, or to insert operations at the beginning or end of the other subroutine
 	- https://github.com/reduxjs/redux-thunk#
 	- https://redux.js.org/api/api-reference
 - why super props needed and why it is not needed when constructor available and how we use render setstate
