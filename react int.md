@@ -1,4 +1,6 @@
 - why redux thunk middleware needed
+	- https://github.com/reduxjs/redux-thunk#
+	- https://redux.js.org/api/api-reference
 - why super props needed and why it is not needed when constructor available and how we use render setstate
 - how componenet dismount works for every component
 - codepen.io/topic/react/templates
