@@ -12,24 +12,28 @@ array.pop(); // orders of magnitude faster!
 
 https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 
----
 
 ### How browser reacts to html, css and rendering process ?
-https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
+- https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
+- https://developer.mozilla.org/en-US/docs/Mozilla/Introduction_to_Layout_in_Mozilla
 
 
 ### How to improve performance of site? 
 - https://github.com/manucorporat/perf-apis-2/blob/master/performance-techniques.pdf
+- https://css-tricks.com/the-critical-request/
 - https://www.performancebudget.io/
 - https://web.dev/rail/
 - https://moderndevtools.com/
+
+### Terminology - Dictionary
+- http://jargon.js.org/
 
 ### visualize data structures  and algorithms
 - https://visualgo.net/en
 ---
 
 ### ES6 & ES7
-arrow function, destructuring, rest parameters, spread operator, let , const, default parameters, Object.assign, array.from , array.of, Template literals, modules, iterators, generators, classes, async await 
+arrow function, destructuring, rest parameters, spread operator, let , const, default parameters, Object.assign, array.from , array.of, Template literals, modules, iterators, generators, classes, async await, multi strings and interpolation `${}`
 
 **Arrow functions** are anonymous and change the way this binds in functions. More concise, and simplify function scoping and the this keyword. we avoid having to type the function keyword, return keyword (it’s implicit in arrow functions), and curly brackets.
 
@@ -386,26 +390,24 @@ result; // "Barry"
 
 https://www.youtube.com/watch?v=ImwrezYhw4w 
 
-### es6
-arrow function(dd = ff() => {console.log(55)} will not be useful in this case), 
+##### Function methods
 
-multi strings and interpolation `${}`
-spread operator […a]
-taking particular property out of object.. const {a} =this.props  // destructive function
-circular reference in js
-Indexdb => low-level API for client-side storage of significant amounts of structured data, including files/blobs. This API uses indexes to enable high-performance searches of this data. While Web Storage is useful for storing smaller amounts of data, it is less useful for storing larger amounts of structured data. IndexedDB provides a solution.
-Note: This feature is available in Web Workers.
-https://developers.google.com/web/ilt/pwa/working-with-indexeddb 
-##### pass by reference
+The **call()** method calls a function with a given this value and arguments provided individually.
 
-    Var obj1={a:1,b:2}; 
-    obj2=obj1; 
-    obj2.b = 3; then console.log(obj1) 
-    // {a:1, b:3} after changing in b in obj , the value 3 automatically changes in obj1 . 
-    //So javascript is pass by reference.
+```
 
-##### call apply bind
+function Product(name, price) { this.name = name;  this.price = price;}
 
+function Food(name, price) {  Product.call(this, name, price);  this.category = 'food';}
+
+console.log(new Food('cheese', 5).name); // expected output: "cheese"
+```
+- Using call to chain constructors for an object
+- Using call to invoke an anonymous function
+- Using call to invoke a function and specifying the context for 'this'
+- Using call to invoke a function and without specifying the first argument
+
+```
     var obj = {a:1,b:2,c:function(){console.log('bb',this.b)}}
     undefined
     var dd = obj.c; // giving reference to var dd
@@ -415,29 +417,29 @@ https://developers.google.com/web/ilt/pwa/working-with-indexeddb
     var dd = obj.c.bind(obj);
     dd() // now shows as bb 2
     var dd = obj.c.call(obj); // without calling dd() … call invokes the function and results as bb 2
-
+```
 But this does not work in arrow function declared as method inside object.
 Because Arrow functions cannot be used to write object methods because, as you have found, since arrow functions close over the this of the lexically enclosing context, the this within the arrow is the one that was current where you defined the object. Which is to say:
 
 It works like this only => http://jsfiddle.net/bfyarxfe/2/ 
-
+```
     function myFunction(x, y, z) { }var args = [0, 1, 2];myFunction.apply(null, args);
-
+```
 **Apply will give the array to apply automatically to the given parameters.**
 
 While in case of `call()` , you have to explicitly give the parameters not array.
 `Call()` is like invoking function with context given as first parameter.
-
+```
     myFunction.call(null, 0,1,2);
-
+```
 Suppose if u r in prototype method of object and calling function which is declared globally , so when invoking global function it will call from window as this , so when u invoke the function with object this and with parameters , global functions invokes in context of object this.
-
+```
     Function Tab(){
     This.name: “dfs”;this.func=function(){ render.call(this, “hello”)} 
     }
     Function global(){
     Var name = this.name} //here this refers to Tab Object instead of window
-
+```
 with the bind () method, we can explicitly set the this value for invoking methods on objects, we can borrow
  and copy methods, and assign methods to variable to be executed as functions
 Bind is like wrapping the calling function to outer function with its context
@@ -669,27 +671,10 @@ All Js libraries in micro size format. very efficient
 
 ---
 
-#### localstorage session cookies
-
-**LocalStorage:**
-
-1.	Web storage can be viewed simplistically as an improvement on cookies, providing much greater storage capacity. Available size is 5MB which considerably more space to work with than a typical 4KB cookie.
-2.	The data is not sent back to the server for every HTTP request (HTML, images, JavaScript, CSS, etc) - reducing the amount of traffic between client and server.
-3.	The data stored in localStorage persists until explicitly deleted. Changes made are saved and available for all current and future visits to the site.
-4.	It works on same-origin policy. So, data stored will only be available on the same origin.
-Cookies:
-1.	We can set the expiration time for each cookie
-2.	The 4K limit is for the entire cookie, including name, value, expiry date etc. To support most browsers, keep the name under 4000 bytes, and the overall cookie size under 4093 bytes.
-3.	The data is sent back to the server for every HTTP request (HTML, images, JavaScript, CSS, etc) - increasing the amount of traffic between client and server.
-
-**sessionStorage:**
-
-1.	It is similar to localStorage.
-2.	Changes are only available per window (or tab in browsers like Chrome and Firefox). Changes made are saved and available for the current page, as well as future visits to the site on the same window. Once the window is closed, the storage is deleted
-3.	The data is available only inside the window/tab in which it was set.
-4.	The data is not persistent i.e. it will be lost once the window/tab is closed. Like localStorage, it works on same-origin policy. So, data stored will only be available on the same origin.
-
 **Promise** object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value. Like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.
+
+In computer programming, a **callback**, also known as a "call-after" function, is any executable code that is passed as an argument to other code; that other code is expected to call back (execute) the argument at a given time.
+
 
 ##### promise vs observable
 
@@ -777,10 +762,10 @@ The only good reason for extending a built-in prototype is to backport the featu
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#Using_prototypes_in_JavaScript
 
+---
 
-============================================
 1. Testing your this knowledge in JavaScript: What is the output of the following code?
-
+```
     var length = 10;
     function fn() {
            console.log(this.length);
@@ -799,7 +784,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prot
     Output:
     10
     2
-
+```
 Why isn’t it 10 and 5?
 In the first place, as fn is passed as a parameter to the function method, the scope (this) of the function fn is window.var length = 10; is declared at the window level. It also can be accessed as window.length or length or this.length (when this === window.)
 
@@ -815,14 +800,14 @@ Hence the output will be as above.
  
 2. Assuming d is an “empty” object in scope, say:
  
-
+```
     var d = {};
     …what is accomplished using the following code?
      
     [ 'zebra', 'horse' ].forEach(function(k) {
                     d[k] = undefined;
     });
-
+```
 answer badge
 The snippet of code shown above sets two properties on the object d. Ideally, any lookup performed on a JavaScript object with an unset key evaluates to undefined. But running this code marks those properties as “own properties” of the object.
  
@@ -830,7 +815,7 @@ This is a useful strategy for ensuring that an object has a given set of propert
  
  
 3. Consider the following code. What will the output be, and why?
-
+```
     (function () {
         try {
             throw new Error();
@@ -846,8 +831,9 @@ Hide answer
 1
 undefined
 2
+```
 var statements are hoisted (without their value initialization) to the top of the global or function scope it belongs to, even when it’s inside a with or catch block. However, the error’s identifier is only visible inside the catch block. It is equivalent to:
-
+```
     (function () {
         var x, y; // outer and hoisted
         try {
@@ -860,10 +846,21 @@ var statements are hoisted (without their value initialization) to the top of th
         console.log(x);
         console.log(y);
     })();
+```
 
+**circular reference**
+A circular reference occurs if two separate objects pass references to each other. In older browsers circular references were a cause of memory leaks. With improvements in Garbage collection algorithms, which can now handle cycles and cyclic dependencies fine, this is no longer an issue.Sep 17, 2019
 
-============  
-  
+**What does [].forEach.call() do in JavaScript?**
+- https://stackoverflow.com/questions/16053357/what-does-foreach-call-do-in-javascript
+
+**What does comma do in js?**
+```
+handler = ()=> (y=4,c=3); // returns 3 ; Why?
+```
+https://stackoverflow.com/questions/3561043/what-does-a-comma-do-in-javascript-expressions
+
+---  
 
 #### for while do while loops and switch statements - control flow================
 
@@ -875,22 +872,12 @@ ahead of time how many times you'll have to repeat the loop. On the
 
 other hand, while loops are ideal when you have to loop, but you don't know ahead of time how many times you'll need to loop.
 
-  
-
 As you saw, however, you can combine a while loop with a counter variable to do the same kind of work a for loop does. In these cases, it's often a matter of preference.
-
-  
 
 Sometimes you want to make sure your loop runs at least one time no matter what. When this is the case, you want a modified while loop called a do/while loop.
 
-  
-  
-  
-
 As you might imagine, if you have a lot of choices you want to cover in a program, it might be annoying to type else if () ten times. That's why JavaScript has the switch statement!
 
-  
-  
 
 switch allows you to preset a number of options (called cases),
 
@@ -900,15 +887,9 @@ match, the program will perform the action for the matching case; if
 
 there's no match, it can execute a default option.
 
-  
-  
-  
-  
-  
-  
 
 #### custom constructors======================
-
+```
     function Person(name,age) {
     
     this.name = name;
@@ -928,7 +909,7 @@ there's no match, it can execute a default option.
     // help us make george, whose name is "George Washington" and age is 275
     
     var george = new Person("George Washington",275);
-
+```
   
 
 Let's look at another example and practice coding constructors. Here we have made a Cat constructor for you, with age and color properties.
@@ -954,13 +935,13 @@ every property and value for each cat object we would create.
   
 
 #### prototype===============
-
+```
     snoopy.bark = function() {
     
     console.log("Wow");
     
     };
-
+```
   
 
 Here we have very similar code as last time, but there is an important difference. Instead of using buddy.bark to add the bark method to just the buddy object, we use Dog.prototype.bark.
@@ -976,7 +957,7 @@ In general, if you want to add a method to a class such that all
 members of the class can use it, we use the following syntax to extend the prototype:
 
   
-
+```
     className.prototype.newMethod =
     
       
@@ -1068,12 +1049,12 @@ person.showFullName.apply (anotherPerson); // Rohit Khan​
 ​
 
 ​// So the context is now anotherPerson because anotherPerson invoked the person.showFullName () method by virtue of using the apply () method​
-
+```
   
   
 
 #### encapsulating private n public methods pattern=================
-
+```
     var myRevealingModule = (function () {
     
     var privateVar = "Ben Cherry",
@@ -1125,7 +1106,7 @@ person.showFullName.apply (anotherPerson); // Rohit Khan​
       
     
     myRevealingModule.setName( "Paul Kinlan" );
-
+```
   
 
 #### this keyword-======================
@@ -1156,7 +1137,7 @@ Let's look at the method setAge (line 2) to see how this works. By using the key
 Then when we say bob.setAge = setAge; (line 9), it means whenever we type bob.setAge( ), this.age in the setAge method will refer to bob.age.
 
   
-
+```
     // here we define our method using "this", before we even introduce bob
     
     var setAge = function (newAge) {
@@ -1181,7 +1162,7 @@ Then when we say bob.setAge = setAge; (line 9), it means whenever we type bob.se
     
     bob.setAge(50);
 
-  
+  ```
   
   
   
@@ -1193,7 +1174,7 @@ In javascript every function receives two variables other than function paramete
 4 types :
 
 simply calling fn name
-
+```
     function fun(){
     
     };
@@ -1213,7 +1194,7 @@ simply calling fn name
     // this is bound to obj
     
     };
-
+```
   
   
   
@@ -1509,6 +1490,15 @@ https://www.creativebloq.com/web-design/mind-mapping-tools-9134523
 ##### #how-to-access-the-correct-this-inside-a-callback
 
 https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback/20279485#20279485
+
+
+**why js is pass by reference?**
+
+    Var obj1={a:1,b:2}; 
+    obj2=obj1; 
+    obj2.b = 3; then console.log(obj1) 
+    // {a:1, b:3} after changing in b in obj , the value 3 automatically changes in obj1 . 
+    //So javascript is pass by reference.
 
 **Doubts**
 
