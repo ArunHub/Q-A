@@ -85,6 +85,13 @@ If 3 cols are there, how will u move 1st and 2nd cols …=> using pull and push
 3.	The data is available only inside the window/tab in which it was set.
 4.	The data is not persistent i.e. it will be lost once the window/tab is closed. Like localStorage, it works on same-origin policy. So, data stored will only be available on the same origin.
 
+**Local storage delete** - storage.removeItem(keyName); // storage may be localstorage or sessionstorage
+
+- Sessionstorage - the only difference is while data stored in localStorage has no expiration set, data stored in sessionStorage gets cleared when the page session ends. A page session lasts for as long as the browser is open and survives over page reloads and restores. Opening a page in a new tab or window will cause a new session to be initiated with the value of the top-level browsing context, which differs from how session cookies work.
+Current page – ls.hi=0 or ss.hi=0 exists if loaded
+New tab – ls and ss newly created
+Close n open last tab – ls remains but ss expired.
+
 **Indexdb:**
 low-level API for client-side storage of significant amounts of structured data, including files/blobs. This API uses indexes to enable high-performance searches of this data. While Web Storage is useful for storing smaller amounts of data, it is less useful for storing larger amounts of structured data. IndexedDB provides a solution.
 Note: This feature is available in Web Workers.
@@ -140,13 +147,6 @@ The value of the sandbox attribute can either be just sandbox (then all restrict
 
 **Iframe SrcDoc** => The content of the page that the embedded context is to contain. This attribute is expected to generally be used together with the sandbox attribute. If a browser supports the srcdoc attribute, it will override the content specified in the src attribute (if present). If a browser does not support the srcdoc attribute, it will show the file specified in the src attribute instead (if present). Note that if the content of the attribute contains a script tag then a closing script tag is required for the script to run, even if nothing else comes after the script.
 
-**Local storage delete** - storage.removeItem(keyName); // storage may be localstorage or sessionstorage
-
-- Sessionstorage - the only difference is while data stored in localStorage has no expiration set, data stored in sessionStorage gets cleared when the page session ends. A page session lasts for as long as the browser is open and survives over page reloads and restores. Opening a page in a new tab or window will cause a new session to be initiated with the value of the top-level browsing context, which differs from how session cookies work.
-Current page – ls.hi=0 or ss.hi=0 exists if loaded
-New tab – ls and ss newly created
-Close n open last tab – ls remains but ss expired.
-
 - **- Datalist link to input tag –**
 ---
     <datalist id="languages">
@@ -186,7 +186,7 @@ https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API
 	- Minimum 2 number, shopping is not as billing address, password same check
 	- Novalidate – form doesn’t validate the form . So if required is given input field then the error message wont show . defaultly error shows if required given in input tag without novalidate.
 	- On button input submit also have formnovalidate attr which gives the form shouldn't be validated before submission.
-
+	- https://css-tricks.com/form-validation-part-1-constraint-validation-html/
 
 
 ### websocket and webworkers
@@ -221,8 +221,6 @@ Using normal node app server and html, follow below code in the site which has d
 	- I also developed few other working models namely single page pre fetch in the browser, changing the response, response headers, caching a web page, schedule the requests, adding custom header to request - All using Service Workers present in web browser.
 
 	- A passion for quality, for doing the right thing for the customers, the product, and for the company.
-
-
 
 #### Interview Questions
 	- Maxwidth and width ?
