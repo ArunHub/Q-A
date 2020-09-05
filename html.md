@@ -1,4 +1,3 @@
-
 #### HTML5
 	- Semantics: allowing you to describe more precisely what your content is.
 	- Connectivity: allowing you to communicate with the server in new and innovative ways.
@@ -8,6 +7,21 @@
 	- Performance and integration: providing greater speed optimization and better usage of computer hardware.
 	- Device access: allowing for the usage of various input and output devices.
 	- Styling: letting authors write more sophisticated themes.
+	
+#### Security issues in HTML5
+- Clickjacking, XSS, Script injecting
+- Cross messaging document/ web messaging api
+- CORS-
+- CSP(content security policy) -> avoid multiple csp, inline javascript => media-src,directive-src, styles-src, default-src, csp2=> nounce, hash 
+- iframe sandbox
+- video poster elements
+- drag and drop clickjacking
+- cookies and localstorage clearing explicitily, 
+- web workers post message - validation of origin/ data
+- geolocation
+- svg canvas scripting vulnerable
+- filesystem api sandboxed vulnerable
+
 
 #### Html5 api
 1. Media API
@@ -51,10 +65,32 @@ So while running the script , it will look out for ‘foo’ element which is st
 
 If 3 cols are there, how will u move 1st and 2nd cols …=> using pull and push
 
-##### How Layout and rendering works?
+#### Web Storage
 
-https://developer.mozilla.org/en-US/docs/Mozilla/Introduction_to_Layout_in_Mozilla
+**LocalStorage:**
 
+1.	Web storage can be viewed simplistically as an improvement on cookies, providing much greater storage capacity. Available size is 5MB which considerably more space to work with than a typical 4KB cookie.
+2.	The data is not sent back to the server for every HTTP request (HTML, images, JavaScript, CSS, etc) - reducing the amount of traffic between client and server.
+3.	The data stored in localStorage persists until explicitly deleted. Changes made are saved and available for all current and future visits to the site.
+4.	It works on same-origin policy. So, data stored will only be available on the same origin.
+**Cookies:**
+1.	We can set the expiration time for each cookie
+2.	The 4K limit is for the entire cookie, including name, value, expiry date etc. To support most browsers, keep the name under 4000 bytes, and the overall cookie size under 4093 bytes.
+3.	The data is sent back to the server for every HTTP request (HTML, images, JavaScript, CSS, etc) - increasing the amount of traffic between client and server.
+
+**sessionStorage:**
+
+1.	It is similar to localStorage.
+2.	Changes are only available per window (or tab in browsers like Chrome and Firefox). Changes made are saved and available for the current page, as well as future visits to the site on the same window. Once the window is closed, the storage is deleted
+3.	The data is available only inside the window/tab in which it was set.
+4.	The data is not persistent i.e. it will be lost once the window/tab is closed. Like localStorage, it works on same-origin policy. So, data stored will only be available on the same origin.
+
+**Indexdb:**
+low-level API for client-side storage of significant amounts of structured data, including files/blobs. This API uses indexes to enable high-performance searches of this data. While Web Storage is useful for storing smaller amounts of data, it is less useful for storing larger amounts of structured data. IndexedDB provides a solution.
+Note: This feature is available in Web Workers.
+https://developers.google.com/web/ilt/pwa/working-with-indexeddb 
+
+---
 
 #### Wipro interview
 
