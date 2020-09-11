@@ -320,7 +320,44 @@ The key to remember is that when a function gets declared, it contains a functio
 https://medium.com/dailyjs/i-never-understood-javascript-closures-9663703368e8 
 
 **lexical scopes => closures**
+Execution Context & Execution Context stack : Execution context is the internal javascript construct to track execution of a function or the global code. The js engine maintains a stack data structure - execution context stack or call stack, which contains these contexts and the global execution context stays at the bottom of this stack. And a new execution context is created and pushed to the stack when execution of a function begins. A particular execution context tracks the pointer where statement of the corresponding function is being executed. An execution context is popped from the stack when corresponding function's execution is finished.
 
+Lexical Environment : it's the internal js engine construct that holds identifier-variable mapping. (here identifier refers to the name of variables/functions, and variable is the reference to actual object [including function type object] or primitive value). A lexical environment also holds a reference to a parent lexical environment.
+
+Now, for every execution context -- 1) a corresponding lexical environment is created and 2) if any function is created in that execution context, reference to that lexical environment is stored at the internal property ( [[Environment]] ) of that function. So, every function tracks the lexical environment related to the execution context it was created in.
+- https://stackoverflow.com/questions/12599965/lexical-environment-and-function-scope
+
+**Currying**
+Currying is a transform that makes f(a,b,c) callable as f(a)(b)(c). JavaScript implementations usually both keep the function callable normally and return the partial if the arguments count is not enough.
+Currying is a transformation of functions that translates a function from callable as f(a, b, c) into callable as f(a)(b)(c).
+
+Currying doesn’t call a function. It just transforms it.
+For instance, we have the logging function log(date, importance, message) that formats and outputs the information. In real projects such functions have many useful features like sending logs over the network, here we’ll just use alert:
+
+https://javascript.info/currying-partials
+```
+function curry(func) {
+console.log(func.length)
+  return function curried(...args) {    
+    if (args.length >= func.length) {
+      return func.apply(this, args);
+    } else {
+      return function(...args2) {
+        console.log('[[[[[[]]]]]]', args2)
+        return curried.apply(this, args.concat(args2));
+      }
+    }
+  };
+}
+function sum(a,b,c){return a+b+c;}
+var curriedSum1 = curry(sum); //this returns curried function alone
+curriedSum1(1)(2)(3)
+
+//now when curriedSum1 is called with args (1) , then it returns the wrapper function(...args), 
+//again calling wrapper function with (2), returns curried function and applies previous args with current 2 so no two args (1,2) but still didnt satisfy IF condition part so again recursively returns function(...args2)
+// now when called with (3), wrapper function returns with applied function three args and IF condition get executed with original func function . Here func is sum function 
+//gives result 6
+```
 **Immediately Invoked Function Expression / Self-Executing Anonymous Function**
 that runs as soon as it is defined.
 It is a design pattern which is also known as a Self-Executing Anonymous Function and contains two major parts:
