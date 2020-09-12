@@ -56,6 +56,21 @@ arrow function, destructuring, rest parameters, spread operator, let , const, de
 
 ```
 
+```
+var aa = {
+a: function(){console.log(this)},
+b: ()=>{console.log(this)},
+c:{
+ab: function(){console.log(this)},
+bb: ()=>{console.log(this)}
+}
+}
+aa.a() // {a:f, b: f, c:Object}
+aa.c.ab() // {ab: ƒ, bb: ƒ}
+
+aa.c.bb() // Window {parent: Window, opener: null, top: Window, length: 0, frames: Window, …}
+```
+
 this keyword works differently in arrow functions. The methods call(), apply(), and bind() will not change the value of this in arrow 
 
 Arrow functions can’t be used as constructors as other functions can. Don’t use them to create similar objects as you would with other functions. If you attempt to use new with an arrow function, it will throw an error. Arrow functions, like built-in functions (aka methods), don’t have a prototype property or other internal methods. Because constructors are generally used to create class-like objects in JavaScript, you should use the new ES6 classes instead.
@@ -572,7 +587,18 @@ So, when you call
 it checks whether o has a property someProp. If not, it checks Object.getPrototypeOf(o).someProp, and if that doesn't exist it checks Object.getPrototypeOf(Object.getPrototypeOf(o)).someProp, and so on.
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#Using_prototypes_in_JavaScript 
 
-#### design patterns – 
+### JS security related:
+- https://dzone.com/articles/cookies-vs-tokens-the-definitive-guide
+- https://www.gnucitizen.org/blog/csrf-demystified/
+- CSP
+- XSS & CSRF
+- iframe clickjacking
+- brute force attack
+- untrusted data source
+- html output decoding / entity / textcontent/innertext
+- HTML5 security problems
+
+### design patterns – 
 
 Constructor Pattern
 Module Pattern
