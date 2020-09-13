@@ -9,6 +9,8 @@
 Miscalleneoues
 SSH http:// mongodb://
 
+- Music app - spotify - https://github.com/Pau1fitz/react-spotify
+
 ​ project:
 Idse material design UI elements
 Pin board sample data layer, UI sidebar
@@ -227,15 +229,6 @@ Render =>
 10. **Virtual dom** - answer given below somewhere
 Es6 to es5 write es5 with react create class n create element
 11. Const to renderdom ==> https://codepen.io/anon/pen/JaPyEO?&editors=0010
-12. IndexRoute, BrowserHistory …
-=> indexRoute is like home page when no url matches … in Rv16.0 it uses exact attribute to tell router home
-React Router (v3) I can accept a server response and use browserHistory.push to go to the appropriate response page
-React 3 indexroute is similar to exat attr in v4.
-In v4, import history from '../history'; so that history.push to go to desired page.
-
-    <Provider store={props.store}>
-    <Router history={browserHistory} routes={routes} />
-    </Provider>
 
 If sri50 retweets, message reaches all ppl including itisprashant but if prashant retweets it willl reach less followers than sri50 so if follow only sri50 imporves performance instead of following prashant like ppl and getting retweets again and again to loose performance.
 
@@ -259,15 +252,30 @@ Use above in starter react project in stackblitz
 
 Immutable Immutable js redux saga, observable in redux
 
-**Router**
--
- Dynamic routing where u can route a component anywhere in app not like static app used to angular ember which got initiated in root module. Before Reactv4 also implemented same.
- 
-Nested routes(using match.url in nested route to select from relative url and goes on), responsive routes(using Media query component and switch condition to responsive layout)
-
-FYI, React Router is a sort of a wrapper for HTML5 History API. We can create History.js and implement customHistory.js
+### Router
+- getting start with - https://reactrouter.com/web/guides/quick-start
+- Dynamic routing where u can route a component anywhere in app not like static app used to angular ember which got initiated in root module. Before Reactv4 also implemented same.
+- Nested routes(using match.url in nested route to select from relative url and goes on), responsive routes(using Media query component and switch condition to responsive layout)
+- FYI, React Router is a sort of a wrapper for HTML5 History API. We can create History.js and implement customHistory.js
 https://medium.freecodecamp.org/you-might-not-need-react-router-38673620f3d 
 
+**Questions:** 
+ 1. security in react spa -> authentication using router
+ 2.	How react router different from other router?
+12. IndexRoute, BrowserHistory …
+=> indexRoute is like home page when no url matches … in Rv16.0 it uses exact attribute to tell router home
+React Router (v3) I can accept a server response and use browserHistory.push to go to the appropriate response page
+React 3 indexroute is similar to exat attr in v4.
+In v4, import history from '../history'; so that history.push to go to desired page.
+```
+    <Provider store={props.store}>
+    <Router history={browserHistory} routes={routes} />
+    </Provider>
+```
+**Try**
+ 1. nested Switch 
+ 3. Sridhar => How you are using react route in idse, how will u change url without router
+ 4. Router with memory router implemented from idse library 
 
 **React scoped stylesheet**
 -
@@ -557,7 +565,6 @@ https://github.com/markerikson/react-redux-links/blob/master/react-architecture.
 https://facebook.github.io/create-react-app/
 
  1. react form validation -> refs -> input new attributes and regex patterns
- 2. security in react spa -> authentication using router
  3. react testing from mahesh sabnis
  4. anto preact react forms testing
  5. web securities
@@ -629,10 +636,7 @@ https://tylermcginnis.com/react-aha-moments/
 
 **Try ?**
 
- 1. nested Switch 
  2. Why jsx needs parent div binding for every component
- 3. Sridhar => How you are using react route in idse, how will u change url without router
- 4. Router with memory router implemented from idse library
  5. How will you immutate deep object property in setstate or redux
 	 => use immutable.js or deep clone json.parse(json.stringify(obj))
 
@@ -642,7 +646,7 @@ https://tylermcginnis.com/react-aha-moments/
 
 - When u are in situation to render a component and insert it into dom, use like app.js used to do.
 - use render method from react-dom and render the dom and insert in dom like render('<app/>', document.getElementById('dom') )
-- when connect function props not working,then check thecurrent component is exported as default or named one in parent component 
+- when connect function props not working,then check the current component is exported as default or named one in parent component 
 if it is named export then it  cannot connot to store to get state values
 
 Interview Questions
@@ -732,7 +736,6 @@ Deloit
 38.	Declare Initial state in store?
 39.	Why redux
 40.	How the syntax will be in actions
-41.	Switch in router
 42.	Virtual dom
 43.	Why need react? What u do with react
 44.	What is componentwillmount and lifehooks of react
@@ -743,7 +746,6 @@ Deloit
 49.	Es6 features
 50.	What special abt arrow functions ? Only shorthand?
 51.	How to convert es5 to es6 ? What to look for it in es5 to change
-52.	How react router different from other router?
 Managerial round
 25.	How do you see yourself in 5 years?
 26.	How do you want to grow up in your career?

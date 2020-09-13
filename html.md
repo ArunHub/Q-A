@@ -78,6 +78,11 @@ If 3 cols are there, how will u move 1st and 2nd cols …=> using pull and push
 2.	The 4K limit is for the entire cookie, including name, value, expiry date etc. To support most browsers, keep the name under 4000 bytes, and the overall cookie size under 4093 bytes.
 3.	The data is sent back to the server for every HTTP request (HTML, images, JavaScript, CSS, etc) - increasing the amount of traffic between client and server.
 
+**Questions**
+1. Localstorage from one domain can be accessed in another domain in another tab? Subdomains? 
+	- Actually this is a browser storage security issue, and in fact none of LocalStorage/WebSQL/IndexedDB can be shared across subdomains. They are part of the "same origin policy" which sandboxes data. This is to prevent malicious sites from e.g. malicious.geocities.com spying on data from another site like innocent.geocities.com.
+
+
 **sessionStorage:**
 
 1.	It is similar to localStorage.

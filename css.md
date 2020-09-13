@@ -615,3 +615,6 @@ If you are proficient with Inspect element its little bit struggle to switch ove
 
 there comes the source maps
 
+- https://github.com/ArunMichaelDsouza/pineapple-sass
+- https://github.com/ArunHub/csswg-drafts
+- https://github.com/ArunHub/sweaterify - print your design/photo on sweater programmatically

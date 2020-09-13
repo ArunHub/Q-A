@@ -12,6 +12,7 @@ array.pop(); // orders of magnitude faster!
 
 https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 
+- 30 seconds of code - https://github.com/30-seconds/30-seconds-of-code
 
 ### How browser reacts to html, css and rendering process ?
 - https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
@@ -21,6 +22,7 @@ https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 ### How to improve performance of site? 
 - https://github.com/manucorporat/perf-apis-2/blob/master/performance-techniques.pdf
 - https://css-tricks.com/the-critical-request/
+- https://github.com/thedaviddias/Front-End-Performance-Checklist
 - https://www.performancebudget.io/
 - https://web.dev/rail/
 - https://moderndevtools.com/
@@ -30,6 +32,11 @@ https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 
 ### visualize data structures  and algorithms
 - https://visualgo.net/en
+- https://github.com/mgechev/javascript-algorithms
+
+### Functional programming
+- This is a curated list of awesome functional programming code and learning resources for JavaScript. - https://github.com/stoeffel/awesome-fp-js
+- https://github.com/getify/Functional-Light-JS
 ---
 
 ### ES6 & ES7
@@ -119,6 +126,8 @@ Simply remember this.... window won’t take **let** variable
 ```
 Let runs in block scoped so runs faster than var .. Var normally attaches to window so slowly ran.
 
+let is a block scoping variable where we can able to reassign values.
+**Const** -> unlike const we cannot reassign values again but can change property values inside obj without changing reference.
 
 **Const** is a little different from **let** as it wont allow to re-initailise/change the initial value as the keyword suggests constannt and it has to be declared initially necessarily.  
 
@@ -589,6 +598,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prot
 
 ### JS security related:
 - https://dzone.com/articles/cookies-vs-tokens-the-definitive-guide
+- 🔐 Learn how to use JSON Web Token (JWT) to secure your next Web App! (Tutorial/Example with Tests!!)
+https://github.com/dwyl/learn-json-web-tokens
 - https://www.gnucitizen.org/blog/csrf-demystified/
 - CSP
 - XSS & CSRF
@@ -613,6 +624,8 @@ Factory Pattern
 Mixin Pattern
 Decorator Pattern
 Flyweight Pattern
+
+- https://bradfrost.com/blog/post/atomic-web-design/
 
 remember using module pattern in ng1 – (
 
@@ -913,6 +926,13 @@ var statements are hoisted (without their value initialization) to the top of th
 
 **circular reference**
 A circular reference occurs if two separate objects pass references to each other. In older browsers circular references were a cause of memory leaks. With improvements in Garbage collection algorithms, which can now handle cycles and cyclic dependencies fine, this is no longer an issue.Sep 17, 2019
+
+**How to remove circular reference json in JavaScript**
+
+Use dynamic object property in es 6 ... Refer asynchronous actions in redux or react forms page ... search as computed property name
+
+**Naming conventions and clean code**
+- https://github.com/ryanmcdermott/clean-code-javascript
 
 **What does [].forEach.call() do in JavaScript?**
 - https://stackoverflow.com/questions/16053357/what-does-foreach-call-do-in-javascript
@@ -1392,14 +1412,7 @@ Note that all functions in setTimeout are executed in the global scope
 
 ​// The "this" object in the setTimeout function used the global highValue and constantVal variables, because the reference to "this" in the setTimeout function refers to the global window object, not to the myObj object as we might expect.​
 
-​
-
 myObj.calculateIt(); // 400​
-
-  
-
-https://github.com/adam-s/js-interview-review
-
   
 
 validation====
@@ -1623,12 +1636,6 @@ Performance Debugging with DevTools
 
 ​https://www.styleurl.app/
 
-GitHub - fejes713/30-seconds-of-interviews: A curated collection of common interview questions to help you prepare for your next interview.
-
-Front-End-Performance-Checklist/README.md at master · 
-
-thedaviddias/Front-End-Performance-Checklist · GitHub
-
 https://www.11ty.io/
 
 Set a Timed Debugger To Web Inspect Hard-To-Grab Elements | CSS-Tricks
@@ -1649,7 +1656,8 @@ https://andy-bell.design/hire-me/
 dynamic create variable javascript for IF s
 
 
-static variable vs instance
+##### static variable vs instance
+```
 var temp;
 if (periodicArr[i].symbol && (temp = str.match(regex)) !== null) {}
 
@@ -1674,15 +1682,10 @@ while the instance variable will each have separate copy of b (instance variable
  t1.b = 15 // will not be reflected in t2.
  System.out.println(t1.b); // this will print 15
  System.out.println(t2.b); / this will still print 10; 
-
+```
 Hope that explains your query."
 
-How to remove circular reference json in JavaScript 
-
-Use dynamic object property in es 6 ... Refer asynchronous actions in redux or react forms page ... search as computed property name
-
-
-create js plugin
+#### create js plugin
 
 set default options and have provision to accept extra options
 
@@ -1692,28 +1695,31 @@ initiate object instance with your options
 seperate constructor, public, private methods
 u will have public methods to perform desired actions on instance variable
 
+##### A clean, responsive storefront boilerplate with no database or backend
+http://chrisdiana.github.io/simplestore
+
+##### chat application 
+https://github.com/withspectrum/spectrum
 
 
-Interview Questions
+### Interview Questions
+
+- https://github.com/jwasham/coding-interview-university
+- A mostly reasonable collection of technical software development interview questions solved in Javascript
+https://github.com/kennymkchan/interview-questions-in-javascript
+- Advanced js questions – toptal
+https://www.javatpoint.com/javascript-interview-questions 
+- https://awesomeopensource.com/project/vvscode/js--interview-questions 
+
 --
 
 **Prokarma**
 
 1.	Event loop in js
 2.	Function  expression in js
-3.	Assign anonymous function to variable?
-9.	Es6 spread vs rest, function vs arrow fn
 10.	First class functions #pure function
 11.	Polymorphism in js
-12.	Achieve prototype inheritance
-13.	Different types of creating object
-14.	Apply and call
-15.	Modular pattern and module releasing pattern
-16.	Npm run start
 17.	Unit testing . How to mock backend calls
-18.	Use strict and non strict
-19.	This in use strict
-20.	Closures
 21.	Pseudo elements
 22.	Document.object
 23.	How will you find which browser running
@@ -1724,84 +1730,31 @@ Interview Questions
 
  1. Ways to create object
  2.     Object literal has prototype or __proto__ 
- 3. Localstorage from one domain can be accessed in another domain in another tab? Subdomains?
  4. Assigning function constructor to a variable/ try iife to capital variable
  5. Fastest way to traverse array? Why filter faster than map hint: filter caches array
 
 **Deloit**
 
-1.	Web security
-2.	Access cookies in subdomain
-3.	Closures
-4.	This keyword inside promise
-5.	Nested objects cloning
-7.	How browser html start rendering from server its life cycles
-8.	How script tag executed when jQuery n custom query are loaded
 9.	Sequentially or parallely
-10.	ASync await
-11.	Promises
-12.	Const let var
-13.	Const with primitive n object manipulation scenario
 14.	Local file fetching or CDN
 15.	If local, if some changes happen how will the server detects its a new file
 16.	If obj={}, construction function create object, does prototype exists in both. Why not use first itself
-17.	How we store previous state before changing new state in reducers
-18.	How will you use rest operator in instead of object.assign in reducer
-19.	Why react better than angular
-20.	This inside promises
-
-Answers for first round:
-21.	We used session storage to expire the page after some specific time. Use cookie with httponly to make editable in server side. Deletes cookie by 
-
-    document.cookie = 'foo=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
-
-22.	Domain cookies are included in subdomains.
-23.	Refer mdn and closures more than 3 level scopes ?
+17.	How will you use rest operator in instead of object.assign in reducer
 
 **capg**
-1. Arrow fun vs normal function
-
-    let sunday = {
-        a:1,
-        b:2,
-        c: ()=>{
-            console.log(this.a)
-        }
-    }
-    // sunday.a = 5;
-    console.log(sunday);
-
-	Arrow functions cannot be used to write object methods because, as you have found, since arrow functions close over the this of the lexically enclosing context, the this within the arrow is the one that was current where you defined the object. Which is to say:
-
-2. Const vs let - Study properly
-3. Destructive
-4. Async , await
-5. Promises
 6. Search bar to filter list of object items{ question, answers }
-7. Redux flow
-8. Function anonymous and sampleOne ??
-
-    var sample = funtion sampleOne(){
-    Console.log(‘dfdfddf’);
-    }
 9. 0 + true =?
     A + true =? 
 
 10. Map vs filter => 
-
-    [{id:1,check:true},{id:2,check:false},{id: 3, check:true}].map( t=> if(t.check) return t.id); // return id1,null,id3
-
-	Comes the rescue. Filter => it does filtering only as results // id1, id2 // checks for truthy.
+```
+    [{id:1,check:true},{id:2,check:false},{id: 3, check:true}].map( t=> return t.check); 
+    // return [true, undefined, true]
+```
+	Comes the rescue. Filter => it does filtering only as results // {id:1,check:true},{id: 3, check:true} // checks for truthy.
 
 
 **Wissen**
-
-Let -> let is a block scoping variable where we can able to reassign values.
-Const -> unlike const we cannot reassign values again but can change property values inside obj without changing reference.
-Array 
-
-
-
 1.	Two es6 functions and es5 functions with console.log(this) console.log(arguments). What it prints
 2.	If we bind one function with other and passing value and when we call the assigned variable with another variable what will happen
 3.	When we return value from catch object and whether will next then object captures it
@@ -1809,18 +1762,11 @@ Array
 5.	Function with object literal and its methods like increment and decrement and variable outside the object and returning that object. So when we call that object method to increment ++ and decrement ++ what it will print when obj.incr and obj.incr and obj.decr
 7.	When we apply particular button extra class .. then whats the purpose of reusable of classes
 8.	Angular performance and react
-9.	Callbacks and promises
 10.	Function hosting
 11.	Higher order functions
 12.	Lodash throttle
-13.	Closures
 14.	Best way to use constructor function and object literal
 15.	If we do step5 in constructor function, what it will return
-16.	Arrow functions this
-
-
-#### Advanced js questions – toptal
-https://www.javatpoint.com/javascript-interview-questions 
 
 #### ECMA 5 Questions ??? 
 
