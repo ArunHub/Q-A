@@ -27,6 +27,20 @@ Bar chart
 Scatter type
 Difficult to maintain chart with State
 
+### Testing:
+https://reactjs.org/docs/testing-recipes.html
+
+### Hooks:
+https://reactjs.org/docs/hooks-intro.html
+https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889
+
+Visualization - https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e
+
+##### FAQs:
+https://reactjs.org/docs/hooks-faq.html
+
+memoization or memoisation is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again.
+The term "memoization" was coined by Donald Michie in 1968[3] and is derived from the Latin word "memorandum" ("to be remembered").
 
 https://camjackson.net/post/9-things-every-reactjs-beginner-should-know
 

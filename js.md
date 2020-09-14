@@ -344,12 +344,30 @@ The key to remember is that when a function gets declared, it contains a functio
 https://medium.com/dailyjs/i-never-understood-javascript-closures-9663703368e8 
 
 **lexical scopes => closures**
+https://javascript.info/closure
+
 Execution Context & Execution Context stack : Execution context is the internal javascript construct to track execution of a function or the global code. The js engine maintains a stack data structure - execution context stack or call stack, which contains these contexts and the global execution context stays at the bottom of this stack. And a new execution context is created and pushed to the stack when execution of a function begins. A particular execution context tracks the pointer where statement of the corresponding function is being executed. An execution context is popped from the stack when corresponding function's execution is finished.
 
 Lexical Environment : it's the internal js engine construct that holds identifier-variable mapping. (here identifier refers to the name of variables/functions, and variable is the reference to actual object [including function type object] or primitive value). A lexical environment also holds a reference to a parent lexical environment.
 
 Now, for every execution context -- 1) a corresponding lexical environment is created and 2) if any function is created in that execution context, reference to that lexical environment is stored at the internal property ( [[Environment]] ) of that function. So, every function tracks the lexical environment related to the execution context it was created in.
 - https://stackoverflow.com/questions/12599965/lexical-environment-and-function-scope
+
+
+##### USE of null
+```
+function f() {
+  let value = 123;
+
+  return function() {
+    alert(value);
+  }
+}
+
+let g = f(); // while g function exists, the value stays in memory
+
+g = null; // ...and now the memory is cleaned up
+```
 
 **Currying**
 Currying is a transform that makes f(a,b,c) callable as f(a)(b)(c). JavaScript implementations usually both keep the function callable normally and return the partial if the arguments count is not enough.
