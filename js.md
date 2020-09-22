@@ -26,6 +26,10 @@ https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 - https://www.performancebudget.io/
 - https://web.dev/rail/
 - https://moderndevtools.com/
+- https://blog.usejournal.com/how-i-improved-my-react-app-faster-just-using-css-408137b579ae?gi=d24f98ef408d
+- https://calibreapp.com/blog/react-performance-profiling-optimization
+- https://reactjs.org/docs/optimizing-performance.html
+- https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3
 
 ### Terminology - Dictionary
 - http://jargon.js.org/

@@ -6,7 +6,7 @@ interview qns and some answers
 
 ## Project based learning in various languages
 - https://github.com/tuvtran/project-based-learning
-- 📺 A collection of useful YouTube channels for javascript developers and web designers - https://github.com/andrew--r/channels
+- A collection of useful YouTube channels for javascript developers and web designers - https://github.com/andrew--r/channels
 
 ## Curated list of frontend bookmarks
 https://github.com/ArunHub/frontend-dev-bookmarks

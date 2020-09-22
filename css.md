@@ -1,15 +1,11 @@
 **Tips:**
-
-To truncate text inside table cell , use max width on table cell so that child element can adjust depending on parent 
-
-
-need to quickly visually see the rectangles that make up all elements of the page?
-
+- To truncate text inside table cell , use max width on table cell so that child element can adjust depending on parent 
+- need to quickly visually see the rectangles that make up all elements of the page?
 ```
 * {outline: 1px solid red;}
 ```
-
-https://dev.to/gajus/my-favorite-css-hack-32g3
+- https://dev.to/gajus/my-favorite-css-hack-32g3
+- https://github.com/AllThingsSmitty/css-protips
 
 ---
 Emoji poll: Which of these best describes your experience fixing CSS bugs?
@@ -44,25 +40,21 @@ after some event handlers it may grow so adapt to that height
 background-attachment: fixed;
 
 ##### drag and drop custom select
-
 https://css-tricks.com/drag-and-drop-file-uploading/
-
   
-
+##### Select dropdown innovation
 http://tympanus.net/Development/SelectInspiration/index5.html
 
-
+##### useful css selectors
 http://code.tutsplus.com/tutorials/the-30-css-selectors-you-must-memorize--net-16048
 
-https://github.com/AllThingsSmitty/css-protips
+##### css puzzles
+https://www.manifold.co/blog/css-puzzles-a-mentorship-program-for-better-styling-d018e77de57c
 
-1.eyes rolling exercies on css
-2.float left float none
-3.https://www.manifold.co/blog/css-puzzles-a-mentorship-program-for-better-styling-d018e77de57c
-https://textblock.io/
 https://notlaura.com/algorithms-of-css-sources/
-remove.bg
-​
+
+##### Remove bg from a image
+www.remove.bg​
 
 
 #### many bootstrap readymade 
@@ -81,15 +73,42 @@ http://cssdeck.com/labs/css3-webkit-vertical-scrollbars/
 
 http://webdesign.tutsplus.com/articles/quick-tip-styling-scrollbars-to-match-your-ui-design--webdesign-9430
 
-##### Testing responsive for mobile============
+##### create css sprite image vertically
+for active state, instead of putting active class in every link , add to body like
+ body class="home",so does for different page body class="about"
 
-http://www.limelightonline.co.nz/
+##### Horizontal jumps===================
 
-this site is best for viewing website in different screen resolution simultaneously while given scroll bar
+Suppose if you two pages . In first page there is less content and in second page there is more content so scrollbar will come . So when you switch from page one to two , a horizonal jump will come so solve it
 
-but waste ... so use
+    Put html{height:102% } or html {overflow-y:scroll}
 
-http://codebeautify.org/responsive-website-tester#
+second option wont work in opera
+
+https://css-tricks.com/eliminate-jumps-in-horizontal-centering-by-forcing-a-scroll-bar/
+
+
+##### Text overflow ellipsis================
+
+    .dataTable td {
+    
+    /* essential */
+    
+    text-overflow: ellipsis;
+    
+    width: 200px;
+    
+    white-space: nowrap;
+    
+    overflow: hidden;
+    
+      
+    
+    /* for good looks */
+    
+    padding: 10px;
+    
+    }
 
 ##### Menu================
 
@@ -97,6 +116,27 @@ http://bootsnipp.com/maridlcrmn
 
 http://bitsofco.de/2015/accessible-multi-level-dropdown-navigation/
 
+##### Three states of menu ================
+
+active,hover,normal
+using css sprite is best for business
+while hovering seperate image will load late so using sprite image is useful by changing bg position.
+
+**bootstrap navbar menu center**
+
+http://www.bootply.com/3iSOTAyumP#
+
+##### Hover delay menu================
+
+https://cameronspear.com/blog/bootstrap-dropdown-on-hover-plugin/
+
+##### boundaries around menu hover
+
+https://css-tricks.com/dropdown-menus-with-more-forgiving-mouse-movement-paths/
+
+    li.dropdown > ul{visibility:hidden;transition:0.2s 1s;}
+    
+    li.dropdown:hover > ul{visibility:visible;transition-delay:0s;}
 
 ##### Background image/url as logo and responsive========================
 
@@ -114,15 +154,24 @@ Do not set width, height, or margins.
 
 http://stackoverflow.com/questions/12609110/responsive-css-background-images
 
+or aspect box ratios concept in css tricks
+
 ##### Toggle Dropdown===================
 
 https://css-tricks.com/forums/topic/drop-down-toggle-jquery/
 
 http://codepen.io/scottb/pen/gixIv
 
-##### bootstrap navbar menu center
+##### simple toggle========
 
-http://www.bootply.com/3iSOTAyumP#
+http://jsfiddle.net/Kritika/SZwTg/1/
+
+http://jsfiddle.net/QxRL9/
+
+##### Center vertically img inside div ==============
+
+http://jsfiddle.net/3MVPM/
+
 
 ##### Masonry grid===============
 
@@ -428,75 +477,6 @@ Add three background : background,midground,foreground images .. make them move 
 It wont work in < IE7
 
 https://www.youtube.com/watch?v=m2NsJQyaxVo
-
-##### Three states of menu ================
-
-active,hover,normal
-using css sprite is best for business
-while hovering seperate image will load late so using sprite image is useful by changing bg position.
-
-
-##### create css sprite image vertically
-for active state, instead of putting active class in every link , add to body like
- body class="home",so does for different page body class="about"
-
-##### Horizontal jumps===================
-
-Suppose if you two pages . In first page there is less content and in second page there is more content so scrollbar will come . So when you switch from page one to two , a horizonal jump will come so solve it
-
-    Put html{height:102% } or html {overflow-y:scroll}
-
-second option wont work in opera
-
-https://css-tricks.com/eliminate-jumps-in-horizontal-centering-by-forcing-a-scroll-bar/
-
-##### Center vertically img inside div ==============
-
-http://jsfiddle.net/3MVPM/
-
-##### simple toggle========
-
-http://jsfiddle.net/Kritika/SZwTg/1/
-
-http://jsfiddle.net/QxRL9/
-
-##### Hover delay menu================
-
-https://cameronspear.com/blog/bootstrap-dropdown-on-hover-plugin/
-
-##### boundaries around menu hover
-
-https://css-tricks.com/dropdown-menus-with-more-forgiving-mouse-movement-paths/
-
-    li.dropdown > ul{visibility:hidden;transition:0.2s 1s;}
-    
-    li.dropdown:hover > ul{visibility:visible;transition-delay:0s;}
-
-  
-  
-
-##### Text overflow ellipsis================
-
-    .dataTable td {
-    
-    /* essential */
-    
-    text-overflow: ellipsis;
-    
-    width: 200px;
-    
-    white-space: nowrap;
-    
-    overflow: hidden;
-    
-      
-    
-    /* for good looks */
-    
-    padding: 10px;
-    
-    }
-
 ##### Delete Button Concept with Hover Animation==============
 
 http://codemyui.com/post/120023194335/delete-button-concept-with-hover-animation?utm_content=buffer3009c&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
