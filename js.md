@@ -36,6 +36,7 @@ https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 
 ### visualize data structures  and algorithms
 - https://visualgo.net/en
+- https://algorithm-visualizer.org/
 - https://github.com/mgechev/javascript-algorithms
 
 ### Functional programming
