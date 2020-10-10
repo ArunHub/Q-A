@@ -4,6 +4,9 @@ interview qns and some answers
 
 ---
 
+## Shared component cloud from Angular,react,vue and more
+- https://bit.dev/
+
 ## Project based learning in various languages
 - https://github.com/tuvtran/project-based-learning
 - A collection of useful YouTube channels for javascript developers and web designers - https://github.com/andrew--r/channels

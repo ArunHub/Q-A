@@ -48,8 +48,8 @@ Composition over inheritane - https://www.youtube.com/watch?v=wfMtDGfHWpA
 
 Why did React was created? Isnt a MVC framework? Does it use templates ?
 
-https://reactjs.org/blog/2013/06/05/why-react.html
-
+- https://reactjs.org/blog/2013/06/05/why-react.html
+- https://www.smashingmagazine.com/2016/03/server-side-rendering-react-node-express/
 ### How React work /do?
 
 - https://pomb.us/build-your-own-react/
