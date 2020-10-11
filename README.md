@@ -48,11 +48,11 @@ https://learngitbranching.js.org/
 - Observer is a sound source, Our ears are subject ,We attach those sound source to subject, So when subject observing sounds , we listen and register and identify from which source it’s coming
 - Switching on/off main power which controls other switches and lights bulbs tv. Main acts as central system to control like redux - > subscribe/observer pattern
 - Windows restart failure 
-![n26 26090](https://user-images.githubusercontent.com/7420189/95687563-edeb3180-0c21-11eb-8e11-2ef913d1403b.jpeg)
+![n26 26090](https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/windows-failure-1.jpeg)
 
-![len nd  wholows wingnu pending in1 Perding old](https://user-images.githubusercontent.com/7420189/95687594-30147300-0c22-11eb-83ac-0a431f32f78b.jpeg)
+![len nd  wholows wingnu pending in1 Perding old](https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/windows-failure-2.jpeg)
 
-![10 percent complete  (12 Be OdEn InN OTR NONEN Recovering](https://user-images.githubusercontent.com/7420189/95687607-4cb0ab00-0c22-11eb-8366-dc6be7699d2c.JPG)
+![10 percent complete  (12 Be OdEn InN OTR NONEN Recovering](https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/Recovering.JPG)
 
 
 ￼
