@@ -54,8 +54,17 @@ https://learngitbranching.js.org/
 
 ![10 percent complete  (12 Be OdEn InN OTR NONEN Recovering](https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/Recovering.JPG)
 
+![Recovering error](https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/Recoveryerror.JPG)
 
-￼
+![bsod](https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/bsod.JPG)
+
+![collection error](https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/collecting%20some%20error.JPG)
+![devtools-1](https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/configuration%20of%20devtools-1.jpeg)
+![devtools-2](https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/configuration%20of%20devtools-2.jpeg)
+![tree-component-change-data-structure](https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/identifying%20component%20changeusing%20DataStructure.png)
+![pushdelpoy](https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/pushdeploy.png)
+![servercost](https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/server%20cost.jpeg)
+![jest commands](https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/jest.txt%20-%20Notepad.jpeg)
 
 ￼
 - Anti progressive app
@@ -76,7 +85,7 @@ https://learngitbranching.js.org/
 - fetching Stock updates 
 - iPhone scripts
 
-
+- app.quicktype.io
 ￼
 ￼
 ￼
