@@ -3,7 +3,7 @@
 	- https://github.com/reduxjs/redux-thunk#
 	- https://redux.js.org/api/api-reference
 - why super props needed and why it is not needed when constructor available and how we use render setstate
-- how componenet dismount works for every component
+- how componenet didmount works for every component - i guess, may be using new instance from class. its initialized and make some code to run once (functional js)
 - codepen.io/topic/react/templates
 
 Miscalleneoues
@@ -28,19 +28,20 @@ Scatter type
 Difficult to maintain chart with State
 
 ### Testing:
-https://reactjs.org/docs/testing-recipes.html
+https://reactjs.org/docs/testing-recipes.html - most recipes are basic and given using testing-library not enzyme.
 
 ### Hooks:
 https://reactjs.org/docs/hooks-intro.html
 https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889
 
-Visualization - https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e
+Visualization - https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e - useState order is important
 
-##### FAQs:
-https://reactjs.org/docs/hooks-faq.html
-
+##### MeMo:
 memoization or memoisation is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again.
 The term "memoization" was coined by Donald Michie in 1968[3] and is derived from the Latin word "memorandum" ("to be remembered").
+
+https://reactjs.org/docs/hooks-faq.html
+
 
 https://camjackson.net/post/9-things-every-reactjs-beginner-should-know
 
@@ -49,7 +50,11 @@ Composition over inheritane - https://www.youtube.com/watch?v=wfMtDGfHWpA
 Why did React was created? Isnt a MVC framework? Does it use templates ?
 
 - https://reactjs.org/blog/2013/06/05/why-react.html
+
+##### server side rendering in react
+- Can refer to my repo - https://github.com/ArunHub/ssr
 - https://www.smashingmagazine.com/2016/03/server-side-rendering-react-node-express/
+
 ### How React work /do?
 
 - https://pomb.us/build-your-own-react/

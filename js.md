@@ -44,6 +44,11 @@ https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 - https://github.com/getify/Functional-Light-JS
 ---
 
+### Event loop
+- https://javascript.info/event-loop
+- wait for tasks, execute, sleep waiting for tasks, endless.
+- when more tasks assigned like script load, move mouse event, settimeout so everything queued in event stack and called as macro tasks and executes like FIFO
+- Rendering a page happens only after engine executes these tasks and if it become complex and infinite loop > shows unresponsive page.
 ### ES6 & ES7
 arrow function, destructuring, rest parameters, spread operator, let , const, default parameters, Object.assign, array.from , array.of, Template literals, modules, iterators, generators, classes, async await, multi strings and interpolation `${}`
 

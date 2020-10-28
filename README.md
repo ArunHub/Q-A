@@ -44,6 +44,8 @@ https://learngitbranching.js.org/
 - Contributing to Mozilla code base 
 - sorocco , tryCss in Q-A Github
 - Retire.js for checking vulnerabilities or nsp or shrinkwrap npm
+- somaiya idea
+- can http promises be captiured in nodejs? via hostfile
 
 - Observer is a sound source, Our ears are subject ,We attach those sound source to subject, So when subject observing sounds , we listen and register and identify from which source it’s coming
 - Switching on/off main power which controls other switches and lights bulbs tv. Main acts as central system to control like redux - > subscribe/observer pattern
@@ -69,7 +71,7 @@ https://learngitbranching.js.org/
 ￼
 - Anti progressive app
 - Web xr 
-- Find redirected bookmark location i.e like in whether it came from bookmark list - - other bookmarks
+- Find redirected bookmark location i.e like in whether it came from bookmark list - - other bookmarks1
 - Fxbot coding 
 - Help surrounding areas using software . First help with software for dad shop 
 - How computer works 
