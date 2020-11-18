@@ -34,7 +34,10 @@ Miscalleneoues SSH http:// mongodb://
 https://learngitbranching.js.org/
 
 
+| interceptor | session | react hooks | object prototype | data structures | algorigthms | security | csp | authentication | rxjs  redux saga |
+| memory leak | macro n micro tasks | webpage load html | performance virtual dom | memoziation | lazy loading | react profiler | redux middleware | design component pi chart | closures | I18n -dfw | accessibility - dfw | security -dfw | performance - dfw
 
+untrusted data sources -> part of url , data from third party server which is database compromised , webstorage , cookies
 
 ##### Todo tech
 - Typescript poc 
@@ -45,7 +48,7 @@ https://learngitbranching.js.org/
 - sorocco , tryCss in Q-A Github
 - Retire.js for checking vulnerabilities or nsp or shrinkwrap npm
 - somaiya idea
-- can http promises be captiured in nodejs? via hostfile
+- can http promises be captured in nodejs? via hostfile
 
 - Observer is a sound source, Our ears are subject ,We attach those sound source to subject, So when subject observing sounds , we listen and register and identify from which source it’s coming
 - Switching on/off main power which controls other switches and lights bulbs tv. Main acts as central system to control like redux - > subscribe/observer pattern
@@ -81,20 +84,10 @@ https://learngitbranching.js.org/
 
 - https://css-tricks.com/little-tip-draw-your-grid-in-ascii-in-your-css-comments-for-quick-reference/
 
-###### Menon croon job 
+###### Menon cron job 
 - Freelancing jobs
 - Triggering telegram bots 
 - fetching Stock updates 
 - iPhone scripts
 
 - app.quicktype.io
-￼
-￼
-￼
-￼
-￼
-￼
-￼
-￼
-￼
-￼
