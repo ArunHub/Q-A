@@ -14,6 +14,9 @@ Suppose we are implementing a basic authentication on our backend server. And we
 
 https://medium.com/aviabird/http-interceptor-angular2-way-e57dc2842462
 
+**angular vs react what to choose for your app**
+https://keenethics.com/blog/angular-vs-react-what-to-choose-for-your-app
+
 **PIPES**
 
     @Pipe({name: 'exponentialStrength'})

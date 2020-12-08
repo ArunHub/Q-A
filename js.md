@@ -9,8 +9,7 @@ array.splice(index, 1); // slooooowwwww
 array[i] = array[array.length - 1];
 array.pop(); // orders of magnitude faster!
 ```
-
-https://twitter.com/rich_harris/status/1125850391155965952?lang=en
+Source: https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 
 - 30 seconds of code - https://github.com/30-seconds/30-seconds-of-code
 
@@ -30,6 +29,7 @@ https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 - https://calibreapp.com/blog/react-performance-profiling-optimization
 - https://reactjs.org/docs/optimizing-performance.html
 - https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3
+- https://www.30secondsofcode.org/blog/s/react-rendering-optimization
 
 ### Terminology - Dictionary
 - http://jargon.js.org/
@@ -49,6 +49,7 @@ https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 - wait for tasks, execute, sleep waiting for tasks, endless.
 - when more tasks assigned like script load, move mouse event, settimeout so everything queued in event stack and called as macro tasks and executes like FIFO
 - Rendering a page happens only after engine executes these tasks and if it become complex and infinite loop > shows unresponsive page.
+- https://javascript.info/event-loop#macrotasks-and-microtasks
 ### ES6 & ES7
 arrow function, destructuring, rest parameters, spread operator, let , const, default parameters, Object.assign, array.from , array.of, Template literals, modules, iterators, generators, classes, async await, multi strings and interpolation `${}`
 

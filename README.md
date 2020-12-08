@@ -20,6 +20,7 @@ https://github.com/ArunHub/frontend-dev-bookmarks
 
 ### A collection of awesome web crawler,spider in different languages
 https://github.com/BruceDone/awesome-crawler
+https://www.scrapingbee.com/
 
 
 ----
@@ -39,13 +40,14 @@ https://learngitbranching.js.org/
 
 
 | interceptor | session | react hooks | object prototype | data structures | algorigthms | security | csp | authentication | rxjs  redux saga |
-| memory leak | macro n micro tasks | webpage load html | performance virtual dom | memoziation | lazy loading | react profiler | redux middleware | design component pi chart | closures | I18n -dfw | accessibility - dfw | security -dfw | performance - dfw
+| memory leak | macro n micro tasks | webpage load html | performance virtual dom | memoziation | lazy loading | react profiler | redux middleware | design component pi chart | closures | I18n -dfw | accessibility - dfw | security -dfw | performance - dfw|prototype inheritance web security design patterns oops 
 
 untrusted data sources -> part of url , data from third party server which is database compromised , webstorage , cookies
 
 ##### Todo tech
 - Typescript poc 
 - Node js automate git work to deploy
+    - Think about how you can automate things where you have spent so much in past companies
 - Web workers usage 
 - GitHub actions COVID 19 site
 - Contributing to Mozilla code base 
@@ -53,6 +55,7 @@ untrusted data sources -> part of url , data from third party server which is da
 - Retire.js for checking vulnerabilities or nsp or shrinkwrap npm
 - somaiya idea
 - can http promises be captured in nodejs? via hostfile
+- power bi
 
 - Observer is a sound source, Our ears are subject ,We attach those sound source to subject, So when subject observing sounds , we listen and register and identify from which source it’s coming
 - Switching on/off main power which controls other switches and lights bulbs tv. Main acts as central system to control like redux - > subscribe/observer pattern
@@ -95,3 +98,4 @@ untrusted data sources -> part of url , data from third party server which is da
 - iPhone scripts
 
 - app.quicktype.io
+- https://quarkly.io/

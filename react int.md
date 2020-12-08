@@ -6,6 +6,9 @@
 - how componenet didmount works for every component - i guess, may be using new instance from class. its initialized and make some code to run once (functional js)
 - codepen.io/topic/react/templates
 
+**angular vs react what to choose for your app**
+https://keenethics.com/blog/angular-vs-react-what-to-choose-for-your-app
+
 Miscalleneoues
 SSH http:// mongodb://
 
