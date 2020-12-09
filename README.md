@@ -48,7 +48,7 @@ untrusted data sources -> part of url , data from third party server which is da
 - Typescript poc 
 - Node js automate git work to deploy
     - Think about how you can automate things where you have spent so much in past companies
-- Web workers usage 
+- Web workers usage
 - GitHub actions COVID 19 site
 - Contributing to Mozilla code base 
 - sorocco , tryCss in Q-A Github
@@ -99,3 +99,48 @@ untrusted data sources -> part of url , data from third party server which is da
 
 - app.quicktype.io
 - https://quarkly.io/
+
+###### website template to-do starter bootstrap
+- setup using scss and gulp and connect external libraries
+- ask for real logo ,,,, till that use h1 .logo with text
+- default colors, border colors, border reset, input button select reset, list reset, body font family font size, primary secondary button, dropdown reset, web fonts conversion
+- button group, custom buttons with color and size
+- find out line height of body and specified items, blocks
+- find out which needs anchor tag esp, for product headings like so on
+- use rem to px mixin from higo and add snippet to editor
+- breadcrumb reset
+- tabs reset, accordion reset
+- slick reset for slider carousel
+- SLIDER carousel in small devices
+- social icons
+- slice all images and icons and set width of image and do responsive
+- scroll up feature
+- change anchor tag color for links, list anchors, products
+- hover effects
+- menu reset
+- each feature responsive
+- micro feature like badges, icons
+- alert notification reset
+- tables reset
+- sidebar filters in ecommerce 
+- zoom effect for ecommerce product plugin
+- list view and grid view switch
+- list item reset
+- automate autoprefixer
+- check ARIA and accessability
+- check for text align for small menus like language and sign up and footer menus social icons for responsive and change accordingly
+- check margin bottom for individual products for small devices
+- use BEM classes
+- ignore unnecessary scripts files and add individual bootstrap plugins
+- try to keep in remind about custom spacing utilities or other EX: mt-xs-0 and also for font weight
+- dont hesitate to copy paste duplicate content with in mind of dynamic page conversion.. do your html part
+
+**Checklist for website redesign**
+- How many devices	
+- It is from desktop version to do redesign	
+- How many pages	
+- May have to remove important n html edit	
+- No comps n wireframes?	
+- Main layout overwrite like padding and container width n no padding n container - removal from html, nested columns	
+- You did or they did	
+- Chat placement	
