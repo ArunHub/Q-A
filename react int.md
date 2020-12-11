@@ -1,72 +1,3 @@
-- why redux thunk middleware needed
-	- In computer programming, a thunk is a subroutine used to inject an additional calculation into another subroutine. Thunks are primarily used to delay a calculation until its result is needed, or to insert operations at the beginning or end of the other subroutine
-	- https://github.com/reduxjs/redux-thunk#
-	- https://redux.js.org/api/api-reference
-- why super props needed and why it is not needed when constructor available and how we use render setstate
-- how componenet didmount works for every component - i guess, may be using new instance from class. its initialized and make some code to run once (functional js)
-- codepen.io/topic/react/templates
-
-**angular vs react what to choose for your app**
-https://keenethics.com/blog/angular-vs-react-what-to-choose-for-your-app
-
-Miscalleneoues
-SSH http:// mongodb://
-
-- Music app - spotify - https://github.com/Pau1fitz/react-spotify
-
-​ project:
-Idse material design UI elements
-Pin board sample data layer, UI sidebar
-Dfw carousel and offers page
-X chart
-X Range series stock chart
-Line chart
-Gaunt chart
-Bullet chart 
-Cumulative chart
-Pie chart with half radius
-Gauge chart
-Bar chart
-Scatter type
-Difficult to maintain chart with State
-
-### Testing:
-https://reactjs.org/docs/testing-recipes.html - most recipes are basic and given using testing-library not enzyme.
-
-### Hooks:
-https://reactjs.org/docs/hooks-intro.html
-https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889
-
-Visualization - https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e - useState order is important
-
-##### MeMo:
-memoization or memoisation is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again.
-The term "memoization" was coined by Donald Michie in 1968[3] and is derived from the Latin word "memorandum" ("to be remembered").
-
-https://reactjs.org/docs/hooks-faq.html
-
-
-https://camjackson.net/post/9-things-every-reactjs-beginner-should-know
-
-Composition over inheritane - https://www.youtube.com/watch?v=wfMtDGfHWpA 
-
-Why did React was created? Isnt a MVC framework? Does it use templates ?
-
-- https://reactjs.org/blog/2013/06/05/why-react.html
-
-##### server side rendering in react
-- Can refer to my repo - https://github.com/ArunHub/ssr
-- https://www.smashingmagazine.com/2016/03/server-side-rendering-react-node-express/
-
-### How React work /do?
-
-- https://pomb.us/build-your-own-react/
-- https://blog.jfo.click/how-react-do/
-
-### Improving Dom rendering or performance means ?
-
-- https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
-
 ### Design principles
 
 important to us that you can add functionality to a component without causing rippling changes throughout the codebase.
@@ -185,28 +116,87 @@ This doesn’t mean that we ignore the issues raised by the community. For examp
 we use componentDidMount() instead of didMount() or onMount(). This is intentional. The goal is to make the points of interaction with the library highly visible.
 https://reactjs.org/docs/design-principles.html 
 
+
+#### Why did React was created? Isnt a MVC framework? Does it use templates ?
+
+- https://reactjs.org/blog/2013/06/05/why-react.html
+- https://camjackson.net/post/9-things-every-reactjs-beginner-should-know
+
+
+- why super props needed and why it is not needed when constructor is not available and how we use render setstate
+    - super props are needed to inherit the parent component properties and we are sending our props to parent and make use of their extra properties as well as it is a oops inheritance concept.
+    - so normally when we dont write constructor , internally it is implemented by package so like java concepts only.
+    - using parent component we are using inherited methods like 
+- how componenet didmount works for every component 
+    - i guess, may be using new instance from class. its initialized and make some code to run once (functional js)
+- codepen.io/topic/react/templates
+
+### How React work /do?
+
+- https://pomb.us/build-your-own-react/
+- https://blog.jfo.click/how-react-do/
+
+**Virtual Dom use**
+--
+concept of diffing the DOM of the new state with the previous state and only render the difference, which is what ReactJS is doing with Virtual DOM. 
+Manual DOM manipulation is expensive and slow when state changes , have to recreate full DOM which makes page slower in large applications.
+So in React, virtual dom create virtual tree objects and match the difference with previous V tree DOM and send updates to actual DOM to update the particular part.
+
+I'm the primary author of a virtual-dom module, so I might be able to answer your questions. There are in fact 2 problems that need to be solved here
+
+    When do I re-render? Answer: When I observe that the data is dirty.
+    How do I re-render efficiently? Answer: Using a virtual DOM to generate a real DOM patch
+
+In React, each of your components have a state. This state is like an observable you might find in knockout or other MVVM style libraries. Essentially, React knows when to re-render the scene because it is able to observe when this data changes. Dirty checking is slower than observables because you must poll the data at a regular interval and check all of the values in the data structure recursively. By comparison, setting a value on the state will signal to a listener that some state has changed, so React can simply listen for change events on the state and queue up re-rendering.
+
+The virtual DOM is used for efficient re-rendering of the DOM. This isn't really related to dirty checking your data. You could re-render using a virtual DOM with or without dirty checking. You're right in that there is some overhead in computing the diff between two virtual trees, but the virtual DOM diff is about understanding what needs updating in the DOM and not whether or not your data has changed. In fact, the diff algorithm is a dirty checker itself but it is used to see if the DOM is dirty instead.
+
+We aim to re-render the virtual tree only when the state changes. So using an observable to check if the state has changed is an efficient way to prevent unnecessary re-renders, which would cause lots of unnecessary tree diffs. If nothing has changed, we do nothing.
+
+A virtual DOM is nice because it lets us write our code as if we were re-rendering the entire scene. Behind the scenes we want to compute a patch operation that updates the DOM to look how we expect. So while the virtual DOM diff/patch algorithm is probably not the optimal solution, it gives us a very nice way to express our applications. We just declare exactly what we want and React/virtual-dom will work out how to make your scene look like this. We don't have to do manual DOM manipulation or get confused about previous DOM state. We don't have to re-render the entire scene either, which could be much less efficient than patching it.
+
+https://stackoverflow.com/questions/21109361/why-is-reacts-concept-of-virtual-dom-said-to-be-more-performant-than-dirty-mode/23995928#23995928
+
+**Event delegation,** 
+--
+https://github.com/Matt-Esch/virtual-dom
+
+https://gist.github.com/Raynos/8414846
+
+https://calendar.perfplanet.com/2013/diff/
+
+https://medium.com/@gethylgeorge/how-virtual-dom-and-diffing-works-in-react-6fc805f9f84e
+
+https://medium.com/@rajaraodv/the-inner-workings-of-virtual-dom-666ee7ad47cf
+
+Data to Child from parent ways -  use callback method from parent and call it with data to send to parent and change data OR dispatch event to store to update. Uniflow directional or context api
+Ref -  take instance of dom element value to give which submit action or other action performed.. refs are uncontrolled component and can do use it for hurry work code.
+
+**Composition over inheritane** 
+- https://www.youtube.com/watch?v=wfMtDGfHWpA 
+
+
+
+### Hooks:
+- https://reactjs.org/docs/hooks-intro.html
+- https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889
+
+**Visualization**
+- https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e - useState order is important
+
+- https://reactjs.org/docs/hooks-faq.html
+
+##### MeMo:
+memoization or memoisation is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again.
+The term "memoization" was coined by Donald Michie in 1968[3] and is derived from the Latin word "memorandum" ("to be remembered").
+
+
 **Questions & answers**
 -
 1.	Route render if path is matched what to call render or component
 Route to match home component
 =========
-2.	**Jest** => 
-**Enzyme** is a common tool in the React ecosystem that makes it easier to write tests for how components will behave. By default, our application includes a library called **jsdom** to allow us to simulate the DOM and test its runtime behavior without a browser. Enzyme is similar, but builds on jsdom and makes it easier to make certain queries about our components.
-
-https://github.com/Microsoft/TypeScript-React-Starter#writing-tests-with-jest.
-
-**Shallow** , **jest.fn** to spy on methods, await aysnc to test async call, expect to matchers
-Shallow rendering is nice, because it allows you to render a single component completely, but without delving into any of its child components to render those. Instead, the resulting object will tell you things like the type and props of the children. This gives us good isolation, allowing testing of a single component at a time.
-
-**Stateless components are the ones easy to test.**
-https://camjackson.net/post/9-things-every-reactjs-beginner-should-know#write-stateless-components 
-
-Beforeall => constructor componentwillmount,
-
-Beforeeach => every single run before it function
-
-mockimpllemention
-Jest with parallel ism diff 
+2. 
 
 3.	**Pure function** 
 amount.total =-val return amount.total
@@ -233,7 +223,7 @@ var tax = 20;
 
 IMPURE because the function depends on an external tax variable you’d be right! A pure function cannot depend on outside variables.
 
-4.  Check pure function for object = > see anjana video
+4.  Check pure function for object = > see anjana vakil video
 
 5. **Input null or undefined initially then populate value later** ==> https://stackblitz.com/edit/react-oq9isl?file=index.js
 Warning: `value` prop on `input` should not be null
@@ -272,8 +262,6 @@ react children – don’t use props.children.map instead use React.children.map
 (in child component)
 Use above in starter react project in stackblitz
 
-Immutable Immutable js redux saga, observable in redux
-
 ### Router
 - getting start with - https://reactrouter.com/web/guides/quick-start
 - Dynamic routing where u can route a component anywhere in app not like static app used to angular ember which got initiated in root module. Before Reactv4 also implemented same.
@@ -294,10 +282,15 @@ In v4, import history from '../history'; so that history.push to go to desired p
     <Router history={browserHistory} routes={routes} />
     </Provider>
 ```
-**Try**
- 1. nested Switch 
- 3. Sridhar => How you are using react route in idse, how will u change url without router
- 4. Router with memory router implemented from idse library 
+13. dynamic attribute in a component or element
+```
+    this.state={name: "sridhar", flag: false}
+    render(){
+      return (
+        <div {...this.state.flag ? {id: 'sdafsad'}: {}}>{this.state.name}</div>
+      )
+    }
+```
 
 **React scoped stylesheet**
 -
@@ -393,11 +386,51 @@ https://css-tricks.com/understanding-react-setstate/
 
 , which is React’s cross-browser
 
-redux - actions, reducers, store, connect(mapstatetoprops, mapdispatchtoprops), configstore,
-when action is dispatched, all reducers are called and depend on action type , particular state changes and other reducers return same state
+**angular vs react what to choose for your app**
+https://keenethics.com/blog/angular-vs-react-what-to-choose-for-your-app
+
+
+### Testing:
+https://reactjs.org/docs/testing-recipes.html 
+- basic recipes are given using testing-library not enzyme.
+
+**Jest** => 
+**Enzyme** is a common tool in the React ecosystem that makes it easier to write tests for how components will behave. By default, our application includes a library called **jsdom** to allow us to simulate the DOM and test its runtime behavior without a browser. Enzyme is similar, but builds on jsdom and makes it easier to make certain queries about our components.
+
+https://github.com/Microsoft/TypeScript-React-Starter#writing-tests-with-jest.
+
+**Stateless components are the ones easy to test.**
+https://camjackson.net/post/9-things-every-reactjs-beginner-should-know#write-stateless-components 
+
+Beforeall => constructor componentwillmount,
+
+Beforeeach => every single run before it function
+
+mockimpllemention
+Jest with parallel ism diff 
+
+**Shallow** , **jest.fn** to spy on methods, await aysnc to test async call, expect to matchers
+Shallow rendering is nice, because it allows you to render a single component completely, but without delving into any of its child components to render those. Instead, the resulting object will tell you things like the type and props of the children. This gives us good isolation, allowing testing of a single component at a time.
+
+##### server side rendering in react
+- Can refer to my repo - https://github.com/ArunHub/ssr
+- https://www.smashingmagazine.com/2016/03/server-side-rendering-react-node-express/
+
+### Improving Dom rendering or performance means ?
+
+- https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
+
+#### Redux
+- actions, reducers, store, connect(mapstatetoprops, mapdispatchtoprops), configstore,
+- when action is dispatched, all reducers are called and depend on action type , particular state changes and other reducers return same state
 
 **Redux thunk:**
--
+
+- why redux thunk middleware needed
+	- In computer programming, a thunk is a subroutine used to inject an additional calculation into another subroutine. Thunks are primarily used to delay a calculation until its result is needed, or to insert operations at the beginning or end of the other subroutine
+	- https://github.com/reduxjs/redux-thunk#
+	- https://redux.js.org/api/api-reference
+
 Before using redux thunk(middleware to handle async actions).
 Normally , ajax request are made in componentDidMount where will hit the service and do async actions but if u r using redux connect , first thought will be , you will transfer calling api service in actions by calling this.props.fetchdata(url) from componentDidMount with url alone. Then from mapDispatchtoProps provide dispatch to fetchData method and dispatch actions . So thought it will work but it wont Error: Actions must be plain objects. Use custom middleware for async actions. So use redux thunk which will return function instead of just plain object actions
 
@@ -458,42 +491,6 @@ Its like promise based api which is build like http client in angular. Its simil
 Lightweight api ….......import axios from 'axios';
 https://alligator.io/react/axios-react/
 
-**Virtual Dom use**
---
-concept of diffing the DOM of the new state with the previous state and only render the difference, which is what ReactJS is doing with Virtual DOM. 
-Manual DOM manipulation is expensive and slow when state changes , have to recreate full DOM which makes page slower in large applications.
-So in React, virtual dom create virtual tree objects and match the difference with previous V tree DOM and send updates to actual DOM to update the particular part.
-
-I'm the primary author of a virtual-dom module, so I might be able to answer your questions. There are in fact 2 problems that need to be solved here
-
-    When do I re-render? Answer: When I observe that the data is dirty.
-    How do I re-render efficiently? Answer: Using a virtual DOM to generate a real DOM patch
-
-In React, each of your components have a state. This state is like an observable you might find in knockout or other MVVM style libraries. Essentially, React knows when to re-render the scene because it is able to observe when this data changes. Dirty checking is slower than observables because you must poll the data at a regular interval and check all of the values in the data structure recursively. By comparison, setting a value on the state will signal to a listener that some state has changed, so React can simply listen for change events on the state and queue up re-rendering.
-
-The virtual DOM is used for efficient re-rendering of the DOM. This isn't really related to dirty checking your data. You could re-render using a virtual DOM with or without dirty checking. You're right in that there is some overhead in computing the diff between two virtual trees, but the virtual DOM diff is about understanding what needs updating in the DOM and not whether or not your data has changed. In fact, the diff algorithm is a dirty checker itself but it is used to see if the DOM is dirty instead.
-
-We aim to re-render the virtual tree only when the state changes. So using an observable to check if the state has changed is an efficient way to prevent unnecessary re-renders, which would cause lots of unnecessary tree diffs. If nothing has changed, we do nothing.
-
-A virtual DOM is nice because it lets us write our code as if we were re-rendering the entire scene. Behind the scenes we want to compute a patch operation that updates the DOM to look how we expect. So while the virtual DOM diff/patch algorithm is probably not the optimal solution, it gives us a very nice way to express our applications. We just declare exactly what we want and React/virtual-dom will work out how to make your scene look like this. We don't have to do manual DOM manipulation or get confused about previous DOM state. We don't have to re-render the entire scene either, which could be much less efficient than patching it.
-
-https://stackoverflow.com/questions/21109361/why-is-reacts-concept-of-virtual-dom-said-to-be-more-performant-than-dirty-mode/23995928#23995928
-
-**Event delegation,** 
---
-https://github.com/Matt-Esch/virtual-dom
-
-https://gist.github.com/Raynos/8414846
-
-https://calendar.perfplanet.com/2013/diff/
-
-https://medium.com/@gethylgeorge/how-virtual-dom-and-diffing-works-in-react-6fc805f9f84e
-
-https://medium.com/@rajaraodv/the-inner-workings-of-virtual-dom-666ee7ad47cf
-
-Data to Child from parent ways -  use callback method from parent and call it with data to send to parent and change data OR dispatch event to store to update. Uniflow directional or context api
-Ref -  take instance of dom element value to give which submit action or other action performed.. refs are uncontrolled component and can do use it for hurry work code.
-
 **React Vs angular**
 --
 
@@ -545,9 +542,7 @@ The user journey (Single Page Checkout)
 The user state is maintained in the MobX store and as the user progresses further the components are progressively shown based on where the user journey has reached. 
 Since this is a concept demonstration there are no validations added.
 
-**Why Accessibility?**
----
-Web accessibility (also referred to as a11y) is the design and creation of websites that can be used by everyone. Accessibility support is necessary to allow assistive technology to interpret web pages.
+
 
 **Using fragments**
 --
@@ -637,18 +632,7 @@ https://jsfiddle.net/u1bh23kv/6/
 
 https://medium.com/@jcbaey/authentication-in-spa-reactjs-and-vuejs-the-right-way-e4a9ac5cd9a3
 
-Featured React projects
 
-500tech.com/projects
-
-dynamic attribute in a component or element
-
-    this.state={name: "sridhar", flag: false}
-    render(){
-      return (
-        <div {...this.state.flag ? {id: 'sdafsad'}: {}}>{this.state.name}</div>
-      )
-    }
 
 
 https://tylermcginnis.com/react-interview-questions/

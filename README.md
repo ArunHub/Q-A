@@ -10,7 +10,7 @@ interview qns and some answers
 ## Project based learning in various languages
 - https://github.com/tuvtran/project-based-learning
 - A collection of useful YouTube channels for javascript developers and web designers - https://github.com/andrew--r/channels
-
+  
 ## Curated list of frontend bookmarks
 https://github.com/ArunHub/frontend-dev-bookmarks
 
@@ -40,9 +40,26 @@ https://learngitbranching.js.org/
 
 
 | interceptor | session | react hooks | object prototype | data structures | algorigthms | security | csp | authentication | rxjs  redux saga |
-| memory leak | macro n micro tasks | webpage load html | performance virtual dom | memoziation | lazy loading | react profiler | redux middleware | design component pi chart | closures | I18n -dfw | accessibility - dfw | security -dfw | performance - dfw|prototype inheritance web security design patterns oops 
+| memory leak | macro n micro tasks | webpage load html | performance virtual dom | memoziation | lazy loading | react profiler | redux middleware | design component pi chart | closures | I18n -dfw | accessibility - dfw | security -dfw | performance - dfw|prototype inheritance web security design patterns oops linkedlist palindrome a = [3,4,1,7,6,8,9]
+    [1,3,4,6,7,8,9] 8 is the same index
 
 untrusted data sources -> part of url , data from third party server which is database compromised , webstorage , cookies
+
+
+Miscalleneoues
+SSH http:// mongodb://
+
+- Music app - spotify - https://github.com/Pau1fitz/react-spotify
+
+​ project:
+Idse material design UI elements
+Pin board sample data layer, UI sidebar
+Dfw carousel and offers page
+Plotyly powerbi
+Highcharts
+Difficult to maintain chart with State
+
+- Freatured react project https://500tech.com/projects/
 
 ##### Todo tech
 - Typescript poc 

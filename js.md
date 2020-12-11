@@ -8,13 +8,31 @@ array.splice(index, 1); // slooooowwwww
 
 array[i] = array[array.length - 1];
 array.pop(); // orders of magnitude faster!
+
+own bind method
+Function.prototype.mybind = function(){
+  let self = this;
+//   for(var i = 1;i<arguments.length; i++){
+    
+//   }
+  return function(){
+    self.apply(arguments[0], ...arguments)
+  }
+  [m,1],[a,2],[l,3][]
+}
+Array.prototype.unique = function(){
+  return this.filter((t,i)=> this.indexOf(t) !== i )
+}
+let arr = [1,1,2,2,3,3,5,5,6,6]
+array.unique()
+
 ```
 Source: https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 
 - 30 seconds of code - https://github.com/30-seconds/30-seconds-of-code
 
 ### How browser reacts to html, css and rendering process ?
-- https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction
+- https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
 - https://developer.mozilla.org/en-US/docs/Mozilla/Introduction_to_Layout_in_Mozilla
 
 
