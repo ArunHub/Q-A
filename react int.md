@@ -416,9 +416,13 @@ Shallow rendering is nice, because it allows you to render a single component co
 - Can refer to my repo - https://github.com/ArunHub/ssr
 - https://www.smashingmagazine.com/2016/03/server-side-rendering-react-node-express/
 
-### Improving Dom rendering or performance means ?
+### Improving performance in React ?
 
-- https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
+- https://blog.usejournal.com/how-i-improved-my-react-app-faster-just-using-css-408137b579ae?gi=d24f98ef408d
+- https://calibreapp.com/blog/react-performance-profiling-optimization
+- https://reactjs.org/docs/optimizing-performance.html
+- https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3
+- https://www.30secondsofcode.org/blog/s/react-rendering-optimization
 
 #### Redux
 - actions, reducers, store, connect(mapstatetoprops, mapdispatchtoprops), configstore,

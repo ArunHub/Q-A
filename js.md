@@ -2,7 +2,7 @@
 
 just learned a neat trick from the Three.js source code: if you want to remove an item from an array whose order doesn't matter, don't do this...
 ```
-array.splice(index, 1); // slooooowwwww
+array.splice(index, 1); // its slooooowwwww
 
 ...do this:
 
@@ -26,6 +26,21 @@ Array.prototype.unique = function(){
 let arr = [1,1,2,2,3,3,5,5,6,6]
 array.unique()
 
+//method chaining
+
+$.addClass.addClass.removeClass.add 
+in jquery , addclass returns the this value and updates the argument of addclass to the dom reference object.
+
+var obj = {
+  a:1,
+  b:2,
+  sum:0,
+  add1: function() {this.sum = this.sum+this.a+this.b;return this },
+  sub2: function() {return this}
+}
+
+obj.add1().add1() // result: {a: 1, b: 2, sum: 6, add1: ƒ, sub2: ƒ}
+
 ```
 Source: https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 
@@ -35,6 +50,12 @@ Source: https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 - https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
 - https://developer.mozilla.org/en-US/docs/Mozilla/Introduction_to_Layout_in_Mozilla
 
+### Event loop
+- https://javascript.info/event-loop
+- wait for tasks, execute, sleep waiting for tasks, endless.
+- when more tasks assigned like script load, move mouse event, settimeout so everything queued in event stack and called as macro tasks and executes like FIFO
+- Rendering a page happens only after engine executes these tasks and if it become complex and infinite loop > shows unresponsive page.
+- https://javascript.info/event-loop#macrotasks-and-microtasks
 
 ### How to improve performance of site? 
 - https://github.com/manucorporat/perf-apis-2/blob/master/performance-techniques.pdf
@@ -43,14 +64,6 @@ Source: https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 - https://www.performancebudget.io/
 - https://web.dev/rail/
 - https://moderndevtools.com/
-- https://blog.usejournal.com/how-i-improved-my-react-app-faster-just-using-css-408137b579ae?gi=d24f98ef408d
-- https://calibreapp.com/blog/react-performance-profiling-optimization
-- https://reactjs.org/docs/optimizing-performance.html
-- https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3
-- https://www.30secondsofcode.org/blog/s/react-rendering-optimization
-
-### Terminology - Dictionary
-- http://jargon.js.org/
 
 ### visualize data structures  and algorithms
 - https://visualgo.net/en
@@ -62,12 +75,290 @@ Source: https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 - https://github.com/getify/Functional-Light-JS
 ---
 
-### Event loop
-- https://javascript.info/event-loop
-- wait for tasks, execute, sleep waiting for tasks, endless.
-- when more tasks assigned like script load, move mouse event, settimeout so everything queued in event stack and called as macro tasks and executes like FIFO
-- Rendering a page happens only after engine executes these tasks and if it become complex and infinite loop > shows unresponsive page.
-- https://javascript.info/event-loop#macrotasks-and-microtasks
+
+#### closures
+- is a technique implemented to remember environment when it was called with a function inside to access the local variable n outside variable
+```
+    function add(x)
+       function addX(y)
+           return y + x
+       return addX
+    
+    variable add1 = add(1)
+    variable add5 = add(5)
+    
+    assert add1(3) = 4
+    assert add5(3) = 8
+```
+
+```
+ function createCounter() {
+   let counter = 0
+   const myFunction = function() {
+     counter = counter + 1
+     return counter
+   }
+   return myFunction
+ }
+ const increment = createCounter()
+ const c1 = increment()
+ const c2 = increment()
+ const c3 = increment()
+ console.log('example increment', c1, c2, c3)
+```
+Here is how it works. Whenever you declare a new function and assign it to a variable, you store the function definition, as well as a closure. The closure contains all the variables that are in scope at the time of creation of the function. It is analogous to a backpack. A function definition comes with a little backpack. And in its pack it stores all the variables that were in scope at the time that the function definition was created.
+
+The key to remember is that when a function gets declared, it contains a function definition and a closure. The closure is a collection of all the variables in scope at the time of creation of the function.
+https://medium.com/dailyjs/i-never-understood-javascript-closures-9663703368e8 
+
+**lexical scopes => closures**
+https://javascript.info/closure
+
+Execution Context & Execution Context stack : Execution context is the internal javascript construct to track execution of a function or the global code. The js engine maintains a stack data structure - execution context stack or call stack, which contains these contexts and the global execution context stays at the bottom of this stack. And a new execution context is created and pushed to the stack when execution of a function begins. A particular execution context tracks the pointer where statement of the corresponding function is being executed. An execution context is popped from the stack when corresponding function's execution is finished.
+
+Lexical Environment : it's the internal js engine construct that holds identifier-variable mapping. (here identifier refers to the name of variables/functions, and variable is the reference to actual object [including function type object] or primitive value). A lexical environment also holds a reference to a parent lexical environment.
+
+Now, for every execution context -- 1) a corresponding lexical environment is created and 2) if any function is created in that execution context, reference to that lexical environment is stored at the internal property ( [[Environment]] ) of that function. So, every function tracks the lexical environment related to the execution context it was created in.
+- https://stackoverflow.com/questions/12599965/lexical-environment-and-function-scope
+
+
+What is the Point of closures in JavaScript?
+
+To create modules so that we can provide public and private variables and functions
+
+Organize the code in a clean and modular way.
+
+How closures helps in minimizing and remembers
+
+function add(b){
+    function addtwo(){
+        return a+b;
+    }
+    let a = 2;
+    return addtwo;
+}
+
+var aa = add(5);
+aa();
+  
+
+https://www.quora.com/What-is-the-point-of-closures-in-JavaScript/answer/Manish-Dipankar-1
+
+dont create closures as it creates in memory leak because of non deletion of old reference
+
+function f() {
+  let value = 123;
+
+  return function() {
+    alert(value);
+  }
+}
+
+let g = f(); // g.[[Environment]] stores a reference to the Lexical Environment
+// of the corresponding f() call
+
+
+```
+function f() {
+  let value = 123;
+
+  return function() {
+    alert(value);
+  }
+}
+
+let g = f(); // while g function exists, the value stays in memory
+
+g = null; // ...and now the memory is cleaned up and this is the use of null
+```
+
+```
+var memo1 = (fn) => {
+  let cache = {};
+  return function(...args){
+      let aa = args.join()
+    
+    if(cache[aa]) {
+alert("cache",JSON.stringify(cache));
+      return cache[aa];
+    }else{
+      cache[aa] = fn.apply(this, args);
+      return cache[aa];
+    }
+    
+  }
+}
+var sum1 = (a,b) => a+b
+
+var memoSum1 = memo1(sum1);
+```
+**Currying**
+Currying is a transform that makes f(a,b,c) callable as f(a)(b)(c). JavaScript implementations usually both keep the function callable normally and return the partial if the arguments count is not enough.
+Currying is a transformation of functions that translates a function from callable as f(a, b, c) into callable as f(a)(b)(c).
+
+Currying doesn’t call a function. It just transforms it.
+For instance, we have the logging function log(date, importance, message) that formats and outputs the information. In real projects such functions have many useful features like sending logs over the network, here we’ll just use alert:
+
+https://javascript.info/currying-partials
+```
+function curry(func) {
+console.log(func.length)
+  return function curried(...args) {    
+    if (args.length >= func.length) {
+      return func.apply(this, args);
+    } else {
+      return function(...args2) {
+        console.log('[[[[[[]]]]]]', args2)
+        return curried.apply(this, args.concat(args2));
+      }
+    }
+  };
+}
+function sum(a,b,c){return a+b+c;}
+var curriedSum1 = curry(sum); //this returns curried function alone
+curriedSum1(1)(2)(3)
+//value of args is [1]
+curriedSum1(1) = function(...args2) {
+        
+        return curried.apply(this, args.concat(args2));
+      }
+//now when curriedSum1 is called with args (1) , then it returns the wrapper function(...args), 
+//again calling wrapper function with (2), returns curried function and applies previous args with current 2 so no two args (1,2) but still didnt satisfy IF condition part so again recursively returns function(...args2)
+// now when called with (3), wrapper function returns with applied function three args and IF condition get executed with original func function . Here func is sum function 
+//gives result 6
+```
+
+
+**Immediately Invoked Function Expression / Self-Executing Anonymous Function**
+that runs as soon as it is defined.
+It is a design pattern which is also known as a Self-Executing Anonymous Function and contains two major parts:
+
+- The first is the anonymous function with lexical scope enclosed within the Grouping Operator (). This prevents accessing variables within the IIFE idiom as well as polluting the global scope.
+- The second part creates the immediately invoked function expression () through which the JavaScript engine will directly interpret the function.
+
+The function becomes a function expression which is immediately executed. The variable within the expression can not be accessed from outside it.
+```
+(function () {
+    var aName = "Barry";
+})();
+// Variable aName is not accessible from the outside scope
+aName // throws "Uncaught ReferenceError: aName is not defined"
+```
+Assigning the IIFE to a variable stores the function's return value, not the function definition itself.
+```
+var result = (function () {
+    var name = "Barry"; 
+    return name; 
+})(); 
+// Immediately creates the output: 
+result; // "Barry"
+```
+
+```
+    (function(){var dd = 5;})()
+    undefined
+    (function(){this.dd = 5;})()
+    undefined
+    dd
+    5 // this results because THIS belongs to window so getting result from console will be like this only.
+```
+
+for (var i = 0; i < 5; i++) {
+  setTimeout(() => {
+    console.log(i) // this logs the final value of i so it  prints i value 5 times
+  }, i * 1000)  
+}
+
+for (var i = 0; i < 5; i++) {
+  setTimeout(() => {
+    let self = i; // this makes no sense since when setTimeout is executing and final value from var i will be referenced to let self variable.
+    console.log(self) // this also logs the final value of i so it  prints i value 5 times
+  }, self * 1000)  
+}
+
+Hence,
+
+for (var i = 0; i < 5; i++) {
+  (function (i){
+    setTimeout(() => {
+      console.log(i) // this prints each value differently since the function wrapped around setTimeout has argument value which cannot be referenced and its passed as value. Instead of going out of function, it just references the value from function argument and i guess that it acts as closures.
+    }, i * 1000)
+  })(i)  
+}
+
+
+for (var i = 0; i < 5; i++) {
+  function hi(n){
+    setTimeout(() => {
+      console.log(n) // this prints each value differently since the function wrapped around setTimeout has argument value which cannot be referenced and its passed as value. Instead of going out of function, it just references the value from function argument and i guess that it acts as closures.
+    }, n * 1000)
+  }
+  hi(i)  
+}
+
+By introducing LET variable, process and code gets simplified
+for (let i = 0; i < 5; i++) {
+    setTimeout(() => {
+      console.log(i) // arrow function proves to maintain the scope and remembers the value from where it was called
+    }, i * 1000)
+  }
+}
+
+method chaining
+
+$.addClass.addClass.removeClass.add 
+
+obj = {
+  a:1,
+  b:2,
+  add1= fn() {return this.a +this.b }
+  sub2 = fn() {return this}
+}
+
+obj.m1().m1()
+
+
+
+
+const [a,b] = useState(0);
+
+return [currValue, setterFn]
+
+useEffect
+
+function useCustom(){  
+  return {name: "arun"}
+}
+
+const [a,b] = useState(useCustom().name);
+
+const memo = (pureFn): memoFn
+
+const sum = (..args) => ...sum+args
+
+const memoSum = memo(sum)
+
+memoSum(1, 2) = 3
+memoSum(1, 2) = 3
+
+const memo = (fn) => {
+  
+  return function(...args){
+      let aa = args.join()
+    
+    if(cache[aa]) {
+      cache[aa] = 
+    }
+    else{
+      cache[aa] = fn(args);
+      return fn(args)
+    }
+    
+  }
+}
+
+
+
 ### ES6 & ES7
 arrow function, destructuring, rest parameters, spread operator, let , const, default parameters, Object.assign, array.from , array.of, Template literals, modules, iterators, generators, classes, async await, multi strings and interpolation `${}`
 
@@ -334,134 +625,12 @@ Technically, symbols are not 100% hidden. There is a built-in method Object.getO
 - Cancel a default action and prevent it from bubbling up by returning false:
 https://javascript.info/event-delegation 
 
+
+
+
 - If u want deep clone an object, use JSON.parse(JSON.stringify(Obj))
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Deep_Clone
 
-**Mutable**-
-http://doesitmutate.xyz
-
-**closures** – is a technique implemented to remember environment when it was called with a function inside to access the local variable n outside variable
-
-    function add(x)
-       function addX(y)
-           return y + x
-       return addX
-    
-    variable add1 = add(1)
-    variable add5 = add(5)
-    
-    assert add1(3) = 4
-    assert add5(3) = 8
-```
- function createCounter() {
-   let counter = 0
-   const myFunction = function() {
-     counter = counter + 1
-     return counter
-   }
-   return myFunction
- }
- const increment = createCounter()
- const c1 = increment()
- const c2 = increment()
- const c3 = increment()
- console.log('example increment', c1, c2, c3)
-```
-Here is how it works. Whenever you declare a new function and assign it to a variable, you store the function definition, as well as a closure. The closure contains all the variables that are in scope at the time of creation of the function. It is analogous to a backpack. A function definition comes with a little backpack. And in its pack it stores all the variables that were in scope at the time that the function definition was created.
-
-The key to remember is that when a function gets declared, it contains a function definition and a closure. The closure is a collection of all the variables in scope at the time of creation of the function.
-https://medium.com/dailyjs/i-never-understood-javascript-closures-9663703368e8 
-
-**lexical scopes => closures**
-https://javascript.info/closure
-
-Execution Context & Execution Context stack : Execution context is the internal javascript construct to track execution of a function or the global code. The js engine maintains a stack data structure - execution context stack or call stack, which contains these contexts and the global execution context stays at the bottom of this stack. And a new execution context is created and pushed to the stack when execution of a function begins. A particular execution context tracks the pointer where statement of the corresponding function is being executed. An execution context is popped from the stack when corresponding function's execution is finished.
-
-Lexical Environment : it's the internal js engine construct that holds identifier-variable mapping. (here identifier refers to the name of variables/functions, and variable is the reference to actual object [including function type object] or primitive value). A lexical environment also holds a reference to a parent lexical environment.
-
-Now, for every execution context -- 1) a corresponding lexical environment is created and 2) if any function is created in that execution context, reference to that lexical environment is stored at the internal property ( [[Environment]] ) of that function. So, every function tracks the lexical environment related to the execution context it was created in.
-- https://stackoverflow.com/questions/12599965/lexical-environment-and-function-scope
-
-
-##### USE of null
-```
-function f() {
-  let value = 123;
-
-  return function() {
-    alert(value);
-  }
-}
-
-let g = f(); // while g function exists, the value stays in memory
-
-g = null; // ...and now the memory is cleaned up
-```
-
-**Currying**
-Currying is a transform that makes f(a,b,c) callable as f(a)(b)(c). JavaScript implementations usually both keep the function callable normally and return the partial if the arguments count is not enough.
-Currying is a transformation of functions that translates a function from callable as f(a, b, c) into callable as f(a)(b)(c).
-
-Currying doesn’t call a function. It just transforms it.
-For instance, we have the logging function log(date, importance, message) that formats and outputs the information. In real projects such functions have many useful features like sending logs over the network, here we’ll just use alert:
-
-https://javascript.info/currying-partials
-```
-function curry(func) {
-console.log(func.length)
-  return function curried(...args) {    
-    if (args.length >= func.length) {
-      return func.apply(this, args);
-    } else {
-      return function(...args2) {
-        console.log('[[[[[[]]]]]]', args2)
-        return curried.apply(this, args.concat(args2));
-      }
-    }
-  };
-}
-function sum(a,b,c){return a+b+c;}
-var curriedSum1 = curry(sum); //this returns curried function alone
-curriedSum1(1)(2)(3)
-
-//now when curriedSum1 is called with args (1) , then it returns the wrapper function(...args), 
-//again calling wrapper function with (2), returns curried function and applies previous args with current 2 so no two args (1,2) but still didnt satisfy IF condition part so again recursively returns function(...args2)
-// now when called with (3), wrapper function returns with applied function three args and IF condition get executed with original func function . Here func is sum function 
-//gives result 6
-```
-**Immediately Invoked Function Expression / Self-Executing Anonymous Function**
-that runs as soon as it is defined.
-It is a design pattern which is also known as a Self-Executing Anonymous Function and contains two major parts:
-
-- The first is the anonymous function with lexical scope enclosed within the Grouping Operator (). This prevents accessing variables within the IIFE idiom as well as polluting the global scope.
-- The second part creates the immediately invoked function expression () through which the JavaScript engine will directly interpret the function.
-
-The function becomes a function expression which is immediately executed. The variable within the expression can not be accessed from outside it.
-```
-(function () {
-    var aName = "Barry";
-})();
-// Variable aName is not accessible from the outside scope
-aName // throws "Uncaught ReferenceError: aName is not defined"
-```
-Assigning the IIFE to a variable stores the function's return value, not the function definition itself.
-```
-var result = (function () {
-    var name = "Barry"; 
-    return name; 
-})(); 
-// Immediately creates the output: 
-result; // "Barry"
-```
-
-```
-    (function(){var dd = 5;})()
-    undefined
-    (function(){this.dd = 5;})()
-    undefined
-    dd
-    5 // this results because THIS belongs to window so getting result from console will like this only.
-```
 
 **Factory Function instead of class**
 
@@ -533,6 +702,48 @@ It works like this only => http://jsfiddle.net/bfyarxfe/2/
 ```
     function myFunction(x, y, z) { }var args = [0, 1, 2];myFunction.apply(null, args);
 ```
+
+###### how to use and simulate map function for splitting string variable
+```
+// assume we create a prototype function on array object
+Array.prototype.simpleIteration = function(callback) {
+	let newArray = []
+	for (let x = 0; x < this.length; x++) {
+		newArray.push( callback(this[x]) )
+	}
+	return newArray
+}
+
+// and now we create a new sample array
+let sampleArray = ["a","b","c"]
+
+// we can call this by
+let result1 = sampleArray.simpleIteration( x => x+x )
+console.log("result1:")
+console.log(result1) // result1 becomes "aa","bb","cc"
+
+// or we can call it by
+let result2 = Array.prototype.simpleIteration.call(sampleArray, x => x+x)
+console.log("result2:")
+console.log(result2) // result2 becomes "aa","bb","cc"
+
+// So lets say we created a string
+let sampleString = "abc"
+// since simpleIteration function were attached to Array functions
+// if we create a string and call simple Iteration wouldn't work
+
+/* this code wouldn't work
+let result3 = sampleString.simpleIteration(x=>x+x)
+console.log("result3:")
+console.log(result3)
+*/
+
+// however, to get around it .. we can use the call method
+let result4 = Array.prototype.simpleIteration.call(sampleString, x => x+x)
+console.log("result4")
+console.log(result4)
+```
+
 **Apply will give the array to apply automatically to the given parameters.**
 
 While in case of `call()` , you have to explicitly give the parameters not array.
@@ -793,25 +1004,6 @@ All Js libraries in micro size format. very efficient
 - https://www.hongkiat.com/blog/js-library-interactive-charts/
 
 ---
-
-**Promise** object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value. Like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.
-
-In computer programming, a **callback**, also known as a "call-after" function, is any executable code that is passed as an argument to other code; that other code is expected to call back (execute) the argument at a given time.
-
-
-##### promise vs observable
-
-    const source = Rx.Observable.of({name: 'Brian'}, [1,2,3], function hello(){ 
-    return 'Hello'
-    });
-    //output: {name: 'Brian}, [1,2,3], function hello() { return 'Hello' }
-    const subscribe = source.subscribe(val => console.log(val));
-
-In observable return multple values but promise return one value with lot of objects or value inside.
-Better not to compare promise with observable since observable is a producer of data or stream of data and can be consumed only when subscribed I.e like a calling a function.
-Normal function returns single data;
-Observable returns mutliple data, for Ex: can be async calls data, event handler data, timer funtions
-
 #### ajax
  
 
@@ -836,6 +1028,44 @@ append parameters in for http get url-
     xhttp.open("GET", "demo_get.asp?t=" + Math.random()+"&s=455", true);
 
 use & to append parameters in url
+
+**callback**
+In computer programming, a **callback**, also known as a "call-after" function, is any executable code that is passed as an argument to other code; that other code is expected to call back (execute) the argument at a given time.
+
+Callback is synchronous only. But for network calls, it is useful to get desired result in callback.
+
+so for network call, we need to send two callbacks(for success,failure) and if we depend on one response to feed into another then again it goes nested functions with two parameters like it goes for "N" request which will form doom of pyramid.
+In order to avoid the doom, we use Promise and its chaining mechanism 
+
+**Promise** object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value. Like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.
+
+async function secondfn(someurl){
+    try{
+var response = await fetch(someurl);
+    return response
+    }catch(e){
+
+    }
+}
+
+await abstracts return new Promise((success, reject)=>{success() or reject()})
+
+secondfn(url)
+
+##### promise vs observable
+
+    const source = Rx.Observable.of({name: 'Brian'}, [1,2,3], function hello(){ 
+    return 'Hello'
+    });
+    //output: {name: 'Brian}, [1,2,3], function hello() { return 'Hello' }
+    const subscribe = source.subscribe(val => console.log(val));
+
+In observable return multple values but promise return one value with lot of objects or value inside.
+Better not to compare promise with observable since observable is a producer of data or stream of data and can be consumed only when subscribed I.e like a calling a function.
+Normal function returns single data;
+Observable returns mutliple data, for Ex: can be async calls data, event handler data, timer funtions
+
+
 
 **OOJS?** 
 
@@ -1409,23 +1639,7 @@ Except that you can, if you take the next step and convert it into an array. Thi
     
     }
 
-  
-  
-
-##### closures=================
-
-What is the Point of closures in JavaScript?
-
-To create modules so that we can provide public and private variables and functions
-
-Organize the code in a clean and modular way.
-
-  
-
-https://www.quora.com/What-is-the-point-of-closures-in-JavaScript/answer/Manish-Dipankar-1
-
-  
-  
+ 
 
 ##### setTimeout ===================
 
@@ -1634,14 +1848,31 @@ DD.prototype.ddd = 123;
 console.log(rr,'rr');
 console.log(rr1,'rr1');
 
-Here rr and rr1 have prototype ddd how ?
-Answer: Object create do attach the object as prototype to newly created one. 
+Both rr and rr1 'ddd' property how ?
+Answer: Since we attached DD prototype to rr1. DDD can be accessible through prototype chain. 
 
-dont create closures as it creates in memory leak because of non deletion of old reference
 
-when large response data comes while browser has so many browser tabs, then we can implement increasing heap size for our application 
+Private proerty/method for the customer alone
+var Customer = (function (id, name){
+    this.id = id;
+    this.name = name;
 
-and also can get large response data using observable than promise since it returns whole data and may get delay. Using  observable, can implement pagination and load streams of 100 chunk data in background and make browser smoother
+    var firstfn = function(){
+        console.log()
+    }
+
+    return {
+        id: this.id,
+        name: this.name,
+        firstfn: firstfn
+    }
+})()
+
+
+
+What we can do when large response data comes from network api response while browser has so many browser tabs?
+- then we can implement increasing heap size for our application/particular tab
+- and also can get large response data using observable than promise since it returns whole data and may get delay. Using  observable, can implement pagination and load streams of 100 chunk data in background and make browser smoother
 
  
  1. name the primitive data types Is function is a datatype
@@ -1762,15 +1993,9 @@ https://www.javatpoint.com/javascript-interview-questions
 
 **Prokarma**
 
-1.	Event loop in js
-2.	Function  expression in js
-10.	First class functions #pure function
 11.	Polymorphism in js
-17.	Unit testing . How to mock backend calls
-21.	Pseudo elements
-22.	Document.object
-23.	How will you find which browser running
-24.	What history object does in javascript
+23.	How will you find which browser running - navigator
+24.	What history object does in javascript - state for back,forward, and methods to change url
 
 
 **Olam**

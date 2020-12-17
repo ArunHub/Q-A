@@ -7,6 +7,8 @@ interview qns and some answers
 ## Shared component cloud from Angular,react,vue and more
 - https://bit.dev/
 
+
+**ARE WE SEEING THESE LINKS IF ABOUT TO SEARCH FOR TECH?**
 ## Project based learning in various languages
 - https://github.com/tuvtran/project-based-learning
 - A collection of useful YouTube channels for javascript developers and web designers - https://github.com/andrew--r/channels
@@ -42,7 +44,7 @@ https://learngitbranching.js.org/
 | interceptor | session | react hooks | object prototype | data structures | algorigthms | security | csp | authentication | rxjs  redux saga |
 | memory leak | macro n micro tasks | webpage load html | performance virtual dom | memoziation | lazy loading | react profiler | redux middleware | design component pi chart | closures | I18n -dfw | accessibility - dfw | security -dfw | performance - dfw|prototype inheritance web security design patterns oops linkedlist palindrome a = [3,4,1,7,6,8,9]
     [1,3,4,6,7,8,9] 8 is the same index
-
+context api vs redux, useSelector, useeffect flushes previous subscribtion on every render, usecallback, passing reference callback from parent to child and assign the callback reference to variable and call the props.callback ... will this return the values ithas to return from inside the functions reference... connect mapstatetoprops extra second argument
 untrusted data sources -> part of url , data from third party server which is database compromised , webstorage , cookies
 
 
