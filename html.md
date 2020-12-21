@@ -8,21 +8,6 @@
 	- Device access: allowing for the usage of various input and output devices.
 	- Styling: letting authors write more sophisticated themes.
 	
-#### Security issues in HTML5
-- Clickjacking, XSS, Script injecting
-- Cross messaging document/ web messaging api
-- CORS-
-- CSP(content security policy) -> avoid multiple csp, inline javascript => media-src,directive-src, styles-src, default-src, csp2=> nounce, hash 
-- iframe sandbox
-- video poster elements
-- drag and drop clickjacking
-- cookies and localstorage clearing explicitily, 
-- web workers post message - validation of origin/ data
-- geolocation
-- svg canvas scripting vulnerable
-- filesystem api sandboxed vulnerable
-
-
 #### Html5 api
 1. Media API
 2. Text Track API 

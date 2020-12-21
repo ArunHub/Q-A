@@ -1,6 +1,14 @@
+### Interview Questions
+
+- https://github.com/jwasham/coding-interview-university
+- A mostly reasonable collection of technical software development interview questions solved in Javascript
+https://github.com/kennymkchan/interview-questions-in-javascript
+- Advanced js questions – toptal
+https://www.javatpoint.com/javascript-interview-questions 
+- https://awesomeopensource.com/project/vvscode/js--interview-questions 
+
 #### TIPS
 
-just learned a neat trick from the Three.js source code: if you want to remove an item from an array whose order doesn't matter, don't do this...
 ```
 array.splice(index, 1); // its slooooowwwww
 
@@ -9,7 +17,7 @@ array.splice(index, 1); // its slooooowwwww
 array[i] = array[array.length - 1];
 array.pop(); // orders of magnitude faster!
 
-own bind method
+// own bind method
 Function.prototype.mybind = function(){
   let self = this;
 //   for(var i = 1;i<arguments.length; i++){
@@ -18,7 +26,6 @@ Function.prototype.mybind = function(){
   return function(){
     self.apply(arguments[0], ...arguments)
   }
-  [m,1],[a,2],[l,3][]
 }
 Array.prototype.unique = function(){
   return this.filter((t,i)=> this.indexOf(t) !== i )
@@ -44,7 +51,17 @@ obj.add1().add1() // result: {a: 1, b: 2, sum: 6, add1: ƒ, sub2: ƒ}
 ```
 Source: https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 
+
+- | interceptor | session in js ?
+
 - 30 seconds of code - https://github.com/30-seconds/30-seconds-of-code
+
+##### dynamic create variable javascript
+
+> assign it to global window like window['variable']
+> var varname ='CB1';window[varname] ='my value';
+dynamic create variable javascript for IF s
+
 
 ### How browser reacts to html, css and rendering process ?
 - https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model
@@ -75,6 +92,812 @@ Source: https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 - https://github.com/getify/Functional-Light-JS
 ---
 
+**OOJS?** 
+
+#### Objects 
+So when you used string methods like:
+
+    myString.split(',');
+
+You were using a method available on an instance of the String class. Every time you create a string in your code, that string is automatically created as an instance of String, and therefore has several common methods/properties available on it.
+
+When you accessed the document object model using lines like this:
+
+    var myDiv = document.createElement('div');
+
+You were using methods available on an instance of the Document class. For each webpage loaded, an instance of Document is created, called document, which represents the entire page's structure, content, and other features such as its URL. Again, this means that it has several common methods/properties available on it.
+
+**Abstraction**
+ 
+know about a person (their address, height, shoe size, DNA profile, passport number, significant personality traits ...) , but in this case we are only interested in showing their name, age, gender, and interests, want to be able to write a short introduction about them based on this data, and get them to say hello. This is known as abstraction — creating a simple model of a more complex thing, which represents its most important aspects in a way that is easy to work with for our program's purposes.
+
+Class : Person
+{Name,age,gender,interests, bio:function(), greeting:function()}
+
+When an object instance is created from a class, the class's constructor function is run to create it. This process of creating an object instance from a class is called instantiation — the object instance is instantiated from the class.
+In OOP, we can create new classes based on other classes — these new child classes can be made to inherit the data and code features of their parent class, so you can reuse functionality common to all the object types rather than having to duplicate it.
+
+The fancy word for the ability of multiple object types to implement the same functionality is polymorphism
+**Prototype chain in javascript**
+
+    Function g(){this.vertices=”sfd”};
+    g.prototype.addVertex = function (){console.log()}
+    console.log(g.hasOwnProperty('vertices'));
+    // true
+    console.log(g.hasOwnProperty('nope'));
+    // false
+    console.log(g.hasOwnProperty('addVertex'));
+    // false
+    console.log(g.__proto__.hasOwnProperty('addVertex'));
+    // true
+
+hasOwnProperty is the only thing in JavaScript which deals with properties and does not traverse the prototype chain.
+
+##### Bad practice: Extension of native prototypes
+One misfeature that is often used is to extend Object.prototype or one of the other built-in prototypes.
+This technique is called monkey patching and breaks encapsulation. While used by popular frameworks such as Prototype.js, there is still no good reason for cluttering built-in types with additional non-standard functionality.
+The only good reason for extending a built-in prototype is to backport the features of newer JavaScript engines, like Array.forEach.
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#Using_prototypes_in_JavaScript
+
+##### static variable vs instance
+```
+var temp;
+if (periodicArr[i].symbol && (temp = str.match(regex)) !== null) {}
+
+"class Test{
+public static int a = 5;
+public int b = 10;
+}
+// here t1 and t2 will have a separate copy of b
+// while they will have same copy of a.
+Test t1 = new test(); 
+Test t2 = new test();
+
+You can access a static variable with it's class Name like this
+
+Test.a = 1//some value But you can not access instance variable like this
+System.out.println(t1.a);
+System.out.println(t2.a);
+
+In both cases output will be 1 as a is share by all instances of the test class. 
+while the instance variable will each have separate copy of b (instance variable) So
+
+ t1.b = 15 // will not be reflected in t2.
+ System.out.println(t1.b); // this will print 15
+ System.out.println(t2.b); / this will still print 10; 
+```
+Hope that explains your query."
+
+**Doubts**
+```
+function DD(){this.name='arun';this.age=5}
+rr = new DD();
+rr1 = Object.create(new DD());
+console.log('rr',rr);
+console.log('rr1',rr1);
+DD.prototype.ddd = 123;
+console.log(rr,'rr');
+console.log(rr1,'rr1');
+```
+Both rr and rr1 'ddd' property how ?
+Answer: Since we attached DD prototype to rr1. DDD can be accessible through prototype chain. 
+
+##### Function methods
+
+The **call()** method calls a function with a given this value and arguments provided individually.
+
+```
+
+function Product(name, price) { this.name = name;  this.price = price;}
+
+function Food(name, price) {  Product.call(this, name, price);  this.category = 'food';}
+
+console.log(new Food('cheese', 5).name); // expected output: "cheese"
+```
+- Using call to chain constructors for an object
+- Using call to invoke an anonymous function
+- Using call to invoke a function and specifying the context for 'this'
+- Using call to invoke a function and without specifying the first argument
+
+```
+    var obj = {a:1,b:2,c:function(){console.log('bb',this.b)}}
+    undefined
+    var dd = obj.c; // giving reference to var dd
+    undefined
+    dd() // bb undefined
+    obj.c() // bb 2
+    var dd = obj.c.bind(obj);
+    dd() // now shows as bb 2
+    var dd = obj.c.call(obj); // without calling dd() … call invokes the function and results as bb 2
+```
+But this does not work in arrow function declared as method inside object.
+Because Arrow functions cannot be used to write object methods because, as you have found, since arrow functions close over the this of the lexically enclosing context, the this within the arrow is the one that was current where you defined the object. Which is to say:
+
+It works like this only => http://jsfiddle.net/bfyarxfe/2/ 
+```
+    function myFunction(x, y, z) { }var args = [0, 1, 2];myFunction.apply(null, args);
+```
+
+###### how to use and simulate map function for splitting string variable
+```
+// assume we create a prototype function on array object
+Array.prototype.simpleIteration = function(callback) {
+	let newArray = []
+	for (let x = 0; x < this.length; x++) {
+		newArray.push( callback(this[x]) )
+	}
+	return newArray
+}
+
+// and now we create a new sample array
+let sampleArray = ["a","b","c"]
+
+// we can call this by
+let result1 = sampleArray.simpleIteration( x => x+x )
+console.log("result1:")
+console.log(result1) // result1 becomes "aa","bb","cc"
+
+// or we can call it by
+let result2 = Array.prototype.simpleIteration.call(sampleArray, x => x+x)
+console.log("result2:")
+console.log(result2) // result2 becomes "aa","bb","cc"
+
+// So lets say we created a string
+let sampleString = "abc"
+// since simpleIteration function were attached to Array functions
+// if we create a string and call simple Iteration wouldn't work
+
+/* this code wouldn't work
+let result3 = sampleString.simpleIteration(x=>x+x)
+console.log("result3:")
+console.log(result3)
+*/
+
+// however, to get around it .. we can use the call method
+let result4 = Array.prototype.simpleIteration.call(sampleString, x => x+x)
+console.log("result4")
+console.log(result4)
+```
+**What does [].forEach.call() do in JavaScript?**
+- https://stackoverflow.com/questions/16053357/what-does-foreach-call-do-in-javascript
+
+#### collection vs array==============
+
+collection of DOM elements (more formally called a NodeList) can’t be manipulated like an array
+
+  
+
+But you can’t use Array methods like push(), splice() or reverse() to manipulate it.
+
+Except that you can, if you take the next step and convert it into an array. This is in fact trivial:
+
+  ```
+
+    function collectionToArray(collection)
+    
+    {
+    
+    var ary = [];
+    
+    for(var i=0, len = collection.length; i < len; i++)
+    
+    {
+    
+    ary.push(collection[i]);
+    
+    }
+    
+    return ary;
+    
+    }
+
+```
+
+**Apply will give the array to apply automatically to the given parameters.**
+
+While in case of `call()` , you have to explicitly give the parameters not array.
+`Call()` is like invoking function with context given as first parameter.
+```
+    myFunction.call(null, 0,1,2);
+```
+Suppose if u r in prototype method of object and calling function which is declared globally , so when invoking global function it will call from window as this , so when u invoke the function with object this and with parameters , global functions invokes in context of object this.
+```
+    Function Tab(){
+    This.name: “dfs”;this.func=function(){ render.call(this, “hello”)} 
+    }
+    Function global(){
+    Var name = this.name} //here this refers to Tab Object instead of window
+```
+with the bind () method, we can explicitly set the this value for invoking methods on objects, we can borrow
+ and copy methods, and assign methods to variable to be executed as functions
+Bind is like wrapping the calling function to outer function with its context
+
+    Binder(this, params1,2,3){
+    Function callingFunction(){}
+    }
+    
+    In jquery
+    $('#btn').bind('click keydown', function(){console.log('clicked')}).on('keyup',function(){console.log('key up')})
+    
+    Call the function for both click and keydown
+    Passing event data
+    var message = "Spoon!";
+    $( "#foo" ).bind( "click", {
+     msg: message
+    }, function( event ) {
+     alert( event.data.msg );
+    });
+    message = "Not in the face!";
+    $( "#bar" ).bind( "click", {
+     msg: message
+    }, function( event ) {
+     alert( event.data.msg );
+    });
+
+
+
+    function greet (gender, age, name) {
+     // if a male, use Mr., else use Ms.
+      var salutation = gender === "male" ? "Mr. " : "Ms. ";
+      if (age > 25) {
+       return "Hello, " + salutation + name + ".";                
+       }   else {  
+          return "Hey, " + name + ".";  
+          }      
+           }
+     // So we are passing null because we are not using the "this" keyword in our greet function.        var greetAnAdultMale = greet.bind (null, "male", 45);
+    
+    var data = [
+                    {name:"Samantha", age:12},
+                    {name:"Alexis", age:14}
+                ]
+    
+                var user = {
+                    // local data variable
+                    data    :[
+                        {name:"T. Woods", age:37},
+                        {name:"P. Mickelson", age:43}
+                    ],
+                    showData:function (event) {
+                        var randomNum = ((Math.random () * 2 | 0) + 1) - 1; // random number between 0 and 1
+    
+                        console.log (this.data[randomNum].name + " " + this.data[randomNum].age);
+                    }
+    
+                }
+    
+                // Assign the showData method of the user object to a variable
+                var showDataVar = user.showData;
+    
+                showDataVar (); // Samantha 12 (from the global data array, not from the local data array)
+
+if called by user.showData() alone without assigning to global value then its value is different.
+
+http://javascriptissexy.com/javascript-apply-call-and-bind-methods-are-essential-for-javascript-professionals/
+
+
+You probably already noticed that our function A has a special property called prototype. This special property works with the JavaScript new operator. The reference to the prototype object is copied to the internal [[Prototype]] property of the new instance. For example, when you do var a1 = new A(), JavaScript (after creating the object in memory and before running function A() with this defined to it) sets a1.[[Prototype]] = A.prototype. When you then access properties of the instance, JavaScript first checks whether they exist on that object directly, and if not, it looks in [[Prototype]]. This means that all the stuff you define in prototype is effectively shared by all instances, and you can even later change parts of prototype and have the changes appear in all existing instances, if you wanted to.
+
+If, in the example above, you do 
+
+    var a1 = new A(); var a2 = new A(); 
+    //then a1.doSomething would actually refer to Object.getPrototypeOf(a1).doSomething, which is the same as the A.prototype.doSomething you defined, 
+    i.e. Object.getPrototypeOf(a1).doSomething == Object.getPrototypeOf(a2).doSomething == A.prototype.doSomething.
+
+In short, prototype is for types, while Object.getPrototypeOf() is the same for instances.
+
+[[Prototype]] is looked at recursively, i.e. a1.doSomething, Object.getPrototypeOf(a1).doSomething, Object.getPrototypeOf(Object.getPrototypeOf(a1)).doSomething etc., until it's found or Object.getPrototypeOf returns null.
+
+So, when you call
+
+    var o = new Foo();
+    JavaScript actually just does
+    
+    var o = new Object();
+    o.[[Prototype]] = Foo.prototype;
+    Foo.call(o);
+    (or something like that) and when you later do
+    
+    o.someProp;
+
+it checks whether o has a property someProp. If not, it checks Object.getPrototypeOf(o).someProp, and if that doesn't exist it checks Object.getPrototypeOf(Object.getPrototypeOf(o)).someProp, and so on.
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#Using_prototypes_in_JavaScript 
+
+### Prototype
+Sharing of variable and methods between instances of objects. When we attach/create variable or method to prototype object , then it will get accessed from all the instances of objects. 
+
+Prototypes are the mechanism by which JavaScript objects inherit features from one another. how prototype chains work and look at how the prototype property can be used to add methods to existing constructors.
+
+JavaScript is often described as a prototype-based language — to provide inheritance, objects can have a prototype object, which acts as a template object that it inherits methods and properties from.
+
+An object's prototype object may also have a prototype object, which it inherits methods and properties from, and so on. This is often referred to as a prototype chain, and explains why different objects have properties and methods defined on other objects available to them.
+
+In JavaScript, a link is made between the object instance and its prototype (its __proto__ property, which is derived from the prototype property on the constructor), and the properties and methods are found by walking up the chain of prototypes.
+
+Source : mdn prototype js
+
+
+#### prototype design – 
+To clone an object, a constructor must exist to instantiate the first object. Next, by using the keyword prototype variables and methods bind to the object's structure.
+```
+    var TeslaModelS = function() {
+      this.numWheels    = 4;
+      this.manufacturer = 'Tesla';
+      this.make         = 'Model S';
+    }
+    
+    TeslaModelS.prototype = function() {
+    
+      var go = function() {
+        // Rotate wheels
+      };
+    
+      var stop = function() {
+        // Apply brake pads
+      };
+    
+      return {
+        pressBrakePedal: stop,
+        pressGasPedal: go
+      }
+    
+    }();
+```
+- If u want deep clone an object, use JSON.parse(JSON.stringify(Obj))
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Deep_Clone
+
+
+#### custom constructors======================
+```
+    function Person(name,age) {
+    
+    this.name = name;
+    
+    this.age = age;
+    
+    }
+    
+      
+    
+    // Let's make bob and susan again, using our constructor
+    
+    var bob = new Person("Bob Smith", 30);
+    
+    var susan = new Person("Susan Jordan", 25);
+    
+    // help us make george, whose name is "George Washington" and age is 275
+    
+    var george = new Person("George Washington",275);
+```
+  
+
+Let's look at another example and practice coding constructors. Here we have made a Cat constructor for you, with age and color properties.
+
+  
+
+Why is this Cat constructor so cool?
+
+It means if we have many cats and wanted to create an object for each
+
+cat, we could just use this constructor with the properties already
+
+defined.
+
+  
+
+This is much better than using the Object
+
+constructor which just gives us an empty object and needs us to define
+
+every property and value for each cat object we would create.
+
+**Lets take a look at below code:**
+```
+function Customer(name,id){
+this.name = name;
+this.id = id;
+}
+//output for new Customer("arun",5): {name: arun, id : 5}
+
+class Customer{
+  constructor(name, id){
+    this.name = name;
+this.id = id;
+  }
+  m1 = () => {} // this one represents as in constructor only since it is assigned to variable even its a arrow function.
+  function m2(){
+    // this normal function add as Prototype as language design and also because when instance object created it looks like key: pair but here it is defined as function right. 
+  }
+}
+
+```
+
+#### prototype===============
+```
+    snoopy.bark = function() {
+    
+    console.log("Wow");
+    
+    };
+```
+  
+
+Here we have very similar code as last time, but there is an important difference. Instead of using buddy.bark to add the bark method to just the buddy object, we use Dog.prototype.bark.
+
+  
+
+Click run this time, and both buddy and snoopy can bark just fine! Snoopy can bark too even though we haven't added a bark method to that object. How is this so? Because we have now changed the prototype for the class Dog. This immediately teaches all Dogs the new method.
+
+  
+
+In general, if you want to add a method to a class such that all
+
+members of the class can use it, we use the following syntax to extend the prototype:
+
+  
+```
+    className.prototype.newMethod =
+    
+      
+    
+    function() {
+    
+    statements;
+    
+    };
+    
+      
+    
+    function Dog (breed) {
+    
+    this.breed = breed;
+    
+    };
+    
+      
+    
+    // here we make buddy and teach him how to bark
+    
+    var buddy = new Dog("golden Retriever");
+    
+    Dog.prototype.bark = function() {
+    
+    console.log("Woof");
+    
+    };
+    
+    buddy.bark();
+    
+      
+    
+    // here we make snoopy
+    
+    var snoopy = new Dog("Beagle");
+    
+    /// this time it works!
+    
+    snoopy.bark();
+    
+    apply function==============
+    
+    var person = {
+    
+    firstName :"Penelope",
+    
+    lastName :"Barrymore",
+    
+    showFullName:function () {
+    
+    ​// The "context"​
+    
+    console.log (this.firstName + " " + this.lastName);
+    
+    }
+    
+    }
+
+​
+
+​// The "context", when invoking showFullName, is the person object, when we invoke the showFullName () method on the person object.​
+
+​// And the use of "this" inside the showFullName() method has the value of the person object,​
+
+person.showFullName (); // Penelope Barrymore​
+
+​
+
+​// If we invoke showFullName with a different object:​
+
+​var anotherPerson = {
+
+firstName :"Rohit",
+
+lastName :"Khan"​
+
+};
+
+​
+
+​// We can use the apply method to set the "this" value explicitly—more on the apply () method later.​
+
+​// "this" gets the value of whichever object invokes the "this" Function, hence:​
+
+person.showFullName.apply (anotherPerson); // Rohit Khan​
+
+​
+
+​// So the context is now anotherPerson because anotherPerson invoked the person.showFullName () method by virtue of using the apply () method​
+```
+  
+  
+
+#### encapsulating private n public methods pattern=================
+```
+    var myRevealingModule = (function () {
+    
+    var privateVar = "Ben Cherry",
+    
+    publicVar = "Hey there!";
+    
+      
+    
+    function privateFunction() {
+    
+    console.log( "Name:" + privateVar );
+    
+    }
+    
+      
+    
+    function publicSetName( strName ) {
+    
+    privateVar = strName;
+    
+    }
+    
+      
+    
+    function publicGetName() {
+    
+    privateFunction();
+    
+    }
+    
+      
+    
+    // Reveal public pointers to
+    
+    // private functions and properties
+    
+    return {
+    
+    setName: publicSetName,
+    
+    greeting: publicVar,
+    
+    getName: publicGetName
+    
+    };
+    
+    })();
+    
+      
+    
+    myRevealingModule.setName( "Paul Kinlan" );
+```
+
+**Private prorerty/method for the customer alone**
+var Customer = (function (id, name){
+    this.id = id;
+    this.name = name;
+
+    var firstfn = function(){
+        console.log()
+    }
+
+    return {
+        id: this.id,
+        name: this.name,
+        firstfn: firstfn
+    }
+})()
+
+#### this keyword-======================
+
+followed by methods vs functions post
+
+  
+
+The "this" Keyword
+
+  
+
+Our setAge method works great for bob because it updates bob.age, but what if we want to use it for other people?
+
+  
+  
+
+It turns out we can make a method work for many objects using a new keyword, this. The keyword this acts as a placeholder, and will refer to whichever object called that method when the method is actually used.
+
+  
+  
+
+Let's look at the method setAge (line 2) to see how this works. By using the keyword this, setAge will change the age property of any object that calls it. Previously, we had a specific object bob instead of the keyword this. But that limited the use of the method to just bob.
+
+  
+  
+
+Then when we say bob.setAge = setAge; (line 9), it means whenever we type bob.setAge( ), this.age in the setAge method will refer to bob.age.
+
+  
+```
+    // here we define our method using "this", before we even introduce bob
+    
+    var setAge = function (newAge) {
+    
+    this.age = newAge;
+    
+    };
+    
+    // now we make bob
+    
+    var bob = new Object();
+    
+    bob.age = 30;
+    
+    // and down here we just use the method we already made
+    
+    bob.setAge = setAge;
+    
+      
+    
+    // change bob's age to 50 here
+    
+    bob.setAge(50);
+
+```
+In javascript every function receives two variables other than function parameters namely "this" and "arguments".
+
+##### #how-to-access-the-correct-this-inside-a-callback
+
+https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback/20279485#20279485
+
+
+**why js is pass by reference?**
+
+    Var obj1={a:1,b:2}; 
+    obj2=obj1; 
+    obj2.b = 3; then console.log(obj1) 
+    // {a:1, b:3} after changing in b in obj , the value 3 automatically changes in obj1 . 
+    //So javascript is pass by reference.
+
+​```
+
+#### invoking functions===============
+
+4 types :
+
+simply calling fn name
+```
+    function fun(){
+    
+    };
+    
+    fun();
+    
+      
+    
+    var obj = {};
+    
+    obj.mymethod = function(){
+    
+    // myMethod is a Method.
+    
+    console.log(this);
+    
+    // this is bound to obj
+    
+    };
+```
+  
+  
+  
+
+When we invoke the function as the method of an object, that object becomes the function context and is available within the function via the this parameter. This is one of the primary means by which JavaScript allows object-oriented code to be written
+
+  
+
+#### using constructor
+```
+function Fun(){
+
+// Notice a function being used as a constructor always starts with Capital letter.
+
+    this.myProperty = ' This is my property';
+    
+    }
+    
+    var myObject = new Fun();
+```
+When invoked with a new operator, a new object will be created and "this" inside the Fun() is bound to the newly created object.
+
+  
+
+(4) With the Apply method :
+
+A function can be called in JavaScript with an apply method invocation with functionName accompanied with a dot(.)
+
+  ```
+
+    functionName.apply(arguments);
+    
+      
+    
+    function foo(a,b){
+    
+    console.log(a,b,this);
+    
+    }
+    
+    var args = ['abra','ka', 'dabra'];
+    
+    foo.apply(obj,args);
+
+  ```
+  
+  
+
+In this case the first argument passed to apply is an object to which we want "this" keyword to get bound to.
+
+  
+
+If the function is being used as an event handler, "this" will refer to the node that fired the event
+
+
+### design patterns – 
+
+-> GitHub - sohamkamani/javascript-design-patterns-for-humans: An ultra-simplified explanation of design patterns implemented in javascript
+Performance Debugging with DevTools
+
+- Constructor Pattern - normal es5 constructor function pattern
+- Module Pattern - seperating code as module with private variables
+- Revealing Module Pattern - fixes the using this property from module pattern
+- Singleton Pattern - defines the single service in a file, serves single object throughout the project.
+- Observer Pattern - broadcasting and receiveing radio concept
+- Mediator Pattern - radar control for aeroplane
+- Prototype Pattern - chaining concept 
+- Command Pattern - executing commands for particular tasks
+- Facade Pattern - abstracting the big functionality inside small single code like wrapper for all polyfills , fallbacks and example: $.addClass() in jquery
+- Factory Pattern - provides which vehicle you want from factory. produces the new object and give you . one stop solution
+- Mixin Pattern - mix - in into another library for reuse i think so.
+- Decorator Pattern - when many sku items are there in ecommerce sites, so that every each item has its own structure and to design n decorate using this pattern.
+- Flyweight Pattern - taken paper flyweight and flyweight champion which has pattern to structure the pattern in lightweight in library 
+
+- https://bradfrost.com/blog/post/atomic-web-design/
+
+- remember using module pattern in ng1 – (
+```
+    var HTMLChanger = (function() {
+      var contents = 'contents'
+    
+      var changeHTML = function() {
+        var element = document.getElementById('attribute-to-change');
+        element.innerHTML = contents;
+      }
+    
+      return {
+        callChangeHTML: function() {
+          changeHTML();
+          console.log(contents);
+        }
+      };
+    
+    })();
+    
+    HTMLChanger.callChangeHTML();       // Outputs: 'contents'
+    console.log(HTMLChanger.contents);  // undefined
+ ```   
 
 #### closures
 - is a technique implemented to remember environment when it was called with a function inside to access the local variable n outside variable
@@ -357,7 +1180,9 @@ const memo = (fn) => {
   }
 }
 
+#### Validation using css and js inputs native 
 
+https://bitsofco.de/form-validation-techniques/
 
 ### ES6 & ES7
 arrow function, destructuring, rest parameters, spread operator, let , const, default parameters, Object.assign, array.from , array.of, Template literals, modules, iterators, generators, classes, async await, multi strings and interpolation `${}`
@@ -398,14 +1223,26 @@ aa.c.ab() // {ab: ƒ, bb: ƒ}
 aa.c.bb() // Window {parent: Window, opener: null, top: Window, length: 0, frames: Window, …}
 ```
 
-this keyword works differently in arrow functions. The methods call(), apply(), and bind() will not change the value of this in arrow 
+this keyword works differently in arrow functions. The methods call(), apply(), and bind() will not change the value of this in arrow.
+
+Unlike every other form of function, arrow functions do not have their own execution context.
+
+Practically, this means that both this and arguments are inherited from their parent function.
+
+https://zendev.com/2018/10/01/javascript-arrow-functions-how-why-when.html
+
+Arrow functions in class field properties seem useful because they’re autobind, in short, no need to add this.handleClick = this.handleClick.bind(this) in the constructor.
+
+But, should we really use arrow functions in class field properties?
+
+Instead, use a regular function and if necessary bind it the instance in the constructor
+https://medium.com/@charpeni/arrow-functions-in-class-properties-might-not-be-as-great-as-we-think-3b3551c440b1
 
 Arrow functions can’t be used as constructors as other functions can. Don’t use them to create similar objects as you would with other functions. If you attempt to use new with an arrow function, it will throw an error. Arrow functions, like built-in functions (aka methods), don’t have a prototype property or other internal methods. Because constructors are generally used to create class-like objects in JavaScript, you should use the new ES6 classes instead.
 
 Arrow functions don’t have the local variable arguments as do other functions.
 https://www.sitepoint.com/es6-arrow-functions-new-fat-concise-syntax-javascript/ 
 
-Reverse a string, map function, hoisting
 
 What are new input attr types in html5 => range, color, date,search,tel
 
@@ -524,8 +1361,6 @@ const mergedObj = { ...obj1, ...obj2 };
 ```
 Note that Object.assign() triggers setters, whereas spread syntax doesn't.
 
-
-
 **Rest syntax/parameters** looks exactly like spread syntax. In a way, rest syntax is the opposite of spread syntax. Spread syntax "expands" an array into its elements, while rest syntax collects multiple elements and "condenses" them into a single element.
 The rest parameter syntax allows us to represent an indefinite number of arguments as an array.
 Only the last parameter can be a "rest parameter".
@@ -564,6 +1399,116 @@ function f(...args) {
 }
 
 ```
+
+ 
+
+#### XMLHttpRequest(XHR)
+The XMLHttpRequest object can be used to exchange data with a server behind the scenes. This means that it is possible to update parts of a web page, without reloading the whole page.
+readyState, onreadystatechanged, status, send , open , get , post(for large data) methods
+append parameters in for http get url-
+
+    xhttp.open("GET", "demo_get.asp?t=" + Math.random()+"&s=455", true);
+
+use & to append parameters in url
+
+#### Ajax
+ 
+```
+    function loadDoc() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+         document.getElementById("demo").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", "ajax_info.txt", true);
+      xhttp.send();
+    }
+    
+    onclick=loadDoc()
+```
+
+
+**callback**
+In computer programming, a **callback**, also known as a "call-after" function, is any executable code that is passed as an argument to other code; that other code is expected to call back (execute) the argument at a given time.
+
+Callback is synchronous only. But for network calls, it is useful to get desired result in callback.
+
+so for network call, we need to send two callbacks(for success,failure) and if we depend on one response to feed into another then again it goes nested functions with two parameters like it goes for "N" request which will form doom of pyramid.
+In order to avoid the doom, we use Promise and its chaining mechanism 
+
+**Promise** object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value. Like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.
+
+3.	When we return value from catch object and whether will next then object captures it --> think about how .then and catch methods come from. Think
+
+**Async Await**
+async function secondfn(someurl){
+    try{
+var response = await fetch(someurl);
+    return response
+    }catch(e){
+
+    }
+}
+
+await abstracts return new Promise((success, reject)=>{success() or reject()})
+
+secondfn(url)
+
+##### promise vs observable
+
+    const source = Rx.Observable.of({name: 'Brian'}, [1,2,3], function hello(){ 
+    return 'Hello'
+    });
+    //output: {name: 'Brian}, [1,2,3], function hello() { return 'Hello' }
+    const subscribe = source.subscribe(val => console.log(val));
+
+In observable return multple values but promise return one value with lot of objects or value inside.
+Better not to compare promise with observable since observable is a producer of data or stream of data and can be consumed only when subscribed I.e like a calling a function.
+Normal function returns single data;
+Observable returns mutliple data, for Ex: can be async calls data, event handler data, timer funtions
+
+
+
+**iterators**
+**generators**
+redux saga 
+
+**Factory Function instead of class**
+
+    class Dog {
+      constructor() {
+        this.name = "woof";
+      } 
+      bark() {
+        console.log(this.name)
+      }
+    }
+    var dd = new Dog()
+    dd.bark();
+     
+    $('button').click(dd.bark)
+    // does not work
+    $('button').click(dd.bark.bind(dd))
+    // works
+    $('button').click(()=>dd.bark())
+    // works using arrow function
+     
+    // so instead of creating objects, create  factories
+    const Dog1 = ()=>{
+      const name = "woof";
+     
+      return {
+        bark: ()=>console.log(this.name)
+      }
+    }
+     
+    const sniff = Dog1();
+    sniff.bark(); //works
+    $('button').click(sniff.bark)
+
+https://www.youtube.com/watch?v=ImwrezYhw4w 
+
 
 #### Setters && getters
 The set syntax binds an object property to a function to be called when there is an attempt to set that property.Setters are most often used in conjunction with getters to create a type of pseudo-property. It is not possible to simultaneously have a setter on a property that holds an actual value.
@@ -626,234 +1571,6 @@ Technically, symbols are not 100% hidden. There is a built-in method Object.getO
 https://javascript.info/event-delegation 
 
 
-
-
-- If u want deep clone an object, use JSON.parse(JSON.stringify(Obj))
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Deep_Clone
-
-
-**Factory Function instead of class**
-
-    class Dog {
-      constructor() {
-        this.name = "woof";
-      } 
-      bark() {
-        console.log(this.name)
-      }
-    }
-    var dd = new Dog()
-    dd.bark();
-     
-    $('button').click(dd.bark)
-    // does not work
-    $('button').click(dd.bark.bind(dd))
-    // works
-    $('button').click(()=>dd.bark())
-    // works using arrow function
-     
-    // so instead of creating objects, create  factories
-    const Dog1 = ()=>{
-      const name = "woof";
-     
-      return {
-        bark: ()=>console.log(this.name)
-      }
-    }
-     
-    const sniff = Dog1();
-    sniff.bark(); //works
-    $('button').click(sniff.bark)
-
-https://www.youtube.com/watch?v=ImwrezYhw4w 
-
-##### Function methods
-
-The **call()** method calls a function with a given this value and arguments provided individually.
-
-```
-
-function Product(name, price) { this.name = name;  this.price = price;}
-
-function Food(name, price) {  Product.call(this, name, price);  this.category = 'food';}
-
-console.log(new Food('cheese', 5).name); // expected output: "cheese"
-```
-- Using call to chain constructors for an object
-- Using call to invoke an anonymous function
-- Using call to invoke a function and specifying the context for 'this'
-- Using call to invoke a function and without specifying the first argument
-
-```
-    var obj = {a:1,b:2,c:function(){console.log('bb',this.b)}}
-    undefined
-    var dd = obj.c; // giving reference to var dd
-    undefined
-    dd() // bb undefined
-    obj.c() // bb 2
-    var dd = obj.c.bind(obj);
-    dd() // now shows as bb 2
-    var dd = obj.c.call(obj); // without calling dd() … call invokes the function and results as bb 2
-```
-But this does not work in arrow function declared as method inside object.
-Because Arrow functions cannot be used to write object methods because, as you have found, since arrow functions close over the this of the lexically enclosing context, the this within the arrow is the one that was current where you defined the object. Which is to say:
-
-It works like this only => http://jsfiddle.net/bfyarxfe/2/ 
-```
-    function myFunction(x, y, z) { }var args = [0, 1, 2];myFunction.apply(null, args);
-```
-
-###### how to use and simulate map function for splitting string variable
-```
-// assume we create a prototype function on array object
-Array.prototype.simpleIteration = function(callback) {
-	let newArray = []
-	for (let x = 0; x < this.length; x++) {
-		newArray.push( callback(this[x]) )
-	}
-	return newArray
-}
-
-// and now we create a new sample array
-let sampleArray = ["a","b","c"]
-
-// we can call this by
-let result1 = sampleArray.simpleIteration( x => x+x )
-console.log("result1:")
-console.log(result1) // result1 becomes "aa","bb","cc"
-
-// or we can call it by
-let result2 = Array.prototype.simpleIteration.call(sampleArray, x => x+x)
-console.log("result2:")
-console.log(result2) // result2 becomes "aa","bb","cc"
-
-// So lets say we created a string
-let sampleString = "abc"
-// since simpleIteration function were attached to Array functions
-// if we create a string and call simple Iteration wouldn't work
-
-/* this code wouldn't work
-let result3 = sampleString.simpleIteration(x=>x+x)
-console.log("result3:")
-console.log(result3)
-*/
-
-// however, to get around it .. we can use the call method
-let result4 = Array.prototype.simpleIteration.call(sampleString, x => x+x)
-console.log("result4")
-console.log(result4)
-```
-
-**Apply will give the array to apply automatically to the given parameters.**
-
-While in case of `call()` , you have to explicitly give the parameters not array.
-`Call()` is like invoking function with context given as first parameter.
-```
-    myFunction.call(null, 0,1,2);
-```
-Suppose if u r in prototype method of object and calling function which is declared globally , so when invoking global function it will call from window as this , so when u invoke the function with object this and with parameters , global functions invokes in context of object this.
-```
-    Function Tab(){
-    This.name: “dfs”;this.func=function(){ render.call(this, “hello”)} 
-    }
-    Function global(){
-    Var name = this.name} //here this refers to Tab Object instead of window
-```
-with the bind () method, we can explicitly set the this value for invoking methods on objects, we can borrow
- and copy methods, and assign methods to variable to be executed as functions
-Bind is like wrapping the calling function to outer function with its context
-
-    Binder(this, params1,2,3){
-    Function callingFunction(){}
-    }
-    
-    In jquery
-    $('#btn').bind('click keydown', function(){console.log('clicked')}).on('keyup',function(){console.log('key up')})
-    
-    Call the function for both click and keydown
-    Passing event data
-    var message = "Spoon!";
-    $( "#foo" ).bind( "click", {
-     msg: message
-    }, function( event ) {
-     alert( event.data.msg );
-    });
-    message = "Not in the face!";
-    $( "#bar" ).bind( "click", {
-     msg: message
-    }, function( event ) {
-     alert( event.data.msg );
-    });
-
-
-
-    function greet (gender, age, name) {
-     // if a male, use Mr., else use Ms.
-      var salutation = gender === "male" ? "Mr. " : "Ms. ";
-      if (age > 25) {
-       return "Hello, " + salutation + name + ".";                
-       }   else {  
-          return "Hey, " + name + ".";  
-          }      
-           }
-     // So we are passing null because we are not using the "this" keyword in our greet function.        var greetAnAdultMale = greet.bind (null, "male", 45);
-    
-    var data = [
-                    {name:"Samantha", age:12},
-                    {name:"Alexis", age:14}
-                ]
-    
-                var user = {
-                    // local data variable
-                    data    :[
-                        {name:"T. Woods", age:37},
-                        {name:"P. Mickelson", age:43}
-                    ],
-                    showData:function (event) {
-                        var randomNum = ((Math.random () * 2 | 0) + 1) - 1; // random number between 0 and 1
-    
-                        console.log (this.data[randomNum].name + " " + this.data[randomNum].age);
-                    }
-    
-                }
-    
-                // Assign the showData method of the user object to a variable
-                var showDataVar = user.showData;
-    
-                showDataVar (); // Samantha 12 (from the global data array, not from the local data array)
-
-if called by user.showData() alone without assigning to global value then its value is different.
-
-http://javascriptissexy.com/javascript-apply-call-and-bind-methods-are-essential-for-javascript-professionals/
-
-
-You probably already noticed that our function A has a special property called prototype. This special property works with the JavaScript new operator. The reference to the prototype object is copied to the internal [[Prototype]] property of the new instance. For example, when you do var a1 = new A(), JavaScript (after creating the object in memory and before running function A() with this defined to it) sets a1.[[Prototype]] = A.prototype. When you then access properties of the instance, JavaScript first checks whether they exist on that object directly, and if not, it looks in [[Prototype]]. This means that all the stuff you define in prototype is effectively shared by all instances, and you can even later change parts of prototype and have the changes appear in all existing instances, if you wanted to.
-
-If, in the example above, you do 
-
-    var a1 = new A(); var a2 = new A(); 
-    //then a1.doSomething would actually refer to Object.getPrototypeOf(a1).doSomething, which is the same as the A.prototype.doSomething you defined, 
-    i.e. Object.getPrototypeOf(a1).doSomething == Object.getPrototypeOf(a2).doSomething == A.prototype.doSomething.
-
-In short, prototype is for types, while Object.getPrototypeOf() is the same for instances.
-
-[[Prototype]] is looked at recursively, i.e. a1.doSomething, Object.getPrototypeOf(a1).doSomething, Object.getPrototypeOf(Object.getPrototypeOf(a1)).doSomething etc., until it's found or Object.getPrototypeOf returns null.
-
-So, when you call
-
-    var o = new Foo();
-    JavaScript actually just does
-    
-    var o = new Object();
-    o.[[Prototype]] = Foo.prototype;
-    Foo.call(o);
-    (or something like that) and when you later do
-    
-    o.someProp;
-
-it checks whether o has a property someProp. If not, it checks Object.getPrototypeOf(o).someProp, and if that doesn't exist it checks Object.getPrototypeOf(Object.getPrototypeOf(o)).someProp, and so on.
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#Using_prototypes_in_JavaScript 
-
 ### JS security related:
 - https://dzone.com/articles/cookies-vs-tokens-the-definitive-guide
 - 🔐 Learn how to use JSON Web Token (JWT) to secure your next Web App! (Tutorial/Example with Tests!!)
@@ -867,86 +1584,22 @@ https://github.com/dwyl/learn-json-web-tokens
 - html output decoding / entity / textcontent/innertext
 - HTML5 security problems
 
-### design patterns – 
+#### Security issues in HTML5
+- Clickjacking, XSS, Script injecting
+- Cross messaging document/ web messaging api
+- CORS-
+- CSP(content security policy) -> avoid multiple csp, inline javascript => media-src,directive-src, styles-src, default-src, csp2=> nounce, hash 
+- iframe sandbox
+- video poster elements
+- drag and drop clickjacking
+- cookies and localstorage clearing explicitily, 
+- web workers post message - validation of origin/ data
+- geolocation
+- svg canvas scripting vulnerable
+- filesystem api sandboxed vulnerable
 
-Constructor Pattern
-Module Pattern
-Revealing Module Pattern
-Singleton Pattern
-Observer Pattern
-Mediator Pattern
-Prototype Pattern
-Command Pattern
-Facade Pattern
-Factory Pattern
-Mixin Pattern
-Decorator Pattern
-Flyweight Pattern
-
-- https://bradfrost.com/blog/post/atomic-web-design/
-
-remember using module pattern in ng1 – (
-
-    var HTMLChanger = (function() {
-      var contents = 'contents'
-    
-      var changeHTML = function() {
-        var element = document.getElementById('attribute-to-change');
-        element.innerHTML = contents;
-      }
-    
-      return {
-        callChangeHTML: function() {
-          changeHTML();
-          console.log(contents);
-        }
-      };
-    
-    })();
-    
-    HTMLChanger.callChangeHTML();       // Outputs: 'contents'
-    console.log(HTMLChanger.contents);  // undefined
-    
-### Prototype
-Sharing of variable and methods between instances of objects. When we attach/create variable or method to prototype object , then it will get accessed from all the instances of objects. 
-
-Prototypes are the mechanism by which JavaScript objects inherit features from one another. how prototype chains work and look at how the prototype property can be used to add methods to existing constructors.
-
-JavaScript is often described as a prototype-based language — to provide inheritance, objects can have a prototype object, which acts as a template object that it inherits methods and properties from.
-
-An object's prototype object may also have a prototype object, which it inherits methods and properties from, and so on. This is often referred to as a prototype chain, and explains why different objects have properties and methods defined on other objects available to them.
-
-In JavaScript, a link is made between the object instance and its prototype (its __proto__ property, which is derived from the prototype property on the constructor), and the properties and methods are found by walking up the chain of prototypes.
-
-Source : mdn prototype js
-
-
-#### prototype design – 
-To clone an object, a constructor must exist to instantiate the first object. Next, by using the keyword prototype variables and methods bind to the object's structure.
-
-    var TeslaModelS = function() {
-      this.numWheels    = 4;
-      this.manufacturer = 'Tesla';
-      this.make         = 'Model S';
-    }
-    
-    TeslaModelS.prototype = function() {
-    
-      var go = function() {
-        // Rotate wheels
-      };
-    
-      var stop = function() {
-        // Apply brake pads
-      };
-    
-      return {
-        pressBrakePedal: stop,
-        pressGasPedal: go
-      }
-    
-    }();
-
+##### Error messages:
+- https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/understand%20your%20error%20messages.jpg
 
 ### Rxjs
 
@@ -990,133 +1643,15 @@ Subject is observing the interval Observable, so every time the interval send va
 https://netbasal.com/understanding-subjects-in-rxjs-55102a190f3
 
 
-All Js libraries in micro size format. very efficient
-- http://microjs.com/#
-
-### OCR reading library
-- https://tesseract.projectnaptha.com/
-
-### without jquery
-- https://www.sitepoint.com/make-a-simple-javascript-slideshow-without-jquery/
-- https://scotch.io/tutorials/building-your-own-javascript-modal-plugin#toc-the-javascript
-
-- https://tutorialzine.com/2016/05/15-interesting-javascript-and-css-libraries-for-may-2016
-- https://www.hongkiat.com/blog/js-library-interactive-charts/
-
----
-#### ajax
- 
-
-    function loadDoc() {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-         document.getElementById("demo").innerHTML = this.responseText;
-        }
-      };
-      xhttp.open("GET", "ajax_info.txt", true);
-      xhttp.send();
-    }
-    
-    onclick=loadDoc()
-
-#### Xhr
-The XMLHttpRequest object can be used to exchange data with a server behind the scenes. This means that it is possible to update parts of a web page, without reloading the whole page.
-readyState, onreadystatechanged, status, send , open , get , post(for large data) methods
-append parameters in for http get url-
-
-    xhttp.open("GET", "demo_get.asp?t=" + Math.random()+"&s=455", true);
-
-use & to append parameters in url
-
-**callback**
-In computer programming, a **callback**, also known as a "call-after" function, is any executable code that is passed as an argument to other code; that other code is expected to call back (execute) the argument at a given time.
-
-Callback is synchronous only. But for network calls, it is useful to get desired result in callback.
-
-so for network call, we need to send two callbacks(for success,failure) and if we depend on one response to feed into another then again it goes nested functions with two parameters like it goes for "N" request which will form doom of pyramid.
-In order to avoid the doom, we use Promise and its chaining mechanism 
-
-**Promise** object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value. Like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.
-
-async function secondfn(someurl){
-    try{
-var response = await fetch(someurl);
-    return response
-    }catch(e){
-
-    }
-}
-
-await abstracts return new Promise((success, reject)=>{success() or reject()})
-
-secondfn(url)
-
-##### promise vs observable
-
-    const source = Rx.Observable.of({name: 'Brian'}, [1,2,3], function hello(){ 
-    return 'Hello'
-    });
-    //output: {name: 'Brian}, [1,2,3], function hello() { return 'Hello' }
-    const subscribe = source.subscribe(val => console.log(val));
-
-In observable return multple values but promise return one value with lot of objects or value inside.
-Better not to compare promise with observable since observable is a producer of data or stream of data and can be consumed only when subscribed I.e like a calling a function.
-Normal function returns single data;
-Observable returns mutliple data, for Ex: can be async calls data, event handler data, timer funtions
-
-
-
-**OOJS?** 
-
-#### Objects 
-So when you used string methods like:
-
-    myString.split(',');
-
-You were using a method available on an instance of the String class. Every time you create a string in your code, that string is automatically created as an instance of String, and therefore has several common methods/properties available on it.
-
-When you accessed the document object model using lines like this:
-
-    var myDiv = document.createElement('div');
-
-You were using methods available on an instance of the Document class. For each webpage loaded, an instance of Document is created, called document, which represents the entire page's structure, content, and other features such as its URL. Again, this means that it has several common methods/properties available on it.
-
-**Abstraction**
- 
-know about a person (their address, height, shoe size, DNA profile, passport number, significant personality traits ...) , but in this case we are only interested in showing their name, age, gender, and interests, want to be able to write a short introduction about them based on this data, and get them to say hello. This is known as abstraction — creating a simple model of a more complex thing, which represents its most important aspects in a way that is easy to work with for our program's purposes.
-
-Class : Person
-{Name,age,gender,interests, bio:function(), greeting:function()}
-
-When an object instance is created from a class, the class's constructor function is run to create it. This process of creating an object instance from a class is called instantiation — the object instance is instantiated from the class.
-In OOP, we can create new classes based on other classes — these new child classes can be made to inherit the data and code features of their parent class, so you can reuse functionality common to all the object types rather than having to duplicate it.
-
-The fancy word for the ability of multiple object types to implement the same functionality is polymorphism
-Prototype chain in javascript
-
-    Function g(){this.vertices=”sfd”};
-    g.prototype.addVertex = function (){console.log()}
-    console.log(g.hasOwnProperty('vertices'));
-    // true
-    console.log(g.hasOwnProperty('nope'));
-    // false
-    console.log(g.hasOwnProperty('addVertex'));
-    // false
-    console.log(g.__proto__.hasOwnProperty('addVertex'));
-    // true
-
-hasOwnProperty is the only thing in JavaScript which deals with properties and does not traverse the prototype chain.
-
-##### Bad practice: Extension of native prototypes
-One misfeature that is often used is to extend Object.prototype or one of the other built-in prototypes.
-This technique is called monkey patching and breaks encapsulation. While used by popular frameworks such as Prototype.js, there is still no good reason for cluttering built-in types with additional non-standard functionality.
-The only good reason for extending a built-in prototype is to backport the features of newer JavaScript engines, like Array.forEach.
-
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#Using_prototypes_in_JavaScript
+**What we can do when large response data comes from network api response** while browser has so many browser tabs?
+- then we can implement increasing heap size for our application/particular tab
+- and also can get large response data using observable than promise since it returns whole data and may get delay. Using  observable, can implement pagination and load streams of 100 chunk data in background and make browser smoother
 
 ---
 
+---  
+
+#### Q and Ans
 1. Testing your this knowledge in JavaScript: What is the output of the following code?
 ```
     var length = 10;
@@ -1208,815 +1743,34 @@ A circular reference occurs if two separate objects pass references to each othe
 
 Use dynamic object property in es 6 ... Refer asynchronous actions in redux or react forms page ... search as computed property name
 
-**Naming conventions and clean code**
-- https://github.com/ryanmcdermott/clean-code-javascript
-
-**What does [].forEach.call() do in JavaScript?**
-- https://stackoverflow.com/questions/16053357/what-does-foreach-call-do-in-javascript
-
-**What does comma do in js?**
-```
-handler = ()=> (y=4,c=3); // returns 3 ; Why?
-```
-https://stackoverflow.com/questions/3561043/what-does-a-comma-do-in-javascript-expressions
-
----  
-
-#### for while do while loops and switch statements - control flow================
-
-As we mentioned, for
-
-loops are great for doing the same task over and over when you know
-
-ahead of time how many times you'll have to repeat the loop. On the
-
-other hand, while loops are ideal when you have to loop, but you don't know ahead of time how many times you'll need to loop.
-
-As you saw, however, you can combine a while loop with a counter variable to do the same kind of work a for loop does. In these cases, it's often a matter of preference.
-
-Sometimes you want to make sure your loop runs at least one time no matter what. When this is the case, you want a modified while loop called a do/while loop.
-
-As you might imagine, if you have a lot of choices you want to cover in a program, it might be annoying to type else if () ten times. That's why JavaScript has the switch statement!
-
-
-switch allows you to preset a number of options (called cases),
-
-then check an expression to see if it matches any of them. If there's a
-
-match, the program will perform the action for the matching case; if
-
-there's no match, it can execute a default option.
-
-
-#### custom constructors======================
-```
-    function Person(name,age) {
-    
-    this.name = name;
-    
-    this.age = age;
-    
-    }
-    
-      
-    
-    // Let's make bob and susan again, using our constructor
-    
-    var bob = new Person("Bob Smith", 30);
-    
-    var susan = new Person("Susan Jordan", 25);
-    
-    // help us make george, whose name is "George Washington" and age is 275
-    
-    var george = new Person("George Washington",275);
-```
-  
-
-Let's look at another example and practice coding constructors. Here we have made a Cat constructor for you, with age and color properties.
-
-  
-
-Why is this Cat constructor so cool?
-
-It means if we have many cats and wanted to create an object for each
-
-cat, we could just use this constructor with the properties already
-
-defined.
-
-  
-
-This is much better than using the Object
-
-constructor which just gives us an empty object and needs us to define
-
-every property and value for each cat object we would create.
-
-  
-
-#### prototype===============
-```
-    snoopy.bark = function() {
-    
-    console.log("Wow");
-    
-    };
-```
-  
-
-Here we have very similar code as last time, but there is an important difference. Instead of using buddy.bark to add the bark method to just the buddy object, we use Dog.prototype.bark.
-
-  
-
-Click run this time, and both buddy and snoopy can bark just fine! Snoopy can bark too even though we haven't added a bark method to that object. How is this so? Because we have now changed the prototype for the class Dog. This immediately teaches all Dogs the new method.
-
-  
-
-In general, if you want to add a method to a class such that all
-
-members of the class can use it, we use the following syntax to extend the prototype:
-
-  
-```
-    className.prototype.newMethod =
-    
-      
-    
-    function() {
-    
-    statements;
-    
-    };
-    
-      
-    
-    function Dog (breed) {
-    
-    this.breed = breed;
-    
-    };
-    
-      
-    
-    // here we make buddy and teach him how to bark
-    
-    var buddy = new Dog("golden Retriever");
-    
-    Dog.prototype.bark = function() {
-    
-    console.log("Woof");
-    
-    };
-    
-    buddy.bark();
-    
-      
-    
-    // here we make snoopy
-    
-    var snoopy = new Dog("Beagle");
-    
-    /// this time it works!
-    
-    snoopy.bark();
-    
-    apply function==============
-    
-    var person = {
-    
-    firstName :"Penelope",
-    
-    lastName :"Barrymore",
-    
-    showFullName:function () {
-    
-    ​// The "context"​
-    
-    console.log (this.firstName + " " + this.lastName);
-    
-    }
-    
-    }
-
-​
-
-​// The "context", when invoking showFullName, is the person object, when we invoke the showFullName () method on the person object.​
-
-​// And the use of "this" inside the showFullName() method has the value of the person object,​
-
-person.showFullName (); // Penelope Barrymore​
-
-​
-
-​// If we invoke showFullName with a different object:​
-
-​var anotherPerson = {
-
-firstName :"Rohit",
-
-lastName :"Khan"​
-
-};
-
-​
-
-​// We can use the apply method to set the "this" value explicitly—more on the apply () method later.​
-
-​// "this" gets the value of whichever object invokes the "this" Function, hence:​
-
-person.showFullName.apply (anotherPerson); // Rohit Khan​
-
-​
-
-​// So the context is now anotherPerson because anotherPerson invoked the person.showFullName () method by virtue of using the apply () method​
-```
-  
-  
-
-#### encapsulating private n public methods pattern=================
-```
-    var myRevealingModule = (function () {
-    
-    var privateVar = "Ben Cherry",
-    
-    publicVar = "Hey there!";
-    
-      
-    
-    function privateFunction() {
-    
-    console.log( "Name:" + privateVar );
-    
-    }
-    
-      
-    
-    function publicSetName( strName ) {
-    
-    privateVar = strName;
-    
-    }
-    
-      
-    
-    function publicGetName() {
-    
-    privateFunction();
-    
-    }
-    
-      
-    
-    // Reveal public pointers to
-    
-    // private functions and properties
-    
-    return {
-    
-    setName: publicSetName,
-    
-    greeting: publicVar,
-    
-    getName: publicGetName
-    
-    };
-    
-    })();
-    
-      
-    
-    myRevealingModule.setName( "Paul Kinlan" );
-```
-  
-
-#### this keyword-======================
-
-followed by methods vs functions post
-
-  
-
-The "this" Keyword
-
-  
-
-Our setAge method works great for bob because it updates bob.age, but what if we want to use it for other people?
-
-  
-  
-
-It turns out we can make a method work for many objects using a new keyword, this. The keyword this acts as a placeholder, and will refer to whichever object called that method when the method is actually used.
-
-  
-  
-
-Let's look at the method setAge (line 2) to see how this works. By using the keyword this, setAge will change the age property of any object that calls it. Previously, we had a specific object bob instead of the keyword this. But that limited the use of the method to just bob.
-
-  
-  
-
-Then when we say bob.setAge = setAge; (line 9), it means whenever we type bob.setAge( ), this.age in the setAge method will refer to bob.age.
-
-  
-```
-    // here we define our method using "this", before we even introduce bob
-    
-    var setAge = function (newAge) {
-    
-    this.age = newAge;
-    
-    };
-    
-    // now we make bob
-    
-    var bob = new Object();
-    
-    bob.age = 30;
-    
-    // and down here we just use the method we already made
-    
-    bob.setAge = setAge;
-    
-      
-    
-    // change bob's age to 50 here
-    
-    bob.setAge(50);
-
-  ```
-  
-  
-  
-
-In javascript every function receives two variables other than function parameters namely "this" and "arguments".
-
-#### invoking functions===============
-
-4 types :
-
-simply calling fn name
-```
-    function fun(){
-    
-    };
-    
-    fun();
-    
-      
-    
-    var obj = {};
-    
-    obj.mymethod = function(){
-    
-    // myMethod is a Method.
-    
-    console.log(this);
-    
-    // this is bound to obj
-    
-    };
-```
-  
-  
-  
-
-When we invoke the function as the method of an object, that object becomes the function context and is available within the function via the this parameter. This is one of the primary means by which JavaScript allows object-oriented code to be written
-
-  
-
-#### using constructor
-
-function Fun(){
-
-// Notice a function being used as a constructor always starts with Capital letter.
-
-    this.myProperty = ' This is my property';
-    
-    }
-    
-    var myObject = new Fun();
-
-When invoked with a new operator, a new object will be created and "this" inside the Fun() is bound to the newly created object.
-
-  
-
-(4) With the Apply method :
-
-A function can be called in JavaScript with an apply method invocation with functionName accompanied with a dot(.)
-
-  
-
-    functionName.apply(arguments);
-    
-      
-    
-    function foo(a,b){
-    
-    console.log(a,b,this);
-    
-    }
-    
-    var args = ['abra','ka', 'dabra'];
-    
-    foo.apply(obj,args);
-
-  
-  
-  
-
-In this case the first argument passed to apply is an object to which we want "this" keyword to get bound to.
-
-  
-
-If the function is being used as an event handler, "this" will refer to the node that fired the event
-
-#### collection vs array==============
-
-collection of DOM elements (more formally called a NodeList) can’t be manipulated like an array
-
-  
-
-But you can’t use Array methods like push(), splice() or reverse() to manipulate it.
-
-Except that you can, if you take the next step and convert it into an array. This is in fact trivial:
-
-  
-
-    function collectionToArray(collection)
-    
-    {
-    
-    var ary = [];
-    
-    for(var i=0, len = collection.length; i < len; i++)
-    
-    {
-    
-    ary.push(collection[i]);
-    
-    }
-    
-    return ary;
-    
-    }
-
  
+ 1. name the primitive data types? number, boolean, string, null. Is function is a datatype - no
+ 4. Various methods to call a function difference between function call and apply At what scenario call and apply are useful ? Math.max.apply(this,arr) and when we want to invoke another function properties like inheriting properties from parent super props with our context
+ 5. suppose if sending an undeclared object directly in apply first parameter, what it returns ? --> undefined
 
-##### setTimeout ===================
-
-Note that all functions in setTimeout are executed in the global scope
-
-  
-
-    var highValue = 200;
-    
-    ​var constantVal = 2;
-    
-    ​var myObj = {
-    
-    highValue: 20,
-    
-    constantVal: 5,
-    
-    calculateIt: function () {
-    
-    setTimeout (function () {
-    
-    console.log(this.constantVal * this.highValue);
-    
-    }, 2000);
-    
-    }
-    
-    }
-
-​
-
-​// The "this" object in the setTimeout function used the global highValue and constantVal variables, because the reference to "this" in the setTimeout function refers to the global window object, not to the myObj object as we might expect.​
-
-myObj.calculateIt(); // 400​
-  
-
-validation====
-
-https://bitsofco.de/form-validation-techniques/
-
-  
-
-##### auto hide sticky header ====
-
-  
-
-http://osvaldas.info/auto-hide-sticky-header?utm_content=bufferfc972&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
-
-  
-
-<body  onunload="alert('Thank you. Please come back to this site and visit us soon, ok?')">
-
-  
-
-https://jonsuh.com/hamburgers/
-
-  
-
-http://blog.wearecolony.com/a-year-without-jquery/
-
-  
-
-http://kushagragour.in/lab/superplaceholderjs/
-
-  
-
-##### dev tools
-
-https://medium.com/outsystems-experts/beyond-console-debugging-tricks-f7d0d7f5df4#.ujzyp55mj
-
-  
-
-##### menu scroll top
-
-http://stackoverflow.com/questions/1144805/scroll-to-the-top-of-the-page-using-javascript-jquery
-
-  
-
-http://jsfiddle.net/osoh6o5a/
-
-  
-
-    var menuclick = $('ul.nav li a');
-    
-    menuclick.click(function(){
-    
-    var divPosition = $('#pricing').offset();
-    
-    $('html, body').animate({scrollTop: divPosition.top}, "slow");
-    
-    });
-
-  
-  
-
-
-  
-  
-
-##### testi | our team | inpspect elemtent | timline
-
-​http://themexlab.com/eventon/meeton/schedule.html
-
-http://themexlab.com/eventon/meeton/speakers.html
-
-http://themexlab.com/eventon/meeton/index.html
-
-  
-  
-
-##### Tips  
-
-​http://code.tutsplus.com/tutorials/20-helpful-jquery-methods-you-should-be-using--net-10521
-
-
-http://benalman.com/code/projects/jquery-outside-events/examples/clickoutside/
- 
-
-https://github.com/AllThingsSmitty
-
-http://stackoverflow.com/questions/10213703/how-do-i-view-events-fired-on-an-element-in-chrome-web-developer
-
- 
-https://github.com/DovAmir/awesome-design-patterns
-
-https://github.com/twhite96/js-dev-reads
- 
-
-##### Jquery Menu==========
-
-  
-
-http://toddmotto.com/html5-and-jquery-super-simple-drop-down-nav/
-
-https://css-tricks.com/simple-jquery-dropdowns/
-
-http://jsfiddle.net/i_like_robots/6JbtX/
-
-
-
-##### for muliline
-
-https://css-tricks.com/line-clampin/
-
-http://mikeking.io/succinct/(currently using)
-
-using jquery
-
-http://jsfiddle.net/k5VET/
-
-
-##### many carousel====
-
-http://coolcarousels.frebsite.nl/c/21/
-
-  
-
-##### jquery slider wow==========
-
-http://plugins.jquery.com/WOWSlider/
-
-has many effects and slider designs
-
-### Jquery bookmarks
-Hide your header on scroll - Headroom.js - https://wicky.nillia.ms/headroom.js/
-15 brilliant jQuery plugins | jQuery | Creative Bloq - http://www.creativebloq.com/jquery/top-jquery-plugins-6133175
-15 Form Validation jQuery Plugins and Libraries - https://speckyboy.com/form-validation-jquery-plugins-libraries/
-45 top examples of JavaScript | JavaScript | Creative Bloq - http://www.creativebloq.com/web-design/examples-of-javascript-1233964
-Libscore scan finid library scripts - https://libscore.com/
-30 Lightweight JavaScript Plugins and Libraries from 2016
-You Might Not Need JavaScript
-Simple jQuery Examples with Code and Demos – Tania Rascia
-
-
-### Googlemap bookmarks
-https://stackoverflow.com/questions/2792698/google-maps-api-v3-how-to-jump-to-a-specific-marker-from-outside-the-map
-
-https://www.codingforums.com/javascript-programming/207457-google-maps-jump-markers-help.html
-
-https://developers.google.com/maps/documentation/javascript/examples/control-custom
-
-### mind mapping tools
-https://www.creativebloq.com/web-design/mind-mapping-tools-9134523
-
-##### #how-to-access-the-correct-this-inside-a-callback
-
-https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback/20279485#20279485
-
-
-**why js is pass by reference?**
-
-    Var obj1={a:1,b:2}; 
-    obj2=obj1; 
-    obj2.b = 3; then console.log(obj1) 
-    // {a:1, b:3} after changing in b in obj , the value 3 automatically changes in obj1 . 
-    //So javascript is pass by reference.
-
-**Doubts**
-
-function DD(){this.name='arun';this.age=5}
-rr = new DD();
-rr1 = Object.create(new DD());
-console.log('rr',rr);
-console.log('rr1',rr1);
-DD.prototype.ddd = 123;
-console.log(rr,'rr');
-console.log(rr1,'rr1');
-
-Both rr and rr1 'ddd' property how ?
-Answer: Since we attached DD prototype to rr1. DDD can be accessible through prototype chain. 
-
-
-Private proerty/method for the customer alone
-var Customer = (function (id, name){
-    this.id = id;
-    this.name = name;
-
-    var firstfn = function(){
-        console.log()
-    }
-
-    return {
-        id: this.id,
-        name: this.name,
-        firstfn: firstfn
-    }
-})()
-
-
-
-What we can do when large response data comes from network api response while browser has so many browser tabs?
-- then we can implement increasing heap size for our application/particular tab
-- and also can get large response data using observable than promise since it returns whole data and may get delay. Using  observable, can implement pagination and load streams of 100 chunk data in background and make browser smoother
-
- 
- 1. name the primitive data types Is function is a datatype
- 2. what will return if typeof function ? how to create class in ES5/ vanilla javascript ?
- 3. How prototype is useful ?
- 4. Various methods to call a function difference between function call and apply At what scenario call and apply are useful ?
- 5. suppose if sending an undeclared object directly in apply first parameter, what it returns ?
- 6. how to handle large amount of data as response and show in UI without making browser unresponsive?
- 7. tech stack of previous project worked ?
- 
- 
-google app engine
-
-validation n form elements all
- 
-  1. read more js three lines ..... stop continue like succinity
- 2. slider
- 3. Bookmark checker
- 4. scroll to multilevel slide navigation n tree level
- 5. lightbox
- 6. api in codeacademy
- 7. tiles scroll(pagination)
- 8. window mail app
- 9. carousel
- 10. twitter message type
- 11. when mouse comes near submit button then form should show error since nothing.. promixity detector validator
- 12. - common component functionality - increment/decrement component by 1 which generically applies to slider or anyother
- 13. - Push back seat
- 14. Odc multi doors facility
- 15. Traffic logic
- 16. Our Escalator up arrow in box shadow
- 17. - https://imgur.com/a/v1oDYK8 - bowling alley
- 18. Asynchronous promise is also in WhatsApp
- 19. Promise is like giving cheque with trust ..
- 20. success or failure depends on check bounce
- 21. Page Lifecycle API  |  Web  |  Google Developers
-GitHub - sohamkamani/javascript-design-patterns-for-humans: An ultra-simplified explanation of design patterns implemented in javascript
-Performance Debugging with DevTools
-
-​https://www.styleurl.app/
-
-https://www.11ty.io/
-
-Set a Timed Debugger To Web Inspect Hard-To-Grab Elements | CSS-Tricks
-https://andy-bell.design/hire-me/
-
-
-- Dummy/fake apis
-- Myjson.com
-- Jsonplaceholder.typicode.com
-- Swapi.co
-- Mockable.io
-- mockit.netlify
-
-##### dynamic create variable javascript
-
-> assign it to global window like window['variable']
-> var varname ='CB1';window[varname] ='my value';
-dynamic create variable javascript for IF s
-
-
-##### static variable vs instance
-```
-var temp;
-if (periodicArr[i].symbol && (temp = str.match(regex)) !== null) {}
-
-"class Test{
-public static int a = 5;
-public int b = 10;
-}
-// here t1 and t2 will have a separate copy of b
-// while they will have same copy of a.
-Test t1 = new test(); 
-Test t2 = new test();
-
-You can access a static variable with it's class Name like this
-
-Test.a = 1//some value But you can not access instance variable like this
-System.out.println(t1.a);
-System.out.println(t2.a);
-
-In both cases output will be 1 as a is share by all instances of the test class. 
-while the instance variable will each have separate copy of b (instance variable) So
-
- t1.b = 15 // will not be reflected in t2.
- System.out.println(t1.b); // this will print 15
- System.out.println(t2.b); / this will still print 10; 
-```
-Hope that explains your query."
-
-#### create js plugin
-
-set default options and have provision to accept extra options
-
-https://scotch.io/tutorials/building-your-own-javascript-modal-plugin#toc-the-javascript
-
-initiate object instance with your options
-seperate constructor, public, private methods
-u will have public methods to perform desired actions on instance variable
-
-##### A clean, responsive storefront boilerplate with no database or backend
-http://chrisdiana.github.io/simplestore
-
-##### chat application 
-https://github.com/withspectrum/spectrum
-
-
-### Interview Questions
-
-- https://github.com/jwasham/coding-interview-university
-- A mostly reasonable collection of technical software development interview questions solved in Javascript
-https://github.com/kennymkchan/interview-questions-in-javascript
-- Advanced js questions – toptal
-https://www.javatpoint.com/javascript-interview-questions 
-- https://awesomeopensource.com/project/vvscode/js--interview-questions 
-
---
-
-**Prokarma**
 
 11.	Polymorphism in js
 23.	How will you find which browser running - navigator
 24.	What history object does in javascript - state for back,forward, and methods to change url
 
-
-**Olam**
-
- 1. Ways to create object
- 2.     Object literal has prototype or __proto__ 
+ 2.     Object literal has prototype or __proto__ - prototype is a naming concept and __proto__ is a syntax for prototype chaining representation. When attaching a prototype property , we can use prototype method to attach to constructor function. prototype can be used only constructor function.
  4. Assigning function constructor to a variable/ try iife to capital variable
- 5. Fastest way to traverse array? Why filter faster than map hint: filter caches array
+ 5. Fastest way to traverse array? Why filter faster than map hint: filter caches array. For example - for duplicate arrrays
 
-**Deloit**
-
-9.	Sequentially or parallely
-14.	Local file fetching or CDN
+9.	Sequentially or parallely execution process - Sequentially since it is a single threaded
+14.	Local file fetching or CDN - can use PWA for local file and browser caches cdn
 15.	If local, if some changes happen how will the server detects its a new file
 16.	If obj={}, construction function create object, does prototype exists in both. Why not use first itself
 17.	How will you use rest operator in instead of object.assign in reducer
 
-**capg**
-6. Search bar to filter list of object items{ question, answers }
+6. Search bar to filter list of object items{ question, answers } -use indexOf of items with search text
 9. 0 + true =?
     A + true =? 
+**What does comma do in js?**
+```
+handler = ()=> (y=4,c=3); // returns 3 ; Why?
+```
+https://stackoverflow.com/questions/3561043/what-does-a-comma-do-in-javascript-expressions
 
 10. Map vs filter => 
 ```
@@ -2025,20 +1779,15 @@ https://www.javatpoint.com/javascript-interview-questions
 ```
 	Comes the rescue. Filter => it does filtering only as results // {id:1,check:true},{id: 3, check:true} // checks for truthy.
 
-
-**Wissen**
-1.	Two es6 functions and es5 functions with console.log(this) console.log(arguments). What it prints
+1.	Two es6 functions and es5 functions with console.log(this) console.log(arguments). What it prints -> there is no arguments in arrow functions
 2.	If we bind one function with other and passing value and when we call the assigned variable with another variable what will happen
-3.	When we return value from catch object and whether will next then object captures it
-4.	Bind in arrow functions
-5.	Function with object literal and its methods like increment and decrement and variable outside the object and returning that object. So when we call that object method to increment ++ and decrement ++ what it will print when obj.incr and obj.incr and obj.decr
-7.	When we apply particular button extra class .. then whats the purpose of reusable of classes
-8.	Angular performance and react
-10.	Function hosting
-11.	Higher order functions
-12.	Lodash throttle
-14.	Best way to use constructor function and object literal
-15.	If we do step5 in constructor function, what it will return
+
+4.	Bind in arrow functions - it does nt have this feature.
+5.	Function with object literal and its methods like increment and decrement and variable outside the object and returning that object. So when we call that object method to increment ++ and decrement ++ what it will print when obj.incr and obj.incr and obj.decr ?--> it will print  the answer correctly.
+If we do step5 in constructor function, what it will return
+10.	Function hosting - when javascript file is getting read, functions which are declared are gets place in lexical environment
+11.	Higher order functions - function returning function which can be called later
+12.	Lodash throttle - no matter how many times the function called, it is executed only once  at given time interval . Internally function DoOnce is implemented i guess. Contrarly , Debounce will be executed once the user stops typing within given point of time.
 
 #### ECMA 5 Questions ??? 
 
@@ -2072,3 +1821,146 @@ https://www.javatpoint.com/javascript-interview-questions
 28. How do you declare generic class in JavaScript? 
 29. How do you declare generic class with constraints in JavaScript? 
 30. Can we achieve all Object Oriented Programming features in JavaScript? 
+
+
+===========================================================
+
+##### All Js libraries in micro size format. very efficient
+- http://microjs.com/#
+
+### OCR reading library
+- https://tesseract.projectnaptha.com/
+
+### without jquery
+- https://www.sitepoint.com/make-a-simple-javascript-slideshow-without-jquery/
+
+**create js plugin**
+
+set default options and have provision to accept extra options
+
+https://scotch.io/tutorials/building-your-own-javascript-modal-plugin#toc-the-javascript
+
+initiate object instance with your options
+seperate constructor, public, private methods
+u will have public methods to perform desired actions on instance variable
+
+
+#### hamburger menu
+https://jonsuh.com/hamburgers/
+
+
+##### Dev tools
+
+- Chrome devtools extension for debugging from VS CODE
+![devtools-1](https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/configuration%20of%20devtools-1.jpeg)
+![devtools-2](https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/configuration%20of%20devtools-2.jpeg)
+
+- https://medium.com/outsystems-experts/beyond-console-debugging-tricks-f7d0d7f5df4#.ujzyp55mj
+
+- Set a Timed Debugger To Web Inspect Hard-To-Grab Elements | CSS-Tricks
+
+##### menu scroll top
+
+http://stackoverflow.com/questions/1144805/scroll-to-the-top-of-the-page-using-javascript-jquery
+
+  
+http://jsfiddle.net/osoh6o5a/
+
+  ```
+
+    var menuclick = $('ul.nav li a');
+    
+    menuclick.click(function(){
+    
+    var divPosition = $('#pricing').offset();
+    
+    $('html, body').animate({scrollTop: divPosition.top}, "slow");
+    
+    });
+  
+```
+
+
+##### testi | our team | inpspect elemtent | timline
+
+​http://themexlab.com/eventon/meeton/schedule.html
+
+http://themexlab.com/eventon/meeton/speakers.html
+
+http://themexlab.com/eventon/meeton/index.html
+
+
+##### Tips  
+
+- http://code.tutsplus.com/tutorials/20-helpful-jquery-methods-you-should-be-using--net-10521
+
+- http://benalman.com/code/projects/jquery-outside-events/examples/clickoutside/
+
+- https://github.com/AllThingsSmitty
+- https://github.com/twhite96/js-dev-reads
+
+- http://stackoverflow.com/questions/10213703/how-do-i-view-events-fired-on-an-element-in-chrome-web-developer
+
+
+##### Jquery Menu==========
+
+http://toddmotto.com/html5-and-jquery-super-simple-drop-down-nav/
+
+https://css-tricks.com/simple-jquery-dropdowns/
+
+http://jsfiddle.net/i_like_robots/6JbtX/
+
+##### for muliline
+
+https://css-tricks.com/line-clampin/
+
+using jquery
+
+http://jsfiddle.net/k5VET/
+
+
+##### many carousel====
+
+http://coolcarousels.frebsite.nl/c/21/  
+
+##### jquery slider wow==========
+
+- http://plugins.jquery.com/WOWSlider/ , has many effects and slider designs
+
+##### auto hide sticky header ====
+http://osvaldas.info/auto-hide-sticky-header?utm_content=bufferfc972&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+
+  ```
+
+<body  onunload="alert('Thank you. Please come back to this site and visit us soon, ok?')">
+
+  ```
+
+### Jquery bookmarks
+- Hide your header on scroll - Headroom.js - https://wicky.nillia.ms/headroom.js/
+
+-15 Form Validation jQuery Plugins and Libraries - https://speckyboy.com/form-validation-jquery-plugins-libraries/
+- 45 top examples of JavaScript | JavaScript | Creative Bloq - http://www.creativebloq.com/web-design/examples-of-javascript-1233964
+- 30 Lightweight JavaScript Plugins and Libraries from 2016
+- You Might Not Need jQuery
+- Simple jQuery Examples with Code and Demos – Tania Rascia
+- https://tutorialzine.com/2016/05/15-interesting-javascript-and-css-libraries-for-may-2016
+
+
+### Googlemap bookmarks
+https://stackoverflow.com/questions/2792698/google-maps-api-v3-how-to-jump-to-a-specific-marker-from-outside-the-map
+
+https://www.codingforums.com/javascript-programming/207457-google-maps-jump-markers-help.html
+
+https://developers.google.com/maps/documentation/javascript/examples/control-custom
+
+### mind mapping tools
+https://www.creativebloq.com/web-design/mind-mapping-tools-9134523
+
+##### Mock APIs
+- Dummy/fake apis
+- Myjson.com
+- Jsonplaceholder.typicode.com
+- Swapi.co
+- Mockable.io
+- mockit.netlify

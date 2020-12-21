@@ -136,6 +136,12 @@ https://reactjs.org/docs/design-principles.html
 - https://pomb.us/build-your-own-react/
 - https://blog.jfo.click/how-react-do/
 
+### jQuery vs React
+- https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/imperative%20jquery%20vs%20declarative%20reactjs.jpg
+- 18.	Why react is fast , why not jquery if u change particalar dom ? => We don’t export as module or component to load async or different order https://codepen.io/gaearon/pen/RVKbvW?editors=1010 react with jquery and refer integrating other libs into react in reactjs.com 
+When we refer a classname in common button n fed across dom , we will use queryselector and loop and attach methods but in react we can use react.createRef to reference to particular component only
+ 27. diff react n jquery dom -> modularity -> react inject component as dependecny -> in jquery we should use every code on load
+
 **Virtual Dom use**
 --
 concept of diffing the DOM of the new state with the previous state and only render the difference, which is what ReactJS is doing with Virtual DOM. 
@@ -394,6 +400,10 @@ https://keenethics.com/blog/angular-vs-react-what-to-choose-for-your-app
 https://reactjs.org/docs/testing-recipes.html 
 - basic recipes are given using testing-library not enzyme.
 
+##### Testing Jest npm commands
+![jest commands](https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/jest.txt%20-%20Notepad.jpeg)
+
+
 **Jest** => 
 **Enzyme** is a common tool in the React ecosystem that makes it easier to write tests for how components will behave. By default, our application includes a library called **jsdom** to allow us to simulate the DOM and test its runtime behavior without a browser. Enzyme is similar, but builds on jsdom and makes it easier to make certain queries about our components.
 
@@ -427,6 +437,9 @@ Shallow rendering is nice, because it allows you to render a single component co
 #### Redux
 - actions, reducers, store, connect(mapstatetoprops, mapdispatchtoprops), configstore,
 - when action is dispatched, all reducers are called and depend on action type , particular state changes and other reducers return same state
+
+- Observer is a sound source, Our ears are subject ,We attach those sound source to subject, So when subject observing sounds , we listen and register and identify from which source it’s coming
+- Switching on/off main power which controls other switches and lights bulbs tv. Main acts as central system to control like redux - > subscribe/observer pattern
 
 **Redux thunk:**
 
@@ -610,7 +623,7 @@ https://facebook.github.io/create-react-app/
  24. bootstrap and its uses
  25. responsive design
  26. saga/thunk
- 27. diff react n jquery dom -> modularity -> react inject component as dependecny -> in jquery we should use every code on load
+
  28. redirect and do form get authenticated when url comes as localhost:3000/form
  29. merge props
  30. commonly used header requests
@@ -659,9 +672,58 @@ https://tylermcginnis.com/react-aha-moments/
 - when connect function props not working,then check the current component is exported as default or named one in parent component 
 if it is named export then it  cannot connot to store to get state values
 
+
+To extend base class n use it's methods in react .... Scenario is integrating material with react n extending idse library
+
+Q. Copy render method n adopt to our template or render method
+W. Base can have private method's how will u use that
+E. Cannot change the base class implementation n declaration
+R. Then how will you override  and use its private method's
+T. Try interface is not a solution since we tell idse Lib to implement that
+Y. Try super. Method . But it also didn't work
+U. Copy those private functions and use in your class. It says error that same types declaration in both classes
+I. Finally we need functionality only so why not copy functionality alone n put it in different method name
+
+
+So you are integrating material Lib into idse to use its CSS classes
+
+Q. When you gave correct template n css classes, still some conflict will be there between material n idse
+W. So start integrating material in minimal application outside your existing project.
+E. And try the same implementation
+R. If that outside application works then you should start comparing existing with outside application
+T. Now you can find a clue what went wrong
+
 Interview Questions
 --
+Interview
+React hooks- use memo , use context, usecallback, usereducer
+Atomic design
+Disadvantage of react
+Security implementation
+Router useparams use location
+If router url is pasted in another browser then how you will authenticate 
+Prototype proto
+How to reuse useEffect
+Own custom bind apply map filter reduce
+Experience in terms of building the code without api availability and should be able to test using mocking or using pact based testing
+Mount node 
+Currying vs closures
+Webpack for performance
+Client side rendering vs server side rendering
+Object freeze
+Primitive and reference value
+JavaScript security
+When marketing visited during Garuda service, one client asked whether you have security control, good how do you secure the website completely even if ssl is there?
+During the Wells Fargo also I was asked about security authentication request custom headers
+Recently during incognito interview also 
 
+How do you handle Cross site forgery in your application?
+How do you do authentication in fronted and backend? Jwt 
+Do you use Cookies and web storage?
+How do you handle multiple frameworks in a application ? 
+How do you select a framework for an application? 
+What is complexity challenges you faced in a project ?
+Limitations of react
 **capg**
 
 11. How do you check error trace back happened in child from parent component itself?
@@ -671,8 +733,7 @@ Cts
 --
 
 17.	What is react
-18.	Why react is fast , why not jquery if u change particalar dom ? => We don’t export as module or component to load async or different order https://codepen.io/gaearon/pen/RVKbvW?editors=1010 react with jquery and refer integrating other libs into react in reactjs.com 
-When we refer a classname in common button n fed across dom , we will use queryselector and loop and attach methods but in react we can use react.createRef to reference to particular component only
+
 20.	Why super(props)
 21.	Inside form component there many input field components there, and submit btn so evnet handler available for submit btn only.
 a.	How will you get each component value and submit it
