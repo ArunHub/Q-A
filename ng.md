@@ -12,7 +12,8 @@ implmetation = >
 
 Suppose we are implementing a basic authentication on our backend server. And we want every http request to contain a secret set under Authorisation key. That request should look something like that in below image.
 
-https://medium.com/aviabird/http-interceptor-angular2-way-e57dc2842462
+- https://medium.com/aviabird/http-interceptor-angular2-way-e57dc2842462
+- https://stackblitz.com/edit/ng7-interceptor?file=src%2Fapp%2Fhttpinter.ts
 
 **angular vs react what to choose for your app**
 https://keenethics.com/blog/angular-vs-react-what-to-choose-for-your-app
@@ -204,6 +205,7 @@ Other references to learn more:
 •	Victor Savkins blog posts: Change Detection in Angular 2, Two phases of Angular 2 applications, Angular, Immutability and Encapsulation. He covers a lot of ground quickly, but he can be terse at times, and you’re left scratching your head, wondering about the missing pieces.
 •	Ultra Fast Change Detection (Google doc) — very technical, very terse, but it describes/sketches the ChangeDetection classes that get built as part of the tree
 
+- https://stackblitz.com/edit/ngonchange-angular
 **Template driven:**
 
 Using $event and type like keyboardEvent specically
@@ -596,6 +598,10 @@ proxy for spa projects :
       "target": "http://localhost:8088/",
       "secure": false
     },
+
+- https://stackblitz.com/edit/react-updateperformance
+- https://stackblitz.com/edit/angular-changedet-ym63ee
+- https://stackblitz.com/edit/angular-changedet
 
 **How to manually trigger change detection strategy**
 

@@ -69,10 +69,62 @@ dynamic create variable javascript for IF s
 
 ### Event loop
 - https://javascript.info/event-loop
+- https://dev.to/lydiahallie/javascript-visualized-event-loop-3dif
+  - first, javascript runs on single thread and do one task at a time. So WEB apis are browser specific which is not related to js apis
+  - so when it sees code and puts them into CALL STACK and execute the function and pops out of call stack. 
+  - when it sees settimeout and from call stack , it invokes the function and returns callback fn and pops out .
+  - now callback fn went into web api bucket so that browser takes care and runs the timer given in second argument.
+  - meanwhile other functions are executed are in call stack.
+  - now after timer finishes, web apis callback fn returns  to queue and lined up.
+  - now engine check if the call stack is empty then it **event loops** the callback fn to call stack and runs the function and shows result.
+  - https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/eventloop.jpg
+
+
 - wait for tasks, execute, sleep waiting for tasks, endless.
 - when more tasks assigned like script load, move mouse event, settimeout so everything queued in event stack and called as macro tasks and executes like FIFO
 - Rendering a page happens only after engine executes these tasks and if it become complex and infinite loop > shows unresponsive page.
 - https://javascript.info/event-loop#macrotasks-and-microtasks
+- web apis like setinterval, setImmediate, settimeout  are all macrotasks which has own queue, and
+- promise, async, process.nexttick ,callback and queuecallback are all micro tasks which has own queue
+- when call stack is idle, micro task queue gets executed and then macro tasks are executed.
+- https://dev.to/lydiahallie/javascript-visualized-promises-async-await-5gke
+
+- js heap ??
+
+###### Hoisting
+-  Hoisting is often explained as putting variables and functions to the top of the file but nah, that’s not what’s happening, although the behavior might seem like it 😃
+
+- When the JS engine gets our script, the first thing it does is setting up memory for the data in our code. No code is executed at this point, it’s simply just preparing everything for execution. The way that function declarations and variables are stored is different. Functions are stored with a reference to the entire function and variables var stored with undefined and ES6 - let and const are stored with uninitialized. This is called the creation phase 
+- Its like only function doesnt have assignment operator logically so it has reference to entire function stored i guess :D 
+- After creation phase, engine executes the code and suppose imagine a scenario we put console.log on first lines so it executes and throw reference error.
+- before initialization, we cannot access temporal dead zone.
+- When the engine passes the line on which we actually declared the variables, the values in memory are overwritten with the values we actually declared them with.
+- now if we console , the context / environment has values.
+- https://dev.to/lydiahallie/javascript-visualized-hoisting-478h
+- https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/hoisting.jpg
+
+
+##### Scopes
+- local execution scope, local scope connected to global scope
+- local scope finds non existing variable down the scope chain like waterfall and searches in another outer local scope or final global scope.
+- https://dev.to/lydiahallie/javascript-visualized-scope-chain-13pd
+
+##### js engine
+- script tag(from network, cache, service worker) -> bytestream code like 01 e8 6e 1e -> tokens function , var -> preparser(which parses which code is used later) and parser(it invokes as immediately required by browser) -> creates node based on tokens -> AST=Abstract syntax tree like program, function literal, returnstatement, stringliteral -> interpreter gets AST and -> generates bytecode for machine to understand and destroys AST to free memory space -> bytecode is faster and can be made faster by invoking or replacing variables, functions repeatedly invoked by -> optimizing compiler -> if same numbers are passed into sum function then compiler can identify and run faster as it is repeatedly invoked but if string is passed then it goes to bytecode from interpreter and runs it.
+ 
+- https://dev.to/lydiahallie/javascript-visualized-the-javascript-engine-4cdf
+
+##### prototypal inheritance
+- https://dev.to/lydiahallie/javascript-visualized-prototypal-inheritance-47co
+  - visualize linked list in prototypal chain when proto is null in this article end.
+
+##### Generators and iterators
+- normal functions are run-to-completion model
+- by attaching [Symbol.iterator] to a object, can make object iterable
+-  We can yield individual values from iterators within a generator using the yield* keyword, so the yield with an asterisk!
+- https://dev.to/lydiahallie/javascript-visualized-generators-and-iterators-e36
+
+
 
 ### How to improve performance of site? 
 - https://github.com/manucorporat/perf-apis-2/blob/master/performance-techniques.pdf
@@ -106,7 +158,7 @@ When you accessed the document object model using lines like this:
     var myDiv = document.createElement('div');
 
 You were using methods available on an instance of the Document class. For each webpage loaded, an instance of Document is created, called document, which represents the entire page's structure, content, and other features such as its URL. Again, this means that it has several common methods/properties available on it.
-
+Object.defineProperty
 **Abstraction**
  
 know about a person (their address, height, shoe size, DNA profile, passport number, significant personality traits ...) , but in this case we are only interested in showing their name, age, gender, and interests, want to be able to write a short introduction about them based on this data, and get them to say hello. This is known as abstraction — creating a simple model of a more complex thing, which represents its most important aspects in a way that is easy to work with for our program's purposes.
@@ -1182,10 +1234,11 @@ const memo = (fn) => {
 
 #### Validation using css and js inputs native 
 
-https://bitsofco.de/form-validation-techniques/
+- https://bitsofco.de/form-validation-techniques/
+- https://stackblitz.com/edit/js-email-validation-rxjs
 
 ### ES6 & ES7
-arrow function, destructuring, rest parameters, spread operator, let , const, default parameters, Object.assign, array.from , array.of, Template literals, modules, iterators, generators, classes, async await, multi strings and interpolation `${}`
+arrow function, destructuring, rest parameters, spread operator, let , const, default parameters, Object.assign, array.from , array.of, Template literals, modules, iterators, generators, classes, async await, multi strings and interpolation `${}`, Set, Map, weakMap, weakSet
 
 **Arrow functions** are anonymous and change the way this binds in functions. More concise, and simplify function scoping and the this keyword. we avoid having to type the function keyword, return keyword (it’s implicit in arrow functions), and curly brackets.
 
@@ -1455,6 +1508,10 @@ await abstracts return new Promise((success, reject)=>{success() or reject()})
 
 secondfn(url)
 
+#### important
+Did you notice how async functions are different compared to a promise then? The await keyword suspends the async function, whereas the Promise body would've kept on being executed if we would've used then!
+- https://dev.to/lydiahallie/javascript-visualized-promises-async-await-5gke
+
 ##### promise vs observable
 
     const source = Rx.Observable.of({name: 'Brian'}, [1,2,3], function hello(){ 
@@ -1584,6 +1641,35 @@ https://github.com/dwyl/learn-json-web-tokens
 - html output decoding / entity / textcontent/innertext
 - HTML5 security problems
 
+socket.io unauthorized
+
+Typesafe -> strict mode -> file order - iife 
+Main difference between Es5 and ES6 are scoping issue, global scope, strict mode
+
+Instead of document.domain because of sharing across frames coming from subdomains
+
+so when it allows  subdomain frames to access document.domain Xss can found in subdomain can access parent domain and same origin policy is waste and useless so use post message api
+
+Alice logs in website which stores sensitive information. now what happen is Bob sends fruscated mail to Alia -> alia clicks it -> malicious url load in webpage and stores localstorage with malicious code.
+
+now malicious code inside application browser context by bypassing SOP and SOP things its a safe.
+
+Malicious code steals sensitive information like user sends as Http get, post.
+
+and send to bob computer to access their info.
+
+Web cookie and seesion
+
+**Data flow**
+Attackers normally targets inputs and output of code, Url, forms, storage, plugins, clickjacking
+
+**malicious sink**
+- document.write(), innerHtml, location.* , location.assign(), eval(string), setTimeout, setInterval, execscript
+
+**Source**
+- Anything the user has control over like document.referrer, window.name, location, event.data, storages, cookies, document.write("<option> decodeURI(document.location.hash)</option>")
+so here sink writes content and user has control over input
+
 #### Security issues in HTML5
 - Clickjacking, XSS, Script injecting
 - Cross messaging document/ web messaging api
@@ -1610,7 +1696,8 @@ https://github.com/dwyl/learn-json-web-tokens
 - http://rxmarbles.com/
 - https://codecraft.tv/courses/angular/reactive-programming-with-rxjs/streams-and-reactive-programming/
 - https://blog.angularindepth.com/learn-to-combine-rxjs-sequences-with-super-intuitive-interactive-diagrams-20fce8e6511 
-
+- https://stackblitz.com/edit/cold-warm-hot
+- https://stackblitz.com/edit/js-tripleselect-rxjs
 **Rxjs operators -** 
 
 •	FILTERING OPERATORS, Conditional Operators, CREATION OBSERVABLES

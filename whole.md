@@ -36,12 +36,77 @@ https://webpack.js.org/concepts/why-webpack/
 
 https://medium.com/@rajaraodv/webpack-the-confusing-parts-58712f8fcad9
 
+###### Full Stack
+Traditional web stack: 
+ - Frontend - js - Json, 
+ - backend - java/python/c# -  domain object
+ - sql - tables
+
+Current Full stack
+ - frontend - Js - json
+ - backedn - nodejs - json
+ - nosql - mongodb - json
+
+ all data are in one format - JSON
+
 #### Node?
+
+- Java code => Bytecode => JVM => JIT => Native code 
+- C#/VB.net => CIL => CLR => JIT => Native code
+- JS code => V8(nodejs environment) => native code (machine)
+
+In 2009, placed v8 engine from Roy rendell google when it was made open source. He placed v8 engine on top of C++ and made it as NODE.
+
+- node is a set of bindings (c++ , c apis to interact with lowerlevl , hardware protocols ) to google v8 JS VM.
+- allows script programs that do I/O in js.
+- focused on performance.
+- V8 - Js execution engine in 2008.
+- V8 instead of interpreting, it compiles JS code. 
+
+Event loop 
+
+Non -blocking -> L1, L2, RAM
+
+**Scenario:**
+Synechron office, 3 training rooms, attendance sheet, peon, buzzer
+
+- Apache -> threads
+- Nginx  -> No threads. Only event loop for processing huge requests/ second.
+
+**Multithreading:** 
+- Switch between threads is not free because each stacks in threads take memory.
+
+- threads run on VM are called green threads.
+
+- Green threads -> scheduled by a runtime library/ VM instead of underlying OS. It emulate multithreaded environments without relying on any native OS abilities and they are managed in user space instead of kernel space enables to work in non native thread support environment. Green means eco-friendly :)
+
+- https://github.com/ArunHub/Q-A/blob/master/.github/NodeEventloop.pdf
+- https://medium.com/@witkesam/solving-the-blocked-event-loop-in-node-js-abb6cac281a7
+- https://github.com/ArunHub/Q-A/blob/master/.github/nodeapplications.pdf
+- https://github.com/ArunHub/Q-A/blob/master/.github/nodeinbuiltmongoserver.pdf
+
+- https://ezdevs.com.br/en/understanding-node-js-event-loop/
 Event loop, event driven, I/O operations?
 Modules formats=> esnext, commonjs, systemjs, require js, exports.module of node,es2015 
 https://auth0.com/blog/javascript-module-systems-showdown/
 
 - https://github.com/danbev/learning-nodejs - Node internal learning 
+
+
+###### server options
+**to pass token are follows**
+
+- query string
+- in body
+- header
+
+**client options to save token**
+- url query strings
+- web storage
+- hidden web dom elements
+- cookies
+
+app.use(// looking for new custom/3rd party middleware)
 
 #### Npm
 Creating npm scripts like npm start to execute where it is executed.
