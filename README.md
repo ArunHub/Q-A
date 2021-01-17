@@ -55,6 +55,9 @@ Difficult to maintain chart with State - study what is the proper difference bet
 
 ##### Todo tech
 - Typescript poc 
+
+- https://500tech.com/projects/proggio 
+    - see the design and take the structure for projects timeline and showcase in portfolio
 - Node js automate git work to deploy
     - Think about how you can automate things where you have spent so much in past companies
     - https://github.com/linclark/github-pages-deploy
