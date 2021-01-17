@@ -67,6 +67,7 @@ Difficult to maintain chart with State - study what is the proper difference bet
 - Retire.js for checking vulnerabilities or nsp or shrinkwrap npm - package.json.lock dependencies requirement
 - Chatbot for website ? 
 - somaiya idea
+- web assembly gtp3
 
 - protocols -> SSH http:// mongodb://
 - can http promises be captured in nodejs? via hostfile
