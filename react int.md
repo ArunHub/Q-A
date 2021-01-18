@@ -1,3 +1,28 @@
+#### Learnings :
+When you update setstate and then did something in setstate callback then this callback will be invoked after didupdate only.
+**Refer** - react.development file for more info
+
+## What is react ?
+- It is a library which has set of functions and methods to build some parts of application.
+
+- Framework is a collection or set of libraries, prematured application(not complete) which fulfills the requirement of application. It is followed by its own terms, structures and guidelines.
+
+- MVC into MVP application ? MV(W) whatever Angular
+
+- MVC - V-> extending HTML vocabulary
+    - custom tags in html ? custom html elements
+    - web component development
+    - component is a part of whole application then can reusable anywhere inside the app.
+
+### Why React ?
+- Example -> 10 projects with different technology, dotnet, java,angular,mvc, mvp then want a common functionality which is reusable. Will you use angular in all apps? No.
+Can use React as library and use in all projects.
+
+- Virtual scroller --> Angular
+- virtual Dom --> React
+
+
+
 ### Design principles
 
 important to us that you can add functionality to a component without causing rippling changes throughout the codebase.
@@ -435,8 +460,18 @@ Shallow rendering is nice, because it allows you to render a single component co
 - https://www.30secondsofcode.org/blog/s/react-rendering-optimization
 
 #### Redux
+1. Store( initial state, middleware, reducer) to create a store.
+2. Actions (dispatch)
+3. Reducers
+4. Subscription to state changes
+
 - actions, reducers, store, connect(mapstatetoprops, mapdispatchtoprops), configstore,
 - when action is dispatched, all reducers are called and depend on action type , particular state changes and other reducers return same state
+- React needs multiple reducers but store can have only one reducer so we have to combine all reducers to single so combinereducers from store.
+- use applyMiddleware to provision the 3rd party middleware like logger etc., or custom middleware
+- to communicate with react app and redux. 3rd party library react redux package which created by neither of them.
+- to bridge those two, this package is needed.
+
 
 - Observer is a sound source, Our ears are subject ,We attach those sound source to subject, So when subject observing sounds , we listen and register and identify from which source it’s coming
 - Switching on/off main power which controls other switches and lights bulbs tv. Main acts as central system to control like redux - > subscribe/observer pattern
