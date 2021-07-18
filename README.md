@@ -34,6 +34,7 @@ https://www.joelonsoftware.com/2000/08/09/the-joel-test-12-steps-to-better-code/
 
 My current score: 6
 
+- https://12factor.net/
 ----
 
 
