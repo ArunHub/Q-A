@@ -1,8 +1,10 @@
 #### Learnings :
+
 When you update setstate and then did something in setstate callback then this callback will be invoked after didupdate only.
 **Refer** - react.development file for more info
 
 ## What is react ?
+
 - It is a library which has set of functions and methods to build some parts of application.
 
 - Framework is a collection or set of libraries, prematured application(not complete) which fulfills the requirement of application. It is followed by its own terms, structures and guidelines.
@@ -10,25 +12,30 @@ When you update setstate and then did something in setstate callback then this c
 - MVC into MVP application ? MV(W) whatever Angular
 
 - MVC - V-> extending HTML vocabulary
-    - custom tags in html ? custom html elements
-    - web component development
-    - component is a part of whole application then can reusable anywhere inside the app.
+  - custom tags in html ? custom html elements
+  - web component development
+  - component is a part of whole application then can reusable anywhere inside the app.
 
 ### Why React ?
+
 - Example -> 10 projects with different technology, dotnet, java,angular,mvc, mvp then want a common functionality which is reusable. Will you use angular in all apps? No.
-Can use React as library and use in all projects.
+  Can use React as library and use in all projects.
 
 - Virtual scroller --> Angular
 - virtual Dom --> React
 
+why react app doesnt show actual html under root div in view source page ?
 
+We call this a “root” DOM node because everything inside it will be managed by React DOM.
+so react builds the react elements representing the view screen under the root div.
+Unlike browser DOM elements, React elements are plain objects, and are cheap to create. React DOM takes care of updating the DOM to match the React elements.
 
 ### Design principles
 
 important to us that you can add functionality to a component without causing rippling changes throughout the codebase.
 
 For example, it should be possible to introduce some local state into a component without changing any of the components using it.
-In general we resist adding features. don’t want to bloat your apps with useless library code. 
+In general we resist adding features. don’t want to bloat your apps with useless library code.
 
 For example, if React didn’t provide support for local state or lifecycle hooks, people would create custom abstractions. This is why sometimes we add features to React itself. If we notice that many components implement a certain feature in incompatible or inefficient ways, we might prefer to bake it into React. We don’t do it lightly. When we do it, it’s because we are confident that raising the abstraction level benefits the whole ecosystem. State, lifecycle hooks, cross-browser event normalization are good examples of this.
 
@@ -37,14 +44,12 @@ Facebook has a massive non-React codebase. Its website uses a mix of a server-si
 This is why React provides escape hatches to work with mutable models, and tries to work well together with other UI libraries. You can wrap an existing imperative UI into a declarative component, and vice versa. This is crucial for gradual adoption.
 React does not want to be fully “reactive”. Using pull instead of Push paragidm.
 
-
-**Why React is different? And design I guess**
---
+## **Why React is different? And design I guess**
 
 one-way data flow philosophy for which we chose React in the first place!
-https://camjackson.net/post/9-things-every-reactjs-beginner-should-know 
+https://camjackson.net/post/9-things-every-reactjs-beginner-should-know
 
-If you’re new to React, you probably only worked with component classes and instances before. For example, you may declare a Button component by creating a class. When the app is running, you may have several instances of this component on screen, each with its own properties and local state. This is the traditional object-oriented UI programming. 
+If you’re new to React, you probably only worked with component classes and instances before. For example, you may declare a Button component by creating a class. When the app is running, you may have several instances of this component on screen, each with its own properties and local state. This is the traditional object-oriented UI programming.
 
 Why introduce elements?
 
@@ -59,12 +64,12 @@ An element is not an actual instance. Rather, it is a way to tell React what you
 When an element’s type is a string, it represents a DOM node with that tag name, and props correspond to its attributes. This is what React will render. For example:
 
     {  type: 'button',  props:
-    {    className: 'button button-blue',   
-     children: {      type: 'b',     
-      props: {        children: 'OK!'     
-       }   
-        } 
-         }} 
+    {    className: 'button button-blue',
+     children: {      type: 'b',
+      props: {        children: 'OK!'
+       }
+        }
+         }}
 
 This element is just a way to represent the following HTML as a plain object:
 
@@ -75,17 +80,16 @@ React elements are easy to traverse, don’t need to be parsed, and of course th
 Component Elements
 However, the type of an element can also be a function or a class corresponding to a React component:
 
-    {  type: Button,  props: {    color: 'blue',    children: 'OK!'  }} 
+    {  type: Button,  props: {    color: 'blue',    children: 'OK!'  }}
 
-**This is the core idea of React.**
---
+## **This is the core idea of React.**
 
 An element describing a component is also an element, just like an element describing the DOM node. They can be nested and mixed with each other.
 
 This feature lets you define a DangerButton component as a Button with a specific color property value without worrying about whether Button renders to a DOM <button>, a <div>, or something else entirely:
-const DangerButton = ({ children }) => ({  type: Button,  props: {    color: 'red',    children: children  }});
-More things are there to cover, plZ refer below link for detailed understanding 
-https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html 
+const DangerButton = ({ children }) => ({ type: Button, props: { color: 'red', children: children }});
+More things are there to cover, plZ refer below link for detailed understanding
+https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html
 
 For a React component, props are the input, and an element tree is the output.
 The returned element tree can contain both elements describing DOM nodes, and elements describing other components. This lets you compose independent parts of UI without relying on their internal DOM structure.
@@ -95,19 +99,20 @@ However, whether functions or classes, fundamentally they are all components to 
 React Design
 React takes care of creating an instance for every class component, so you can write components in an object-oriented way with methods and local state, but other than that, instances are not very important in the React’s programming model and are managed by React itself.
 
-Best practice in react -  shouldUpdateComponent, composition rather than inheritance, HOC , thinking in react
+Best practice in react - shouldUpdateComponent, composition rather than inheritance, HOC , thinking in react
 
-**Advanced Guides**
---
-**Performance** - 
+## **Advanced Guides**
+
+**Performance** -
 People still talk about them because in practice, they are very hard to implement in regular JavaScript code. What makes React stand out is that all those optimizations happen by default. This makes it hard to shoot yourself in the foot and make your app slow.
 The performance cost model of React is also very simple to understand: every setState re-renders the whole sub-tree. If you want to squeeze out performance, call setState as low as possible and use shouldComponentUpdate to prevent re-rendering an large sub-tree.
 
-#### Thinking in  react
- 1. It’s best to decouple these processes because building a static version requires a lot of typing and no thinking, and adding interactivity requires a lot of thinking and not a lot of typing. We’ll see why.
- 2. To build a static version of your app that renders your data model, you’ll want to build components that reuse other components and pass data using props. props are a way of passing data from parent to child. If you’re familiar with the concept of state, don’t use state at all to build this static version. State is reserved only for interactivity, that is, data that changes over time. Since this is a static version of the app, you don’t need it.
- 3. You can build top-down or bottom-up. That is, you can either start with building the components higher up in the hierarchy (i.e. starting with FilterableProductTable) or with the ones lower in it (ProductRow). In simpler examples, it’s usually easier to go top-down, and on larger projects, it’s easier to go bottom-up and write tests as you build.
- 4. At the end of this step, you’ll have a library of reusable components that render your data model. The components will only have render() methods since this is a static version of your app. The component at the top of the hierarchy (FilterableProductTable) will take your data model as a prop. If you make a change to your underlying data model and call ReactDOM.render() again, the UI will be updated. It’s easy to see how your UI is updated and where to make changes since there’s nothing complicated going on. React’s one-way data flow (also called one-way binding) keeps everything modular and fast.
+#### Thinking in react
+
+1.  It’s best to decouple these processes because building a static version requires a lot of typing and no thinking, and adding interactivity requires a lot of thinking and not a lot of typing. We’ll see why.
+2.  To build a static version of your app that renders your data model, you’ll want to build components that reuse other components and pass data using props. props are a way of passing data from parent to child. If you’re familiar with the concept of state, don’t use state at all to build this static version. State is reserved only for interactivity, that is, data that changes over time. Since this is a static version of the app, you don’t need it.
+3.  You can build top-down or bottom-up. That is, you can either start with building the components higher up in the hierarchy (i.e. starting with FilterableProductTable) or with the ones lower in it (ProductRow). In simpler examples, it’s usually easier to go top-down, and on larger projects, it’s easier to go bottom-up and write tests as you build.
+4.  At the end of this step, you’ll have a library of reusable components that render your data model. The components will only have render() methods since this is a static version of your app. The component at the top of the hierarchy (FilterableProductTable) will take your data model as a prop. If you make a change to your underlying data model and call ReactDOM.render() again, the UI will be updated. It’s easy to see how your UI is updated and where to make changes since there’s nothing complicated going on. React’s one-way data flow (also called one-way binding) keeps everything modular and fast.
 
 Think of all of the pieces of data in our example application. We have:
 
@@ -129,31 +134,27 @@ So finally, our state is:
     The search text the user has entered
     The value of the checkbox
 
+## **Debugging**
 
-
-**Debugging**
--
 When something goes wrong, it is important that you have breadcrumbs to trace the mistake to its source in the codebase. In React, props and state are those breadcrumbs.
 If the props are wrong, you can traverse the tree up in the inspector, looking for the component that first “poisoned the well” by passing bad props down.
 
 This doesn’t mean that we ignore the issues raised by the community. For example, we added support for web components and SVG to React even though we don’t rely on either of them internally. We are actively listening to your pain points and address them.
 
 we use componentDidMount() instead of didMount() or onMount(). This is intentional. The goal is to make the points of interaction with the library highly visible.
-https://reactjs.org/docs/design-principles.html 
-
+https://reactjs.org/docs/design-principles.html
 
 #### Why did React was created? Isnt a MVC framework? Does it use templates ?
 
 - https://reactjs.org/blog/2013/06/05/why-react.html
 - https://camjackson.net/post/9-things-every-reactjs-beginner-should-know
 
-
 - why super props needed and why it is not needed when constructor is not available and how we use render setstate
-    - super props are needed to inherit the parent component properties and we are sending our props to parent and make use of their extra properties as well as it is a oops inheritance concept.
-    - so normally when we dont write constructor , internally it is implemented by package so like java concepts only.
-    - using parent component we are using inherited methods like 
-- how componenet didmount works for every component 
-    - i guess, may be using new instance from class. its initialized and make some code to run once (functional js)
+  - super props are needed to inherit the parent component properties and we are sending our props to parent and make use of their extra properties as well as it is a oops inheritance concept.
+  - so normally when we dont write constructor , internally it is implemented by package so like java concepts only.
+  - using parent component we are using inherited methods like
+- how componenet didmount works for every component
+  - i guess, may be using new instance from class. its initialized and make some code to run once (functional js)
 - codepen.io/topic/react/templates
 
 ### How React work /do?
@@ -162,14 +163,16 @@ https://reactjs.org/docs/design-principles.html
 - https://blog.jfo.click/how-react-do/
 
 ### jQuery vs React
-- https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/imperative%20jquery%20vs%20declarative%20reactjs.jpg
-- 18.	Why react is fast , why not jquery if u change particalar dom ? => We don’t export as module or component to load async or different order https://codepen.io/gaearon/pen/RVKbvW?editors=1010 react with jquery and refer integrating other libs into react in reactjs.com 
-When we refer a classname in common button n fed across dom , we will use queryselector and loop and attach methods but in react we can use react.createRef to reference to particular component only
- 27. diff react n jquery dom -> modularity -> react inject component as dependecny -> in jquery we should use every code on load
 
-**Virtual Dom use**
---
-concept of diffing the DOM of the new state with the previous state and only render the difference, which is what ReactJS is doing with Virtual DOM. 
+- https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/imperative%20jquery%20vs%20declarative%20reactjs.jpg
+- 18. Why react is fast , why not jquery if u change particalar dom ? => We don’t export as module or component to load async or different order https://codepen.io/gaearon/pen/RVKbvW?editors=1010 react with jquery and refer integrating other libs into react in reactjs.com
+      When we refer a classname in common button n fed across dom , we will use queryselector and loop and attach methods but in react we can use react.createRef to reference to particular component only
+
+27. diff react n jquery dom -> modularity -> react inject component as dependecny -> in jquery we should use every code on load
+
+## **Virtual Dom use**
+
+concept of diffing the DOM of the new state with the previous state and only render the difference, which is what ReactJS is doing with Virtual DOM.
 Manual DOM manipulation is expensive and slow when state changes , have to recreate full DOM which makes page slower in large applications.
 So in React, virtual dom create virtual tree objects and match the difference with previous V tree DOM and send updates to actual DOM to update the particular part.
 
@@ -188,8 +191,8 @@ A virtual DOM is nice because it lets us write our code as if we were re-renderi
 
 https://stackoverflow.com/questions/21109361/why-is-reacts-concept-of-virtual-dom-said-to-be-more-performant-than-dirty-mode/23995928#23995928
 
-**Event delegation,** 
---
+## **Event delegation,**
+
 https://github.com/Matt-Esch/virtual-dom
 
 https://gist.github.com/Raynos/8414846
@@ -200,120 +203,125 @@ https://medium.com/@gethylgeorge/how-virtual-dom-and-diffing-works-in-react-6fc8
 
 https://medium.com/@rajaraodv/the-inner-workings-of-virtual-dom-666ee7ad47cf
 
-Data to Child from parent ways -  use callback method from parent and call it with data to send to parent and change data OR dispatch event to store to update. Uniflow directional or context api
-Ref -  take instance of dom element value to give which submit action or other action performed.. refs are uncontrolled component and can do use it for hurry work code.
+Data to Child from parent ways - use callback method from parent and call it with data to send to parent and change data OR dispatch event to store to update. Uniflow directional or context api
+Ref - take instance of dom element value to give which submit action or other action performed.. refs are uncontrolled component and can do use it for hurry work code.
 
-**Composition over inheritane** 
-- https://www.youtube.com/watch?v=wfMtDGfHWpA 
+**Composition over inheritane**
 
-
+- https://www.youtube.com/watch?v=wfMtDGfHWpA
 
 ### Hooks:
+
 - https://reactjs.org/docs/hooks-intro.html
 - https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889
 
 **Visualization**
+
 - https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e - useState order is important
 
 - https://reactjs.org/docs/hooks-faq.html
 
 ##### MeMo:
+
 memoization or memoisation is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again.
 The term "memoization" was coined by Donald Michie in 1968[3] and is derived from the Latin word "memorandum" ("to be remembered").
 
+## **Questions & answers**
 
-**Questions & answers**
--
-1.	Route render if path is matched what to call render or component
-Route to match home component
-=========
-2. 
+1.  Route render if path is matched what to call render or component
+    Route to match home component
+    =========
+2.
 
-3.	**Pure function** 
-amount.total =-val return amount.total
-1.	The function always returns the same result if the same arguments are passed in. It does not depend on any state, or data, change during a program’s execution. It must only depend on its input arguments.
-2.	The function does not produce any observable side effects such as network requests, input and output devices, or data mutation.
-Side effects include, but are not limited to:
-•	Making a HTTP request
-•	Mutating data
-•	Printing to a screen or console
-•	DOM Query/Manipulation
-•	Math.random()
-•	Getting the current time
+3.  **Pure function**
+    amount.total =-val return amount.total
+4.  The function always returns the same result if the same arguments are passed in. It does not depend on any state, or data, change during a program’s execution. It must only depend on its input arguments.
+5.  The function does not produce any observable side effects such as network requests, input and output devices, or data mutation.
+    Side effects include, but are not limited to:
+    • Making a HTTP request
+    • Mutating data
+    • Printing to a screen or console
+    • DOM Query/Manipulation
+    • Math.random()
+    • Getting the current time
 
-    function priceAfterTax(productPrice) {
-           return (productPrice * 0.20) + productPrice;
-           }
+        function priceAfterTax(productPrice) {
+               return (productPrice * 0.20) + productPrice;
+               }
 
 It passes both 1, and 2, of the requirements for a function to be declared pure. It doesn’t depend on any external input, it doesn’t mutate any data and it doesn’t have any side effects.
 var tax = 20;
 
     function calculateTax(productPrice) {
-         return (productPrice * (tax/100)) + productPrice; 
+         return (productPrice * (tax/100)) + productPrice;
     }
 
 IMPURE because the function depends on an external tax variable you’d be right! A pure function cannot depend on outside variables.
 
 4.  Check pure function for object = > see anjana vakil video
 
-5. **Input null or undefined initially then populate value later** ==> https://stackblitz.com/edit/react-oq9isl?file=index.js
-Warning: `value` prop on `input` should not be null
-Warning: A component is changing an uncontrolled input of type text to be controlled. Input elements should not switch from uncontrolled to controlled (or vice versa)
+5.  **Input null or undefined initially then populate value later** ==> https://stackblitz.com/edit/react-oq9isl?file=index.js
+    Warning: `value` prop on `input` should not be null
+    Warning: A component is changing an uncontrolled input of type text to be controlled. Input elements should not switch from uncontrolled to controlled (or vice versa)
 
-6. Props with no value n send to children like <test name/> ==> nothing happens and it assumes as name = true and creates confusion with es6 object {foo} similar to {foo:foo}
-7. React put ‘px’ automatically if height given as 10 in styles object ? ==> yes
-8. Jsx in browser - Doesn’t work.
-Using Html in Js with use of JSX. Write normal html without strings in js file. 
-React uses Babel to compiles JSX(javascript extension) code to react elements which is in es5 and send it to browser to display
+6.  Props with no value n send to children like <test name/> ==> nothing happens and it assumes as name = true and creates confusion with es6 object {foo} similar to {foo:foo}
+7.  React put ‘px’ automatically if height given as 10 in styles object ? ==> yes
+8.  Jsx in browser - Doesn’t work.
+    Using Html in Js with use of JSX. Write normal html without strings in js file.
+    React uses Babel to compiles JSX(javascript extension) code to react elements which is in es5 and send it to browser to display
 
-Render =>
-9. Render a React element into the DOM in the supplied container and return a reference to the component (or returns null for stateless components). ... If the optional callback is provided, it will be executed after the component is rendered or updated
+Render => 9. Render a React element into the DOM in the supplied container and return a reference to the component (or returns null for stateless components). ... If the optional callback is provided, it will be executed after the component is rendered or updated
 
 10. **Virtual dom** - answer given below somewhere
-Es6 to es5 write es5 with react create class n create element
+    Es6 to es5 write es5 with react create class n create element
 11. Const to renderdom ==> https://codepen.io/anon/pen/JaPyEO?&editors=0010
 
 If sri50 retweets, message reaches all ppl including itisprashant but if prashant retweets it willl reach less followers than sri50 so if follow only sri50 imporves performance instead of following prashant like ppl and getting retweets again and again to loose performance.
 
-**Functional componets**
--
+## **Functional componets**
+
 Functional components have a few 'limitations', which I consider to be their greatest strengths.
 
- 1. functional component cannot have a ref assigned to it. While a ref can be a convenient way for a component to 'look up' it's children and communicate with them, my feeling is that this is The Wrong Way to write React. refs encourage a very imperative, almost jquery-like way of writing components, taking us away from the functional, one-way data flow philosophy for which we chose React in the first place!
- 2. The other big difference is that functional components cannot have state attached to them, which is also a huge advantage
+1.  functional component cannot have a ref assigned to it. While a ref can be a convenient way for a component to 'look up' it's children and communicate with them, my feeling is that this is The Wrong Way to write React. refs encourage a very imperative, almost jquery-like way of writing components, taking us away from the functional, one-way data flow philosophy for which we chose React in the first place!
+2.  The other big difference is that functional components cannot have state attached to them, which is also a huge advantage
 
-https://camjackson.net/post/9-things-every-reactjs-beginner-should-know#write-stateless-components 
+https://camjackson.net/post/9-things-every-reactjs-beginner-should-know#write-stateless-components
 
 react children – don’t use props.children.map instead use React.children.map
 
     <Hello name={this.state.name}>children</Hello> //(in parent component render)
 
-    const sd = React.Children.map(props.children, t=> <div>{t}</div>) 
+    const sd = React.Children.map(props.children, t=> <div>{t}</div>)
 
 (in child component)
 Use above in starter react project in stackblitz
 
 ### Router
+
 - getting start with - https://reactrouter.com/web/guides/quick-start
 - Dynamic routing where u can route a component anywhere in app not like static app used to angular ember which got initiated in root module. Before Reactv4 also implemented same.
 - Nested routes(using match.url in nested route to select from relative url and goes on), responsive routes(using Media query component and switch condition to responsive layout)
 - FYI, React Router is a sort of a wrapper for HTML5 History API. We can create History.js and implement customHistory.js
-https://medium.freecodecamp.org/you-might-not-need-react-router-38673620f3d 
+  https://medium.freecodecamp.org/you-might-not-need-react-router-38673620f3d
 
-**Questions:** 
- 1. security in react spa -> authentication using router
- 2.	How react router different from other router?
-12. IndexRoute, BrowserHistory …
-=> indexRoute is like home page when no url matches … in Rv16.0 it uses exact attribute to tell router home
-React Router (v3) I can accept a server response and use browserHistory.push to go to the appropriate response page
-React 3 indexroute is similar to exat attr in v4.
-In v4, import history from '../history'; so that history.push to go to desired page.
+**Questions:**
+
+1.  security in react spa -> authentication using router
+2.  How react router different from other router?
+3.  IndexRoute, BrowserHistory …
+    => indexRoute is like home page when no url matches … in Rv16.0 it uses exact attribute to tell router home
+    React Router (v3) I can accept a server response and use browserHistory.push to go to the appropriate response page
+    React 3 indexroute is similar to exat attr in v4.
+    In v4, import history from '../history'; so that history.push to go to desired page.
+
 ```
     <Provider store={props.store}>
     <Router history={browserHistory} routes={routes} />
     </Provider>
 ```
+
 13. dynamic attribute in a component or element
+
 ```
     this.state={name: "sridhar", flag: false}
     render(){
@@ -323,12 +331,12 @@ In v4, import history from '../history'; so that history.push to go to desired p
     }
 ```
 
-**React scoped stylesheet**
--
- 4 ways – **globally declared,** 
+## **React scoped stylesheet**
+
+4 ways – **globally declared,**
 as object in inline js styles so lives within same js common in react native or using radium lib,
 
-**Modular** style src/  components/    Gator/      index.js      styles.css    Bite/      index.js      styles.css
+**Modular** style src/ components/ Gator/ index.js styles.css Bite/ index.js styles.css
 
 **Stylized Components** – using glamorous lib
 
@@ -349,8 +357,8 @@ controlled component where your form data lives in component state. controlled c
 An uncontrolled component is where your form data is handled by the DOM, instead of inside your React component.(template driven in ng)
 You use refs to accomplish this.
 
-**React Lifehooks**
---
+## **React Lifehooks**
+
 http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
 
 **GetDerivedStatefromProps** is replacement of componentWillMount which returns objects similar to setState in componentwillmount.
@@ -373,8 +381,9 @@ https://stackblitz.com/edit/react-cscdou?file=index.js
 
 “The end goal of reconciliation is to, in the most efficient way possible, update the UI based on new state” we know certain section of UI isn’t going to change, so no reason to update component and its child so **shouldComponentUpdate** returns false for performance issues.
 
-#### setState – 
-This is basically kicking off a process that React calls reconciliation. The reconciliation process is the way React updates the DOM, by making changes to the component based on the change in state. When the request to setState() is triggered, React creates a new tree containing the reactive elements in the component (along with the updated state). This tree is used to figure out how the Search component’s UI should change in response to the state change by comparing it with the elements of the previous tree. React knows which changes to implement and will only update the parts of the DOM where necessary. This is why React is fast. 
+#### setState –
+
+This is basically kicking off a process that React calls reconciliation. The reconciliation process is the way React updates the DOM, by making changes to the component based on the change in state. When the request to setState() is triggered, React creates a new tree containing the reactive elements in the component (along with the updated state). This tree is used to figure out how the Search component’s UI should change in response to the state change by comparing it with the elements of the previous tree. React knows which changes to implement and will only update the parts of the DOM where necessary. This is why React is fast.
 
 SetState works like it updates the property of object tree by merging obj using Object.assign
 The rule of thumb is to never mutate state directly. Always use setState() to change state. Modifying state directly, like the snippet below will not cause the component to re-render.
@@ -395,7 +404,7 @@ If u want update 3 times
 above method wont work since
 The above code snippet is equivalent to:
 
-    Object.assign(  
+    Object.assign(
       {},
       { count: this.state.count + 1 },
       { count: this.state.count + 1 },
@@ -404,15 +413,15 @@ The above code snippet is equivalent to:
 
 So it copies same object to destination.
 Instead can use updater by accessing previous state
-  
 
     this.setState((prevState) => {
         return { count: prevState.count + 3}
       })
 
-https://css-tricks.com/understanding-react-setstate/ 
+https://css-tricks.com/understanding-react-setstate/
 
 **SyntheticEvent**
+
 - https://levelup.gitconnected.com/how-exactly-does-react-handles-events-71e8b5e359f2
 
 , which is React’s cross-browser
@@ -420,34 +429,36 @@ https://css-tricks.com/understanding-react-setstate/
 **angular vs react what to choose for your app**
 https://keenethics.com/blog/angular-vs-react-what-to-choose-for-your-app
 
-
 ### Testing:
-https://reactjs.org/docs/testing-recipes.html 
+
+https://reactjs.org/docs/testing-recipes.html
+
 - basic recipes are given using testing-library not enzyme.
 
 ##### Testing Jest npm commands
+
 ![jest commands](https://raw.githubusercontent.com/ArunHub/Q-A/master/.github/jest.txt%20-%20Notepad.jpeg)
 
-
-**Jest** => 
+**Jest** =>
 **Enzyme** is a common tool in the React ecosystem that makes it easier to write tests for how components will behave. By default, our application includes a library called **jsdom** to allow us to simulate the DOM and test its runtime behavior without a browser. Enzyme is similar, but builds on jsdom and makes it easier to make certain queries about our components.
 
 https://github.com/Microsoft/TypeScript-React-Starter#writing-tests-with-jest.
 
 **Stateless components are the ones easy to test.**
-https://camjackson.net/post/9-things-every-reactjs-beginner-should-know#write-stateless-components 
+https://camjackson.net/post/9-things-every-reactjs-beginner-should-know#write-stateless-components
 
 Beforeall => constructor componentwillmount,
 
 Beforeeach => every single run before it function
 
 mockimpllemention
-Jest with parallel ism diff 
+Jest with parallel ism diff
 
 **Shallow** , **jest.fn** to spy on methods, await aysnc to test async call, expect to matchers
 Shallow rendering is nice, because it allows you to render a single component completely, but without delving into any of its child components to render those. Instead, the resulting object will tell you things like the type and props of the children. This gives us good isolation, allowing testing of a single component at a time.
 
 ##### server side rendering in react
+
 - Can refer to my repo - https://github.com/ArunHub/ssr
 - https://www.smashingmagazine.com/2016/03/server-side-rendering-react-node-express/
 
@@ -460,6 +471,7 @@ Shallow rendering is nice, because it allows you to render a single component co
 - https://www.30secondsofcode.org/blog/s/react-rendering-optimization
 
 #### Redux
+
 1. Store( initial state, middleware, reducer) to create a store.
 2. Actions (dispatch)
 3. Reducers
@@ -472,37 +484,35 @@ Shallow rendering is nice, because it allows you to render a single component co
 - to communicate with react app and redux. 3rd party library react redux package which created by neither of them.
 - to bridge those two, this package is needed.
 
-
 - Observer is a sound source, Our ears are subject ,We attach those sound source to subject, So when subject observing sounds , we listen and register and identify from which source it’s coming
 - Switching on/off main power which controls other switches and lights bulbs tv. Main acts as central system to control like redux - > subscribe/observer pattern
 
 **Redux thunk:**
 
 - why redux thunk middleware needed
-	- In computer programming, a thunk is a subroutine used to inject an additional calculation into another subroutine. Thunks are primarily used to delay a calculation until its result is needed, or to insert operations at the beginning or end of the other subroutine
-	- https://github.com/reduxjs/redux-thunk#
-	- https://redux.js.org/api/api-reference
+  - In computer programming, a thunk is a subroutine used to inject an additional calculation into another subroutine. Thunks are primarily used to delay a calculation until its result is needed, or to insert operations at the beginning or end of the other subroutine
+  - https://github.com/reduxjs/redux-thunk#
+  - https://redux.js.org/api/api-reference
 
 Before using redux thunk(middleware to handle async actions).
 Normally , ajax request are made in componentDidMount where will hit the service and do async actions but if u r using redux connect , first thought will be , you will transfer calling api service in actions by calling this.props.fetchdata(url) from componentDidMount with url alone. Then from mapDispatchtoProps provide dispatch to fetchData method and dispatch actions . So thought it will work but it wont Error: Actions must be plain objects. Use custom middleware for async actions. So use redux thunk which will return function instead of just plain object actions
 
 Without middleware, Redux store only supports synchronous data flow
 // Thunk middleware knows how to handle functions.
- // It passes the dispatch method as an argument to the function,
- // thus making it able to dispatch actions itself.
- 
- return function (dispatch) {
-   // First dispatch: the app state is updated to inform
-   // that the API call is starting.
- 
-   dispatch(requestPosts(subreddit))
- 
-   // The function called by the thunk middleware can return a value,
-   // that is passed on as the return value of the dispatch method.
- 
-   // In this case, we return a promise to wait for.
-   // This is not required by thunk middleware, but it is convenient for us.
- 
+// It passes the dispatch method as an argument to the function,
+// thus making it able to dispatch actions itself.
+
+return function (dispatch) {
+// First dispatch: the app state is updated to inform
+// that the API call is starting.
+
+dispatch(requestPosts(subreddit))
+
+// The function called by the thunk middleware can return a value,
+// that is passed on as the return value of the dispatch method.
+
+// In this case, we return a promise to wait for.
+// This is not required by thunk middleware, but it is convenient for us.
 
        return fetch(`https://www.reddit.com/r/${subreddit}.json`)
          .then(
@@ -516,7 +526,7 @@ Without middleware, Redux store only supports synchronous data flow
          .then(json =>
            // We can dispatch many times!
            // Here, we update the app state with the results of the API call.
-     
+
            dispatch(receivePosts(subreddit, json))
          )
      }
@@ -524,8 +534,8 @@ Without middleware, Redux store only supports synchronous data flow
 Here only angular uses effects in between component n action.. refer WLL
 http://work.haufegroup.io/intro-redux/
 
-**why ngrx and redux used**
--
+## **why ngrx and redux used**
+
 “When two components need to share state which are like adjacent to each other, I need to lift that state up instead of trying to keep their states in sync.”??????
 
 A component based architecture naturally makes sharing state more difficult. If two components rely on the same state, where should that state live? This was such a popular question that it spurred an entire ecosystem of solutions which eventually ended with Redux. Redux’s solution is to put that shared state in another location called a “store”. Components can then subscribe to any portions of the store they need and can also dispatch “actions” to update the store. React’s solution is to find the nearest parent of both of those components and have that parent manage the shared state, passing it down to the child components as needed. There are pros and cons to both approaches but it’s important to be aware that both solutions exist.
@@ -535,39 +545,38 @@ Because React on its own does not focus on application state management, the Rea
 
 https://github.com/Microsoft/TypeScript-React-Starter#adding-state-management
 
-can use custom store manager to store data in state and also in localstorage to fetch when refresh. React newly introduced context APi in 16.4  which will replace redux I think
+can use custom store manager to store data in state and also in localstorage to fetch when refresh. React newly introduced context APi in 16.4 which will replace redux I think
 
-**Axios service**
---
+## **Axios service**
+
 Its like promise based api which is build like http client in angular. Its similar feature to fetch api... get,post,put,delete
 Lightweight api ….......import axios from 'axios';
 https://alligator.io/react/axios-react/
 
-**React Vs angular**
---
+## **React Vs angular**
 
 https://www.robinwieruch.de/reasons-why-i-moved-from-angular-to-react/
 
-•	When doing component tree in pinboard, angular refreshes all components when some state changed so recursion occurs nicely while fetching the children again to draw svg in UI. Wherein case React failed to update recursion since it updates in the particular object property to refresh
+• When doing component tree in pinboard, angular refreshes all components when some state changed so recursion occurs nicely while fetching the children again to draw svg in UI. Wherein case React failed to update recursion since it updates in the particular object property to refresh
 
-•	React state changes only if setState triggered I.e doesn’t mutate. Wherein angular updates when we change something.
+• React state changes only if setState triggered I.e doesn’t mutate. Wherein angular updates when we change something.
 
-•	Fast since uniflow direction n non mutation
+• Fast since uniflow direction n non mutation
 
-•	React transpiles code into javascript and handover to js vm machine to process wherein after js compiled it is handled by angular to parse and its manipulation according to its principle and send to js vm machine. So it’s a very clean process in react. 
+• React transpiles code into javascript and handover to js vm machine to process wherein after js compiled it is handled by angular to parse and its manipulation according to its principle and send to js vm machine. So it’s a very clean process in react.
 
-**React without Es6**
---
+## **React without Es6**
+
 var createReactClass = require('create-react-class');
-class Greeting extends React.Component {  // ...}Greeting.defaultProps = {  name: 'Mary'}; 
+class Greeting extends React.Component { // ...}Greeting.defaultProps = { name: 'Mary'};
 With createReactClass(), you need to define getDefaultProps() as a function on the passed object:
-var Greeting = createReactClass({  getDefaultProps: function() {    return {      name: 'Mary'    };  },  // ...});
+var Greeting = createReactClass({ getDefaultProps: function() { return { name: 'Mary' }; }, // ...});
 With createReactClass(), you have to provide a separate getInitialState method that returns the initial state:
 With createReactClass(), this is not necessary because it binds all methods:
 Mixins
 
-**Single-page Application**
---
+## **Single-page Application**
+
 A single-page application is an application that loads a single HTML page and all the necessary assets (such as JavaScript and CSS) required for the application to run. Any interactions with the page or subsequent pages do not require a round trip to the server which means the page is not reloaded.
 Though you may build a single-page application in React, it is not a requirement. React can also be used for enhancing small parts of existing websites with additional interactivity. Code written in React can coexist peacefully with markup rendered on the server by something like PHP, or with other client-side libraries. In fact, this is exactly how React is being used at Facebook.
 why typescript in react when babel available
@@ -576,149 +585,139 @@ Debugging react components and performance:
 https://building.calibreapp.com/debugging-react-performance-with-react-16-and-chrome-devtools-c90698a522ad
 https://blog.logrocket.com/using-the-new-streaming-performance-monitor-in-google-chrome-d3019afe95e4
 
-**MISC**
---
+## **MISC**
+
 “Components don’t necessarily have to correspond to DOM nodes.”
 When we first learn React we’re taught that “Components are the building blocks of React. They take in input and return some UI (descriptor)“. Does that mean that every component needs to directly return UI descriptors as we’re typically taught? What if we wanted to have a component render another component (Higher Order Component pattern)? What if we wanted a component to manage some slice of state and then instead of returning a UI descriptor, it returns a function invocation passing in the state (Render Props pattern)? What if we had a component that was in charge of managing sound rather than a visual UI, what would it return? What’s great about React is you don’t have to return typical “views” from your components. As long as what eventually gets returned is a React element, null, or false, you’re good.
-You can return other components like HOC or render () {  return this.props.children(this.someImportantState)}
+You can return other components like HOC or render () { return this.props.children(this.someImportantState)}
 Or null
 
-**Progressive Disclosure Pattern and mobX**
---
+## **Progressive Disclosure Pattern and mobX**
+
 This web app depicts the "Progressive Disclosure Pattern" using a use case of React Mobile Shopping experience
-The user journey (Single Page Checkout) 
-1.	    Select a product and the quantity
-2.	    Enter the user contact information
-3.	    Make the payment
-4.	    On successful payment we can finally complete the checkout process 
-The user state is maintained in the MobX store and as the user progresses further the components are progressively shown based on where the user journey has reached. 
-Since this is a concept demonstration there are no validations added.
+The user journey (Single Page Checkout)
 
+1.       Select a product and the quantity
+2.       Enter the user contact information
+3.       Make the payment
+4.       On successful payment we can finally complete the checkout process
+    The user state is maintained in the MobX store and as the user progresses further the components are progressively shown based on where the user journey has reached.
+    Since this is a concept demonstration there are no validations added.
 
-
-**Using fragments**
---
+## **Using fragments**
 
     return (      <table>        <tr>          <Columns />        </tr>      </table>    );
 
 If columns returns <div><td><td></div> multiple tds in table , it’s a invalid html so wrapping that by React.fragments . Can be used <>dfsdf<> empty string also
-/* The AOT compiler needs the `./` to show that this is local */
+/_ The AOT compiler needs the `./` to show that this is local _/
 @import './hero-details-box.css';
-
 
 https://www.mockapi.io/docs
 https://swapi.co/
 https://openweathermap.org/api
 https://mockable.io
 
-
-
 ##### For Testing
+
 https://github.com/mlaursen/react-md/blob/master/src/js/Buttons/__tests__/Button.js
 npm test -- --watch
 
 ####HOC
- https://stackblitz.com/edit/react-imagehoc
+https://stackblitz.com/edit/react-imagehoc
 
 lifecycle
 http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
 
 why use react ?
+
 ##### isomorphic rendering?
 
 ##### React Architecture and Best Practices====
+
 https://github.com/markerikson/react-redux-links/blob/master/react-architecture.md
 
 **Doubts**
 
 https://facebook.github.io/create-react-app/
 
- 1. react form validation -> refs -> input new attributes and regex patterns
- 3. react testing from mahesh sabnis
- 4. anto preact react forms testing
- 5. web securities
- 6. crsf
- 7. cross site scripting
- 8. assessebility
- 9. how to make site accessible 
- 10. tools for assessibility
- 11. interceptors in react
- 12. redux
- 13. testing
- 14. react-spotify
- 15. how to get bearer token in artist list component?
- 16. how to design app without redux / or how to pass props to child 
- 17. without service, backend storage, web storages
- 18. Redux - merge props and other parameters of connect function
- 19. Testing – what are starting task you will check in component while writing testcase
- 20. how to spy on functions using jest
- 21. commonly used header requests
- 22. how to optimize or increase performance of website
- 23. what tools you will use to increase performance
- 24. bootstrap and its uses
- 25. responsive design
- 26. saga/thunk
+1.  react form validation -> refs -> input new attributes and regex patterns
+2.  react testing from mahesh sabnis
+3.  anto preact react forms testing
+4.  web securities
+5.  crsf
+6.  cross site scripting
+7.  assessebility
+8.  how to make site accessible
+9.  tools for assessibility
+10. interceptors in react
+11. redux
+12. testing
+13. react-spotify
+14. how to get bearer token in artist list component?
+15. how to design app without redux / or how to pass props to child
+16. without service, backend storage, web storages
+17. Redux - merge props and other parameters of connect function
+18. Testing – what are starting task you will check in component while writing testcase
+19. how to spy on functions using jest
+20. commonly used header requests
+21. how to optimize or increase performance of website
+22. what tools you will use to increase performance
+23. bootstrap and its uses
+24. responsive design
+25. saga/thunk
 
- 28. redirect and do form get authenticated when url comes as localhost:3000/form
- 29. merge props
- 30. commonly used header requests
-
-
+26. redirect and do form get authenticated when url comes as localhost:3000/form
+27. merge props
+28. commonly used header requests
 
 https://jsfiddle.net/u1bh23kv/6/
 
- 1. Component receive props
- 2.  Setstate inside render Use error boundaries
- 3.     Component unmount Data streaming from different cdn Authentication
- 4.  Disadvantage of react
- 5.  What features have you implemented using react
- 6.     What are the inputs taken from your side 
- 7. How to implement observable  in fetch in reactjs 
- 8. How react passes props to 100 components from  one component without affecting in between components
- 9. What are it’s  extracting from react component parent when extending 
- 10. How life cycle  definitions n compare with JavaScript n also see dispatch definition
- 11.     React n angular life hooks in JavaScript how traditionally
+1.  Component receive props
+2.  Setstate inside render Use error boundaries
+3.       Component unmount Data streaming from different cdn Authentication
+4.  Disadvantage of react
+5.  What features have you implemented using react
+6.       What are the inputs taken from your side
+7.  How to implement observable in fetch in reactjs
+8.  How react passes props to 100 components from one component without affecting in between components
+9.  What are it’s extracting from react component parent when extending
+10. How life cycle definitions n compare with JavaScript n also see dispatch definition
+11.     React n angular life hooks in JavaScript how traditionally
     implemented
-    12. Why single instance being shared all components from
+12. Why single instance being shared all components from
     root module
 
 https://medium.com/@jcbaey/authentication-in-spa-reactjs-and-vuejs-the-right-way-e4a9ac5cd9a3
 
-
-
-
 https://tylermcginnis.com/react-interview-questions/
 
-https://tylermcginnis.com/react-aha-moments/ 
-
+https://tylermcginnis.com/react-aha-moments/
 
 **Try ?**
 
- 2. Why jsx needs parent div binding for every component
- 5. How will you immutate deep object property in setstate or redux
-	 => use immutable.js or deep clone json.parse(json.stringify(obj))
+2.  Why jsx needs parent div binding for every component
+3.  How will you immutate deep object property in setstate or redux
+    => use immutable.js or deep clone json.parse(json.stringify(obj))
 
-6. https://artsy.github.io/blog/2018/08/24/How-to-debug-jest-tests/
+4.  https://artsy.github.io/blog/2018/08/24/How-to-debug-jest-tests/
 
-**Tips** 
+**Tips**
 
 - When u are in situation to render a component and insert it into dom, use like app.js used to do.
 - use render method from react-dom and render the dom and insert in dom like render('<app/>', document.getElementById('dom') )
-- when connect function props not working,then check the current component is exported as default or named one in parent component 
-if it is named export then it  cannot connot to store to get state values
-
+- when connect function props not working,then check the current component is exported as default or named one in parent component
+  if it is named export then it cannot connot to store to get state values
 
 To extend base class n use it's methods in react .... Scenario is integrating material with react n extending idse library
 
 Q. Copy render method n adopt to our template or render method
 W. Base can have private method's how will u use that
 E. Cannot change the base class implementation n declaration
-R. Then how will you override  and use its private method's
+R. Then how will you override and use its private method's
 T. Try interface is not a solution since we tell idse Lib to implement that
 Y. Try super. Method . But it also didn't work
 U. Copy those private functions and use in your class. It says error that same types declaration in both classes
 I. Finally we need functionality only so why not copy functionality alone n put it in different method name
-
 
 So you are integrating material Lib into idse to use its CSS classes
 
@@ -728,20 +727,20 @@ E. And try the same implementation
 R. If that outside application works then you should start comparing existing with outside application
 T. Now you can find a clue what went wrong
 
-Interview Questions
---
+## Interview Questions
+
 Interview
 React hooks- use memo , use context, usecallback, usereducer
 Atomic design
 Disadvantage of react
 Security implementation
 Router useparams use location
-If router url is pasted in another browser then how you will authenticate 
+If router url is pasted in another browser then how you will authenticate
 Prototype proto
 How to reuse useEffect
 Own custom bind apply map filter reduce
 Experience in terms of building the code without api availability and should be able to test using mocking or using pact based testing
-Mount node 
+Mount node
 Currying vs closures
 Webpack for performance
 Client side rendering vs server side rendering
@@ -750,72 +749,61 @@ Primitive and reference value
 JavaScript security
 When marketing visited during Garuda service, one client asked whether you have security control, good how do you secure the website completely even if ssl is there?
 During the Wells Fargo also I was asked about security authentication request custom headers
-Recently during incognito interview also 
+Recently during incognito interview also
 
 How do you handle Cross site forgery in your application?
-How do you do authentication in fronted and backend? Jwt 
+How do you do authentication in fronted and backend? Jwt
 Do you use Cookies and web storage?
-How do you handle multiple frameworks in a application ? 
-How do you select a framework for an application? 
+How do you handle multiple frameworks in a application ?
+How do you select a framework for an application?
 What is complexity challenges you faced in a project ?
 Limitations of react
 **capg**
 
 11. How do you check error trace back happened in child from parent component itself?
 
+## Cts
 
-Cts
---
+17. What is react
 
-17.	What is react
+18. Why super(props)
+19. Inside form component there many input field components there, and submit btn so evnet handler available for submit btn only.
+    a. How will you get each component value and submit it
+    b. How will you validate each field value and do validation before submitting
+20. How will you Map and filter an array and return input radio element to render
+21. Array of three objects with each object has {1,2,3}, {5,2,3},{3,1,4}. Find the object has 1 and 3 and filter => hasownproperty
+22. Call and apply
+23. Rest operator
+24. React lifecycle after state update
+25. How to update state
+26. Unit test case for form submit
+    2nd round
+27. Latest application worked on?
+28. Created any component and publish in npm
+29. Reverse a string without reverse
+30. React lifecycles
+31. How react produces good performance
+32. [{a:dsaf, age:5}, {a:efa,age:3}, {a:errg, age:10}] sort this array depending on age property
+33. There are three pages and each page has form component with common next button which indicates to move to next page so which implies to denote the completion in filling progress bar at the bottom. How will you be your thought process to implement.
+34. How will you implement footer sticky
+35. Rootscope
+36. Webpack use and devops knowledge?
+37. How much code coverage produced?
+    3rd round
+38. Brief about professional experience over 5years
+39. How good is hcl
+40. Agile methodology work flow
+41. Daily task of developer in agile
+42. Interact with business owners, clients owners
+43. How will you mitigate risk under short deadline
+44. Aspiration about onsite
+45. Going forward lead or manager or architect?
+46. Why do want leave organisation
+47. Why 2years 1year 2 year switching
+48. If production issue and story task are there how will u manage in a particular day
+49. Suppose in 2 weeks sprint if have applied for leave and if the task was to complete in new technology. What will be your reaction?
 
-20.	Why super(props)
-21.	Inside form component there many input field components there, and submit btn so evnet handler available for submit btn only.
-a.	How will you get each component value and submit it
-b.	How will you validate each field value and do validation before submitting
-22.	How will you Map and filter an array and return input radio element to render
-23.	Array of three objects with each object has {1,2,3}, {5,2,3},{3,1,4}. Find the object has 1 and 3 and filter => hasownproperty
-24.	Call and apply 
-25.	Rest operator
-26.	React lifecycle after state update
-27.	How to update state
-28.	Unit test case for form submit 
-2nd round
-29.	Latest application worked on?
-31.	Created any component and publish in npm
-32.	Reverse a string without reverse
-33.	React lifecycles
-34.	How react produces good performance
-35.	[{a:dsaf, age:5}, {a:efa,age:3}, {a:errg, age:10}] sort this array depending on age property
-36.	There are three pages and each page has form component with common next button which indicates to move to next page so which implies to denote the completion in filling progress bar at the bottom. How will you be your thought process to implement.
-37.	How will you implement footer sticky 
-40.	Rootscope
-41.	Webpack use and devops knowledge?
-42.	How much code coverage produced?
-3rd round
-43.	Brief about professional experience over 5years
-44.	How good is hcl
-45.	Agile methodology work flow
-46.	Daily task of developer in agile
-47.	Interact with business owners, clients owners
-48.	How will you mitigate risk under short deadline
-49.	Aspiration about onsite
-50.	Going forward lead or manager or architect?
-51.	Why do want leave organisation
-52.	Why 2years 1year 2 year switching
-54.	If production issue and story task are there how will u manage in a particular day
-55.	Suppose in 2 weeks sprint if have applied for leave and if the task was to complete in new technology. What will be your reaction?
-
-5th round
-57.	Webpack usage
-58.	Why bootstrap
-59.	Bindings in ng1 directive
-60.	How achieve two way binding in directive
-61.	What is directive
-62.	EA, E, A define in directive
-63.	Why react different from angular
-64.	You have shared component which has two buttons plus and minus to increase/decrease number functionality. How will implement this in photo changing slider in another component.
-67.	When you want to access this.props in constructor
+5th round 57. Webpack usage 58. Why bootstrap 59. Bindings in ng1 directive 60. How achieve two way binding in directive 61. What is directive 62. EA, E, A define in directive 63. Why react different from angular 64. You have shared component which has two buttons plus and minus to increase/decrease number functionality. How will implement this in photo changing slider in another component. 67. When you want to access this.props in constructor
 Passing:
 
     class MyComponent extends React.Component {        constructor(props) {        super(props)        console.log(this.props)        // -> { icon: 'home', … }    }}
@@ -826,50 +814,46 @@ Not passing:
 
 Note that passing or not passing props to super has no effect on later uses of this.propsoutside constructor. That is render, shouldComponentUpdate, or event handlers always have access to it.
 
+## Deloit
 
-
-Deloit
---
-
-21.	Why cant use componentwillmount instead of componentDidMount
-22.	Virtual dom
-23.	Is redux doing immutability in reducer? Then what is the need of immutable.js
-24.	Why need jsx to write html in js in react
-34.	What difference btw handling events in js and react js
-35.	Why need key while iterate
-36.	Difference btw forms usage In js and react
-37.	Usage of ref and use case of that
-38.	Declare Initial state in store?
-39.	Why redux
-40.	How the syntax will be in actions
-42.	Virtual dom
-43.	Why need react? What u do with react
-44.	What is componentwillmount and lifehooks of react
-45.	Props and state .. why props cant be changed
-46.	How to send value from child to parent
-47.	Why need bind in calling events? Is bind necessary? If not what is other way
-48.	When we don’t want to call render? What should be done
-49.	Es6 features
-50.	What special abt arrow functions ? Only shorthand?
-51.	How to convert es5 to es6 ? What to look for it in es5 to change
-Managerial round
-25.	How do you see yourself in 5 years?
-26.	How do you want to grow up in your career?
-27.	Intro abt yourself, experience, responsibilities
-28.	What challenge you got from client
-29.	Why do you select deloitte
-30.	How was your day today
-31.	Agile difficulites
-32.	How do you prevent bugs defects before getting into QA hands
-
+21. Why cant use componentwillmount instead of componentDidMount
+22. Virtual dom
+23. Is redux doing immutability in reducer? Then what is the need of immutable.js
+24. Why need jsx to write html in js in react
+25. What difference btw handling events in js and react js
+26. Why need key while iterate
+27. Difference btw forms usage In js and react
+28. Usage of ref and use case of that
+29. Declare Initial state in store?
+30. Why redux
+31. How the syntax will be in actions
+32. Virtual dom
+33. Why need react? What u do with react
+34. What is componentwillmount and lifehooks of react
+35. Props and state .. why props cant be changed
+36. How to send value from child to parent
+37. Why need bind in calling events? Is bind necessary? If not what is other way
+38. When we don’t want to call render? What should be done
+39. Es6 features
+40. What special abt arrow functions ? Only shorthand?
+41. How to convert es5 to es6 ? What to look for it in es5 to change
+    Managerial round
+42. How do you see yourself in 5 years?
+43. How do you want to grow up in your career?
+44. Intro abt yourself, experience, responsibilities
+45. What challenge you got from client
+46. Why do you select deloitte
+47. How was your day today
+48. Agile difficulites
+49. How do you prevent bugs defects before getting into QA hands
 
 for tutorials from udemy
 Refer google sheets
 
-
 ###### Some projects:
+
 - https://stackblitz.com/edit/react-mailboxscb
 - https://stackblitz.com/edit/react-add2cart
 - https://stackblitz.com/edit/react-imagehoc
 - https://stackblitz.com/edit/filter-array-of-posts-nii6sj
-- 
+-

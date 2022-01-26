@@ -1181,6 +1181,8 @@ console.log(i) // arrow function proves to maintain the scope and remembers the 
 }
 }
 
+**https://bonsaiden.github.io/JavaScript-Garden/#function.closures**
+
 method chaining
 
 $.addClass.addClass.removeClass.add
@@ -1893,7 +1895,7 @@ Use dynamic object property in es 6 ... Refer asynchronous actions in redux or r
 5.  How will you find which browser running - navigator
 6.  What history object does in javascript - state for back,forward, and methods to change url
 
-7.          Object literal has prototype or __proto__ - prototype is a naming concept and __proto__ is a syntax for prototype chaining representation. When attaching a prototype property , we can use prototype method to attach to constructor function. prototype can be used only constructor function.
+7.           Object literal has prototype or __proto__ - prototype is a naming concept and __proto__ is a syntax for prototype chaining representation. When attaching a prototype property , we can use prototype method to attach to constructor function. prototype can be used only constructor function.
 8.  Assigning function constructor to a variable/ try iife to capital variable
 9.  Fastest way to traverse array? Why filter faster than map hint: filter caches array. For example - for duplicate arrrays
 
