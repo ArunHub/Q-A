@@ -30,6 +30,12 @@ We call this a “root” DOM node because everything inside it will be managed 
 so react builds the react elements representing the view screen under the root div.
 Unlike browser DOM elements, React elements are plain objects, and are cheap to create. React DOM takes care of updating the DOM to match the React elements.
 
+- https://www.phpied.com/remarkable-react/
+
+react , flux and difference btw react, angular , jquery
+
+- https://www.youtube.com/watch?v=nYkdrAPrdcw&list=PLb0IAmt7-GS188xDYE-u1ShQmFFGbrk0v&t=621s
+
 ### Design principles
 
 important to us that you can add functionality to a component without causing rippling changes throughout the codebase.
@@ -461,6 +467,7 @@ Shallow rendering is nice, because it allows you to render a single component co
 
 - Can refer to my repo - https://github.com/ArunHub/ssr
 - https://www.smashingmagazine.com/2016/03/server-side-rendering-react-node-express/
+- https://github.com/facebookarchive/react-page
 
 ### Improving performance in React ?
 
@@ -597,10 +604,10 @@ Or null
 This web app depicts the "Progressive Disclosure Pattern" using a use case of React Mobile Shopping experience
 The user journey (Single Page Checkout)
 
-1.       Select a product and the quantity
-2.       Enter the user contact information
-3.       Make the payment
-4.       On successful payment we can finally complete the checkout process
+1.         Select a product and the quantity
+2.         Enter the user contact information
+3.         Make the payment
+4.         On successful payment we can finally complete the checkout process
     The user state is maintained in the MobX store and as the user progresses further the components are progressively shown based on where the user journey has reached.
     Since this is a concept demonstration there are no validations added.
 
@@ -674,10 +681,10 @@ https://jsfiddle.net/u1bh23kv/6/
 
 1.  Component receive props
 2.  Setstate inside render Use error boundaries
-3.       Component unmount Data streaming from different cdn Authentication
+3.         Component unmount Data streaming from different cdn Authentication
 4.  Disadvantage of react
 5.  What features have you implemented using react
-6.       What are the inputs taken from your side
+6.         What are the inputs taken from your side
 7.  How to implement observable in fetch in reactjs
 8.  How react passes props to 100 components from one component without affecting in between components
 9.  What are it’s extracting from react component parent when extending

@@ -1895,7 +1895,7 @@ Use dynamic object property in es 6 ... Refer asynchronous actions in redux or r
 5.  How will you find which browser running - navigator
 6.  What history object does in javascript - state for back,forward, and methods to change url
 
-7.           Object literal has prototype or __proto__ - prototype is a naming concept and __proto__ is a syntax for prototype chaining representation. When attaching a prototype property , we can use prototype method to attach to constructor function. prototype can be used only constructor function.
+7.            Object literal has prototype or __proto__ - prototype is a naming concept and __proto__ is a syntax for prototype chaining representation. When attaching a prototype property , we can use prototype method to attach to constructor function. prototype can be used only constructor function.
 8.  Assigning function constructor to a variable/ try iife to capital variable
 9.  Fastest way to traverse array? Why filter faster than map hint: filter caches array. For example - for duplicate arrrays
 
@@ -1934,6 +1934,11 @@ https://stackoverflow.com/questions/3561043/what-does-a-comma-do-in-javascript-e
 5. Function hosting - when javascript file is getting read, functions which are declared are gets place in lexical environment
 6. Higher order functions - function returning function which can be called later
 7. Lodash throttle - no matter how many times the function called, it is executed only once at given time interval . Internally function DoOnce is implemented i guess. Contrarly , Debounce will be executed once the user stops typing within given point of time.
+
+The term debounce comes from electronics. When you’re pressing a button, let’s say on your TV remote, the signal travels to the microchip of the remote so quickly that before you manage to release the button, it bounces, and the microchip registers your “click” multiple times.
+debounce-button
+
+To mitigate this, once a signal from the button is received, the microchip stops processing signals from the button for a few microseconds while it’s physically impossible for you to press it again.
 
 #### ECMA 5 Questions ???
 
