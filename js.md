@@ -203,31 +203,43 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prot
 
 ##### static variable vs instance
 
+static variable or method is part of class function alone not attached to any object instances of class.
+
+basically methods of a object is to change the property vallue of the object so here static variables are used to have constant values not to change properties of a value.
+
+example 1:
+Math.PI value doesnt change for any number of instances so placed as a static variable.
+It not a variable of Math, but a variable of the whole class.
+
+It can be return as a seperate common function but since its so related to respective class and it make sense to use as part of class variable/method
+
+Static properties are used when we’d like to store class-level data, also not bound to an instance.
+
+example 2:
+
 ```
-var temp;
-if (periodicArr[i].symbol && (temp = str.match(regex)) !== null) {}
+class Article {
+  constructor(title, date) {
+    this.title = title;
+    this.date = date;
+  }
 
-"class Test{
-public static int a = 5;
-public int b = 10;
+  static compare(articleA, articleB) {
+    return articleA.date - articleB.date;
+  }
 }
-// here t1 and t2 will have a separate copy of b
-// while they will have same copy of a.
-Test t1 = new test();
-Test t2 = new test();
 
-You can access a static variable with it's class Name like this
+// usage
+let articles = [
+  new Article("HTML", new Date(2019, 1, 1)),
+  new Article("CSS", new Date(2019, 0, 1)),
+  new Article("JavaScript", new Date(2019, 11, 1))
+];
 
-Test.a = 1//some value But you can not access instance variable like this
-System.out.println(t1.a);
-System.out.println(t2.a);
+articles.sort(Article.compare);
 
-In both cases output will be 1 as a is share by all instances of the test class.
-while the instance variable will each have separate copy of b (instance variable) So
+alert( articles[0].title ); // CSS
 
- t1.b = 15 // will not be reflected in t2.
- System.out.println(t1.b); // this will print 15
- System.out.println(t2.b); / this will still print 10;
 ```
 
 Hope that explains your query."
@@ -1895,7 +1907,7 @@ Use dynamic object property in es 6 ... Refer asynchronous actions in redux or r
 5.  How will you find which browser running - navigator
 6.  What history object does in javascript - state for back,forward, and methods to change url
 
-7.            Object literal has prototype or __proto__ - prototype is a naming concept and __proto__ is a syntax for prototype chaining representation. When attaching a prototype property , we can use prototype method to attach to constructor function. prototype can be used only constructor function.
+7.                  Object literal has prototype or __proto__ - prototype is a naming concept and __proto__ is a syntax for prototype chaining representation. When attaching a prototype property , we can use prototype method to attach to constructor function. prototype can be used only constructor function.
 8.  Assigning function constructor to a variable/ try iife to capital variable
 9.  Fastest way to traverse array? Why filter faster than map hint: filter caches array. For example - for duplicate arrrays
 
