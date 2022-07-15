@@ -14,8 +14,10 @@ array.splice(index, 1); // its slooooowwwww
 
 ...do this:
 
-array[i] = array[array.length - 1];
+array[index] = array[array.length - 1];
 array.pop(); // orders of magnitude faster!
+
+Source: https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 
 // own bind method
 Function.prototype.mybind = function(){
@@ -49,8 +51,6 @@ var obj = {
 obj.add1().add1() // result: {a: 1, b: 2, sum: 6, add1: ƒ, sub2: ƒ}
 
 ```
-
-Source: https://twitter.com/rich_harris/status/1125850391155965952?lang=en
 
 - | interceptor | session in js ?
 
@@ -1044,6 +1044,8 @@ alert(value);
 let g = f(); // g.[[Environment]] stores a reference to the Lexical Environment
 // of the corresponding f() call
 
+https://blog.meteor.com/an-interesting-kind-of-javascript-memory-leak-8b47d2e7f156
+
 ```
 function f() {
   let value = 123;
@@ -1907,7 +1909,7 @@ Use dynamic object property in es 6 ... Refer asynchronous actions in redux or r
 5.  How will you find which browser running - navigator
 6.  What history object does in javascript - state for back,forward, and methods to change url
 
-7.                  Object literal has prototype or __proto__ - prototype is a naming concept and __proto__ is a syntax for prototype chaining representation. When attaching a prototype property , we can use prototype method to attach to constructor function. prototype can be used only constructor function.
+7.                    Object literal has prototype or __proto__ - prototype is a naming concept and __proto__ is a syntax for prototype chaining representation. When attaching a prototype property , we can use prototype method to attach to constructor function. prototype can be used only constructor function.
 8.  Assigning function constructor to a variable/ try iife to capital variable
 9.  Fastest way to traverse array? Why filter faster than map hint: filter caches array. For example - for duplicate arrrays
 
